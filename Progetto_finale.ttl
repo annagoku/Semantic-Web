@@ -200,28 +200,6 @@
 #    Classes
 #################################################################
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#CavalloASangueCaldo
-:CavalloASangueCaldo rdf:type owl:Class ;
-                     owl:equivalentClass [ owl:intersectionOf ( :Cavallo
-                                                                [ rdf:type owl:Restriction ;
-                                                                  owl:onProperty :haIndole ;
-                                                                  owl:someValuesFrom :SangueCaldo
-                                                                ]
-                                                              ) ;
-                                           rdf:type owl:Class
-                                         ] ;
-                     rdfs:subClassOf :Cavallo .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#CavalloASangueFreddo
-:CavalloASangueFreddo rdf:type owl:Class ;
-                      owl:equivalentClass [ rdf:type owl:Restriction ;
-                                            owl:onProperty :haRazza ;
-                                            owl:someValuesFrom :RazzeASangueFreddo
-                                          ] ;
-                      rdfs:subClassOf :Cavallo .
-
-
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#CavalloAndaluso
 :CavalloAndaluso rdf:type owl:Class ;
                  owl:equivalentClass [ rdf:type owl:Restriction ;
@@ -233,6 +211,10 @@
                                        owl:someValuesFrom :AltaScuola
                                      ] ,
                                      [ rdf:type owl:Restriction ;
+                                       owl:onProperty :haIndole ;
+                                       owl:hasValue :SangueCaldo
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
                                        owl:onProperty :haMantello ;
                                        owl:hasValue :baio
                                      ] ,
@@ -240,7 +222,12 @@
                                        owl:onProperty :originarioDi ;
                                        owl:hasValue :Andalusia
                                      ] ;
-                 rdfs:subClassOf :CavalloASangueCaldo .
+                 rdfs:subClassOf :CavalloEuropeo .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#CavalloEuropeo
+:CavalloEuropeo rdf:type owl:Class ;
+                rdfs:subClassOf :Cavallo .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#RazzeASangueCaldo
@@ -250,10 +237,6 @@
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#RazzeASangueFreddo
 :RazzeASangueFreddo rdf:type owl:Class ;
-                    owl:equivalentClass [ rdf:type owl:Restriction ;
-                                          owl:onProperty :haIndole ;
-                                          owl:someValuesFrom :SangueFreddo
-                                        ] ;
                     rdfs:subClassOf :Razza .
 
 
@@ -583,7 +566,13 @@
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Indole
-:Indole rdf:type owl:Class .
+:Indole rdf:type owl:Class ;
+        owl:equivalentClass [ rdf:type owl:Class ;
+                              owl:oneOf ( :SangueCaldo
+                                          :SangueFreddo
+                                          :SangueMisto
+                                        )
+                            ] .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Intermedio
@@ -760,21 +749,6 @@
                rdfs:subClassOf :SportEquestreOlimpico .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/SangueCaldo
-:SangueCaldo rdf:type owl:Class ;
-             rdfs:subClassOf :Indole .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/SangueFreddo
-:SangueFreddo rdf:type owl:Class ;
-              rdfs:subClassOf :Indole .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/SangueMisto
-:SangueMisto rdf:type owl:Class ;
-             rdfs:subClassOf :Indole .
-
-
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/SecondoGrado
 :SecondoGrado rdf:type owl:Class ;
               rdfs:subClassOf :PatenteEquestre .
@@ -834,6 +808,18 @@
 #    Individuals
 #################################################################
 
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#SangueCaldo
+:SangueCaldo rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#SangueFreddo
+:SangueFreddo rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#SangueMisto
+:SangueMisto rdf:type owl:NamedIndividual .
+
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#Tom
 :Tom rdf:type owl:NamedIndividual ,
               :AngloAraboFrancese .
@@ -847,7 +833,8 @@
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Francia
 :Francia rdf:type owl:NamedIndividual ,
-                  :AreaGeografica .
+                  :AreaGeografica ;
+         <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#hasPart> :Normandia .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Fulmine
@@ -878,8 +865,7 @@
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Normandia
 :Normandia rdf:type owl:NamedIndividual ,
-                    :AreaGeografica ;
-           <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> :Francia .
+                    :AreaGeografica .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Spagna
@@ -972,11 +958,16 @@
 ] .
 
 
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :SangueCaldo
-                :SangueFreddo
-                :SangueMisto
-              )
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :Andalusia
+                        :Francia
+                        :Germania
+                        :GranBretagna
+                        :Irlanda
+                        :Italia
+                        :Normandia
+                        :Spagna
+                      )
 ] .
 
 
