@@ -49,7 +49,53 @@
 #    Object Properties
 #################################################################
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#haAltezzaMediaAlGarrese
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#Impiega
+:Impiega rdf:type owl:ObjectProperty ;
+         owl:inverseOf :vieneImpiegatoIn .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#adattoAlConseguimentoDi
+:adattoAlConseguimentoDi rdf:type owl:ObjectProperty ;
+                         rdfs:domain :Cavallo ;
+                         rdfs:range :PatenteEquestre .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#consegue
+:consegue rdf:type owl:ObjectProperty ;
+          owl:inverseOf :vieneConseguitoDa .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#haSesso
+:haSesso rdf:type owl:ObjectProperty ;
+         rdfs:domain :Cavallo ;
+         rdfs:range [ rdf:type owl:Restriction ;
+                      owl:onProperty :Sesso ;
+                      owl:someValuesFrom xsd:string
+                    ] .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#vieneConseguitoDa
+:vieneConseguitoDa rdf:type owl:ObjectProperty ;
+                   rdfs:domain :PatenteEquestre ;
+                   rdfs:range :Persona .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#vieneImpiegatoIn
+:vieneImpiegatoIn rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Razza ;
+                  rdfs:range :Impiego .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#èAdattoPer
+:èAdattoPer rdf:type owl:ObjectProperty ;
+            rdfs:domain :Cavallo ;
+            rdfs:range :Persona ;
+            owl:propertyChainAxiom ( :adattoAlConseguimentoDi
+                                     :vieneConseguitoDa
+                                   ) .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/haAltezzaMediaAlGarrese
 :haAltezzaMediaAlGarrese rdf:type owl:ObjectProperty ,
                                   owl:FunctionalProperty ;
                          rdfs:domain :Razza ;
@@ -59,31 +105,22 @@
                                     ] .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Precede
-:Precede rdf:type owl:ObjectProperty ;
-         owl:inverseOf :èSuccessivaA .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/haEtà
-:haEtà rdf:type owl:ObjectProperty ;
-       rdfs:subPropertyOf owl:topObjectProperty ;
-       rdfs:domain :Cavallo .
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/haColoriMantelloAmmessi
+:haColoriMantelloAmmessi rdf:type owl:ObjectProperty ;
+                         rdfs:domain :Razza ;
+                         rdfs:range :ColoreMantello .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/haIndole
 :haIndole rdf:type owl:ObjectProperty ,
                    owl:FunctionalProperty ;
-          rdfs:domain :Cavallo ;
+          rdfs:domain :Razza ;
           rdfs:range :Indole .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/haMadre
 :haMadre rdf:type owl:ObjectProperty ,
                   owl:FunctionalProperty .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/haMantello
-:haMantello rdf:type owl:ObjectProperty .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/haPadre
@@ -99,30 +136,9 @@
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/originarioDi
-:originarioDi rdf:type owl:ObjectProperty ,
-                       owl:FunctionalProperty ;
-              rdfs:domain :Cavallo ;
+:originarioDi rdf:type owl:ObjectProperty ;
+              rdfs:domain :Razza ;
               rdfs:range :AreaGeografica .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/permetteIlConseguimentoDi
-:permetteIlConseguimentoDi rdf:type owl:ObjectProperty ;
-                           rdfs:subPropertyOf owl:topObjectProperty ;
-                           rdfs:domain :Cavallo ;
-                           rdfs:range :PatenteEquestre .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/èAdattoPer
-:èAdattoPer rdf:type owl:ObjectProperty ;
-            rdfs:subPropertyOf owl:topObjectProperty ;
-            rdfs:domain :Cavallo ;
-            rdfs:range :Persona .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/èImpiegatoIn
-:èImpiegatoIn rdf:type owl:ObjectProperty ;
-              rdfs:domain :Cavallo ;
-              rdfs:range :Impiego .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/èMadreDi
@@ -137,141 +153,319 @@
           rdfs:range :Cavallo .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/èSuccessivaA
-:èSuccessivaA rdf:type owl:ObjectProperty ;
-              rdfs:domain :PatenteEquestre ;
-              rdfs:range :PatenteEquestre .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/èUtilizzatoIn
-:èUtilizzatoIn rdf:type owl:ObjectProperty ;
-               rdfs:domain :Cavallo ;
-               rdfs:range :Impiego .
-
-
 #################################################################
 #    Data properties
 #################################################################
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/LuogoCompetizione
-:LuogoCompetizione rdf:type owl:DatatypeProperty ;
-                   rdfs:domain :Impiego ;
-                   rdfs:range xsd:string .
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#Sesso
+:Sesso rdf:type owl:DatatypeProperty ;
+       rdfs:domain :Cavallo ;
+       rdfs:range xsd:string .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/altezzaAlGarrese
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#altezzaAlGarrese
 :altezzaAlGarrese rdf:type owl:DatatypeProperty ;
-                  rdfs:subPropertyOf owl:topDataProperty ;
                   rdfs:domain :Cavallo ;
-                  rdfs:range xsd:positiveInteger .
+                  rdfs:range xsd:nonNegativeInteger .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/altezzaDiSalto
-:altezzaDiSalto rdf:type owl:DatatypeProperty ;
-                rdfs:domain :CavalloSaltoOstacoli ;
-                rdfs:range xsd:positiveInteger .
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#coloreMantello
+:coloreMantello rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Cavallo ;
+                rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#localitàDiResidenza
+:localitàDiResidenza rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#pesoMedio
+:pesoMedio rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Razza ;
+           rdfs:range xsd:nonNegativeInteger .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/altezzaMediaAlGarrese
 :altezzaMediaAlGarrese rdf:type owl:DatatypeProperty ;
-                       rdfs:domain :Cavallo ;
-                       rdfs:range xsd:nonNegativeInteger .
+                       rdfs:domain :Razza .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/dataCompetizione
-:dataCompetizione rdf:type owl:DatatypeProperty ;
-                  rdfs:subPropertyOf owl:topDataProperty ;
-                  rdfs:domain :Impiego .
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/categorieDiSalto
+:categorieDiSalto rdf:type owl:DatatypeProperty ;
+                  rdfs:range xsd:positiveInteger .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/età
 :età rdf:type owl:DatatypeProperty ;
-     rdfs:domain :Cavallo ;
-     rdfs:range xsd:integer .
+     rdfs:domain :Cavallo .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/prezzoDiVendita
-:prezzoDiVendita rdf:type owl:DatatypeProperty ;
-                 rdfs:domain :Cavallo ;
-                 rdfs:range xsd:integer .
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/prezzoMedio
+:prezzoMedio rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Cavallo ;
+             rdfs:range xsd:integer .
 
 
 #################################################################
 #    Classes
 #################################################################
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#CavalloAndaluso
-:CavalloAndaluso rdf:type owl:Class ;
-                 owl:equivalentClass [ rdf:type owl:Restriction ;
-                                       owl:onProperty :haRazza ;
-                                       owl:someValuesFrom :Andaluso
-                                     ] ,
-                                     [ rdf:type owl:Restriction ;
-                                       owl:onProperty :èUtilizzatoIn ;
-                                       owl:someValuesFrom :AltaScuola
-                                     ] ,
-                                     [ rdf:type owl:Restriction ;
-                                       owl:onProperty :haIndole ;
-                                       owl:hasValue :SangueCaldo
-                                     ] ,
-                                     [ rdf:type owl:Restriction ;
-                                       owl:onProperty :haMantello ;
-                                       owl:hasValue :baio
-                                     ] ,
-                                     [ rdf:type owl:Restriction ;
-                                       owl:onProperty :originarioDi ;
-                                       owl:hasValue :Andalusia
-                                     ] ;
-                 rdfs:subClassOf :CavalloEuropeo .
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#AltaScuola
+:AltaScuola rdf:type owl:Class ;
+            rdfs:subClassOf :Sport .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#CavalloEuropeo
-:CavalloEuropeo rdf:type owl:Class ;
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#Castrone
+:Castrone rdf:type owl:Class ;
+          rdfs:subClassOf :Cavallo .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#CavalloFemmina
+:CavalloFemmina rdf:type owl:Class ;
+                owl:equivalentClass [ rdf:type owl:Class ;
+                                      owl:oneOf ( :Femmina
+                                                )
+                                    ] ;
                 rdfs:subClassOf :Cavallo .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#CavalloMaschio
+:CavalloMaschio rdf:type owl:Class ;
+                owl:equivalentClass [ rdf:type owl:Restriction ;
+                                      owl:onProperty :haSesso ;
+                                      owl:hasValue :maschio
+                                    ] ;
+                rdfs:subClassOf :Cavallo .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#CavalloPerAltaScuola
+:CavalloPerAltaScuola rdf:type owl:Class ;
+                      owl:equivalentClass [ owl:intersectionOf ( :CavalloSportivo
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty :haRazza ;
+                                                                   owl:someValuesFrom :RazzaDaAltaScuola
+                                                                 ]
+                                                               ) ;
+                                            rdf:type owl:Class
+                                          ] ;
+                      rdfs:subClassOf :CavalloSportivo .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#CavalloPerSaltoOstacoli
+:CavalloPerSaltoOstacoli rdf:type owl:Class ;
+                         owl:equivalentClass [ owl:intersectionOf ( :CavalloSportivo
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty :haRazza ;
+                                                                      owl:someValuesFrom :RazzaDaSalto
+                                                                    ]
+                                                                  ) ;
+                                               rdf:type owl:Class
+                                             ] ;
+                         rdfs:subClassOf :CavalloSportivo .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#CavalloSportivo
+:CavalloSportivo rdf:type owl:Class ;
+                 owl:equivalentClass [ owl:intersectionOf ( :Cavallo
+                                                            [ rdf:type owl:Class ;
+                                                              owl:unionOf ( [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty :haRazza ;
+                                                                              owl:someValuesFrom :RazzaDaAltaScuola
+                                                                            ]
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty :haRazza ;
+                                                                              owl:someValuesFrom :RazzaDaSalto
+                                                                            ]
+                                                                          )
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :adattoAlConseguimentoDi ;
+                                       owl:someValuesFrom :PatenteEquestre
+                                     ] ;
+                 rdfs:subClassOf :Cavallo .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#CrossCountry
+:CrossCountry rdf:type owl:Class ;
+              rdfs:subClassOf :Sport .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#Dressage
+:Dressage rdf:type owl:Class ;
+          rdfs:subClassOf :Sport .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#Endurance
+:Endurance rdf:type owl:Class ;
+           rdfs:subClassOf :Sport .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#Eventing
+:Eventing rdf:type owl:Class ;
+          rdfs:subClassOf :Sport .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#RazzaDaAltaScuola
+:RazzaDaAltaScuola rdf:type owl:Class ;
+                   owl:equivalentClass [ owl:intersectionOf ( :Razza
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :vieneImpiegatoIn ;
+                                                                owl:someValuesFrom :AltaScuola
+                                                              ]
+                                                            ) ;
+                                         rdf:type owl:Class
+                                       ] ;
+                   rdfs:subClassOf :Razza .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#RazzaDaLavoro
+:RazzaDaLavoro rdf:type owl:Class ;
+               rdfs:subClassOf :Razza .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#RazzaDaRiproduzione
+:RazzaDaRiproduzione rdf:type owl:Class ;
+                     owl:equivalentClass [ owl:intersectionOf ( :Razza
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty :vieneImpiegatoIn ;
+                                                                  owl:someValuesFrom :Riproduzione
+                                                                ]
+                                                              ) ;
+                                           rdf:type owl:Class
+                                         ] ;
+                     rdfs:subClassOf :Razza .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#RazzaDaSalto
+:RazzaDaSalto rdf:type owl:Class ;
+              owl:equivalentClass [ owl:intersectionOf ( :Razza
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :vieneImpiegatoIn ;
+                                                           owl:hasValue :saltoAdOstacoli
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] ;
+              rdfs:subClassOf :Razza .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#RazzeASangueCaldo
 :RazzeASangueCaldo rdf:type owl:Class ;
+                   owl:equivalentClass [ owl:intersectionOf ( :Razza
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :haIndole ;
+                                                                owl:someValuesFrom :SangueCaldo
+                                                              ]
+                                                            ) ;
+                                         rdf:type owl:Class
+                                       ] ;
                    rdfs:subClassOf :Razza .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#RazzeASangueFreddo
 :RazzeASangueFreddo rdf:type owl:Class ;
+                    owl:equivalentClass [ owl:intersectionOf ( :Razza
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty :haIndole ;
+                                                                 owl:someValuesFrom :SangueFreddo
+                                                               ]
+                                                             ) ;
+                                          rdf:type owl:Class
+                                        ] ;
                     rdfs:subClassOf :Razza .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/AltaScuola
-:AltaScuola rdf:type owl:Class ;
-            rdfs:subClassOf :SportNonOlimpico .
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#RazzeASangueMisto
+:RazzeASangueMisto rdf:type owl:Class ;
+                   owl:equivalentClass [ owl:intersectionOf ( :Razza
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :haIndole ;
+                                                                owl:someValuesFrom :SangueMisto
+                                                              ]
+                                                            ) ;
+                                         rdf:type owl:Class
+                                       ] ;
+                   rdfs:subClassOf :Razza .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#RazzeDaDressage
+:RazzeDaDressage rdf:type owl:Class ;
+                 rdfs:subClassOf :Razza .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#SaltoOstacoli
+:SaltoOstacoli rdf:type owl:Class ;
+               rdfs:subClassOf :Sport .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#SangueCaldo
+:SangueCaldo rdf:type owl:Class ;
+             rdfs:subClassOf :Indole .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#SangueFreddo
+:SangueFreddo rdf:type owl:Class ;
+              rdfs:subClassOf :Indole .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#SangueMisto
+:SangueMisto rdf:type owl:Class ;
+             rdfs:subClassOf :Indole .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Andaluso
 :Andaluso rdf:type owl:Class ;
-          rdfs:subClassOf :RazzeASangueCaldo .
+          owl:equivalentClass [ owl:intersectionOf ( [ owl:intersectionOf ( [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                     owl:onProperty :haColoriMantelloAmmessi ;
+                                                                                                     owl:allValuesFrom [ rdf:type owl:Class ;
+                                                                                                                         owl:oneOf ( :baio
+                                                                                                                                     :morello
+                                                                                                                                     :roano
+                                                                                                                                   )
+                                                                                                                       ]
+                                                                                                   ]
+                                                                                                   [ rdf:type owl:Restriction ;
+                                                                                                     owl:onProperty :haColoriMantelloAmmessi ;
+                                                                                                     owl:maxQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                                                                                                     owl:onClass :ColoreMantello
+                                                                                                   ]
+                                                                                                 ) ;
+                                                                              rdf:type owl:Class
+                                                                            ]
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty :pesoMedio ;
+                                                                              owl:hasValue 470
+                                                                            ]
+                                                                          ) ;
+                                                       rdf:type owl:Class
+                                                     ]
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty :originarioDi ;
+                                                       owl:hasValue :Andalusia
+                                                     ]
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty :altezzaMediaAlGarrese ;
+                                                       owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                            owl:onDatatype xsd:integer ;
+                                                                            owl:withRestrictions ( [ xsd:minInclusive 155
+                                                                                                   ]
+                                                                                                   [ xsd:maxInclusive 165
+                                                                                                   ]
+                                                                                                 )
+                                                                          ]
+                                                     ]
+                                                   ) ;
+                                rdf:type owl:Class
+                              ] ;
+          rdfs:subClassOf :RazzaDaAltaScuola ,
+                          :RazzeASangueCaldo .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/AngloAraboFrancese
 :AngloAraboFrancese rdf:type owl:Class ;
-                    owl:equivalentClass [ rdf:type owl:Restriction ;
-                                          owl:onProperty :èUtilizzatoIn ;
-                                          owl:someValuesFrom :CrossCountry
-                                        ] ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty :èUtilizzatoIn ;
-                                          owl:someValuesFrom :Endurance
-                                        ] ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty :èUtilizzatoIn ;
-                                          owl:someValuesFrom :SaltoOstacoli
-                                        ] ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty :haMantello ;
-                                          owl:hasValue :sauro
-                                        ] ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty :originarioDi ;
-                                          owl:hasValue :Normandia
-                                        ] ;
                     rdfs:subClassOf :RazzeASangueCaldo .
 
 
@@ -294,11 +488,6 @@
 :AreaGeografica rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Avelignese
-:Avelignese rdf:type owl:Class ;
-            rdfs:subClassOf :Razza .
-
-
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/BelgaDaTiro
 :BelgaDaTiro rdf:type owl:Class ;
              rdfs:subClassOf :RazzeASangueFreddo .
@@ -306,7 +495,7 @@
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Boulonnais
 :Boulonnais rdf:type owl:Class ;
-            rdfs:subClassOf :Razza .
+            rdfs:subClassOf :RazzeASangueFreddo .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Bretone
@@ -316,9 +505,24 @@
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Brevetto
 :Brevetto rdf:type owl:Class ;
-          owl:equivalentClass [ rdf:type owl:Restriction ;
-                                owl:onProperty :Precede ;
-                                owl:someValuesFrom :PrimoGrado
+          owl:equivalentClass [ owl:intersectionOf ( :PatenteEquestre
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty :categorieDiSalto ;
+                                                       owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                            owl:onDatatype xsd:integer ;
+                                                                            owl:withRestrictions ( [ xsd:minInclusive 80
+                                                                                                   ]
+                                                                                                   [ xsd:maxExclusive 115
+                                                                                                   ]
+                                                                                                 )
+                                                                          ]
+                                                     ]
+                                                   ) ;
+                                rdf:type owl:Class
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :vieneConseguitoDa ;
+                                owl:someValuesFrom :Intermedio
                               ] ;
           rdfs:subClassOf :PatenteEquestre .
 
@@ -326,11 +530,6 @@
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/CLasseB
 :CLasseB rdf:type owl:Class ;
          rdfs:subClassOf :Stalloni .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Camargue
-:Camargue rdf:type owl:Class ;
-          rdfs:subClassOf :Razza .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Cavallo
@@ -353,15 +552,6 @@
                rdfs:subClassOf :Cavallo .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/CavalloAltaScuola
-:CavalloAltaScuola rdf:type owl:Class ;
-                   owl:equivalentClass [ rdf:type owl:Restriction ;
-                                         owl:onProperty :èUtilizzatoIn ;
-                                         owl:someValuesFrom :AltaScuola
-                                       ] ;
-                   rdfs:subClassOf :CavalloSportivo .
-
-
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/CavalloAnziano
 :CavalloAnziano rdf:type owl:Class ;
                 owl:equivalentClass [ rdf:type owl:Restriction ;
@@ -376,69 +566,9 @@
                 rdfs:subClassOf :Cavallo .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/CavalloCrossCountry
-:CavalloCrossCountry rdf:type owl:Class ;
-                     owl:equivalentClass [ rdf:type owl:Restriction ;
-                                           owl:onProperty :èImpiegatoIn ;
-                                           owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                           owl:onClass :CrossCountry
-                                         ] ;
-                     rdfs:subClassOf :CavalloSportivo .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/CavalloDaLavoro
-:CavalloDaLavoro rdf:type owl:Class ;
-                 owl:equivalentClass [ rdf:type owl:Restriction ;
-                                       owl:onProperty :èImpiegatoIn ;
-                                       owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                       owl:onClass :DaLavoro
-                                     ] ;
-                 rdfs:subClassOf :Cavallo .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/CavalloDaRiproduzione
-:CavalloDaRiproduzione rdf:type owl:Class ;
-                       owl:equivalentClass [ rdf:type owl:Restriction ;
-                                             owl:onProperty :èImpiegatoIn ;
-                                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                             owl:onClass :DaRiproduzione
-                                           ] ;
-                       rdfs:subClassOf :Cavallo .
-
-
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/CavalloDelloJutland
 :CavalloDelloJutland rdf:type owl:Class ;
-                     rdfs:subClassOf :Razza .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/CavalloDressage
-:CavalloDressage rdf:type owl:Class ;
-                 owl:equivalentClass [ rdf:type owl:Restriction ;
-                                       owl:onProperty :èImpiegatoIn ;
-                                       owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                       owl:onClass :Dressage
-                                     ] ;
-                 rdfs:subClassOf :CavalloSportivo .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/CavalloSaltoOstacoli
-:CavalloSaltoOstacoli rdf:type owl:Class ;
-                      owl:equivalentClass [ rdf:type owl:Restriction ;
-                                            owl:onProperty :èImpiegatoIn ;
-                                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                            owl:onClass :SaltoOstacoli
-                                          ] ;
-                      rdfs:subClassOf :CavalloSportivo .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/CavalloSportivo
-:CavalloSportivo rdf:type owl:Class ;
-                 owl:equivalentClass [ rdf:type owl:Restriction ;
-                                       owl:onProperty :èImpiegatoIn ;
-                                       owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                       owl:onClass :Sport
-                                     ] ;
-                 rdfs:subClassOf :Cavallo .
+                     rdfs:subClassOf :RazzeASangueFreddo .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/ClasseA
@@ -476,69 +606,58 @@
             rdfs:subClassOf :RazzeASangueFreddo .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/CobNormand
-:CobNormand rdf:type owl:Class ;
-            rdfs:subClassOf :Razza .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/CrossCountry
-:CrossCountry rdf:type owl:Class ;
-              rdfs:subClassOf :SportNonOlimpico .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/DaLavoro
-:DaLavoro rdf:type owl:Class ;
-          rdfs:subClassOf :Impiego .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/DaRiproduzione
-:DaRiproduzione rdf:type owl:Class ;
-                rdfs:subClassOf :Impiego .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/DaSella
-:DaSella rdf:type owl:Class ;
-         rdfs:subClassOf :Impiego .
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/ColoreMantello
+:ColoreMantello rdf:type owl:Class ;
+                owl:equivalentClass [ rdf:type owl:Class ;
+                                      owl:oneOf ( :apaloosa
+                                                  :baio
+                                                  :crema
+                                                  :falbo
+                                                  :grigio
+                                                  :isabella
+                                                  :mantelloConiugato
+                                                  :morello
+                                                  :palomino
+                                                  :pezzato
+                                                  :roano
+                                                  :sauro
+                                                  :sorcino
+                                                  :ubero
+                                                )
+                                    ] .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/DaTiroAgricolo
 :DaTiroAgricolo rdf:type owl:Class ;
-                rdfs:subClassOf :DaLavoro .
+                rdfs:subClassOf :Lavoro .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/DaTrainoCarrozze
 :DaTrainoCarrozze rdf:type owl:Class ;
-                  rdfs:subClassOf :DaLavoro .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Dressage
-:Dressage rdf:type owl:Class ;
-          rdfs:subClassOf :SportEquestreOlimpico .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Endurance
-:Endurance rdf:type owl:Class ;
-           rdfs:subClassOf :SportNonOlimpico .
+                  rdfs:subClassOf :Lavoro .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Equiturismo
 :Equiturismo rdf:type owl:Class ;
-             rdfs:subClassOf :DaSella .
+             rdfs:subClassOf :Sella .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Esperto
 :Esperto rdf:type owl:Class ;
+         owl:equivalentClass [ owl:intersectionOf ( :Persona
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty :consegue ;
+                                                      owl:someValuesFrom :PrimoGrado
+                                                    ]
+                                                  ) ;
+                               rdf:type owl:Class
+                             ] ;
          rdfs:subClassOf :Persona .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Eventing
-:Eventing rdf:type owl:Class ;
-          rdfs:subClassOf :SportEquestreOlimpico .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Fattrici
 :Fattrici rdf:type owl:Class ;
-          rdfs:subClassOf :CavalloDaRiproduzione .
+          rdfs:subClassOf :Cavallo .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Frisone
@@ -548,12 +667,12 @@
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Hannover
 :Hannover rdf:type owl:Class ;
-          rdfs:subClassOf :Razza .
+          rdfs:subClassOf :RazzeASangueCaldo .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Hispano
 :Hispano rdf:type owl:Class ;
-         rdfs:subClassOf :Razza .
+         rdfs:subClassOf :RazzeASangueCaldo .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Holstein
@@ -566,13 +685,7 @@
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Indole
-:Indole rdf:type owl:Class ;
-        owl:equivalentClass [ rdf:type owl:Class ;
-                              owl:oneOf ( :SangueCaldo
-                                          :SangueFreddo
-                                          :SangueMisto
-                                        )
-                            ] .
+:Indole rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Intermedio
@@ -582,12 +695,17 @@
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/IrishSportHorse
 :IrishSportHorse rdf:type owl:Class ;
-                 rdfs:subClassOf :Razza .
+                 rdfs:subClassOf :RazzeASangueCaldo .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Knabstrup
 :Knabstrup rdf:type owl:Class ;
-           rdfs:subClassOf :Razza .
+           rdfs:subClassOf :RazzeASangueFreddo .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Lavoro
+:Lavoro rdf:type owl:Class ;
+        rdfs:subClassOf :Impiego .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Lipizzano
@@ -597,28 +715,7 @@
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Lusitano
 :Lusitano rdf:type owl:Class ;
-          rdfs:subClassOf :RazzeASangueFreddo .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Mantello
-:Mantello rdf:type owl:Class ;
-          owl:equivalentClass [ rdf:type owl:Class ;
-                                owl:oneOf ( :apaloosa
-                                            :baio
-                                            :crema
-                                            :falbo
-                                            :grigio
-                                            :isabella
-                                            :mantelloConiugato
-                                            :morello
-                                            :palomino
-                                            :pezzato
-                                            :roano
-                                            :sauro
-                                            :sorcino
-                                            :ubero
-                                          )
-                              ] .
+          rdfs:subClassOf :RazzeASangueCaldo .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Maremmano
@@ -628,12 +725,15 @@
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/MoltoEsperto
 :MoltoEsperto rdf:type owl:Class ;
+              owl:equivalentClass [ owl:intersectionOf ( :Persona
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :consegue ;
+                                                           owl:someValuesFrom :SecondoGrado
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] ;
               rdfs:subClassOf :Persona .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/MontaDaLavoro
-:MontaDaLavoro rdf:type owl:Class ;
-               rdfs:subClassOf :SportNonOlimpico .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Murgese
@@ -648,18 +748,31 @@
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Oldemburghese
 :Oldemburghese rdf:type owl:Class ;
-               rdfs:subClassOf :Razza .
+               rdfs:subClassOf :RazzeASangueCaldo .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/PatenteEquestre
-:PatenteEquestre rdf:type owl:Class .
+:PatenteEquestre rdf:type owl:Class ;
+                 owl:equivalentClass [ rdf:type owl:Restriction ;
+                                       owl:onProperty :vieneConseguitoDa ;
+                                       owl:someValuesFrom :Persona
+                                     ] .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/PatenteLudica
 :PatenteLudica rdf:type owl:Class ;
-               owl:equivalentClass [ rdf:type owl:Restriction ;
-                                     owl:onProperty :Precede ;
-                                     owl:someValuesFrom :Brevetto
+               owl:equivalentClass [ owl:intersectionOf ( :PatenteEquestre
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :categorieDiSalto ;
+                                                            owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                 owl:onDatatype xsd:integer ;
+                                                                                 owl:withRestrictions ( [ xsd:maxExclusive 80
+                                                                                                        ]
+                                                                                                      )
+                                                                               ]
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
                                    ] ;
                rdfs:subClassOf :PatenteEquestre .
 
@@ -676,15 +789,34 @@
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/PrimoGrado
 :PrimoGrado rdf:type owl:Class ;
-            owl:equivalentClass [ rdf:type owl:Restriction ;
-                                  owl:onProperty :Precede ;
-                                  owl:someValuesFrom :SecondoGrado
+            owl:equivalentClass [ owl:intersectionOf ( :PatenteEquestre
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty :categorieDiSalto ;
+                                                         owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                              owl:onDatatype xsd:integer ;
+                                                                              owl:withRestrictions ( [ xsd:minInclusive 115
+                                                                                                     ]
+                                                                                                     [ xsd:maxExclusive 135
+                                                                                                     ]
+                                                                                                   )
+                                                                            ]
+                                                       ]
+                                                     ) ;
+                                  rdf:type owl:Class
                                 ] ;
             rdfs:subClassOf :PatenteEquestre .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Principiante
 :Principiante rdf:type owl:Class ;
+              owl:equivalentClass [ owl:intersectionOf ( :Persona
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :consegue ;
+                                                           owl:someValuesFrom :PatenteLudica
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] ;
               rdfs:subClassOf :Persona .
 
 
@@ -708,50 +840,35 @@
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Razza
-:Razza rdf:type owl:Class ;
-       owl:disjointUnionOf ( :Andaluso
-                             :AngloAraboFrancese
-                             :AngloAraboSpagnolo
-                             :Appenninico
-                             :Ardennese
-                             :Avelignese
-                             :BelgaDaTiro
-                             :Boulonnais
-                             :Bretone
-                             :Camargue
-                             :CavalloDelloJutland
-                             :Clydesdale
-                             :CobNormand
-                             :Frisone
-                             :Hannover
-                             :Hispano
-                             :Holstein
-                             :IrishSportHorse
-                             :Knabstrup
-                             :Lipizzano
-                             :Lusitano
-                             :Maremmano
-                             :Murgese
-                             :OlandeseASangueCaldo
-                             :Oldemburghese
-                             :Percheron
-                             :PurosangueInglese
-                             :SellaFrancese
-                             :SellaItaliano
-                             :Tolfetano
-                             :Trakehner
-                             :Westfalen
-                           ) .
+:Razza rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/SaltoOstacoli
-:SaltoOstacoli rdf:type owl:Class ;
-               rdfs:subClassOf :SportEquestreOlimpico .
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Riproduzione
+:Riproduzione rdf:type owl:Class ;
+              rdfs:subClassOf :Impiego .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/SecondoGrado
 :SecondoGrado rdf:type owl:Class ;
+              owl:equivalentClass [ owl:intersectionOf ( :PatenteEquestre
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :categorieDiSalto ;
+                                                           owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                owl:onDatatype xsd:integer ;
+                                                                                owl:withRestrictions ( [ xsd:minInclusive 135
+                                                                                                       ]
+                                                                                                     )
+                                                                              ]
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] ;
               rdfs:subClassOf :PatenteEquestre .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Sella
+:Sella rdf:type owl:Class ;
+       rdfs:subClassOf :Impiego .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/SellaFrancese
@@ -766,38 +883,27 @@
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Sport
 :Sport rdf:type owl:Class ;
-       rdfs:subClassOf :DaSella .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/SportEquestreOlimpico
-:SportEquestreOlimpico rdf:type owl:Class ;
-                       rdfs:subClassOf :Sport ;
-                       owl:disjointWith :SportNonOlimpico .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/SportNonOlimpico
-:SportNonOlimpico rdf:type owl:Class ;
-                  rdfs:subClassOf :Sport .
+       rdfs:subClassOf :Sella .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Stalloni
 :Stalloni rdf:type owl:Class ;
-          rdfs:subClassOf :CavalloDaRiproduzione .
+          rdfs:subClassOf :Cavallo .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Tolfetano
 :Tolfetano rdf:type owl:Class ;
-           rdfs:subClassOf :RazzeASangueCaldo .
+           rdfs:subClassOf :RazzeASangueFreddo .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Trakehner
 :Trakehner rdf:type owl:Class ;
-           rdfs:subClassOf :Razza .
+           rdfs:subClassOf :RazzeASangueMisto .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Westfalen
 :Westfalen rdf:type owl:Class ;
-           rdfs:subClassOf :Razza .
+           rdfs:subClassOf :RazzeASangueCaldo .
 
 
 ###  http://xmlns.com/foaf/0.1/Person
@@ -808,21 +914,42 @@
 #    Individuals
 #################################################################
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#SangueCaldo
-:SangueCaldo rdf:type owl:NamedIndividual .
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#Bergamo
+:Bergamo rdf:type owl:NamedIndividual ,
+                  :AreaGeografica ;
+         <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> :Italia .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#SangueFreddo
-:SangueFreddo rdf:type owl:NamedIndividual .
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#EsemplarediSellaItaliano
+:EsemplarediSellaItaliano rdf:type owl:NamedIndividual ;
+                          :età "9"^^xsd:nonNegativeInteger .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#SangueMisto
-:SangueMisto rdf:type owl:NamedIndividual .
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#Femmina
+:Femmina rdf:type owl:NamedIndividual .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#Tom
-:Tom rdf:type owl:NamedIndividual ,
-              :AngloAraboFrancese .
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#brevetto
+:brevetto rdf:type owl:NamedIndividual ,
+                   :PatenteEquestre ;
+          :vieneConseguitoDa :principiante .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#maschio
+:maschio rdf:type owl:NamedIndividual ,
+                  [ rdf:type owl:Restriction ;
+                    owl:onProperty :Sesso ;
+                    owl:someValuesFrom xsd:string
+                  ] .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#principiante
+:principiante rdf:type owl:NamedIndividual ,
+                       :Persona .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology#saltoAdOstacoli
+:saltoAdOstacoli rdf:type owl:NamedIndividual .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Andalusia
@@ -831,16 +958,27 @@
            <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> :Spagna .
 
 
+###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/EsemplareDiCavalloAndaluso
+:EsemplareDiCavalloAndaluso rdf:type owl:NamedIndividual ,
+                                     [ owl:intersectionOf ( :CavalloSportivo
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :haRazza ;
+                                                              owl:someValuesFrom :Andaluso
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
+                                     ] ;
+                            :adattoAlConseguimentoDi :brevetto ;
+                            :haSesso :maschio ;
+                            :altezzaAlGarrese 160 ;
+                            :localitàDiResidenza "Bergamo" ;
+                            :età "4"^^xsd:nonNegativeInteger .
+
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Francia
 :Francia rdf:type owl:NamedIndividual ,
                   :AreaGeografica ;
          <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#hasPart> :Normandia .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Fulmine
-:Fulmine rdf:type owl:NamedIndividual ,
-                  :CavalloAndaluso ;
-         :età "12"^^xsd:nonNegativeInteger .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/horseOntology/Germania
@@ -936,8 +1074,30 @@
 [ rdf:type owl:AllDisjointClasses ;
   owl:members ( :AltaScuola
                 :CrossCountry
+                :Dressage
                 :Endurance
-                :MontaDaLavoro
+                :Eventing
+                :SaltoOstacoli
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :AreaGeografica
+                :Cavallo
+                :ColoreMantello
+                :Impiego
+                :Indole
+                :Razza
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Brevetto
+                :PatenteLudica
+                :PrimoGrado
+                :SecondoGrado
               )
 ] .
 
@@ -951,9 +1111,10 @@
 
 
 [ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :Dressage
-                :Eventing
-                :SaltoOstacoli
+  owl:members ( :Esperto
+                :Intermedio
+                :MoltoEsperto
+                :Principiante
               )
 ] .
 
