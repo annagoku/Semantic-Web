@@ -12,13 +12,14 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix schema: <http://schema.org/> .
-@prefix designpattern: <http://www.ontologydesignpatterns.org/cp/owl/> .
+@prefix designpatternpart: <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#> .
+@prefix designpatternprice: <http://www.ontologydesignpatterns.org/cp/owl/price.owl#> .
 @base <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#> .
 
 <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses> rdf:type owl:Ontology ;
-                                                                 owl:imports designpattern:list.owl ,
-                                                                             designpattern:partof.owl ,
-                                                                             designpattern:price.owl ;
+                                                                 owl:imports <http://www.ontologydesignpatterns.org/cp/owl/list.owl> ,
+                                                                             <http://www.ontologydesignpatterns.org/cp/owl/partof.owl> ,
+                                                                             <http://www.ontologydesignpatterns.org/cp/owl/price.owl> ;
                                                                  dc:creator "Annalisa Sabatelli" ;
                                                                  dc:date "2024-03-01T09:00:00"^^xsd:dateTime ;
                                                                  dc:description "Ontological representation of breeds, uses and main characteristics of horses and their sales announcements aimed at helping the user in purchasing a horse."@en ,
@@ -82,17 +83,17 @@ skos:prefLabel rdf:type owl:AnnotationProperty .
 #################################################################
 
 ###  http://www.ontologydesignpatterns.org/cp/owl/partof.owl#hasPart
-<http://www.ontologydesignpatterns.org/cp/owl/partof.owl#hasPart> rdfs:domain oh:AreaGeografica ;
-                                                                  rdfs:range oh:AreaGeografica .
+designpatternpart:hasPart rdfs:domain oh:AreaGeografica ;
+                          rdfs:range oh:AreaGeografica .
 
 
 ###  http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf
-<http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> rdfs:domain oh:AreaGeografica ;
-                                                                   rdfs:range oh:AreaGeografica .
+designpatternpart:isPartOf rdfs:domain oh:AreaGeografica ;
+                           rdfs:range oh:AreaGeografica .
 
 
 ###  http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasPrice
-<http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasPrice> rdfs:domain oh:Cavallo .
+designpatternprice:hasPrice rdfs:domain oh:Cavallo .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#adattoAlConseguimentoDi
@@ -177,7 +178,7 @@ oh:haNazionalità rdf:type owl:ObjectProperty ;
                  rdfs:domain oh:RazzaCavallo ;
                  rdfs:range oh:AreaGeografica ;
                  owl:propertyChainAxiom ( oh:haRegioneDiOrigine
-                                          <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf>
+                                          designpatternpart:isPartOf
                                         ) ;
                  rdfs:comment "Property that expresses the nation of origin of a horse breed"@en ,
                               "Proprietà che esprime la nazionalità di una razza di cavallo"@it ;
@@ -283,7 +284,7 @@ oh:èScuderizzatoIn rdf:type owl:ObjectProperty ;
                    rdfs:domain oh:Cavallo ;
                    rdfs:range oh:AreaGeografica ;
                    owl:propertyChainAxiom ( oh:èScuderizzatoInCittàDi
-                                            <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf>
+                                            designpatternpart:isPartOf
                                           ) ;
                    rdfs:comment "Property that expresses the geographic area in terms of the State or Region in which the horse is stabled."@en ,
                                 "Proprietà che esprime l'area geografica in termini di Stato o Regione in cui il cavallo è scuderizzato."@it ;
@@ -465,7 +466,7 @@ schema:Place rdf:type owl:Class ;
 
 
 ###  http://www.ontologydesignpatterns.org/cp/owl/price.owl#Currency
-<http://www.ontologydesignpatterns.org/cp/owl/price.owl#Currency> rdfs:subClassOf oh:Cavallo .
+designpatternprice:Currency rdfs:subClassOf oh:Cavallo .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AltaScuola
@@ -1409,7 +1410,7 @@ oh:AltaScuola rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Andalusia
 oh:Andalusia rdf:type owl:NamedIndividual ,
                       oh:AreaGeografica ;
-             <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Spagna ;
+             designpatternpart:isPartOf oh:Spagna ;
              schema:image <https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Andalucia_in_Spain_%28plus_Canarias%29.svg/260px-Andalucia_in_Spain_%28plus_Canarias%29.svg.png> ;
              rdfs:comment "Andalusia is one of the seventeen autonomous communities of Spain and has Seville as its capital"@en ,
                           "L'Andalusìa  è una delle diciassette comunità autonome della Spagna ed ha Siviglia come capoluogo"@it ;
@@ -1506,7 +1507,7 @@ oh:Appenninico rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AppenninoToscoEmiliano
 oh:AppenninoToscoEmiliano rdf:type owl:NamedIndividual ,
                                    oh:AreaGeografica ;
-                          <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Italia ;
+                          designpatternpart:isPartOf oh:Italia ;
                           rdfs:comment "It is a subdivision of the Apennine chain, in particular a stretch of the northern Apennines, which affects the border and adjacent areas of Tuscany and Emilia-Romagna"@en ,
                                        "Si tratta di una suddivisione della catena degli Appennini, in particolare un tratto dell'Appennino settentrionale, che interessa il confine e le aree adiacenti di Toscana e Emilia-Romagna"@it ;
                           rdfs:label "Appenino Tosco-Emiliano"@it ,
@@ -1516,7 +1517,7 @@ oh:AppenninoToscoEmiliano rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Ardenne
 oh:Ardenne rdf:type owl:NamedIndividual ,
                     oh:AreaGeografica ;
-           <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Belgio ;
+           designpatternpart:isPartOf oh:Belgio ;
            rdfs:comment "Le Ardenne sono una regione collinare coperta da foreste, che si trova principalmente in Belgio e Lussemburgo e Francia"@it ,
                         "The Ardennes is a hilly, forested region, found mainly in Belgium and Luxembourg and France"@en ;
            rdfs:label "Ardenne"@it ,
@@ -1602,7 +1603,7 @@ oh:Boulonnais rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Bretagna
 oh:Bretagna rdf:type owl:NamedIndividual ,
                      oh:AreaGeografica ;
-            <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Francia ;
+            designpatternpart:isPartOf oh:Francia ;
             schema:image <https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Brittany_in_France_2016.svg/260px-Brittany_in_France_2016.svg.png> ;
             rdfs:comment "Brittany is a historical and administrative region of France that forms a vast promontory towards the English Channel and the Atlantic Ocean"@en ,
                          "La Bretagna  è una regione storica e amministrativa della Francia che forma un vasto promontorio verso la Manica e l'Oceano Atlantico"@it ;
@@ -1723,7 +1724,7 @@ oh:C90 rdf:type owl:NamedIndividual ;
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CastroneAngloAraboFrancese
 oh:CastroneAngloAraboFrancese rdf:type owl:NamedIndividual ,
                                        oh:Cavallo ;
-                              <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasPrice> <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#15000Euro> ;
+                              designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#15000Euro> ;
                               oh:haRazza oh:AngloAraboFrancese ;
                               oh:vieneUtilizzatoPer oh:CrossCountry ;
                               oh:èAdattoPer oh:CavaliereIntermedio ;
@@ -1734,8 +1735,8 @@ oh:CastroneAngloAraboFrancese rdf:type owl:NamedIndividual ,
                               oh:haSesso "castrone" ;
                               oh:nomeCavallo "Filè" ;
                               schema:image <https://www.equirodi.it/images/annonces/l/857696_1711550997_1626.jpg> ;
-                              rdfs:comment "Esemplare di cavallo castrone anglo-arabo francese in vendita"@it ,
-                                           "French Anglo-Arab gelding horse for sale"@en ;
+                              rdfs:comment "15 year old French Anglo-Arab gelding for sale. Not suitable for beginners. Currently used for cross-country competitions."@en ,
+                                           "Esemplare di cavallo castrone anglo-arabo francese di 15 anni  in vendita. Non adatto a principianti. Attualmente utilizzato per competizioni di cross-country."@it ;
                               rdfs:label "Castrone anglo-arabo francese"@it ,
                                          "French Anglo-Arabic gelding"@en .
 
@@ -1743,7 +1744,7 @@ oh:CastroneAngloAraboFrancese rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CastroneFrancese
 oh:CastroneFrancese rdf:type owl:NamedIndividual ,
                              oh:Cavallo ;
-                    <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasPrice> <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#18000Euro> ;
+                    designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#18000Euro> ;
                     oh:gareggiaNelleCategorieDiSalto oh:C110 ,
                                                      oh:C125 ;
                     oh:haRazza oh:SellaFrancese ;
@@ -1755,8 +1756,8 @@ oh:CastroneFrancese rdf:type owl:NamedIndividual ,
                     oh:haSesso "castrone" ;
                     oh:nomeCavallo "Elton" ;
                     schema:image <https://www.equirodi.it/images/annonces/xl/855373_1710395667_3888.jpg> ;
-                    rdfs:comment "Esemplare di castrone francese in vendita"@it ,
-                                 "French gelding horse for sale"@en ;
+                    rdfs:comment "Esemplare di castrone francese in vendita. Anno 2016. Attualmente impegnato in salto ad ostacoli nelle categorie C110 e C125. Adatto a tutti. Facile gestione sia a terra che in sella. Adatto come primo cavallo per il conseguimento del brevetto."@it ,
+                                 "French gelding for sale. Year 2016. Currently involved in show jumping in the C110 and C125 categories. Suitable for everyone. Easy management both on the ground and in the saddle. Suitable as the first horse for obtaining the licence."@en ;
                     rdfs:label "Castrone Francese"@it ,
                                "French gelding horse"@en .
 
@@ -1764,7 +1765,7 @@ oh:CastroneFrancese rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CastroneItaliano
 oh:CastroneItaliano rdf:type owl:NamedIndividual ,
                              oh:Cavallo ;
-                    <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasPrice> <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#12000Euro> ;
+                    designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#12000Euro> ;
                     oh:gareggiaNelleCategorieDiSalto oh:C100 ,
                                                      oh:C80 ;
                     oh:haRazza oh:SellaItaliano ;
@@ -1775,8 +1776,8 @@ oh:CastroneItaliano rdf:type owl:NamedIndividual ,
                     oh:haSesso "castrone" ;
                     oh:nomeCavallo "Dracon's Breaker" ;
                     schema:image <https://www.equirodi.it/images/annonces/xl/857207_1711357444_2037.jpg> ;
-                    rdfs:comment "Esemplare di cavallo castrone italiano in vendita"@it ,
-                                 "Italian gelding horse for sale"@en ;
+                    rdfs:comment "11 year old Italian gelding horse for sale. Currently involved in show jumping in the C100 categories. Suitable for beginners with a minimum of experience. Difficult management in the box."@en ,
+                                 "Esemplare di cavallo castrone italiano di 11 anni in vendita. Attualmente impegnato nel salto ad ostacoli nelle categorie C100. Adatto a principianti con un minimo di esperienza. Difficile gestione in box."@it ;
                     rdfs:label "Castrone italiano"@it ,
                                "Italian Gelding horse"@en .
 
@@ -1904,7 +1905,7 @@ oh:Equiturismo rdf:type owl:NamedIndividual ,
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Euro
 oh:Euro rdf:type owl:NamedIndividual ,
-                 <http://www.ontologydesignpatterns.org/cp/owl/price.owl#Currency> ;
+                 designpatternprice:Currency ;
         rdfs:comment "European Currency"@en ,
                      "Moneta europea"@it ;
         rdfs:label "Euro"@en ,
@@ -1927,7 +1928,7 @@ oh:F rdf:type owl:NamedIndividual ;
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#FemminaBretone
 oh:FemminaBretone rdf:type owl:NamedIndividual ,
                            oh:Cavallo ;
-                  <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasPrice> <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#2500Euro> ;
+                  designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#2500Euro> ;
                   oh:haRazza oh:Bretone ;
                   oh:vieneUtilizzatoPer oh:TiroAgricolo ;
                   oh:èAdattoPer oh:CavalierePrincipiante ;
@@ -1938,8 +1939,8 @@ oh:FemminaBretone rdf:type owl:NamedIndividual ,
                   oh:haSesso "femmina" ;
                   oh:nomeCavallo "Carmen" ;
                   schema:image <https://www.equirodi.it/images/annonces/xl/857985_1711659932_3839.jpg> ;
-                  rdfs:comment "Esemplare di femmina bretone in vendita"@it ,
-                               "Female breton horse for sale"@en ;
+                  rdfs:comment "18 year old Breton female specimen for sale ideal for agricultural work. Good temper"@en ,
+                               "Esemplare di femmina bretone di 18 anni in vendita ideale per lavori agricoli. Buon carattere."@it ;
                   rdfs:label "Female breton horse"@en ,
                              "Femmina bretone"@it .
 
@@ -1947,7 +1948,7 @@ oh:FemminaBretone rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#FemminaMaremmano
 oh:FemminaMaremmano rdf:type owl:NamedIndividual ,
                              oh:Cavallo ;
-                    <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasPrice> <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#5000Euro> ;
+                    designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#5000Euro> ;
                     oh:haRazza oh:Maremmano ;
                     oh:vieneUtilizzatoPer oh:Equiturismo ,
                                           oh:TrainoCarrozze ;
@@ -1959,8 +1960,8 @@ oh:FemminaMaremmano rdf:type owl:NamedIndividual ,
                     oh:haSesso "femmina" ;
                     oh:nomeCavallo "Penelope" ;
                     schema:image <http://www.anamcavallomaremmano.com/typo3temp/pics/d887dddef7.jpg> ;
-                    rdfs:comment "Esemplare di femmina maremmano in vendita"@it ,
-                                 "Female maremmano horse for sale"@en ;
+                    rdfs:comment "Esemplare di femmina maremmano in vendita. Anno 2004. Adatto a tutti. Facile gestione anche in passeggiata"@it ,
+                                 "Female Maremma for sale. Suitable for everyone. Year 2004. Easy management even when walking"@en ;
                     rdfs:label "Female maremmano horse"@en ,
                                "Femmina maremmano"@it .
 
@@ -1968,7 +1969,7 @@ oh:FemminaMaremmano rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#FemminaMurgese
 oh:FemminaMurgese rdf:type owl:NamedIndividual ,
                            oh:Cavallo ;
-                  <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasPrice> <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#4800Euro> ;
+                  designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#4800Euro> ;
                   oh:gareggiaNellaCategoriaDiDressage oh:D ;
                   oh:gareggiaNelleCategorieDiSalto oh:C80 ;
                   oh:haRazza oh:Murgese ;
@@ -1982,8 +1983,8 @@ oh:FemminaMurgese rdf:type owl:NamedIndividual ,
                   oh:haSesso "femmina" ;
                   oh:nomeCavallo "Queen" ;
                   schema:image <https://www.equirodi.it/images/annonces/xl/855775_1710607148_7462.jpg> ;
-                  rdfs:comment "Esemplare di femmina murgese in vendita"@it ,
-                               "Female murgese horse for sale"@en ;
+                  rdfs:comment "4 year old Murgese female for sale. Excellent for dressage and show jumping up to patent category. Very easy management on the go and in the box. Suitable for beginners."@en ,
+                               "Esemplare di femmina murgese di 4 anni in vendita. Ottima per dressage e salto ad ostacoli fino a categoria brevetto. Facilissima gestione in passeggiata e in box. Adatta a principianti."@it ;
                   rdfs:label "Female murgese"@en ,
                              "Femmina murgese"@it .
 
@@ -1991,7 +1992,7 @@ oh:FemminaMurgese rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Francia
 oh:Francia rdf:type owl:NamedIndividual ,
                     oh:AreaGeografica ;
-           <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#hasPart> oh:Normandia ;
+           designpatternpart:hasPart oh:Normandia ;
            schema:image <https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931974%29.svg/1280px-Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931974%29.svg.png> ;
            rdfs:comment "France, officially the French Republic, is a state located in Western Europe and Southern Europe, but which also has territories spread across multiple oceans and other continents."@en ,
                         "La Francia,  ufficialmente Repubblica francese, è uno Stato situato nell'Europa occidentale e nell'Europa meridionale, ma che possiede ugualmente territori disseminati su più oceani e altri continenti."@it ;
@@ -2002,7 +2003,7 @@ oh:Francia rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Frisia
 oh:Frisia rdf:type owl:NamedIndividual ,
                    oh:AreaGeografica ;
-          <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:PaesiBassi ;
+          designpatternpart:isPartOf oh:PaesiBassi ;
           rdfs:comment "Friesland is a province of the Netherlands"@en ,
                        "La Frisia è una provincia dei Paesi Bassi"@it ;
           rdfs:label "Friesland"@en ,
@@ -2129,7 +2130,7 @@ oh:Italia rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Jutland
 oh:Jutland rdf:type owl:NamedIndividual ,
                     oh:AreaGeografica ;
-           <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Danimarca ;
+           designpatternpart:isPartOf oh:Danimarca ;
            rdfs:comment "Jutland is a peninsula in northern Europe divided between Germany, to the south, and Denmark, of which it constitutes the peninsular part."@en ,
                         "Lo Jutland è una penisola del nord Europa divisa tra Germania, a sud, e Danimarca, di cui costituisce la parte peninsulare."@it ;
            rdfs:label "Jutland"@en ,
@@ -2162,7 +2163,7 @@ oh:Lipizzano rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Lombardia
 oh:Lombardia rdf:type owl:NamedIndividual ,
                       oh:AreaGeografica ;
-             <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Italia ;
+             designpatternpart:isPartOf oh:Italia ;
              rdfs:comment "La Lombardia  è una regione italiana a statuto ordinario di 10 020 528 abitanti dell'Italia nord-occidentale che ha il suo capoluogo nella città di Milano. La regione si posiziona prima in Italia per popolazione, densità abitativa e numero di enti locali, mentre è quarta per superficie, dopo Sicilia, Piemonte e Sardegna."@it ,
                           "Lombardy is an Italian region with ordinary statute of 10,020,528 inhabitants in north-western Italy which has its capital in the city of Milan. The region ranks first in Italy in terms of population, population density and number of local authorities, while it is fourth in terms of surface area, after Sicily, Piedmont and Sardinia."@en ;
              rdfs:label "Lombardia"@it ,
@@ -2204,7 +2205,7 @@ oh:M rdf:type owl:NamedIndividual ;
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Maremma
 oh:Maremma rdf:type owl:NamedIndividual ,
                     oh:AreaGeografica ;
-           <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Italia ;
+           designpatternpart:isPartOf oh:Italia ;
            rdfs:comment "La Maremma  è una vasta regione geografica compresa fra Toscana e Lazio, di circa 5000 km², che si affaccia sul Mar Tirreno e sul Mar Ligure."@it ,
                         "Maremma is a vast geographical region between Tuscany and Lazio, of approximately 5000 km², which overlooks the Tyrrhenian Sea and the Ligurian Sea."@en ;
            rdfs:label "Maremma"@en ,
@@ -2233,7 +2234,7 @@ oh:Maremmano rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#MaschioAndaluso
 oh:MaschioAndaluso rdf:type owl:NamedIndividual ,
                             oh:Cavallo ;
-                   <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasPrice> <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#7000Euro> ;
+                   designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#7000Euro> ;
                    oh:gareggiaNellaCategoriaDiDressage oh:F ;
                    oh:haRazza oh:Andaluso ;
                    oh:vieneUtilizzatoPer oh:AltaScuola ;
@@ -2245,8 +2246,8 @@ oh:MaschioAndaluso rdf:type owl:NamedIndividual ,
                    oh:haSesso "maschio" ;
                    oh:nomeCavallo "Fuser" ;
                    schema:image <https://cdn.ehorses.media/image/blur/big/andaluso-giumenta-11anni-160-cm-grigio-cavalli-per-ricreazione-cavalli-da-dressage-wellheim_22ccd770-84e8-4983-8669-b3fd22c544cd.jpg> ;
-                   rdfs:comment "Esemplare di cavallo maschio andaluso in vendita"@it ,
-                                "Male Andalusian horse for sale"@en ;
+                   rdfs:comment "Esemplare di cavallo maschio andaluso in vendita. Anno 2020. Ottima genealogia. Utilizzato in gare di dressage ed Alta scuola. Adatto a cavalieri con un minimo di esperienza."@it ,
+                                "Male Andalusian horse for sale. Year 2020. Excellent genealogy. Used in dressage and high school competitions. Suitable for riders with a minimum of experience."@en ;
                    rdfs:label "Andalusian male"@en ,
                               "Maschio andaluso"@it .
 
@@ -2254,7 +2255,7 @@ oh:MaschioAndaluso rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#MaschioOlandese
 oh:MaschioOlandese rdf:type owl:NamedIndividual ,
                             oh:Cavallo ;
-                   <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasPrice> <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#35000Euro> ;
+                   designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#35000Euro> ;
                    oh:gareggiaNelleCategorieDiSalto oh:C135 ;
                    oh:haRazza oh:OlandeseASangueCaldo ;
                    oh:vieneUtilizzatoPer oh:SaltoAdOstacoli ;
@@ -2265,8 +2266,8 @@ oh:MaschioOlandese rdf:type owl:NamedIndividual ,
                    oh:haSesso "maschio" ;
                    oh:nomeCavallo "Mufasa" ;
                    schema:image <https://www.equirodi.it/images/annonces/xl/854164_1709831119_8149.jpg> ;
-                   rdfs:comment "Dutch male horse for sale"@en ,
-                                "Esemplare di cavallo maschio olandese in vendita"@it ;
+                   rdfs:comment "12 year old male Dutch horse for sale. Excellent for obtaining 1st and 2nd degrees. Suitable for experienced riders. Difficult management on the ground."@en ,
+                                "Esemplare di cavallo maschio olandese di 12 anni  in vendita. Ottimo per il conseguimento di 1° e 2° grado. Adatto a cavalieri esperti. Difficile gestione a terra."@it ;
                    rdfs:label "Dutch male"@en ,
                               "Maschio olandese"@it .
 
@@ -2274,7 +2275,7 @@ oh:MaschioOlandese rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#MaschioPuroSangueInglese
 oh:MaschioPuroSangueInglese rdf:type owl:NamedIndividual ,
                                      oh:Cavallo ;
-                            <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasPrice> <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#20000Euro> ;
+                            designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#20000Euro> ;
                             oh:haRazza oh:PuroSangueInglese ;
                             oh:vieneUtilizzatoPer oh:Endurance ;
                             oh:èAdattoPer oh:CavaliereMoltoEsperto ;
@@ -2285,8 +2286,8 @@ oh:MaschioPuroSangueInglese rdf:type owl:NamedIndividual ,
                             oh:haSesso "maschio" ;
                             oh:nomeCavallo "Fulmine Del Monte Acuto" ;
                             schema:image <https://cdn.ehorses.media/image/blur/big/purosangue-inglese-castrone-11anni-167-cm-sauro-cavalli-da-completo-langenhagen_c785185a-0bc2-41c5-9eb5-077fb8170f36.jpg> ;
-                            rdfs:comment "Esemplare di purosangue inglese in vendita"@it ,
-                                         "Thoroughbred male horse for sale"@en ;
+                            rdfs:comment "English Thoroughbred example for sale. Year 2014. Excellent results in endurance competitions. It requires a very experienced rider. Easy handling on the ground."@en ,
+                                         "Esemplare di purosangue inglese in vendita. Anno 2014. Ottimi risultati nelle competizioni di endurance. Richiede un cavaliere molto esperto. Facile gestione a terra."@it ;
                             rdfs:label "Maschio purosangue inglese"@it ,
                                        "Thoroughbred male"@en .
 
@@ -2294,7 +2295,7 @@ oh:MaschioPuroSangueInglese rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#MaschioTedesco
 oh:MaschioTedesco rdf:type owl:NamedIndividual ,
                            oh:Cavallo ;
-                  <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasPrice> <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#15000Euro> ;
+                  designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#15000Euro> ;
                   oh:gareggiaNelleCategorieDiSalto oh:C115 ;
                   oh:haRazza oh:Holstein ;
                   oh:vieneUtilizzatoPer oh:CrossCountry ,
@@ -2306,8 +2307,8 @@ oh:MaschioTedesco rdf:type owl:NamedIndividual ,
                   oh:haSesso "maschio" ;
                   oh:nomeCavallo "Luther Lucifer" ;
                   schema:image <https://www.equirodi.it/images/annonces/xl/835574_1705591089.jpg> ;
-                  rdfs:comment "Esemplare di maschio tedesco in vendita"@it ,
-                               "German male horse for sale"@en ;
+                  rdfs:comment "16 year old German male specimen for sale. It has vehicles up to category C115. Easy management. Suitable for everyone. Excellent for obtaining the patent."@en ,
+                               "Esemplare di maschio tedesco di 16 anni in vendita. Ha i mezzi fino alla categoria C115. Facile gestione. Adatto a tutti. Ottimo per il conseguimento del brevetto."@it ;
                   rdfs:label "German male"@en ,
                              "Maschio tedesco"@it .
 
@@ -2315,7 +2316,7 @@ oh:MaschioTedesco rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Murge
 oh:Murge rdf:type owl:NamedIndividual ,
                   oh:AreaGeografica ;
-         <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Italia ;
+         designpatternpart:isPartOf oh:Italia ;
          schema:image <https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Murge.jpg/1280px-Murge.jpg> ;
          rdfs:comment "Le Murge sono una subregione appulo-lucana piuttosto estesa, corrispondente a un altopiano carsico di origine tettonica e di forma quadrangolare situato tra la Puglia centrale e la Basilicata nord-orientale. Il territorio dell'altopiano fa parte prevalentemente della città metropolitana di Bari e della provincia di Barletta-Andria-Trani e si estende a occidente fin nella provincia di Matera, in Basilicata; inoltre si prolunga verso sud nelle province di Taranto (Murge tarantine) e marginalmente Brindisi."@it ,
                       "The Murge are a rather large Appulo-Lucanian subregion, corresponding to a karst plateau of tectonic origin and quadrangular in shape located between central Puglia and north-eastern Basilicata. The territory of the plateau is mainly part of the metropolitan city of Bari and the province of Barletta-Andria-Trani and extends westwards to the province of Matera, in Basilicata; it also extends southwards into the provinces of Taranto (Murge tarantine) and marginally Brindisi."@en ;
@@ -2409,7 +2410,7 @@ oh:PaesiBassi rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Perche
 oh:Perche rdf:type owl:NamedIndividual ,
                    oh:AreaGeografica ;
-          <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Francia ;
+          designpatternpart:isPartOf oh:Francia ;
           rdfs:comment "La contea del Perche è un territorio storico della Francia che costituisce una delle antiche province francesi."@it ,
                        "The county of Perche is a historical territory of France which constitutes one of the ancient French provinces."@en ;
           rdfs:label "Contea del Perche"@it ,
@@ -2439,7 +2440,7 @@ oh:Percheron rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Piemonte
 oh:Piemonte rdf:type owl:NamedIndividual ,
                      oh:AreaGeografica ;
-            <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Italia ;
+            designpatternpart:isPartOf oh:Italia ;
             rdfs:comment "Il Piemonte è una regione a statuto ordinario di 4 252 581 abitanti dell'Italia nord-occidentale, con capoluogo amministrativo – nonché capitale storica – la città di Torino."@it ,
                          "Piedmont is a region with ordinary statute of 4,252,581 inhabitants in north-western Italy, with the administrative capital - as well as historical capital - the city of Turin."@en ;
             rdfs:label "Piedmont"@en ,
@@ -2458,7 +2459,7 @@ oh:Portogallo rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Puglia
 oh:Puglia rdf:type owl:NamedIndividual ,
                    oh:AreaGeografica ;
-          <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Italia ;
+          designpatternpart:isPartOf oh:Italia ;
           rdfs:comment "La Puglia è una regione italiana a statuto ordinario dell'Italia meridionale, di 3 890 250 abitanti, con capoluogo Bari."@it ,
                        "Puglia is an Italian region with ordinary statute in southern Italy, with 3,890,250 inhabitants, with Bari as its capital."@en ;
           rdfs:label "Puglia"@en ,
@@ -2490,7 +2491,7 @@ oh:PuroSangueInglese rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RegioneBoullonnais
 oh:RegioneBoullonnais rdf:type owl:NamedIndividual ,
                                oh:AreaGeografica ;
-                      <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Francia ;
+                      designpatternpart:isPartOf oh:Francia ;
                       rdfs:comment "Boulonnais is a natural coastal region in France, located on the English Channel coast in the Pas-de-Calais department."@en ,
                                    "Il Boulonnais è una regione naturale costiera francese, situata sul litorale della Manica nel dipartimento del Passo di Calais."@it ;
                       rdfs:label "Boulonnais"@en ,
@@ -2500,7 +2501,7 @@ oh:RegioneBoullonnais rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RegioneHannover
 oh:RegioneHannover rdf:type owl:NamedIndividual ,
                             oh:AreaGeografica ;
-                   <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Germania ;
+                   designpatternpart:isPartOf oh:Germania ;
                    rdfs:comment "Hannover is a city in north-central Germany, capital of the federal state of Lower Saxony"@en ,
                                 "Hannover è una città della Germania centro-settentrionale, capitale dello stato federato della Bassa Sassonia"@it ;
                    rdfs:label "Hannover"@it ,
@@ -2525,7 +2526,7 @@ oh:SaltoAdOstacoli rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Schleswig-Holstein
 oh:Schleswig-Holstein rdf:type owl:NamedIndividual ,
                                oh:AreaGeografica ;
-                      <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Germania ;
+                      designpatternpart:isPartOf oh:Germania ;
                       rdfs:comment "Lo Schleswig-Holstein è uno dei sedici Stati federati della Germania, geograficamente il più settentrionale."@it ,
                                    "Schleswig-Holstein is one of the sixteen federal states of Germany, geographically the northernmost."@en ;
                       rdfs:label "Schleswig-Holstein"@en ,
@@ -2535,7 +2536,7 @@ oh:Schleswig-Holstein rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Scozia
 oh:Scozia rdf:type owl:NamedIndividual ,
                    oh:AreaGeografica ;
-          <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:RegnoUnito ;
+          designpatternpart:isPartOf oh:RegnoUnito ;
           rdfs:comment "La Scozia è una nazione costitutiva del Regno Unito che è posta all'estremità settentrionale dell'isola di Gran Bretagna e ne occupa più di un terzo della superficie"@it ,
                        "Scotland is a constituent nation of the United Kingdom which is located at the northern tip of the island of Great Britain and occupies more than a third of its surface"@en ;
           rdfs:label "Scotland"@en ,
@@ -2588,7 +2589,7 @@ oh:SellaItaliano rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Sicilia
 oh:Sicilia rdf:type owl:NamedIndividual ,
                     oh:AreaGeografica ;
-           <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Italia ;
+           designpatternpart:isPartOf oh:Italia ;
            rdfs:comment "La Sicilia è una regione italiana a statuto speciale di 4 791 993 abitanti, con capoluogo Palermo."@it ,
                         "Sicily is an Italian region with a special statute of 4,791,993 inhabitants, with Palermo as its capital."@en ;
            rdfs:label "Sicilia"@it ,
@@ -2644,7 +2645,7 @@ oh:Trakehner rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#TrentinoAltoAdige
 oh:TrentinoAltoAdige rdf:type owl:NamedIndividual ,
                               oh:AreaGeografica ;
-                     <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Italia ;
+                     designpatternpart:isPartOf oh:Italia ;
                      rdfs:comment "Il Trentino-Alto Adige  è una regione italiana a statuto speciale dell'Italia Nord-orientale con capoluogo Trento."@it ,
                                   "Trentino-Alto Adige is an Italian region with a special statute in north-eastern Italy with Trento as its capital."@en ;
                      rdfs:label "Trentino-Alto Adige"@en ,
@@ -2654,7 +2655,7 @@ oh:TrentinoAltoAdige rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Vestfalia
 oh:Vestfalia rdf:type owl:NamedIndividual ,
                       oh:AreaGeografica ;
-             <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Germania ;
+             designpatternpart:isPartOf oh:Germania ;
              rdfs:comment "La Vestfalia è una regione della Germania, inclusa nei land della Renania Settentrionale-Vestfalia e Bassa Sassonia."@it ,
                           "Westphalia is a region of Germany, included in the states of North Rhine-Westphalia and Lower Saxony."@en ;
              rdfs:label "Vestfalia"@it ,
@@ -2685,7 +2686,7 @@ oh:Westfalen rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#bergamo
 oh:bergamo rdf:type owl:NamedIndividual ,
                     oh:AreaGeografica ;
-           <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Lombardia ;
+           designpatternpart:isPartOf oh:Lombardia ;
            rdfs:comment "Bergamo is an Italian municipality of 120,504 inhabitants[4], capital of the province of the same name in Lombardy. The town of Bergamo is divided into two distinct parts, the «Lower City» and the «Upper City»; the latter is located at a higher altitude and hosts the majority of the most significant monuments, while the Lower City has been made partly more modern by some urbanization interventions. The two portions of the town are separated by the Venetian walls, listed since 2017 among the world heritage sites protected by UNESCO."@en ,
                         "Bergamo è un comune italiano di 120 504 abitanti[4], capoluogo dell'omonima provincia in Lombardia. L'abitato di Bergamo è suddiviso in due parti distinte, la «Città Bassa» e la «Città Alta»; quest'ultima è posta in altitudine più elevata e ospita la maggioranza dei monumenti più significativi, mentre la Città Bassa è stata resa in parte più moderna da alcuni interventi di urbanizzazione. Le due porzioni dell'abitato sono separate dalle mura venete, annoverate dal 2017 fra i patrimoni dell'umanità tutelati dall'UNESCO."@it ;
            rdfs:label "Bergamo"@en ,
@@ -2760,7 +2761,7 @@ oh:gianlucaCamoletto rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#leini
 oh:leini rdf:type owl:NamedIndividual ,
                   oh:AreaGeografica ;
-         <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Piemonte ;
+         designpatternpart:isPartOf oh:Piemonte ;
          rdfs:comment "Leini is an Italian municipality of 16,340 inhabitants in the metropolitan city of Turin in Piedmont."@en ,
                       "Leini è un comune italiano di 16 340 abitanti della città metropolitana di Torino in Piemonte."@it ;
          rdfs:label "Leinì"@en ,
@@ -2851,7 +2852,7 @@ oh:primoGrado rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sanMauro
 oh:sanMauro rdf:type owl:NamedIndividual ,
                      oh:AreaGeografica ;
-            <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Piemonte ;
+            designpatternpart:isPartOf oh:Piemonte ;
             rdfs:comment "San Mauro Torinese is an Italian municipality of 18,922 inhabitants in the metropolitan city of Turin, in Piedmont."@en ,
                          "San Mauro Torinese è un comune italiano di 18.922 abitanti della città metropolitana di Torino, in Piemonte."@it ;
             rdfs:label "San Mauro Torinese"@en ,
@@ -2898,7 +2899,7 @@ oh:secondoGrado rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#siracusa
 oh:siracusa rdf:type owl:NamedIndividual ,
                      oh:AreaGeografica ;
-            <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Sicilia ;
+            designpatternpart:isPartOf oh:Sicilia ;
             rdfs:comment "Siracusa è un comune italiano di 115 681 abitanti, capoluogo del libero consorzio comunale omonimo, in Sicilia."@it ,
                          "Syracuse is an Italian municipality of 115,681 inhabitants, capital of the free municipal consortium of the same name, in Sicily."@en ;
             rdfs:label "Siracusa"@it ,
@@ -2908,7 +2909,7 @@ oh:siracusa rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#taranto
 oh:taranto rdf:type owl:NamedIndividual ,
                     oh:AreaGeografica ;
-           <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Puglia ;
+           designpatternpart:isPartOf oh:Puglia ;
            rdfs:comment "Taranto is an Italian municipality of 186,798 inhabitants, capital of the province of the same name, in Puglia."@en ,
                         "Taranto è un comune italiano di 186 798 abitanti, capoluogo dell'omonima provincia, in Puglia."@it ;
            rdfs:label "Taranto"@en ,
@@ -2917,81 +2918,81 @@ oh:taranto rdf:type owl:NamedIndividual ,
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#12000Euro
 <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#12000Euro> rdf:type owl:NamedIndividual ,
-                                                                                   <http://www.ontologydesignpatterns.org/cp/owl/price.owl#Price> ;
-                                                                          <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasCurrency> oh:Euro ;
-                                                                          <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasValue> "12000.0"^^xsd:float ;
+                                                                                   designpatternprice:Price ;
+                                                                          designpatternprice:hasCurrency oh:Euro ;
+                                                                          designpatternprice:hasValue "12000.0"^^xsd:float ;
                                                                           rdfs:comment "12000 Euro"@it ;
                                                                           rdfs:label "12000 Euro"@it .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#15000Euro
 <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#15000Euro> rdf:type owl:NamedIndividual ,
-                                                                                   <http://www.ontologydesignpatterns.org/cp/owl/price.owl#Price> ;
-                                                                          <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasCurrency> oh:Euro ;
-                                                                          <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasValue> "15000.0"^^xsd:float ;
+                                                                                   designpatternprice:Price ;
+                                                                          designpatternprice:hasCurrency oh:Euro ;
+                                                                          designpatternprice:hasValue "15000.0"^^xsd:float ;
                                                                           rdfs:comment "15000 Euro"@it ;
                                                                           rdfs:label "15000 Euro"@it .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#18000Euro
 <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#18000Euro> rdf:type owl:NamedIndividual ,
-                                                                                   <http://www.ontologydesignpatterns.org/cp/owl/price.owl#Price> ;
-                                                                          <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasCurrency> oh:Euro ;
-                                                                          <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasValue> "18000.0"^^xsd:float ;
+                                                                                   designpatternprice:Price ;
+                                                                          designpatternprice:hasCurrency oh:Euro ;
+                                                                          designpatternprice:hasValue "18000.0"^^xsd:float ;
                                                                           rdfs:comment "18000 Euro"@it ;
                                                                           rdfs:label "18000 Euro"@it .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#20000Euro
 <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#20000Euro> rdf:type owl:NamedIndividual ,
-                                                                                   <http://www.ontologydesignpatterns.org/cp/owl/price.owl#Price> ;
-                                                                          <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasCurrency> oh:Euro ;
-                                                                          <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasValue> "20000.0"^^xsd:float ;
+                                                                                   designpatternprice:Price ;
+                                                                          designpatternprice:hasCurrency oh:Euro ;
+                                                                          designpatternprice:hasValue "20000.0"^^xsd:float ;
                                                                           rdfs:comment "20000 Euro"@it ;
                                                                           rdfs:label "20000 Euro"@it .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#2500Euro
 <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#2500Euro> rdf:type owl:NamedIndividual ,
-                                                                                  <http://www.ontologydesignpatterns.org/cp/owl/price.owl#Price> ;
-                                                                         <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasCurrency> oh:Euro ;
-                                                                         <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasValue> "2500.0"^^xsd:float ;
+                                                                                  designpatternprice:Price ;
+                                                                         designpatternprice:hasCurrency oh:Euro ;
+                                                                         designpatternprice:hasValue "2500.0"^^xsd:float ;
                                                                          rdfs:comment "2500 Euro"@it ;
                                                                          rdfs:label "2500 Euro"@it .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#35000Euro
 <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#35000Euro> rdf:type owl:NamedIndividual ,
-                                                                                   <http://www.ontologydesignpatterns.org/cp/owl/price.owl#Price> ;
-                                                                          <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasCurrency> oh:Euro ;
-                                                                          <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasValue> "35000.0"^^xsd:float ;
+                                                                                   designpatternprice:Price ;
+                                                                          designpatternprice:hasCurrency oh:Euro ;
+                                                                          designpatternprice:hasValue "35000.0"^^xsd:float ;
                                                                           rdfs:comment "35000 Euro"@it ;
                                                                           rdfs:label "35000 Euro"@it .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#4800Euro
 <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#4800Euro> rdf:type owl:NamedIndividual ,
-                                                                                  <http://www.ontologydesignpatterns.org/cp/owl/price.owl#Price> ;
-                                                                         <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasCurrency> oh:Euro ;
-                                                                         <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasValue> "4800.0"^^xsd:float ;
+                                                                                  designpatternprice:Price ;
+                                                                         designpatternprice:hasCurrency oh:Euro ;
+                                                                         designpatternprice:hasValue "4800.0"^^xsd:float ;
                                                                          rdfs:comment "4800 Euro"@it ;
                                                                          rdfs:label "4800 Euro"@it .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#5000Euro
 <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#5000Euro> rdf:type owl:NamedIndividual ,
-                                                                                  <http://www.ontologydesignpatterns.org/cp/owl/price.owl#Price> ;
-                                                                         <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasCurrency> oh:Euro ;
-                                                                         <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasValue> "5000.0"^^xsd:float ;
+                                                                                  designpatternprice:Price ;
+                                                                         designpatternprice:hasCurrency oh:Euro ;
+                                                                         designpatternprice:hasValue "5000.0"^^xsd:float ;
                                                                          rdfs:comment "5000 Euro"@it ;
                                                                          rdfs:label "5000 Euro"@it .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#7000Euro
 <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#7000Euro> rdf:type owl:NamedIndividual ,
-                                                                                  <http://www.ontologydesignpatterns.org/cp/owl/price.owl#Price> ;
-                                                                         <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasCurrency> oh:Euro ;
-                                                                         <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasValue> "7000.0"^^xsd:float ;
+                                                                                  designpatternprice:Price ;
+                                                                         designpatternprice:hasCurrency oh:Euro ;
+                                                                         designpatternprice:hasValue "7000.0"^^xsd:float ;
                                                                          rdfs:comment "7000 Euro"@it ;
                                                                          rdfs:label "7000 Euro"@it .
 
