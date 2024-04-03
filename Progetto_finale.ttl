@@ -1,11 +1,11 @@
-@prefix : <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses/> .
+@prefix : <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#> .
 @prefix oh: <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses/> .
+@base <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#> .
 
 <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses> rdf:type owl:Ontology ;
                                                                  owl:imports <http://www.ontologydesignpatterns.org/cp/owl/list.owl> ,
@@ -17,7 +17,7 @@
                                                                                                                "Rappresentazione ontologica di razze, impieghi e caratteristiche principali dei cavalli e annunci di vendita finalizzata ad aiutare l'utente nell'acquisto di un cavallo."@it ;
                                                                  <http://purl.org/dc/elements/1.1/title> "OntoHorses"@en ;
                                                                  <http://purl.org/vocab/vann/preferedNamespacePrefix> "http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses"@it ,
-                                                                                                                      "ontohorse"@en ;
+                                                                                                                      "oh"@en ;
                                                                  rdfs:label "Ontologia sulle principali razze di cavallo europee"@it ,
                                                                             "Ontology on the main European horse breeds"@en .
 
@@ -111,14 +111,46 @@ oh:consegue rdf:type owl:ObjectProperty ;
                        "consegue"@it .
 
 
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#entitàWikidata
+oh:entitàWikidata rdf:type owl:ObjectProperty ,
+                           owl:FunctionalProperty ,
+                           owl:InverseFunctionalProperty ;
+                  rdfs:domain oh:RazzaCavallo ;
+                  rdfs:range owl:Thing ;
+                  rdfs:comment "La corrispondente entità su Wikidata"@it ,
+                               "The corrispondig entity on Wikidata"@en ;
+                  rdfs:label "Entità Wikidata"@it ,
+                             "Wikidata Entity"@en .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#gareggiaNellaCategoriaDiDressage
+oh:gareggiaNellaCategoriaDiDressage rdf:type owl:ObjectProperty ;
+                                    rdfs:domain <http://dbpedia.org/ontology/horse> ;
+                                    rdfs:range oh:CategorieDressage ;
+                                    rdfs:comment "Property that expresses the category of  dressage competition in which the horse usually participates."@en ,
+                                                 "Proprietà che esprime la categoria di gara di dressage alla quale il cavallo di solito partecipa"@it ;
+                                    rdfs:label "gareggia nella categoria di dressage"@it ,
+                                               "take part to dressage category"@en .
+
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#gareggiaNelleCategorieDiSalto
 oh:gareggiaNelleCategorieDiSalto rdf:type owl:ObjectProperty ;
                                  rdfs:domain oh:Cavallo ;
                                  rdfs:range oh:CategorieDiSalto ;
-                                 rdfs:comment "Property that expresses the categories of  jumping competitions in which the horse usually participates."@en ,
-                                              "Proprietà che esprime le categorie di gare di salto ad ostacoli alle quali il cavallo di solito partecipa."@it ;
-                                 rdfs:label "gareggia nelle categorie di salto ostacoli"@it ,
+                                 rdfs:comment "Property that expresses the category of  jumping competition in which the horse usually participates."@en ,
+                                              "Proprietà che esprime la categoria di gare di salto ad ostacoli alle quali il cavallo di solito partecipa."@it ;
+                                 rdfs:label "gareggia nella categoria di salto ostacoli"@it ,
                                             "take part to jumping categories"@en .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#haClassificazioneMorfologica
+oh:haClassificazioneMorfologica rdf:type owl:ObjectProperty ;
+                                rdfs:domain oh:RazzaCavallo ;
+                                rdfs:range oh:RazzaCavallo ;
+                                rdfs:comment "Property that expresses the morphological type to which the horse breed belongs"@en ,
+                                             "Proprietà che esprime il tipo morfologico al quale la razza di cavallo appartiene"@it ;
+                                rdfs:label "ha classificazione morfologica"@it ,
+                                           "has morphological classification"@en .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#haIndole
@@ -176,6 +208,15 @@ oh:permetteIlConseguimentoDi rdf:type owl:ObjectProperty ;
                                         "permette il conseguiimento di"@it .
 
 
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#possiede
+oh:possiede rdf:type owl:ObjectProperty ;
+            owl:inverseOf oh:èPossedutoDa ;
+            rdfs:comment "Inverse proprerty of \"is owned by\""@en ,
+                         "Proprietà inversa di \"è posseduto da\""@it ;
+            rdfs:label "is owner"@en ,
+                       "possiede"@it .
+
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#puòEssereImpiegataIn
 oh:puòEssereImpiegataIn rdf:type owl:ObjectProperty ;
                         rdfs:domain oh:RazzaCavallo ;
@@ -219,94 +260,69 @@ oh:èAdattoPer rdf:type owl:ObjectProperty ;
                          "è adatto per"@it .
 
 
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#èPossedutoDa
+oh:èPossedutoDa rdf:type owl:ObjectProperty ;
+                rdfs:domain oh:Cavallo ;
+                rdfs:range oh:Proprietario ;
+                rdfs:comment "Property that expresses the relationship between the horse for sale and the current owner"@en ,
+                             "Proprietà che esprime la relazione tra il cavallo in vendita e l'attuale proprietario"@it ;
+                rdfs:label "is owned by"@en ,
+                           "è posseduto da"@it .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#èScuderizzatoIn
+oh:èScuderizzatoIn rdf:type owl:ObjectProperty ;
+                   rdfs:domain oh:Cavallo ;
+                   rdfs:range oh:AreaGeografica ;
+                   owl:propertyChainAxiom ( oh:èScuderizzatoInCittàDi
+                                            <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf>
+                                          ) ;
+                   rdfs:comment "Property that expresses the geographic area in terms of the State or Region in which the horse is stabled."@en ,
+                                "Proprietà che esprime l'area geografica in termini di Stato o Regione in cui il cavallo è scuderizzato."@it ;
+                   rdfs:label "is stabled in"@en ,
+                              "è scuderizzato in"@it .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#èScuderizzatoInCittàDi
+oh:èScuderizzatoInCittàDi rdf:type owl:ObjectProperty ,
+                                   owl:FunctionalProperty ;
+                          rdfs:domain oh:Cavallo ;
+                          rdfs:comment "Property that expresses the city in which the horse is stabled"@en ,
+                                       "Proprietà che esprime la Città in cui il cavallo è scuderizzato"@it ;
+                          rdfs:label "is stabled in the City of"@en ,
+                                     "è scuderizzato in Città di"@it .
+
+
 #################################################################
 #    Data properties
 #################################################################
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#altezzaAlGarrese_cm
-oh:altezzaAlGarrese_cm rdf:type owl:DatatypeProperty ,
-                                owl:FunctionalProperty ;
-                       rdfs:domain oh:Cavallo ;
-                       rdfs:range xsd:nonNegativeInteger ;
-                       <http://schema.org/image> <https://www.kramer.it/$WS/kraemer-pferdesport/websale8_shop-kraemer-pferdesport/benutzer/templates/ws-customer/Serviceseiten/images/content/blankets_ita.jpg> ;
-                       rdfs:comment "L'altezza di un animale quadrupede si misura al garrese che è il punto più alto del dorso e si trova tra il collo e il tronco nella zona di incontro tra collo e scapole"@it ,
-                                    "The height of a quadruped animal is measured at the withers which is the highest point of the back and is located between the neck and the trunk in the area where the neck and shoulder blades meet"@en ;
-                       rdfs:label "altezza al garrese [cm]"@it ,
-                                  "height at the withers [cm]"@en .
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#altezzaGarrese
+oh:altezzaGarrese rdf:type owl:DatatypeProperty ;
+                  rdfs:domain oh:Cavallo ;
+                  rdfs:range xsd:decimal ;
+                  <http://schema.org/image> <https://www.kramer.it/$WS/kraemer-pferdesport/websale8_shop-kraemer-pferdesport/benutzer/templates/ws-customer/Serviceseiten/images/content/blankets_ita.jpg> ;
+                  rdfs:comment "L'altezza di un animale quadrupede si misura al garrese che è il punto più alto del dorso e si trova tra il collo e il tronco nella zona di incontro tra collo e scapole"@it ,
+                               "The height of a quadruped animal is measured at the withers which is the highest point of the back and is located between the neck and the trunk in the area where the neck and shoulder blades meet"@en ;
+                  rdfs:label "Height at the withers [cm]"@en ,
+                             "altezza al garrese [cm]" .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#altezzaMaxDiSalto_cm
-oh:altezzaMaxDiSalto_cm rdf:type owl:DatatypeProperty ,
-                                 owl:FunctionalProperty ;
-                        rdfs:domain oh:Cavallo ;
-                        rdfs:range xsd:nonNegativeInteger ;
-                        rdfs:comment "Altezza massima di salto ostacoli registrata in una competizione ufficiale FISE"@it ,
-                                     "Maximum jumping height recorded in an official FISE competition"@en ;
-                        rdfs:label "Maximum jumping height [cm]"@en ,
-                                   "altezza massima di salto ostacoli [cm]"@it .
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#altezzaMediaGarrese
+oh:altezzaMediaGarrese rdf:type owl:DatatypeProperty ;
+                       rdfs:domain oh:RazzaCavallo ;
+                       rdfs:range xsd:decimal ;
+                       rdfs:comment "Average height at the withers of a horse breed"@en ,
+                                    "Valore medio dell'altezza al garrese di una razza di cavallo"@it ;
+                       rdfs:label "average height at the withers [cm]"@en ,
+                                  "altezza media al garrese [cm]" .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#altezzaMediaAlGarrese_cm
-oh:altezzaMediaAlGarrese_cm rdf:type owl:DatatypeProperty ,
-                                     owl:FunctionalProperty ;
-                            rdfs:domain oh:RazzaCavallo ;
-                            rdfs:range xsd:nonNegativeInteger ;
-                            rdfs:comment "Average height at the withers of a horse breed"@en ,
-                                         "Valore medio dell'altezza al garrese di una razza di cavallo"@it ;
-                            rdfs:label "Average height at the withers  [cm]"@en ,
-                                       "altezza media al garrese [cm]"@it .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#annoDiNascita
-oh:annoDiNascita rdf:type owl:DatatypeProperty ,
-                          owl:FunctionalProperty ;
-                 rdfs:domain oh:Cavallo ;
-                 rdfs:range xsd:nonNegativeInteger ;
-                 rdfs:comment "Anno di nascita del cavallo in vendita"@it ,
-                              "Year of birth of the horse for sale"@en ;
-                 rdfs:label "anno di nascita"@it ,
-                            "year of birth"@en .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#categorieDiDressage
-oh:categorieDiDressage rdf:type owl:DatatypeProperty ;
-                       rdfs:domain oh:Cavallo ;
-                       rdfs:range [ rdf:type rdfs:Datatype ;
-                                    owl:oneOf [ rdf:type rdf:List ;
-                                                rdf:first "D" ;
-                                                rdf:rest [ rdf:type rdf:List ;
-                                                           rdf:first "E" ;
-                                                           rdf:rest [ rdf:type rdf:List ;
-                                                                      rdf:first "F" ;
-                                                                      rdf:rest [ rdf:type rdf:List ;
-                                                                                 rdf:first "M" ;
-                                                                                 rdf:rest rdf:nil
-                                                                               ]
-                                                                    ]
-                                                         ]
-                                              ]
-                                  ] ;
-                       rdfs:comment "A Dressage competition is defined by a category that indicates its difficulty. In particular: E (elementary), F (easy), M (medium), D (difficult)"@en ,
-                                    "Una competizione di Dressage è definita da una categoria che ne indica la difficolta. In particolare: E (elementare), F (facile), M (media), D (difficile)"@it ;
-                       rdfs:label "Dressage competition categories"@en ,
-                                  "categorie di Dressage"@it .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#contattoProprietario
-oh:contattoProprietario rdf:type owl:DatatypeProperty ;
-                        rdfs:domain oh:Cavallo ;
-                        rdfs:range xsd:string ;
-                        rdfs:comment "Numero telefonico  per contattare il proprietario del cavallo in vendita"@it ,
-                                     "Telephone number to contact the owner of the horse for sale"@en ;
-                        rdfs:label "contatto telefonico del proprietario"@it ,
-                                   "owner's telephone number"@en .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#età
-oh:età rdf:type owl:DatatypeProperty ,
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#eta
+oh:eta rdf:type owl:DatatypeProperty ,
                 owl:FunctionalProperty ;
        rdfs:domain oh:Cavallo ;
-       rdfs:range xsd:nonNegativeInteger ;
+       rdfs:range xsd:integer ;
        rdfs:comment "age of horse for sale"@en ,
                     "età del cavallo in vendita"@it ;
        rdfs:label "age"@en ,
@@ -367,16 +383,6 @@ oh:haColoreMantello rdf:type owl:DatatypeProperty ;
                                "ha colori mantello ammessi"@it .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#haProprietario
-oh:haProprietario rdf:type owl:DatatypeProperty ;
-                  rdfs:domain oh:Cavallo ;
-                  rdfs:range xsd:string ;
-                  rdfs:comment "Name of the current owner of the horse for sale"@en ,
-                               "Nome dell'attuale proprietario del cavallo in vendita"@it ;
-                  rdfs:label "ha proprietario"@it ,
-                             "has owner"@en .
-
-
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#haSesso
 oh:haSesso rdf:type owl:DatatypeProperty ,
                     owl:FunctionalProperty ;
@@ -400,47 +406,24 @@ oh:haSesso rdf:type owl:DatatypeProperty ,
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#nomeCavallo
-oh:nomeCavallo rdf:type owl:DatatypeProperty ,
-                        owl:FunctionalProperty ;
+oh:nomeCavallo rdf:type owl:DatatypeProperty ;
                rdfs:domain oh:Cavallo ;
                rdfs:range xsd:string ;
                rdfs:comment "Horse name for sale"@en ,
                             "Nome del cavallo in vendita"@it ;
-               rdfs:label "horse name"@en ,
-                          "nome del cavallo"@it .
+               rdfs:label "Horse name"@en ,
+                          "Nome del cavallo"@it .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#pesoMedio_Kg
-oh:pesoMedio_Kg rdf:type owl:DatatypeProperty ,
-                         owl:FunctionalProperty ;
-                rdfs:domain oh:RazzaCavallo ;
-                rdfs:range xsd:nonNegativeInteger ;
-                rdfs:comment "Average mass value of a specific horse breed"@en ,
-                             "Valore medio della massa di una specifica razza di cavallo"@it ;
-                rdfs:label "medium weight [Kg]"@en ,
-                           "peso medio [Kg]"@it .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#provinciaDiScuderizzazione
-oh:provinciaDiScuderizzazione rdf:type owl:DatatypeProperty ,
-                                       owl:FunctionalProperty ;
-                              rdfs:domain oh:Cavallo ;
-                              rdfs:range xsd:string ;
-                              rdfs:comment "Province in which the horse for sale is stabled"@en ,
-                                           "Provincia in cui il cavallo in vendita è scuderizzato"@it ;
-                              rdfs:label "province of horse stable"@en ,
-                                         "provincia di scuderizzazione"@it .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#regioneDiScuderizzazione
-oh:regioneDiScuderizzazione rdf:type owl:DatatypeProperty ,
-                                     owl:FunctionalProperty ;
-                            rdfs:domain oh:Cavallo ;
-                            rdfs:range xsd:string ;
-                            rdfs:comment "Region in which the horse for sale is stabled"@en ,
-                                         "Regione in cui il cavallo in vendita è scuderizzato"@it ;
-                            rdfs:label "region of horse stable"@en ,
-                                       "regione di scuderizzazione"@it .
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#pesoMedio
+oh:pesoMedio rdf:type owl:DatatypeProperty ,
+                      owl:FunctionalProperty ;
+             rdfs:domain oh:RazzaCavallo ;
+             rdfs:range xsd:integer ;
+             rdfs:comment "Average mass value of a specific horse breed"@en ,
+                          "Valore medio della massa di una specifica razza di cavallo"@it ;
+             rdfs:label "medium weight [Kg]"@en ,
+                        "peso medio [Kg]"@it .
 
 
 #################################################################
@@ -509,7 +492,27 @@ oh:CategorieDiSalto rdf:type owl:Class ;
                                                       oh:C90
                                                     )
                                         ] ;
-                    rdfs:subClassOf oh:SaltoAdOstacoli .
+                    rdfs:subClassOf oh:SaltoAdOstacoli ;
+                    rdfs:comment "Categorie di difficoltà del salto ad ostacoli"@it ,
+                                 "Difficulty categories of jumping"@en ;
+                    rdfs:label "Categoria di salto ad ostacoli"@it ,
+                               "Show jumping category"@en .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CategorieDressage
+oh:CategorieDressage rdf:type owl:Class ;
+                     owl:equivalentClass [ rdf:type owl:Class ;
+                                           owl:oneOf ( oh:D
+                                                       oh:E
+                                                       oh:F
+                                                       oh:M
+                                                     )
+                                         ] ;
+                     rdfs:subClassOf oh:Dressage ;
+                     rdfs:comment "Categorie di difficoltà del  Dressage"@it ,
+                                  "Difficulty categories of Dressage"@en ;
+                     rdfs:label "Categoria di dressage"@it ,
+                                "Dressage Category"@en .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Cavaliere
@@ -531,7 +534,7 @@ oh:Cavallo rdf:type owl:Class ;
                                  owl:someValuesFrom oh:RazzaCavallo
                                ] ,
                                [ rdf:type owl:Restriction ;
-                                 owl:onProperty oh:età ;
+                                 owl:onProperty oh:eta ;
                                  owl:someValuesFrom xsd:integer
                                ] ,
                                [ rdf:type owl:Restriction ;
@@ -594,7 +597,7 @@ oh:CavalloASangueMisto rdf:type owl:Class ;
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloAdulto
 oh:CavalloAdulto rdf:type owl:Class ;
                  owl:equivalentClass [ rdf:type owl:Restriction ;
-                                       owl:onProperty oh:età ;
+                                       owl:onProperty oh:eta ;
                                        owl:someValuesFrom [ rdf:type rdfs:Datatype ;
                                                             owl:onDatatype xsd:integer ;
                                                             owl:withRestrictions ( [ xsd:minExclusive 6
@@ -614,7 +617,7 @@ oh:CavalloAdulto rdf:type owl:Class ;
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloAnziano
 oh:CavalloAnziano rdf:type owl:Class ;
                   owl:equivalentClass [ rdf:type owl:Restriction ;
-                                        owl:onProperty oh:età ;
+                                        owl:onProperty oh:eta ;
                                         owl:someValuesFrom [ rdf:type rdfs:Datatype ;
                                                              owl:onDatatype xsd:integer ;
                                                              owl:withRestrictions ( [ xsd:minExclusive 18
@@ -764,12 +767,12 @@ oh:CavalloPerCrossCountry rdf:type owl:Class ;
 oh:CavalloPerDressage rdf:type owl:Class ;
                       owl:equivalentClass [ rdf:type owl:Class ;
                                             owl:unionOf ( [ rdf:type owl:Restriction ;
-                                                            owl:onProperty oh:vieneUtilizzatoPer ;
-                                                            owl:hasValue oh:Dressage
+                                                            owl:onProperty oh:gareggiaNellaCategoriaDiDressage ;
+                                                            owl:someValuesFrom oh:CategorieDressage
                                                           ]
                                                           [ rdf:type owl:Restriction ;
-                                                            owl:onProperty oh:categorieDiDressage ;
-                                                            owl:someValuesFrom xsd:string
+                                                            owl:onProperty oh:vieneUtilizzatoPer ;
+                                                            owl:hasValue oh:Dressage
                                                           ]
                                                         )
                                           ] ;
@@ -816,10 +819,6 @@ oh:CavalloPerSaltoOstacoli rdf:type owl:Class ;
                                                                [ rdf:type owl:Restriction ;
                                                                  owl:onProperty oh:vieneUtilizzatoPer ;
                                                                  owl:hasValue oh:SaltoAdOstacoli
-                                                               ]
-                                                               [ rdf:type owl:Restriction ;
-                                                                 owl:onProperty oh:altezzaMaxDiSalto_cm ;
-                                                                 owl:someValuesFrom xsd:nonNegativeInteger
                                                                ]
                                                              )
                                                ] ;
@@ -900,9 +899,29 @@ oh:Lavoro rdf:type owl:Class ;
                      "Work"@en .
 
 
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Morfologia
+oh:Morfologia rdf:type owl:Class ;
+              owl:equivalentClass [ rdf:type owl:Class ;
+                                    owl:oneOf ( oh:brachimorfo
+                                                oh:dolicomorfo
+                                                oh:mesoBrachimorfo
+                                                oh:mesoDolicomorfo
+                                                oh:mesomorfo
+                                              )
+                                  ] ;
+              rdfs:comment "Main physical traits of a horse that can possibly determine its classification"@en ,
+                           "Tratti fisici principali di un cavallo che eventualmente ne possono determinare una classificazione"@it ;
+              rdfs:label "Morfologia"@it ,
+                         "Morphology"@en .
+
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Patente
 oh:Patente rdf:type owl:Class ;
-           rdfs:subClassOf <http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem> .
+           rdfs:subClassOf <http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem> ;
+           rdfs:comment "Authorization to ride issued by FISE on the basis of the skills acquired, the competitions in which one participates and any exams taken."@en ,
+                        "Autorizzazione a montare rilasciata dalla FISE sulla base dell'abilità acquisita, delle competizioni a cui si partecipa e degli eventuali esami sostenuti."@it ;
+           rdfs:label "FISE riding licence"@en ,
+                      "Patente FISE"@it .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Persona
@@ -910,10 +929,19 @@ oh:Persona rdf:type owl:Class ;
            owl:equivalentClass <http://xmlns.com/foaf/0.1/person> .
 
 
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Proprietario
+oh:Proprietario rdf:type owl:Class ;
+                rdfs:subClassOf oh:Persona ;
+                rdfs:comment "La persona che detiene la proprietà del cavallo e ne è autorizzato alla vendita"@it ,
+                             "The person who holds title to the horse and is authorized to sell it"@en ;
+                rdfs:label "Horse owner"@en ,
+                           "Proprietario"@it .
+
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Puledro
 oh:Puledro rdf:type owl:Class ;
            owl:equivalentClass [ rdf:type owl:Restriction ;
-                                 owl:onProperty oh:età ;
+                                 owl:onProperty oh:eta ;
                                  owl:someValuesFrom [ rdf:type rdfs:Datatype ;
                                                       owl:onDatatype xsd:integer ;
                                                       owl:withRestrictions ( [ xsd:maxInclusive 6
@@ -982,6 +1010,10 @@ oh:RazzaBelga rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaBrachimorfa
 oh:RazzaBrachimorfa rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Restriction ;
+                                          owl:onProperty oh:haClassificazioneMorfologica ;
+                                          owl:hasValue oh:brachimorfo
+                                        ] ;
                     rdfs:subClassOf oh:RazzaCavallo ;
                     rdfs:comment "Horse breed more inclined to the development of musculature, with a wide chest, powerful, massive and not very long shapes."@en ,
                                  "Razza di cavallo  più propenso allo sviluppo di muscolatura, con un torace ampio, forme potenti, massicce e non molto lungo."@it ;
@@ -992,6 +1024,14 @@ oh:RazzaBrachimorfa rdf:type owl:Class ;
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo
 oh:RazzaCavallo rdf:type owl:Class ;
                 owl:equivalentClass [ rdf:type owl:Restriction ;
+                                      owl:onProperty oh:haClassificazioneMorfologica ;
+                                      owl:someValuesFrom oh:Morfologia
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty oh:haIndole ;
+                                      owl:someValuesFrom oh:Indole
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
                                       owl:onProperty oh:haRegioneDiOrigine ;
                                       owl:someValuesFrom oh:AreaGeografica
                                     ] ,
@@ -1146,6 +1186,19 @@ oh:RazzaDanese rdf:type owl:Class ;
                           "Razza danese"@it .
 
 
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDolicomorfa
+oh:RazzaDolicomorfa rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Restriction ;
+                                          owl:onProperty oh:haClassificazioneMorfologica ;
+                                          owl:hasValue oh:dolicomorfo
+                                        ] ;
+                    rdfs:subClassOf oh:RazzaCavallo ;
+                    rdfs:comment "Horse breed more suitable for fast and long gaits than for tests of strength: it has a deep chest, elongated lines and joints with very open angles. The figure is agile, light and slender."@en ,
+                                 "Razza di cavallo più idoneo alle andature veloci e allungate che alle prove di forza: ha torace profondo, linee allungate e articolazioni con angoli molto aperti. La figura è agile, leggera e slanciata."@it ;
+                    rdfs:label "Dolicomorphic horse breed"@en ,
+                               "Razza dolicomorfa"@it .
+
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaEndurance
 oh:RazzaEndurance rdf:type owl:Class ;
                   owl:equivalentClass [ rdf:type owl:Restriction ;
@@ -1209,6 +1262,10 @@ oh:RazzaItaliana rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaMesoBrachimorfa
 oh:RazzaMesoBrachimorfa rdf:type owl:Class ;
+                        owl:equivalentClass [ rdf:type owl:Restriction ;
+                                              owl:onProperty oh:haClassificazioneMorfologica ;
+                                              owl:hasValue oh:mesoBrachimorfo
+                                            ] ;
                         rdfs:subClassOf oh:RazzaCavallo ;
                         rdfs:comment "Horse breed between draft horses and riding horses."@en ,
                                      "Razza di cavallo a metà strada tra i cavalli da tiro e i cavalli da sella."@it ;
@@ -1218,6 +1275,10 @@ oh:RazzaMesoBrachimorfa rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaMesoDolicomorfa
 oh:RazzaMesoDolicomorfa rdf:type owl:Class ;
+                        owl:equivalentClass [ rdf:type owl:Restriction ;
+                                              owl:onProperty oh:haClassificazioneMorfologica ;
+                                              owl:hasValue oh:mesoDolicomorfo
+                                            ] ;
                         rdfs:subClassOf oh:RazzaCavallo ;
                         rdfs:comment "Powerful horse breed, strong but at the same time agile and noble in bearing."@en ,
                                      "Razza di cavallo potente, forte ma contemporaneamente agile e nobile nel portamento."@it ;
@@ -1278,22 +1339,17 @@ oh:RazzaSportiva rdf:type owl:Class ;
                             "Sport horse breed"@en .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzeDolicomorfa
-oh:RazzeDolicomorfa rdf:type owl:Class ;
-                    rdfs:subClassOf oh:RazzaCavallo ;
-                    rdfs:comment "Horse breed more suitable for fast and long gaits than for tests of strength: it has a deep chest, elongated lines and joints with very open angles. The figure is agile, light and slender."@en ,
-                                 "Razza di cavallo più idoneo alle andature veloci e allungate che alle prove di forza: ha torace profondo, linee allungate e articolazioni con angoli molto aperti. La figura è agile, leggera e slanciata."@it ;
-                    rdfs:label "Dolicomorphic horse breed"@en ,
-                               "Razza dolicomorfa"@it .
-
-
-###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzeMesomorfa
-oh:RazzeMesomorfa rdf:type owl:Class ;
-                  rdfs:subClassOf oh:RazzaCavallo ;
-                  rdfs:comment "Horse breed with a much lighter physical structure than the brachymorph, but still powerful and compact."@en ,
-                               "Razza di cavallo con una struttura fisica molto più leggera rispetto al brachimorfo, ma comunque potente e compatta."@it ;
-                  rdfs:label "Mesomorphic horse breed"@en ,
-                             "Razza mesomorfa"@it .
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzamMesomorfa
+oh:RazzamMesomorfa rdf:type owl:Class ;
+                   owl:equivalentClass [ rdf:type owl:Restriction ;
+                                         owl:onProperty oh:haClassificazioneMorfologica ;
+                                         owl:hasValue oh:mesomorfo
+                                       ] ;
+                   rdfs:subClassOf oh:RazzaCavallo ;
+                   rdfs:comment "Horse breed with a much lighter physical structure than the brachymorph, but still powerful and compact."@en ,
+                                "Razza di cavallo con una struttura fisica molto più leggera rispetto al brachimorfo, ma comunque potente e compatta."@it ;
+                   rdfs:label "Mesomorphic horse breed"@en ,
+                              "Razza mesomorfa"@it .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#SaltoAdOstacoli
@@ -1355,18 +1411,18 @@ oh:Andalusia rdf:type owl:NamedIndividual ,
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Andaluso
 oh:Andaluso rdf:type owl:NamedIndividual ,
-                     oh:RazzaCavallo ,
-                     oh:RazzeMesomorfa ;
-            owl:sameAs <https://www.wikidata.org/wiki/Q489798> ;
+                     oh:RazzaCavallo ;
+            oh:entitàWikidata <https://www.wikidata.org/wiki/Q489798> ;
+            oh:haClassificazioneMorfologica oh:mesomorfo ;
             oh:haIndole oh:sangueCaldo ;
             oh:haRegioneDiOrigine oh:Andalusia ;
             oh:puòEssereImpiegataIn oh:AltaScuola ,
                                     oh:Dressage ;
-            oh:altezzaMediaAlGarrese_cm 160 ;
+            oh:altezzaMediaGarrese 160 ;
             oh:haColoreMantello "baio" ,
                                 "grigio" ,
                                 "roano" ;
-            oh:pesoMedio_Kg 470 ;
+            oh:pesoMedio 470 ;
             <http://schema.org/image> <https://upload.wikimedia.org/wikipedia/commons/1/10/Fotografo-caballos-pura-raza.jpg> ;
             rdfs:comment "Mesomorphic Spanish horse breed with a noble and elegant bearing"@en ,
                          "Razza di cavallo Spagnola mesomorfa dal portamento nobile ed elegante"@it ;
@@ -1374,25 +1430,23 @@ oh:Andaluso rdf:type owl:NamedIndividual ,
                                                             "Andaluso"@it .
 
 
-###  https://www.wikidata.org/wiki/Q489798
-
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AngloAraboFrancese
 oh:AngloAraboFrancese rdf:type owl:NamedIndividual ,
-                               oh:RazzaCavallo ,
-                               oh:RazzeDolicomorfa ;
-                      owl:sameAs <https://www.wikidata.org/wiki/Q7029480> ;
+                               oh:RazzaCavallo ;
+                      oh:entitàWikidata <https://www.wikidata.org/wiki/Q7029480> ;
+                      oh:haClassificazioneMorfologica oh:dolicomorfo ;
                       oh:haIndole oh:sangueCaldo ;
                       oh:haRegioneDiOrigine oh:Normandia ;
                       oh:puòEssereImpiegataIn oh:CrossCountry ,
                                               oh:Endurance ,
                                               oh:Eventing ,
                                               oh:SaltoAdOstacoli ;
-                      oh:altezzaMediaAlGarrese_cm 161 ;
+                      oh:altezzaMediaGarrese 161 ;
                       oh:haColoreMantello "baio" ,
                                           "grigio" ,
                                           "morello" ,
                                           "sauro" ;
-                      oh:pesoMedio_Kg 475 ;
+                      oh:pesoMedio 475 ;
                       <http://schema.org/image> <https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Anglo-arabe-portrait02.JPG/220px-Anglo-arabe-portrait02.JPG> ;
                       rdfs:comment "L'anglo-arabo francese  è un cavallo sportivo di tipo dolicomorfo che ha caratteristiche intermedie tra il cavallo Arabo ed il Purosangue inglese."@it ,
                                    "The French Anglo-Arab is a dolichomorphic sport horse that has intermediate characteristics between the Arabian horse and the English Thoroughbred."@en ;
@@ -1400,22 +1454,20 @@ oh:AngloAraboFrancese rdf:type owl:NamedIndividual ,
                                                                       "French Anglo-Arab"@en .
 
 
-###  https://www.wikidata.org/wiki/Q7029480
-
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AngloAraboSpagnolo
 oh:AngloAraboSpagnolo rdf:type owl:NamedIndividual ,
-                               oh:RazzaCavallo ,
-                               oh:RazzeDolicomorfa ;
-                      owl:sameAs <https://www.wikidata.org/wiki/Q3617386> ;
+                               oh:RazzaCavallo ;
+                      oh:entitàWikidata <https://www.wikidata.org/wiki/Q3617386> ;
+                      oh:haClassificazioneMorfologica oh:dolicomorfo ;
                       oh:haIndole oh:sangueCaldo ;
                       oh:haRegioneDiOrigine oh:Andalusia ;
                       oh:puòEssereImpiegataIn oh:Dressage ,
                                               oh:Equiturismo ;
-                      oh:altezzaMediaAlGarrese_cm 160 ;
+                      oh:altezzaMediaGarrese 160 ;
                       oh:haColoreMantello "baio" ,
                                           "grigio" ,
                                           "sauro" ;
-                      oh:pesoMedio_Kg 500 ;
+                      oh:pesoMedio 500 ;
                       <http://schema.org/image> <https://www.ideegreen.it/wp-content/uploads/2020/10/cavallo-anglo-arabo-spagnolo.jpg> ;
                       rdfs:comment "L'anglo-arabo spagnolo è un cavallo maneggevole, agile nei movimenti, progenitore dell'Andaluso"@it ,
                                    "The Spanish Anglo-Arab is a manageable horse, agile in movement, progenitor of the Andalusian"@en ;
@@ -1423,29 +1475,25 @@ oh:AngloAraboSpagnolo rdf:type owl:NamedIndividual ,
                                                                       "Anglo-Arabo spagnolo"@it .
 
 
-###  https://www.wikidata.org/wiki/Q3617386
-
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Appenninico
 oh:Appenninico rdf:type owl:NamedIndividual ,
-                        oh:RazzaCavallo ,
-                        oh:RazzeMesomorfa ;
-               owl:sameAs <https://www.wikidata.org/wiki/Q3620866> ;
+                        oh:RazzaCavallo ;
+               oh:entitàWikidata <https://www.wikidata.org/wiki/Q3620866> ;
+               oh:haClassificazioneMorfologica oh:mesomorfo ;
                oh:haIndole oh:sangueFreddo ;
                oh:haRegioneDiOrigine oh:AppenninoToscoEmiliano ;
                oh:puòEssereImpiegataIn oh:Equiturismo ,
                                        oh:TrainoCarrozze ;
-               oh:altezzaMediaAlGarrese_cm 155 ;
+               oh:altezzaMediaGarrese 155 ;
                oh:haColoreMantello "baio" ,
                                    "sauro" ;
-               oh:pesoMedio_Kg 575 ;
+               oh:pesoMedio 575 ;
                <http://schema.org/image> <https://www.agraria.org/equini/appenninico.jpg> ;
                rdfs:comment "L'Appenninico è una razza di cavallo rustico e adattabile originario dall'Appenino tosco-emiliano."@it ,
                             "The Appenninico is a rustic and adaptable horse breed originating from the Tuscan-Emilian Apennines."@en ;
                <http://www.w3.org/2004/02/skos/core#prefLabel> "Appenninico"@en ,
                                                                "Appenninico"@it .
 
-
-###  https://www.wikidata.org/wiki/Q3620866
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AppenninoToscoEmiliano
 oh:AppenninoToscoEmiliano rdf:type owl:NamedIndividual ,
@@ -1469,19 +1517,19 @@ oh:Ardenne rdf:type owl:NamedIndividual ,
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Ardennese
 oh:Ardennese rdf:type owl:NamedIndividual ,
-                      oh:RazzaBrachimorfa ,
                       oh:RazzaCavallo ;
-             owl:sameAs <https://www.wikidata.org/wiki/Q638976> ;
+             oh:entitàWikidata <https://www.wikidata.org/wiki/Q638976> ;
+             oh:haClassificazioneMorfologica oh:brachimorfo ;
              oh:haIndole oh:sangueFreddo ;
              oh:haRegioneDiOrigine oh:Ardenne ;
              oh:puòEssereImpiegataIn oh:TrainoCarrozze ;
-             oh:altezzaMediaAlGarrese_cm 160 ;
+             oh:altezzaMediaGarrese 160 ;
              oh:haColoreMantello "baio" ,
                                  "isabella" ,
                                  "roano" ,
                                  "sauro" ,
                                  "ubero" ;
-             oh:pesoMedio_Kg 800 ;
+             oh:pesoMedio 800 ;
              <http://schema.org/image> <https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Ardenner.jpg/240px-Ardenner.jpg> ;
              rdfs:comment "L'Ardennese è  una razza di cavallo brachimorfo adatto al tiro pesante E' un antico cavallo noto ai tempi di Giulio Cesare"@it ,
                           "The Ardennese is a brachymorphic horse breed suitable for heavy shooting. It is an ancient horse known at the time of Julius Caesar"@en ;
@@ -1489,22 +1537,20 @@ oh:Ardennese rdf:type owl:NamedIndividual ,
                                                              "Ardennese"@it .
 
 
-###  https://www.wikidata.org/wiki/Q638976
-
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#BelgaDaTiro
 oh:BelgaDaTiro rdf:type owl:NamedIndividual ,
-                        oh:RazzaBrachimorfa ,
                         oh:RazzaCavallo ;
-               owl:sameAs <https://www.wikidata.org/wiki/Q896476> ;
+               oh:entitàWikidata <https://www.wikidata.org/wiki/Q896476> ;
+               oh:haClassificazioneMorfologica oh:brachimorfo ;
                oh:haIndole oh:sangueFreddo ;
                oh:haRegioneDiOrigine oh:Ardenne ;
                oh:puòEssereImpiegataIn oh:TiroAgricolo ,
                                        oh:TrainoCarrozze ;
-               oh:altezzaMediaAlGarrese_cm 160 ;
+               oh:altezzaMediaGarrese 160 ;
                oh:haColoreMantello "baio" ,
                                    "roano" ,
                                    "sauro" ;
-               oh:pesoMedio_Kg 750 ;
+               oh:pesoMedio 750 ;
                <http://schema.org/image> <https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Belgisk_hest-2.jpg/240px-Belgisk_hest-2.jpg> ;
                rdfs:comment "Il Belga da tiro è una razza di cavallo originaria del Belgio: è un cavallo massiccio, uno dei più grandi, usato per il traino di oggetti sin dall'antichità"@it ,
                             "The Belgian draft horse is a breed of horse originating from Belgium: it is a massive horse, one of the largest, used for pulling objects since ancient times"@en ;
@@ -1512,8 +1558,6 @@ oh:BelgaDaTiro rdf:type owl:NamedIndividual ,
                <http://www.w3.org/2004/02/skos/core#prefLabel> "Belga Da Tiro"@it ,
                                                                "Belgian Draught"@en .
 
-
-###  https://www.wikidata.org/wiki/Q896476
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Belgio
 oh:Belgio rdf:type owl:NamedIndividual ,
@@ -1527,27 +1571,25 @@ oh:Belgio rdf:type owl:NamedIndividual ,
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Boulonnais
 oh:Boulonnais rdf:type owl:NamedIndividual ,
-                       oh:RazzaBrachimorfa ,
                        oh:RazzaCavallo ;
-              owl:sameAs <https://www.wikidata.org/wiki/Q588252> ;
+              oh:entitàWikidata <https://www.wikidata.org/wiki/Q588252> ;
+              oh:haClassificazioneMorfologica oh:brachimorfo ;
               oh:haIndole oh:sangueFreddo ;
               oh:haRegioneDiOrigine oh:RegioneBoullonnais ;
               oh:puòEssereImpiegataIn oh:TiroAgricolo ;
-              oh:altezzaMediaAlGarrese_cm 163 ;
+              oh:altezzaMediaGarrese 163 ;
               oh:haColoreMantello "baio" ,
                                   "grigio" ,
                                   "morello" ,
                                   "roano" ,
                                   "sauro" ;
-              oh:pesoMedio_Kg 800 ;
+              oh:pesoMedio 800 ;
               <http://schema.org/image> <https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/T%C3%AAte_jument_boulonnaise_2.jpg/260px-T%C3%AAte_jument_boulonnaise_2.jpg> ;
               rdfs:comment "The Boulonnais is a breed of draft horse, nicknamed \"thoroughbred line horse\" or \"colossus of white marble\", native to the Boulogne-sur-Mer region of northern France."@en ,
                            "Il Boulonnais è una razza di cavallo da tiro, soprannominato \"cavallo purosangue line\" o \"colosso di marmo bianco\", originario della regione di Boulogne-sur-Mer nel nord della Francia." ;
               <http://www.w3.org/2004/02/skos/core#prefLabel> "Boulonnais"@en ,
                                                               "Boulonnais"@it .
 
-
-###  https://www.wikidata.org/wiki/Q588252
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Bretagna
 oh:Bretagna rdf:type owl:NamedIndividual ,
@@ -1562,23 +1604,21 @@ oh:Bretagna rdf:type owl:NamedIndividual ,
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Bretone
 oh:Bretone rdf:type owl:NamedIndividual ,
-                    oh:RazzaBrachimorfa ,
                     oh:RazzaCavallo ;
-           owl:sameAs <https://www.wikidata.org/wiki/Q514553> ;
+           oh:entitàWikidata <https://www.wikidata.org/wiki/Q514553> ;
+           oh:haClassificazioneMorfologica oh:brachimorfo ;
            oh:haRegioneDiOrigine oh:Bretagna ;
            oh:puòEssereImpiegataIn oh:TiroAgricolo ,
                                    oh:TrainoCarrozze ;
-           oh:altezzaMediaAlGarrese_cm 155 ;
+           oh:altezzaMediaGarrese 155 ;
            oh:haColoreMantello "sauro" ;
-           oh:pesoMedio_Kg 800 ;
+           oh:pesoMedio 800 ;
            <http://schema.org/image> <https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Breton_%C3%A9talon_SDA2012.JPG/220px-Breton_%C3%A9talon_SDA2012.JPG> ;
            rdfs:comment "Il  Bretone è una razza di cavallo da tiro pesante, originario della Francia, un tempo utilizzato specialmente nei lavori agricoli"@it ,
                         "The Breton is a breed of heavy draft horse, originally from France, once used especially in agricultural work"@en ;
            <http://www.w3.org/2004/02/skos/core#prefLabel> "Bretone"@it ,
                                                            "Breton Horse" .
 
-
-###  https://www.wikidata.org/wiki/Q514553
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#C100
 oh:C100 rdf:type owl:NamedIndividual ;
@@ -1672,29 +1712,6 @@ oh:C90 rdf:type owl:NamedIndividual ;
                   "C90"@it .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CastoneFrancese
-oh:CastoneFrancese rdf:type owl:NamedIndividual ,
-                            oh:Cavallo ;
-                   <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasPrice> <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#18000Euro> ;
-                   oh:gareggiaNelleCategorieDiSalto oh:C110 ,
-                                                    oh:C125 ;
-                   oh:haRazza oh:SellaFrancese ;
-                   oh:vieneUtilizzatoPer oh:SaltoAdOstacoli ;
-                   oh:altezzaAlGarrese_cm "167"^^xsd:nonNegativeInteger ;
-                   oh:annoDiNascita "2016"^^xsd:nonNegativeInteger ;
-                   oh:contattoProprietario "345-234599" ;
-                   oh:età "8"^^xsd:nonNegativeInteger ;
-                   oh:haProprietario "Gianluca Camoletto" ;
-                   oh:haSesso "castrone" ;
-                   oh:nomeCavallo "Elton" ;
-                   oh:provinciaDiScuderizzazione "Alessandria" ;
-                   oh:regioneDiScuderizzazione "Piemonte" ;
-                   rdfs:comment "Esemplare di castrone francese in vendita"@it ,
-                                "French gelding horse for sale"@en ;
-                   rdfs:label "Castrone Francese"@it ,
-                              "French gelding horse"@en .
-
-
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CastroneAngloAraboFrancese
 oh:CastroneAngloAraboFrancese rdf:type owl:NamedIndividual ,
                                        oh:Cavallo ;
@@ -1702,19 +1719,36 @@ oh:CastroneAngloAraboFrancese rdf:type owl:NamedIndividual ,
                               oh:haRazza oh:AngloAraboFrancese ;
                               oh:vieneUtilizzatoPer oh:CrossCountry ;
                               oh:èAdattoPer oh:CavaliereIntermedio ;
-                              oh:altezzaAlGarrese_cm "158"^^xsd:nonNegativeInteger ;
-                              oh:annoDiNascita "2009"^^xsd:nonNegativeInteger ;
-                              oh:contattoProprietario "345-456734" ;
-                              oh:età "15"^^xsd:nonNegativeInteger ;
-                              oh:haProprietario "Giorgia Neri" ;
+                              oh:èPossedutoDa oh:claudioCavallo ;
+                              oh:èScuderizzatoInCittàDi oh:siracusa ;
+                              oh:altezzaGarrese 158 ;
+                              oh:eta 15 ;
                               oh:haSesso "castrone" ;
                               oh:nomeCavallo "Filè" ;
-                              oh:provinciaDiScuderizzazione "Bergamo" ;
-                              oh:regioneDiScuderizzazione "Lombardia" ;
                               rdfs:comment "Esemplare di cavallo castrone anglo-arabo francese in vendita"@it ,
                                            "French Anglo-Arab gelding horse for sale"@en ;
                               rdfs:label "Castrone anglo-arabo francese"@it ,
                                          "French Anglo-Arabic gelding"@en .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CastroneFrancese
+oh:CastroneFrancese rdf:type owl:NamedIndividual ,
+                             oh:Cavallo ;
+                    <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasPrice> <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#18000Euro> ;
+                    oh:gareggiaNelleCategorieDiSalto oh:C110 ,
+                                                     oh:C125 ;
+                    oh:haRazza oh:SellaFrancese ;
+                    oh:vieneUtilizzatoPer oh:SaltoAdOstacoli ;
+                    oh:èPossedutoDa oh:giorgioCamoletto ;
+                    oh:èScuderizzatoInCittàDi oh:leini ;
+                    oh:altezzaGarrese 167 ;
+                    oh:eta 8 ;
+                    oh:haSesso "castrone" ;
+                    oh:nomeCavallo "Elton" ;
+                    rdfs:comment "Esemplare di castrone francese in vendita"@it ,
+                                 "French gelding horse for sale"@en ;
+                    rdfs:label "Castrone Francese"@it ,
+                               "French gelding horse"@en .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CastroneItaliano
@@ -1724,16 +1758,12 @@ oh:CastroneItaliano rdf:type owl:NamedIndividual ,
                     oh:gareggiaNelleCategorieDiSalto oh:C100 ,
                                                      oh:C80 ;
                     oh:haRazza oh:SellaItaliano ;
-                    oh:altezzaAlGarrese_cm 160 ;
-                    oh:altezzaMaxDiSalto_cm "125"^^xsd:nonNegativeInteger ;
-                    oh:annoDiNascita 2013 ;
-                    oh:contattoProprietario "333-345628" ;
-                    oh:età "11"^^xsd:nonNegativeInteger ;
-                    oh:haProprietario "Elisabetta Lanza" ;
+                    oh:èPossedutoDa oh:brunoGramaglia ;
+                    oh:èScuderizzatoInCittàDi oh:sanMauro ;
+                    oh:altezzaGarrese 160 ;
+                    oh:eta 11 ;
                     oh:haSesso "castrone" ;
                     oh:nomeCavallo "Dracon's Breaker" ;
-                    oh:provinciaDiScuderizzazione "Torino" ;
-                    oh:regioneDiScuderizzazione "Piemonte" ;
                     rdfs:comment "Esemplare di cavallo castrone italiano in vendita"@it ,
                                  "Italian gelding horse for sale"@en ;
                     rdfs:label "Castrone italiano"@it ,
@@ -1774,18 +1804,18 @@ oh:CavalierePrincipiante rdf:type owl:NamedIndividual ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloDelloJutland
 oh:CavalloDelloJutland rdf:type owl:NamedIndividual ,
-                                oh:RazzaBrachimorfa ,
                                 oh:RazzaCavallo ;
-                       owl:sameAs <https://www.wikidata.org/wiki/Q1684175> ;
+                       oh:entitàWikidata <https://www.wikidata.org/wiki/Q1684175> ;
+                       oh:haClassificazioneMorfologica oh:brachimorfo ;
                        oh:haIndole oh:sangueFreddo ;
                        oh:haRegioneDiOrigine oh:Jutland ;
                        oh:puòEssereImpiegataIn oh:TiroAgricolo ;
-                       oh:altezzaMediaAlGarrese_cm 160 ;
+                       oh:altezzaMediaGarrese 160 ;
                        oh:haColoreMantello "baio" ,
                                            "grigio" ,
                                            "roano" ,
                                            "sauro" ;
-                       oh:pesoMedio_Kg 725 ;
+                       oh:pesoMedio 725 ;
                        <http://schema.org/image> <https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Jydske_heste_vorup_enge.jpg/240px-Jydske_heste_vorup_enge.jpg> ;
                        rdfs:comment "Il cavallo dello Jutland è un cavallo da tiro pesante, di razza danese, il cui nome deriva dalla penisola dello Jutland, in cui viene allevato dal XII secolo"@it ,
                                     "The Jutland horse is a heavy draft horse, of Danish breed, whose name derives from the Jutland peninsula, where it has been bred since the 12th century"@en ;
@@ -1793,23 +1823,21 @@ oh:CavalloDelloJutland rdf:type owl:NamedIndividual ,
                                                                        "Jutland Horse"@en .
 
 
-###  https://www.wikidata.org/wiki/Q1684175
-
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Clydesdale
 oh:Clydesdale rdf:type owl:NamedIndividual ,
-                       oh:RazzaBrachimorfa ,
                        oh:RazzaCavallo ;
-              owl:sameAs <https://www.wikidata.org/wiki/Q844058> ;
+              oh:entitàWikidata <https://www.wikidata.org/wiki/Q844058> ;
+              oh:haClassificazioneMorfologica oh:brachimorfo ;
               oh:haIndole oh:sangueFreddo ;
               oh:haRegioneDiOrigine oh:Scozia ;
               oh:puòEssereImpiegataIn oh:TiroAgricolo ;
-              oh:altezzaMediaAlGarrese_cm 168 ;
+              oh:altezzaMediaGarrese 168 ;
               oh:haColoreMantello "baio" ,
                                   "grigio" ,
                                   "morello" ,
                                   "roano" ,
                                   "sauro" ;
-              oh:pesoMedio_Kg 850 ;
+              oh:pesoMedio 850 ;
               <http://schema.org/image> <https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/I_feel_pretty._Oh_so_pretty..jpg/220px-I_feel_pretty._Oh_so_pretty..jpg> ;
               rdfs:comment "Il Clydesdale è una razza di cavalli da tiro pesante lentoil cui nome deriva dalle fattorie presenti nella contea di Clydesdale, situata in Scozia."@it ,
                            "The Clydesdale is a breed of slow heavy draft horse whose name derives from the farms present in the county of Clydesdale, located in Scotland"@en ;
@@ -1817,11 +1845,17 @@ oh:Clydesdale rdf:type owl:NamedIndividual ,
                                                               "Clydesdale Horse"@en .
 
 
-###  https://www.wikidata.org/wiki/Q844058
-
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CrossCountry
 oh:CrossCountry rdf:type owl:NamedIndividual ,
                          oh:SportEquestre .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#D
+oh:D rdf:type owl:NamedIndividual ;
+     rdfs:comment "E' la categoria di Dressage con la massima difficoltà, detta anche Gran Premio"@it ,
+                  "It is the Dressage category with the greatest difficulty, also called Grand Prix"@en ;
+     rdfs:label "D"@en ,
+                "D"@it .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Danimarca
@@ -1837,6 +1871,14 @@ oh:Danimarca rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Dressage
 oh:Dressage rdf:type owl:NamedIndividual ,
                      oh:SportEquestre .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#E
+oh:E rdf:type owl:NamedIndividual ;
+     rdfs:comment "Categoria elementare di Dressage"@it ,
+                  "Elementary Dressage category"@en ;
+     rdfs:label "E"@en ,
+                "E"@it .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Endurance
@@ -1863,6 +1905,14 @@ oh:Eventing rdf:type owl:NamedIndividual ,
                      oh:SportEquestre .
 
 
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#F
+oh:F rdf:type owl:NamedIndividual ;
+     rdfs:comment "Categoria facile di Dressage"@it ,
+                  "Easy Dressage category"@en ;
+     rdfs:label "F"@en ,
+                "F"@it .
+
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#FemminaBretone
 oh:FemminaBretone rdf:type owl:NamedIndividual ,
                            oh:Cavallo ;
@@ -1870,15 +1920,12 @@ oh:FemminaBretone rdf:type owl:NamedIndividual ,
                   oh:haRazza oh:Bretone ;
                   oh:vieneUtilizzatoPer oh:TiroAgricolo ;
                   oh:èAdattoPer oh:CavalierePrincipiante ;
-                  oh:altezzaAlGarrese_cm "150"^^xsd:nonNegativeInteger ;
-                  oh:annoDiNascita "2006"^^xsd:nonNegativeInteger ;
-                  oh:contattoProprietario "345-2343222" ;
-                  oh:età "18"^^xsd:nonNegativeInteger ;
-                  oh:haProprietario "Salvatore Bianchi" ;
+                  oh:èPossedutoDa oh:claudioCavallo ;
+                  oh:èScuderizzatoInCittàDi oh:siracusa ;
+                  oh:altezzaGarrese 150 ;
+                  oh:eta 18 ;
                   oh:haSesso "femmina" ;
                   oh:nomeCavallo "Carmen" ;
-                  oh:provinciaDiScuderizzazione "Potenza" ;
-                  oh:regioneDiScuderizzazione "Basilicata" ;
                   rdfs:comment "Esemplare di femmina bretone in vendita"@it ,
                                "Female breton horse for sale"@en ;
                   rdfs:label "Female breton horse"@en ,
@@ -1893,15 +1940,12 @@ oh:FemminaMaremmano rdf:type owl:NamedIndividual ,
                     oh:vieneUtilizzatoPer oh:Equiturismo ,
                                           oh:TrainoCarrozze ;
                     oh:èAdattoPer oh:CavalierePrincipiante ;
-                    oh:altezzaAlGarrese_cm "162"^^xsd:nonNegativeInteger ;
-                    oh:annoDiNascita "2004"^^xsd:nonNegativeInteger ;
-                    oh:contattoProprietario "321-3334567" ;
-                    oh:età "20"^^xsd:nonNegativeInteger ;
-                    oh:haProprietario "Giovanni Forte" ;
+                    oh:èPossedutoDa oh:claudioCavallo ;
+                    oh:èScuderizzatoInCittàDi oh:siracusa ;
+                    oh:altezzaGarrese 162 ;
+                    oh:eta 20 ;
                     oh:haSesso "femmina" ;
                     oh:nomeCavallo "Penelope" ;
-                    oh:provinciaDiScuderizzazione "Grosseto" ;
-                    oh:regioneDiScuderizzazione "Toscana" ;
                     rdfs:comment "Esemplare di femmina maremmano in vendita"@it ,
                                  "Female maremmano horse for sale"@en ;
                     rdfs:label "Female maremmano horse"@en ,
@@ -1912,21 +1956,18 @@ oh:FemminaMaremmano rdf:type owl:NamedIndividual ,
 oh:FemminaMurgese rdf:type owl:NamedIndividual ,
                            oh:Cavallo ;
                   <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasPrice> <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#4800Euro> ;
+                  oh:gareggiaNellaCategoriaDiDressage oh:D ;
                   oh:gareggiaNelleCategorieDiSalto oh:C80 ;
                   oh:haRazza oh:Murgese ;
                   oh:vieneUtilizzatoPer oh:Dressage ,
                                         oh:Equiturismo ,
                                         oh:SaltoAdOstacoli ;
-                  oh:altezzaAlGarrese_cm "158"^^xsd:nonNegativeInteger ;
-                  oh:annoDiNascita "2020"^^xsd:nonNegativeInteger ;
-                  oh:categorieDiDressage "E" ;
-                  oh:contattoProprietario "345-678956" ;
-                  oh:età "4"^^xsd:nonNegativeInteger ;
-                  oh:haProprietario "Paolo Grassi" ;
+                  oh:èPossedutoDa oh:paoloGrassi ;
+                  oh:èScuderizzatoInCittàDi oh:taranto ;
+                  oh:altezzaGarrese 158 ;
+                  oh:eta 4 ;
                   oh:haSesso "femmina" ;
                   oh:nomeCavallo "Queen" ;
-                  oh:provinciaDiScuderizzazione "Taranto" ;
-                  oh:regioneDiScuderizzazione "Puglia" ;
                   rdfs:comment "Esemplare di femmina murgese in vendita"@it ,
                                "Female murgese horse for sale"@en ;
                   rdfs:label "Female murgese"@en ,
@@ -1956,24 +1997,22 @@ oh:Frisia rdf:type owl:NamedIndividual ,
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Frisone
 oh:Frisone rdf:type owl:NamedIndividual ,
-                    oh:RazzaCavallo ,
-                    oh:RazzaMesoBrachimorfa ;
-           owl:sameAs <https://www.wikidata.org/wiki/Q388952> ;
+                    oh:RazzaCavallo ;
+           oh:entitàWikidata <https://www.wikidata.org/wiki/Q388952> ;
+           oh:haClassificazioneMorfologica oh:mesoBrachimorfo ;
            oh:haIndole oh:sangueFreddo ;
            oh:haRegioneDiOrigine oh:Frisia ;
            oh:puòEssereImpiegataIn oh:Dressage ,
                                    oh:TrainoCarrozze ;
-           oh:altezzaMediaAlGarrese_cm 160 ;
+           oh:altezzaMediaGarrese 160 ;
            oh:haColoreMantello "morello" ;
-           oh:pesoMedio_Kg 525 ;
+           oh:pesoMedio 525 ;
            <http://schema.org/image> <https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Friese.jpg/220px-Friese.jpg> ;
            rdfs:comment "Il Frisone occidentale è originario della Frisia ed è una razza di cavallo robusto, possente e infaticabile, utilizzato in passato, soprattutto durante il Medioevo, come cavallo da guerra. Oggi è particolarmente apprezzato nel dressage e negli attacchi."@it ,
                         "The West Friesian originates from Friesland and is a robust, powerful and tireless breed of horse, used in the past, especially during the Middle Ages, as a war horse. Today it is particularly appreciated in dressage and driving."@en ;
            <http://www.w3.org/2004/02/skos/core#prefLabel> "Friesian horse"@en ,
                                                            "Frisone"@it .
 
-
-###  https://www.wikidata.org/wiki/Q388952
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Germania
 oh:Germania rdf:type owl:NamedIndividual ,
@@ -1987,19 +2026,19 @@ oh:Germania rdf:type owl:NamedIndividual ,
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Hannover
 oh:Hannover rdf:type owl:NamedIndividual ,
-                     oh:RazzaCavallo ,
-                     oh:RazzeMesomorfa ;
-            owl:sameAs <https://www.wikidata.org/wiki/Q1501738> ;
+                     oh:RazzaCavallo ;
+            oh:entitàWikidata <https://www.wikidata.org/wiki/Q1501738> ;
+            oh:haClassificazioneMorfologica oh:mesomorfo ;
             oh:haIndole oh:sangueCaldo ;
             oh:haRegioneDiOrigine oh:RegioneHannover ;
             oh:puòEssereImpiegataIn oh:Dressage ,
                                     oh:SaltoAdOstacoli ;
-            oh:altezzaMediaAlGarrese_cm 168 ;
+            oh:altezzaMediaGarrese 168 ;
             oh:haColoreMantello "baio" ,
                                 "grigio" ,
                                 "morello" ,
                                 "sauro" ;
-            oh:pesoMedio_Kg 575 ;
+            oh:pesoMedio 575 ;
             <http://schema.org/image> <https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/RCMP_Farm_Hannoverian2.jpg/240px-RCMP_Farm_Hannoverian2.jpg> ;
             rdfs:comment "L' Hannover è una razza di cavallo a sangue caldo, originaria della Germania, più precisamente della regione di Hannover"@it ,
                          "The Hanoverian is a breed of warm-blooded horse, originating from Germany, more precisely from the Hanover region"@en ;
@@ -2007,23 +2046,21 @@ oh:Hannover rdf:type owl:NamedIndividual ,
                                                             "Hanoverian horse"@en .
 
 
-###  https://www.wikidata.org/wiki/Q1501738
-
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Holstein
 oh:Holstein rdf:type owl:NamedIndividual ,
-                     oh:RazzaCavallo ,
-                     oh:RazzeMesomorfa ;
-            owl:sameAs <https://www.wikidata.org/wiki/Q571149> ;
+                     oh:RazzaCavallo ;
+            oh:entitàWikidata <https://www.wikidata.org/wiki/Q571149> ;
+            oh:haClassificazioneMorfologica oh:mesomorfo ;
             oh:haIndole oh:sangueMisto ;
             oh:haRegioneDiOrigine oh:Schleswig-Holstein ;
             oh:puòEssereImpiegataIn oh:Dressage ,
                                     oh:SaltoAdOstacoli ;
-            oh:altezzaMediaAlGarrese_cm 168 ;
+            oh:altezzaMediaGarrese 168 ;
             oh:haColoreMantello "baio" ,
                                 "grigio" ,
                                 "morello" ,
                                 "sauro" ;
-            oh:pesoMedio_Kg 575 ;
+            oh:pesoMedio 575 ;
             <http://schema.org/image> <https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Holstein_cavallo.jpg/192px-Holstein_cavallo.jpg> ;
             rdfs:comment "L'Holstein è una razza che nasce dall'idea di incrociare il cavallo agricolo tedesco nativo della regione Schleswing-Holstein con i purosangue per creare all'inizio un cavallo da tiro leggero e successivamente un cavallo da sella adatto alle attività sportive"@it ,
                          "The Holstein is a breed that was born from the idea of crossing the German agricultural horse native to the Schleswing-Holstein region with thoroughbreds to initially create a light draft horse and subsequently a saddle horse suitable for sporting activities"@en ;
@@ -2031,33 +2068,29 @@ oh:Holstein rdf:type owl:NamedIndividual ,
                                                             "Holsteiner"@en .
 
 
-###  https://www.wikidata.org/wiki/Q571149
-
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#IrishSportHorse
 oh:IrishSportHorse rdf:type owl:NamedIndividual ,
-                            oh:RazzaCavallo ,
-                            oh:RazzeMesomorfa ;
-                   owl:sameAs <https://www.wikidata.org/wiki/Q1665430> ;
+                            oh:RazzaCavallo ;
+                   oh:entitàWikidata <https://www.wikidata.org/wiki/Q1665430> ;
+                   oh:haClassificazioneMorfologica oh:mesomorfo ;
                    oh:haIndole oh:sangueCaldo ;
                    oh:haNazionalità oh:Irlanda ;
                    oh:puòEssereImpiegataIn oh:Dressage ,
                                            oh:Eventing ,
                                            oh:SaltoAdOstacoli ;
-                   oh:altezzaMediaAlGarrese_cm 163 ;
+                   oh:altezzaMediaGarrese 163 ;
                    oh:haColoreMantello "baio" ,
                                        "crema" ,
                                        "grigio" ,
                                        "morello" ,
                                        "sauro" ;
-                   oh:pesoMedio_Kg 600 ;
+                   oh:pesoMedio 600 ;
                    <http://schema.org/image> <https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Irish_Sport_Horse_foal_and_mare.jpg/220px-Irish_Sport_Horse_foal_and_mare.jpg> ;
                    rdfs:comment "L'Irish Sport Horse (ISH), o Irish Hunter, è una razza irlandese di cavalli sportivi a sangue caldo, utilizzata principalmente per dressage, completo e salto ostacoli"@it ,
                                 "The Irish Sport Horse (ISH), or Irish Hunter, is an Irish breed of warmblood sport horse, used primarily for dressage, eventing, and show jumping"@en ;
                    <http://www.w3.org/2004/02/skos/core#prefLabel> "Irish Sport Horse"@en ,
                                                                    "Irish Sport Horse"@it .
 
-
-###  https://www.wikidata.org/wiki/Q1665430
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Irlanda
 oh:Irlanda rdf:type owl:NamedIndividual ,
@@ -2091,20 +2124,20 @@ oh:Jutland rdf:type owl:NamedIndividual ,
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Lipizzano
 oh:Lipizzano rdf:type owl:NamedIndividual ,
-                      oh:RazzaCavallo ,
-                      oh:RazzaMesoDolicomorfa ;
-             owl:sameAs <https://www.wikidata.org/wiki/Q217671> ;
+                      oh:RazzaCavallo ;
+             oh:entitàWikidata <https://www.wikidata.org/wiki/Q217671> ;
+             oh:haClassificazioneMorfologica oh:mesoDolicomorfo ;
              oh:haIndole oh:sangueMisto ;
              oh:haRegioneDiOrigine oh:TrentinoAltoAdige ;
              oh:puòEssereImpiegataIn oh:AltaScuola ,
                                      oh:Dressage ,
                                      oh:TiroAgricolo ;
-             oh:altezzaMediaAlGarrese_cm 155 ;
+             oh:altezzaMediaGarrese 155 ;
              oh:haColoreMantello "baio" ,
                                  "grigio" ,
                                  "morello" ,
                                  "roano" ;
-             oh:pesoMedio_Kg 520 ;
+             oh:pesoMedio 520 ;
              <http://schema.org/image> <https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Favory_Pallavicina.jpg/330px-Favory_Pallavicina.jpg> ;
              rdfs:comment "Il Lipizzano è una razza di cavallo che deve il suo nome alla città di Lipizza e originariamente  fu usato per trainare le carrozze dei monarchi e nell'esercito"@it ,
                           "The Lipizzan is a breed of horse that owes its name to the city of Lipica and was originally used to pull the carriages of monarchs and in the army"@en ;
@@ -2112,25 +2145,29 @@ oh:Lipizzano rdf:type owl:NamedIndividual ,
                                                              "Lipizzano"@it .
 
 
-###  https://www.wikidata.org/wiki/Q217671
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Lombardia
+oh:Lombardia rdf:type owl:NamedIndividual ,
+                      oh:AreaGeografica ;
+             <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Italia .
+
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Lusitano
 oh:Lusitano rdf:type owl:NamedIndividual ,
-                     oh:RazzaCavallo ,
-                     oh:RazzaMesoDolicomorfa ;
-            owl:sameAs <https://www.wikidata.org/wiki/Q937595> ;
+                     oh:RazzaCavallo ;
+            oh:entitàWikidata <https://www.wikidata.org/wiki/Q937595> ;
+            oh:haClassificazioneMorfologica oh:mesoDolicomorfo ;
             oh:haIndole oh:sangueCaldo ;
             oh:haNazionalità oh:Portogallo ;
             oh:puòEssereImpiegataIn oh:AltaScuola ,
                                     oh:Dressage ;
-            oh:altezzaMediaAlGarrese_cm 157 ;
+            oh:altezzaMediaGarrese 157 ;
             oh:haColoreMantello "baio" ,
                                 "crema" ,
                                 "grigio" ,
                                 "isabella" ,
                                 "palomino" ,
                                 "sauro" ;
-            oh:pesoMedio_Kg 525 ;
+            oh:pesoMedio 525 ;
             <http://schema.org/image> <https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Beja_lusitano.JPG/220px-Beja_lusitano.JPG> ;
             rdfs:comment "Il Lusitano deriva il suo nome dalla Lusitania, attuale Portogallo ed è il cavallo simbolo di questa nazione. Di origine antica, il Lusitano originariamente era allevato per essere utilizzato in guerra e nelle corride"@it ,
                          "The Lusitano derives its name from Lusitania, now Portugal and is the symbolic horse of this nation. Of ancient origin, the Lusitano was originally bred for use in war and bullfights"@en ;
@@ -2138,7 +2175,13 @@ oh:Lusitano rdf:type owl:NamedIndividual ,
                                                             "Lusitano"@it .
 
 
-###  https://www.wikidata.org/wiki/Q937595
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#M
+oh:M rdf:type owl:NamedIndividual ;
+     rdfs:comment "Categoria di Dressage di media difficoltà"@it ,
+                  "Medium difficulty Dressage category"@en ;
+     rdfs:label "M"@en ,
+                "M"@it .
+
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Maremma
 oh:Maremma rdf:type owl:NamedIndividual ,
@@ -2152,16 +2195,16 @@ oh:Maremma rdf:type owl:NamedIndividual ,
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Maremmano
 oh:Maremmano rdf:type owl:NamedIndividual ,
-                      oh:RazzaCavallo ,
-                      oh:RazzaMesoDolicomorfa ;
-             owl:sameAs <https://www.wikidata.org/wiki/Q1894708> ;
+                      oh:RazzaCavallo ;
+             oh:entitàWikidata <https://www.wikidata.org/wiki/Q1894708> ;
+             oh:haClassificazioneMorfologica oh:mesoDolicomorfo ;
              oh:haIndole oh:sangueFreddo ;
              oh:haRegioneDiOrigine oh:Maremma ;
              oh:puòEssereImpiegataIn oh:Equiturismo ;
-             oh:altezzaMediaAlGarrese_cm 165 ;
+             oh:altezzaMediaGarrese 155 ;
              oh:haColoreMantello "baio" ,
                                  "morello" ;
-             oh:pesoMedio_Kg 500 ;
+             oh:pesoMedio 500 ;
              <http://schema.org/image> <https://www.politicheagricole.it/flex/images/d/7/5/D.1bb62598304e4dec51c6/maremmano_large.jpg> ;
              rdfs:comment "Il cavallo di razza Maremmano è una razza equina italiana i cui primi esemplari sembra risalgano ai tempi degli Etruschi"@it ,
                           "The Maremmano Horse is an Italian horse breed whose first specimens seem to date back to Etruscan times"@en ;
@@ -2169,25 +2212,20 @@ oh:Maremmano rdf:type owl:NamedIndividual ,
                                                              "Maremmano"@it .
 
 
-###  https://www.wikidata.org/wiki/Q1894708
-
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#MaschioAndaluso
 oh:MaschioAndaluso rdf:type owl:NamedIndividual ,
                             oh:Cavallo ;
                    <http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasPrice> <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#7000Euro> ;
+                   oh:gareggiaNellaCategoriaDiDressage oh:F ;
                    oh:haRazza oh:Andaluso ;
                    oh:vieneUtilizzatoPer oh:AltaScuola ;
                    oh:èAdattoPer oh:CavaliereIntermedio ;
-                   oh:altezzaAlGarrese_cm 165 ;
-                   oh:annoDiNascita "2020"^^xsd:nonNegativeInteger ;
-                   oh:categorieDiDressage "E" ;
-                   oh:contattoProprietario "345-324241" ;
-                   oh:età "4"^^xsd:nonNegativeInteger ;
-                   oh:haProprietario "Mario Rossi" ;
+                   oh:èPossedutoDa oh:brunoGramaglia ;
+                   oh:èScuderizzatoInCittàDi oh:sanMauro ;
+                   oh:altezzaGarrese 165 ;
+                   oh:eta 4 ;
                    oh:haSesso "maschio" ;
                    oh:nomeCavallo "Fuser" ;
-                   oh:provinciaDiScuderizzazione "Siracusa" ;
-                   oh:regioneDiScuderizzazione "Sicilia" ;
                    rdfs:comment "Esemplare di cavallo maschio andaluso in vendita"@it ,
                                 "Male Andalusian horse for sale"@en ;
                    rdfs:label "Andalusian male"@en ,
@@ -2201,15 +2239,12 @@ oh:MaschioOlandese rdf:type owl:NamedIndividual ,
                    oh:gareggiaNelleCategorieDiSalto oh:C135 ;
                    oh:haRazza oh:OlandeseASangueCaldo ;
                    oh:vieneUtilizzatoPer oh:SaltoAdOstacoli ;
-                   oh:altezzaAlGarrese_cm "170"^^xsd:nonNegativeInteger ;
-                   oh:altezzaMaxDiSalto_cm "135"^^xsd:nonNegativeInteger ;
-                   oh:annoDiNascita "2012"^^xsd:nonNegativeInteger ;
-                   oh:età "12"^^xsd:nonNegativeInteger ;
-                   oh:haProprietario "Federico Pellegrini" ;
+                   oh:èPossedutoDa oh:giorgioCamoletto ;
+                   oh:èScuderizzatoInCittàDi oh:leini ;
+                   oh:altezzaGarrese 170 ;
+                   oh:eta 12 ;
                    oh:haSesso "maschio" ;
                    oh:nomeCavallo "Mufasa" ;
-                   oh:provinciaDiScuderizzazione "Roma" ;
-                   oh:regioneDiScuderizzazione "Lazio" ;
                    rdfs:comment "Dutch male horse for sale"@en ,
                                 "Esemplare di cavallo maschio olandese in vendita"@it ;
                    rdfs:label "Dutch male"@en ,
@@ -2223,15 +2258,12 @@ oh:MaschioPuroSangueInglese rdf:type owl:NamedIndividual ,
                             oh:haRazza oh:PuroSangueInglese ;
                             oh:vieneUtilizzatoPer oh:Endurance ;
                             oh:èAdattoPer oh:CavaliereMoltoEsperto ;
-                            oh:altezzaAlGarrese_cm "161"^^xsd:nonNegativeInteger ;
-                            oh:annoDiNascita "2014"^^xsd:nonNegativeInteger ;
-                            oh:contattoProprietario "325-435677" ;
-                            oh:età "10"^^xsd:nonNegativeInteger ;
-                            oh:haProprietario "Francesco Nisi" ;
+                            oh:èPossedutoDa oh:brunoGramaglia ;
+                            oh:èScuderizzatoInCittàDi oh:sanMauro ;
+                            oh:altezzaGarrese 161 ;
+                            oh:eta 10 ;
                             oh:haSesso "maschio" ;
-                            oh:nomeCavallo "Fulmine" ;
-                            oh:provinciaDiScuderizzazione "Milano" ;
-                            oh:regioneDiScuderizzazione "Lombardia" ;
+                            oh:nomeCavallo "Fulmine Del Monte Acuto" ;
                             rdfs:comment "Esemplare di purosangue inglese in vendita"@it ,
                                          "Thoroughbred male horse for sale"@en ;
                             rdfs:label "Maschio purosangue inglese"@it ,
@@ -2246,16 +2278,12 @@ oh:MaschioTedesco rdf:type owl:NamedIndividual ,
                   oh:haRazza oh:Holstein ;
                   oh:vieneUtilizzatoPer oh:CrossCountry ,
                                         oh:SaltoAdOstacoli ;
-                  oh:altezzaAlGarrese_cm "168"^^xsd:nonNegativeInteger ;
-                  oh:altezzaMaxDiSalto_cm "120"^^xsd:nonNegativeInteger ;
-                  oh:annoDiNascita "2008"^^xsd:nonNegativeInteger ;
-                  oh:contattoProprietario "324-234565" ;
-                  oh:età "16"^^xsd:nonNegativeInteger ;
-                  oh:haProprietario "Federico Neri" ;
+                  oh:èPossedutoDa oh:paoloGrassi ;
+                  oh:èScuderizzatoInCittàDi oh:taranto ;
+                  oh:altezzaGarrese 168 ;
+                  oh:eta 16 ;
                   oh:haSesso "maschio" ;
-                  oh:nomeCavallo "Duenas" ;
-                  oh:provinciaDiScuderizzazione "Perugia" ;
-                  oh:regioneDiScuderizzazione "Umbria" ;
+                  oh:nomeCavallo "Luther Lucifer" ;
                   rdfs:comment "Esemplare di maschio tedesco in vendita"@it ,
                                "German male horse for sale"@en ;
                   rdfs:label "German male"@en ,
@@ -2263,7 +2291,8 @@ oh:MaschioTedesco rdf:type owl:NamedIndividual ,
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Murge
-oh:Murge rdf:type owl:NamedIndividual ;
+oh:Murge rdf:type owl:NamedIndividual ,
+                  oh:AreaGeografica ;
          <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Italia ;
          <http://schema.org/image> <https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Murge.jpg/1280px-Murge.jpg> ;
          rdfs:comment "Le Murge sono una subregione appulo-lucana piuttosto estesa, corrispondente a un altopiano carsico di origine tettonica e di forma quadrangolare situato tra la Puglia centrale e la Basilicata nord-orientale. Il territorio dell'altopiano fa parte prevalentemente della città metropolitana di Bari e della provincia di Barletta-Andria-Trani e si estende a occidente fin nella provincia di Matera, in Basilicata; inoltre si prolunga verso sud nelle province di Taranto (Murge tarantine) e marginalmente Brindisi."@it ,
@@ -2274,24 +2303,22 @@ oh:Murge rdf:type owl:NamedIndividual ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Murgese
 oh:Murgese rdf:type owl:NamedIndividual ,
-                    oh:RazzaCavallo ,
-                    oh:RazzeMesomorfa ;
-           owl:sameAs <https://www.wikidata.org/wiki/Q1953691> ;
+                    oh:RazzaCavallo ;
+           oh:entitàWikidata <https://www.wikidata.org/wiki/Q1953691> ;
+           oh:haClassificazioneMorfologica oh:mesomorfo ;
            oh:haIndole oh:sangueCaldo ;
            oh:haRegioneDiOrigine oh:Murge ;
            oh:puòEssereImpiegataIn oh:Dressage ,
                                    oh:TrainoCarrozze ;
-           oh:altezzaMediaAlGarrese_cm 162 ;
+           oh:altezzaMediaGarrese 162 ;
            oh:haColoreMantello "morello" ;
-           oh:pesoMedio_Kg 500 ;
+           oh:pesoMedio 500 ;
            <http://schema.org/image> <https://www.animali.net/wp-content/uploads/2015/09/Il_Murgese.jpg> ;
            rdfs:comment "Il Murgese è una razza equina italiana che è originaria delle Murge, una regione geografica della Puglia e Basilicata, da cui ne deriva il nome"@it ,
                         "The Murgese is an Italian horse breed that originates from the Murge, a geographical region of Puglia and Basilicata, from which its name derives"@en ;
            <http://www.w3.org/2004/02/skos/core#prefLabel> "Murgese"@en ,
                                                            "Murgese"@it .
 
-
-###  https://www.wikidata.org/wiki/Q1953691
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Normandia
 oh:Normandia rdf:type owl:NamedIndividual ,
@@ -2304,20 +2331,20 @@ oh:Normandia rdf:type owl:NamedIndividual ,
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#OlandeseASangueCaldo
 oh:OlandeseASangueCaldo rdf:type owl:NamedIndividual ,
-                                 oh:RazzaCavallo ,
-                                 oh:RazzaMesoDolicomorfa ;
-                        owl:sameAs <https://www.wikidata.org/wiki/Q1468737> ;
+                                 oh:RazzaCavallo ;
+                        oh:entitàWikidata <https://www.wikidata.org/wiki/Q1468737> ;
+                        oh:haClassificazioneMorfologica oh:mesoDolicomorfo ;
                         oh:haIndole oh:sangueCaldo ;
                         oh:haNazionalità oh:PaesiBassi ;
                         oh:puòEssereImpiegataIn oh:Dressage ,
                                                 oh:SaltoAdOstacoli ;
-                        oh:altezzaMediaAlGarrese_cm 165 ;
+                        oh:altezzaMediaGarrese 165 ;
                         oh:haColoreMantello "baio" ,
                                             "grigio" ,
                                             "morello" ,
                                             "pezzato" ,
                                             "sauro" ;
-                        oh:pesoMedio_Kg 550 ;
+                        oh:pesoMedio 550 ;
                         <http://schema.org/image> <https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Michael_Whitaker_and_Tackeray%2C_CSIO_Rome_2009.jpg/240px-Michael_Whitaker_and_Tackeray%2C_CSIO_Rome_2009.jpg> ;
                         rdfs:comment "L'Olandese a sangue caldo è una razza equina moderna di origini olandesi utilizzata per sport sebbene originariamente nasca come cavallo da tiro"@it ,
                                      "The Dutch Warmblood is a modern equine breed of Dutch origins used for sport although it was originally born as a draft horse"@en ;
@@ -2325,31 +2352,27 @@ oh:OlandeseASangueCaldo rdf:type owl:NamedIndividual ,
                                                                         "Olandese a sangue caldo"@it .
 
 
-###  https://www.wikidata.org/wiki/Q1468737
-
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Oldemburghese
 oh:Oldemburghese rdf:type owl:NamedIndividual ,
-                          oh:RazzaCavallo ,
-                          oh:RazzeMesomorfa ;
-                 owl:sameAs <https://www.wikidata.org/wiki/Q166777> ;
+                          oh:RazzaCavallo ;
+                 oh:entitàWikidata <https://www.wikidata.org/wiki/Q166777> ;
+                 oh:haClassificazioneMorfologica oh:mesomorfo ;
                  oh:haIndole oh:sangueCaldo ;
                  oh:haNazionalità oh:Germania ;
                  oh:puòEssereImpiegataIn oh:Dressage ,
                                          oh:SaltoAdOstacoli ;
-                 oh:altezzaMediaAlGarrese_cm 170 ;
+                 oh:altezzaMediaGarrese 170 ;
                  oh:haColoreMantello "baio" ,
                                      "grigio" ,
                                      "morello" ,
                                      "sauro" ;
-                 oh:pesoMedio_Kg 525 ;
+                 oh:pesoMedio 525 ;
                  <http://schema.org/image> <https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Bess2.jpg/240px-Bess2.jpg> ;
                  rdfs:comment "L'Oldemburghese è una razza di cavallo originaria della Germania. Molto tranquillo ma energico, è il più grosso dei cavalli a sangue caldo tedeschi."@it ,
                               "The Oldenburger is a horse breed originating from Germany. Very calm but energetic, it is the largest of the German warmblood horses."@en ;
                  <http://www.w3.org/2004/02/skos/core#prefLabel> "Oldemburghese"@it ,
                                                                  "Oldenburg Horse"@en .
 
-
-###  https://www.wikidata.org/wiki/Q166777
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#PaesiBassi
 oh:PaesiBassi rdf:type owl:NamedIndividual ,
@@ -2373,17 +2396,17 @@ oh:Perche rdf:type owl:NamedIndividual ,
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Percheron
 oh:Percheron rdf:type owl:NamedIndividual ,
-                      oh:RazzaBrachimorfa ,
                       oh:RazzaCavallo ;
-             owl:sameAs <https://www.wikidata.org/wiki/Q1232528> ;
+             oh:entitàWikidata <https://www.wikidata.org/wiki/Q1232528> ;
+             oh:haClassificazioneMorfologica oh:brachimorfo ;
              oh:haIndole oh:sangueFreddo ;
              oh:haRegioneDiOrigine oh:Perche ;
              oh:puòEssereImpiegataIn oh:TiroAgricolo ,
                                      oh:TrainoCarrozze ;
-             oh:altezzaMediaAlGarrese_cm 165 ;
+             oh:altezzaMediaGarrese 165 ;
              oh:haColoreMantello "grigio" ,
                                  "morello" ;
-             oh:pesoMedio_Kg 800 ;
+             oh:pesoMedio 800 ;
              <http://schema.org/image> <https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Percheron_3_stehend_rechts.jpg/240px-Percheron_3_stehend_rechts.jpg> ;
              rdfs:comment "The Percheron is a French horse breed, originating from the province of Perche, in northern France, from which the breed takes its name. The Percheron is probably the best known and most widespread heavy breed in the world for agriculture and as a carriage horse"@en ,
                           "ll Percheron è una razza equina francese, originaria della provincia della Perche, nel nord della Francia, da cui prende nome la razza. Il Percheron è probabilmente la razza pesante più conosciuta e più diffusa del mondo per l’agricoltura e come cavallo da carrozza"@it ;
@@ -2391,7 +2414,15 @@ oh:Percheron rdf:type owl:NamedIndividual ,
                                                              "Percheron"@it .
 
 
-###  https://www.wikidata.org/wiki/Q1232528
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Piemonte
+oh:Piemonte rdf:type owl:NamedIndividual ,
+                     oh:AreaGeografica ;
+            <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Italia ;
+            rdfs:comment "Il Piemonte è una regione a statuto ordinario di 4 252 581 abitanti dell'Italia nord-occidentale, con capoluogo amministrativo – nonché capitale storica – la città di Torino."@it ,
+                         "Piedmont is a region with ordinary statute of 4,252,581 inhabitants in north-western Italy, with the administrative capital - as well as historical capital - the city of Turin."@en ;
+            rdfs:label "Piedmont"@en ,
+                       "Piemonte"@it .
+
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Portogallo
 oh:Portogallo rdf:type owl:NamedIndividual ,
@@ -2402,29 +2433,37 @@ oh:Portogallo rdf:type owl:NamedIndividual ,
               rdfs:label "Portogallo"@it .
 
 
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Puglia
+oh:Puglia rdf:type owl:NamedIndividual ,
+                   oh:AreaGeografica ;
+          <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Italia ;
+          rdfs:comment "La Puglia è una regione italiana a statuto ordinario dell'Italia meridionale, di 3 890 250 abitanti, con capoluogo Bari."@it ,
+                       "Puglia is an Italian region with ordinary statute in southern Italy, with 3,890,250 inhabitants, with Bari as its capital."@en ;
+          rdfs:label "Puglia"@en ,
+                     "Puglia"@it .
+
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#PuroSangueInglese
 oh:PuroSangueInglese rdf:type owl:NamedIndividual ,
-                              oh:RazzaCavallo ,
-                              oh:RazzeDolicomorfa ;
-                     owl:sameAs <https://www.wikidata.org/wiki/Q210826> ;
+                              oh:RazzaCavallo ;
+                     oh:entitàWikidata <https://www.wikidata.org/wiki/Q210826> ;
+                     oh:haClassificazioneMorfologica oh:dolicomorfo ;
                      oh:haIndole oh:sangueCaldo ;
                      oh:haNazionalità oh:RegnoUnito ;
                      oh:puòEssereImpiegataIn oh:SaltoAdOstacoli ;
-                     oh:altezzaMediaAlGarrese_cm 160 ;
+                     oh:altezzaMediaGarrese 160 ;
                      oh:haColoreMantello "baio" ,
                                          "grigio" ,
                                          "morello" ,
                                          "roano" ,
                                          "sauro" ;
-                     oh:pesoMedio_Kg 425 ;
+                     oh:pesoMedio 425 ;
                      <http://schema.org/image> <https://www.animali.net/wp-content/uploads/2012/12/puro-sangue-inglese.jpg> ;
                      rdfs:comment "Il purosangue inglese è una razza equina originaria della Gran Bretagna e i  cavalli di tale razza sono ben noti per la loro agilità e velocità"@it ,
                                   "The English Thoroughbred is a horse breed native to Great Britain and horses of this breed are well known for their agility and speed"@en ;
                      <http://www.w3.org/2004/02/skos/core#prefLabel> "Purosangue inglese"@it ,
                                                                      "Thoroughbred"@en .
 
-
-###  https://www.wikidata.org/wiki/Q210826
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RegioneBoullonnais
 oh:RegioneBoullonnais rdf:type owl:NamedIndividual ,
@@ -2483,19 +2522,19 @@ oh:Scozia rdf:type owl:NamedIndividual ,
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#SellaFrancese
 oh:SellaFrancese rdf:type owl:NamedIndividual ,
-                          oh:RazzaCavallo ,
-                          oh:RazzaMesoDolicomorfa ;
-                 owl:sameAs <https://www.wikidata.org/wiki/Q1070901> ;
+                          oh:RazzaCavallo ;
+                 oh:entitàWikidata <https://www.wikidata.org/wiki/Q1070901> ;
+                 oh:haClassificazioneMorfologica oh:mesoDolicomorfo ;
                  oh:haIndole oh:sangueCaldo ;
                  oh:haRegioneDiOrigine oh:Normandia ;
                  oh:puòEssereImpiegataIn oh:Equiturismo ,
                                          oh:SaltoAdOstacoli ;
-                 oh:altezzaMediaAlGarrese_cm 165 ;
+                 oh:altezzaMediaGarrese 165 ;
                  oh:haColoreMantello "baio" ,
                                      "grigio" ,
                                      "morello" ,
                                      "sauro" ;
-                 oh:pesoMedio_Kg 525 ;
+                 oh:pesoMedio 525 ;
                  <http://schema.org/image> <https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Cheval_selle.JPG/240px-Cheval_selle.JPG> ;
                  rdfs:comment "Il Selle francese è una razza popolare di cavallo da sella di origine francese, utilizzato specialmente nelle gare di salto ostacoli e nel concorso completo"@it ,
                               "The French Selle is a popular breed of saddle horse of French origin, used especially in show jumping and eventing"@en ;
@@ -2503,22 +2542,20 @@ oh:SellaFrancese rdf:type owl:NamedIndividual ,
                                                                  "Selle Français"@en .
 
 
-###  https://www.wikidata.org/wiki/Q1070901
-
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#SellaItaliano
 oh:SellaItaliano rdf:type owl:NamedIndividual ,
-                          oh:RazzaCavallo ,
-                          oh:RazzaMesoDolicomorfa ;
-                 owl:sameAs <https://www.wikidata.org/wiki/Q428039> ;
+                          oh:RazzaCavallo ;
+                 oh:entitàWikidata <https://www.wikidata.org/wiki/Q428039> ;
+                 oh:haClassificazioneMorfologica oh:mesoDolicomorfo ;
                  oh:haIndole oh:sangueCaldo ;
                  oh:haNazionalità oh:Italia ;
                  oh:puòEssereImpiegataIn oh:Dressage ,
                                          oh:SaltoAdOstacoli ;
-                 oh:altezzaMediaAlGarrese_cm 160 ;
+                 oh:altezzaMediaGarrese 160 ;
                  oh:haColoreMantello "baio" ,
                                      "morello" ,
                                      "sauro" ;
-                 oh:pesoMedio_Kg 500 ;
+                 oh:pesoMedio 500 ;
                  <http://schema.org/image> <https://www.dothorse.it/wp-content/uploads/2014/07/sella-ita.jpg> ;
                  rdfs:comment "Il sella italiano è una razza equina derivante prevalentemente da incroci del purosangue inglese, arabo, anglo-arabo. E' un cavallo dall'aspetto elegante e nobile con la robustezza tipica del purosangue inglese e la grande affidabilità delle razze italiche."@it ,
                               "The Italian saddle is a horse breed deriving mainly from crosses of the English, Arabian and Anglo-Arab thoroughbreds. It is a horse with an elegant and noble appearance with the typical robustness of the English thoroughbred and the great reliability of the Italian breeds."@en ;
@@ -2526,7 +2563,15 @@ oh:SellaItaliano rdf:type owl:NamedIndividual ,
                                                                  "Sella Italiano"@it .
 
 
-###  https://www.wikidata.org/wiki/Q428039
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Sicilia
+oh:Sicilia rdf:type owl:NamedIndividual ,
+                    oh:AreaGeografica ;
+           <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Italia ;
+           rdfs:comment "La Sicilia è una regione italiana a statuto speciale di 4 791 993 abitanti, con capoluogo Palermo."@it ,
+                        "Sicily is an Italian region with a special statute of 4,791,993 inhabitants, with Palermo as its capital."@en ;
+           rdfs:label "Sicilia"@it ,
+                      "Sicily"@en .
+
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Spagna
 oh:Spagna rdf:type owl:NamedIndividual ,
@@ -2551,14 +2596,14 @@ oh:TrainoCarrozze rdf:type owl:NamedIndividual ,
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Trakehner
 oh:Trakehner rdf:type owl:NamedIndividual ,
-                      oh:RazzaCavallo ,
-                      oh:RazzaMesoDolicomorfa ;
-             owl:sameAs <https://www.wikidata.org/wiki/Q843585> ;
+                      oh:RazzaCavallo ;
+             oh:entitàWikidata <https://www.wikidata.org/wiki/Q843585> ;
+             oh:haClassificazioneMorfologica oh:mesoDolicomorfo ;
              oh:haIndole oh:sangueMisto ;
              oh:haNazionalità oh:Germania ;
              oh:puòEssereImpiegataIn oh:Dressage ,
                                      oh:SaltoAdOstacoli ;
-             oh:altezzaMediaAlGarrese_cm 165 ;
+             oh:altezzaMediaGarrese 165 ;
              oh:haColoreMantello "baio" ,
                                  "crema" ,
                                  "grigio" ,
@@ -2566,15 +2611,13 @@ oh:Trakehner rdf:type owl:NamedIndividual ,
                                  "palomino" ,
                                  "roano" ,
                                  "sauro" ;
-             oh:pesoMedio_Kg 500 ;
+             oh:pesoMedio 500 ;
              <http://schema.org/image> <https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Trakehner_Horse.jpg/240px-Trakehner_Horse.jpg> ;
              rdfs:comment "Il Trakehner è una razza di cavallo da sella e tiro leggero più allevati e amati al mondo, attualmente utilizzato negli sport equestri"@it ,
                           "The Trakehner is a breed of riding and light draft horse most bred and loved in the world, currently used in equestrian sports"@en ;
              <http://www.w3.org/2004/02/skos/core#prefLabel> "Trakehner"@en ,
                                                              "Trakehner"@it .
 
-
-###  https://www.wikidata.org/wiki/Q843585
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#TrentinoAltoAdige
 oh:TrentinoAltoAdige rdf:type owl:NamedIndividual ,
@@ -2598,18 +2641,18 @@ oh:Vestfalia rdf:type owl:NamedIndividual ,
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Westfalen
 oh:Westfalen rdf:type owl:NamedIndividual ,
-                      oh:RazzaCavallo ,
-                      oh:RazzeMesomorfa ;
-             owl:sameAs <https://www.wikidata.org/wiki/Q195395> ;
+                      oh:RazzaCavallo ;
+             oh:entitàWikidata <https://www.wikidata.org/wiki/Q195395> ;
+             oh:haClassificazioneMorfologica oh:mesomorfo ;
              oh:haIndole oh:sangueCaldo ;
              oh:haRegioneDiOrigine oh:Vestfalia ;
              oh:puòEssereImpiegataIn oh:Dressage ,
                                      oh:SaltoAdOstacoli ;
-             oh:altezzaMediaAlGarrese_cm 165 ;
+             oh:altezzaMediaGarrese 165 ;
              oh:haColoreMantello "baio" ,
                                  "morello" ,
                                  "sauro" ;
-             oh:pesoMedio_Kg 500 ;
+             oh:pesoMedio 500 ;
              <http://schema.org/image> <https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Avenger_-_Westphalian_horse.jpg/240px-Avenger_-_Westphalian_horse.jpg> ;
              rdfs:comment "Il Westfalen è  un’atletica e forte razza di cavalli tedesca da sport che ha ottenuto eccellenti risultati nel concorso di salto nel dressage."@it ,
                           "The Westfalen is an athletic and strong German sport horse breed that has achieved excellent results in dressage jumping competition."@en ;
@@ -2617,7 +2660,21 @@ oh:Westfalen rdf:type owl:NamedIndividual ,
                                                              "Westphalian horse"@en .
 
 
-###  https://www.wikidata.org/wiki/Q195395
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#bergamo
+oh:bergamo rdf:type owl:NamedIndividual ,
+                    oh:AreaGeografica ;
+           <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Lombardia ;
+           rdfs:label "Bergamo"@it .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brachimorfo
+oh:brachimorfo rdf:type owl:NamedIndividual ,
+                        oh:Morfologia ;
+               rdfs:comment "Morfologia del cavallo caratterizzata da muscolatura molto sviluppata,  torace ampio, forme potenti, massicce e non molto lungo."@it ,
+                            "Morphology of the horse characterized by highly developed musculature, wide chest, powerful, massive shape and not very long."@en ;
+               rdfs:label "Brachimorphic morphology"@en ,
+                          "brachimorfo"@it .
+
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brevetto
 oh:brevetto rdf:type owl:NamedIndividual ,
@@ -2628,6 +2685,93 @@ oh:brevetto rdf:type owl:NamedIndividual ,
                          "Autorizza all’esercizio della pratica sportiva agonistica degli sport equestri in funzione della specifica specialità del brevetto acquisito dal cavaliere. Il brevetto autorizza a partecipare a gare di salto ad ostacoli di categoria C80 o superiore"@it ;
             rdfs:label "brevetto"@en ,
                        "brevetto"@it .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brunoGramaglia
+oh:brunoGramaglia rdf:type owl:NamedIndividual ,
+                           oh:Proprietario ;
+                  rdfs:comment "Allevatore e commerciante di cavalli con sede a Leinì (To)"@it ,
+                               "Horse breeder and trader based in Leinì (To)"@en ;
+                  rdfs:label "Bruno Gramaglia"@en ,
+                             "Bruno Gramaglia"@it .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#claudioCavallo
+oh:claudioCavallo rdf:type owl:NamedIndividual ,
+                           oh:Proprietario ;
+                  rdfs:comment "Allevatore e commerciante di cavalli con sede a Siracusa (SR)"@it ,
+                               "Horse breeder and trader based in Syracuse (SR)"@en ;
+                  rdfs:label "Claudio Cavallo"@en ,
+                             "Claudio Cavallo"@it .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#dolicomorfo
+oh:dolicomorfo rdf:type owl:NamedIndividual ,
+                        oh:Morfologia ;
+               rdfs:comment "Morfologia caratterizzata da  torace profondo, linee allungate e articolazioni con angoli molto aperti. La figura è agile, leggera e slanciata."@it ,
+                            "Morphology characterized by deep chest, elongated lines and joints with very open angles. The figure is agile, light and slender."@en ;
+               rdfs:label "dolicomorfo"@it ,
+                          "dolicomorphic morphology"@en .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#francescoBertero
+oh:francescoBertero rdf:type owl:NamedIndividual ,
+                             oh:Proprietario ;
+                    rdfs:comment "Allevatore e commerciante di cavalli con sede a Bergamo (BG)"@it ,
+                                 "Horse breeder and trader based in Bergamo (BG)"@en ;
+                    rdfs:label "Francesco Bertero"@en ,
+                               "Francesco Bertero"@it .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#giorgioCamoletto
+oh:giorgioCamoletto rdf:type owl:NamedIndividual ,
+                             oh:Proprietario ;
+                    rdfs:comment "Allevatore e commerciante di cavalli con sede in Leinì (TO)"@it ,
+                                 "Horse breeder and trader based in Leinì (TO)"@en ;
+                    rdfs:label "Giorgio Camoletto"@en ,
+                               "Giorgio Camoletto"@it .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#leini
+oh:leini rdf:type owl:NamedIndividual ;
+         <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Piemonte ;
+         rdfs:label "Leinì"@it .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#mesoBrachimorfo
+oh:mesoBrachimorfo rdf:type owl:NamedIndividual ,
+                            oh:Morfologia ;
+                   rdfs:comment "Morfologia a metà strada tra quella dei cavalli da tiro e quella  dei cavalli da sella."@it ,
+                                "Morphology halfway between that of draft horses and that of riding horses."@en ;
+                   rdfs:label "meso-brachimorfo"@it ,
+                              "meso-brachimorphic morfology"@en .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#mesoDolicomorfo
+oh:mesoDolicomorfo rdf:type owl:NamedIndividual ,
+                            oh:Morfologia ;
+                   rdfs:comment "Morfologia potente, forte ma contemporaneamente agile e nobile nel portamento."@it ,
+                                "Powerful morphology, strong but at the same time agile and noble in bearing."@en ;
+                   rdfs:label "meso-dolicomorfo"@it ,
+                              "meso-dolicomorphic morphology"@en .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#mesomorfo
+oh:mesomorfo rdf:type owl:NamedIndividual ,
+                      oh:Morfologia ;
+             rdfs:comment "Morfologia caratterizzata da una struttura fisica molto più leggera rispetto al brachimorfo, ma comunque potente e compatta."@it ,
+                          "Morphology characterized by a much lighter physical structure than the brachymorph, but still powerful and compact."@en ;
+             rdfs:label "Mesomorphic morfology"@en ,
+                        "mesomorfo"@it .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#paoloGrassi
+oh:paoloGrassi rdf:type owl:NamedIndividual ,
+                        oh:Proprietario ;
+               rdfs:comment "Allevatore e commerciante di cavalli con sede a Taranto (TA)"@it ,
+                            "Horse breeder and trader based in Taranto (TA)"@en ;
+               rdfs:label "Paolo Grassi"@en ,
+                          "Paolo Grassi"@it .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#patenteAgonistica
@@ -2675,6 +2819,15 @@ oh:primoGrado rdf:type owl:NamedIndividual ,
                          "1° grado"@it .
 
 
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sanMauro
+oh:sanMauro rdf:type owl:NamedIndividual ;
+            <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Piemonte ;
+            rdfs:comment "San Mauro Torinese is an Italian municipality of 18,922 inhabitants in the metropolitan city of Turin, in Piedmont."@en ,
+                         "San Mauro Torinese è un comune italiano di 18.922 abitanti della città metropolitana di Torino, in Piemonte."@it ;
+            rdfs:label "San Mauro Torinese"@en ,
+                       "San Mauro Torinese"@it .
+
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueCaldo
 oh:sangueCaldo rdf:type owl:NamedIndividual ,
                         oh:Indole ;
@@ -2710,6 +2863,26 @@ oh:secondoGrado rdf:type owl:NamedIndividual ,
                              "Autorizza all’esercizio della pratica sportiva agonistica degli sport equestri in funzione della specifica specialità del brevetto acquisito dal cavaliere. Il 2° grado autorizza a partecipare a gare di salto ad ostacoli di categoria C135 o superiore"@it ;
                 rdfs:label "2° grado"@en ,
                            "2° grado"@it .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#siracusa
+oh:siracusa rdf:type owl:NamedIndividual ,
+                     oh:AreaGeografica ;
+            <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Sicilia ;
+            rdfs:comment "Siracusa è un comune italiano di 115 681 abitanti, capoluogo del libero consorzio comunale omonimo, in Sicilia."@it ,
+                         "Syracuse is an Italian municipality of 115,681 inhabitants, capital of the free municipal consortium of the same name, in Sicily."@en ;
+            rdfs:label "Siracusa"@it ,
+                       "Syracuse"@en .
+
+
+###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#taranto
+oh:taranto rdf:type owl:NamedIndividual ,
+                    oh:AreaGeografica ;
+           <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf> oh:Puglia ;
+           rdfs:comment "Taranto is an Italian municipality of 186,798 inhabitants, capital of the province of the same name, in Puglia."@en ,
+                        "Taranto è un comune italiano di 186 798 abitanti, capoluogo dell'omonima provincia, in Puglia."@it ;
+           rdfs:label "Taranto"@en ,
+                      "Taranto"@it .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#12000Euro
@@ -2987,6 +3160,47 @@ oh:TrainoCarrozze rdfs:comment "Using the horse to pull carriages for the transp
 
 
 [ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( oh:Andalusia
+                        oh:AppenninoToscoEmiliano
+                        oh:Ardenne
+                        oh:Belgio
+                        oh:Bretagna
+                        oh:Danimarca
+                        oh:Francia
+                        oh:Frisia
+                        oh:Germania
+                        oh:Irlanda
+                        oh:Jutland
+                        oh:Lombardia
+                        oh:Lusitano
+                        oh:Maremma
+                        oh:Murge
+                        oh:Normandia
+                        oh:PaesiBassi
+                        oh:Perche
+                        oh:Piemonte
+                        oh:Portogallo
+                        oh:Puglia
+                        oh:RegioneBoullonnais
+                        oh:RegioneHannover
+                        oh:RegnoUnito
+                        oh:Schleswig-Holstein
+                        oh:Scozia
+                        oh:Sicilia
+                        oh:Spagna
+                        oh:Trakehner
+                        oh:TrentinoAltoAdige
+                        oh:Vestfalia
+                        oh:bergamo
+                        oh:leini
+                        oh:sanMauro
+                        oh:siracusa
+                        oh:taranto
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
   owl:distinctMembers ( oh:Andaluso
                         oh:AngloAraboFrancese
                         oh:AngloAraboSpagnolo
@@ -3042,9 +3256,92 @@ oh:TrainoCarrozze rdfs:comment "Using the horse to pull carriages for the transp
 
 
 [ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( oh:D
+                        oh:E
+                        oh:F
+                        oh:M
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( oh:brachimorfo
+                        oh:dolicomorfo
+                        oh:mesoBrachimorfo
+                        oh:mesoDolicomorfo
+                        oh:mesomorfo
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( oh:brevetto
+                        oh:patenteLudicaA
+                        oh:primoGrado
+                        oh:secondoGrado
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( oh:brunoGramaglia
+                        oh:claudioCavallo
+                        oh:francescoBertero
+                        oh:giorgioCamoletto
+                        oh:paoloGrassi
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
   owl:distinctMembers ( oh:sangueCaldo
                         oh:sangueFreddo
                         oh:sangueMisto
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#12000Euro>
+                        <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#15000Euro>
+                        <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#18000Euro>
+                        <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#20000Euro>
+                        <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#2500Euro>
+                        <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#35000Euro>
+                        <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#4800Euro>
+                        <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#5000Euro>
+                        <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#7000Euro>
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <https://www.wikidata.org/wiki/Q1070901>
+                        <https://www.wikidata.org/wiki/Q1232528>
+                        <https://www.wikidata.org/wiki/Q1468737>
+                        <https://www.wikidata.org/wiki/Q1501738>
+                        <https://www.wikidata.org/wiki/Q1665430>
+                        <https://www.wikidata.org/wiki/Q166777>
+                        <https://www.wikidata.org/wiki/Q1684175>
+                        <https://www.wikidata.org/wiki/Q1894708>
+                        <https://www.wikidata.org/wiki/Q1953691>
+                        <https://www.wikidata.org/wiki/Q195395>
+                        <https://www.wikidata.org/wiki/Q210826>
+                        <https://www.wikidata.org/wiki/Q217671>
+                        <https://www.wikidata.org/wiki/Q3617386>
+                        <https://www.wikidata.org/wiki/Q3620866>
+                        <https://www.wikidata.org/wiki/Q388952>
+                        <https://www.wikidata.org/wiki/Q428039>
+                        <https://www.wikidata.org/wiki/Q489798>
+                        <https://www.wikidata.org/wiki/Q514553>
+                        <https://www.wikidata.org/wiki/Q571149>
+                        <https://www.wikidata.org/wiki/Q588252>
+                        <https://www.wikidata.org/wiki/Q638976>
+                        <https://www.wikidata.org/wiki/Q7029480>
+                        <https://www.wikidata.org/wiki/Q843585>
+                        <https://www.wikidata.org/wiki/Q844058>
+                        <https://www.wikidata.org/wiki/Q896476>
+                        <https://www.wikidata.org/wiki/Q937595>
                       )
 ] .
 
