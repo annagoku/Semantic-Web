@@ -70,6 +70,8 @@ export const horsebreedsService = defineStore('horsebreedsService', {
           
           var breed = {};
           breed.razza= element.Razza.label;
+          breed.uri=element.Razza.value;
+
           if(element.Immagine != null)
             breed.immagine= element.Immagine.value;
           if(element.Nazionalità != null)
@@ -96,7 +98,97 @@ export const horsebreedsService = defineStore('horsebreedsService', {
       }
     },
 
+    async getBreedDetail(breedUri) {
+      console.log("getBreedDetail("+breedUri+")");
+      const store = useStore();
+      
+      const query = `PREFIX schema: <http://schema.org/>
+      PREFIX oh: <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#>
+      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      
+      select   ?Regione_di_Origine ?AltezzaMediaGarrese ?PesoMedio ?Impiego ?ColoriMantello ?Immagine 
+      where {
+          ?Razza rdf:type oh:RazzaCavallo;
+          oh:altezzaMediaGarrese ?AltezzaMediaGarrese;
+          oh:pesoMedio ?PesoMedio;
+          oh:puòEssereImpiegataIn ?Impiego;
+          oh:haColoreMantello ?ColoriMantello.
+        optional{
+                    ?Razza oh:haRegioneDiOrigine ?Regione_di_Origine.                     
+        }
+        optional{
+                    ?Razza schema:image ?Immagine.                     
+        }
+       FILTER(?Razza=<`+breedUri+`>)	
+      } `;
+    
+      try {
+        console.log("chiamo il servizio ")
+        const response = await axios.get(serverBaseUrl, {
+          headers: {
+            'Accept': 'application/sparql-results+json'
+          },
+          params: {
+            query: query
+          }
+        });
+        console.log("RESPONSE BREED DETAIL")
+        console.log(response.data)
+         
+        var breedDetail = {};
+        breedDetail.impieghi= [];
+        breedDetail.mantelli= [];
 
+        console.log("FACCIO FOREACH")
+        
+        response.data.results.bindings.forEach(element => {
+          console.log(element)
+
+          console.log("ORIGINE")
+          if(!breedDetail.regioneOrigine && element.Regione_di_Origine) {
+            breedDetail.regioneOrigine = store.getLabelFromUri(element.Regione_di_Origine.value);
+          }
+          console.log("ALTEZZA")
+          if(!breedDetail.altezzaMediaGarrese && element.AltezzaMediaGarrese) {
+            breedDetail.altezzaMediaGarrese = element.AltezzaMediaGarrese.value;
+          }
+          console.log("PESO")
+          
+          if(!breedDetail.pesoMedio && element.PesoMedio) {
+            breedDetail.pesoMedio = element.PesoMedio.value;
+          }
+          console.log("IMMAGINE")
+          
+          if(!breedDetail.immagine && element.Immagine) {
+            breedDetail.immagine = element.Immagine.value;
+          }
+
+          console.log("IMPIEGHI")
+          if(element.Impiego) {
+            var impiego = store.getLabelFromUri(element.Impiego.value);
+            if(breedDetail.impieghi.indexOf(impiego) === -1) {
+              breedDetail.impieghi.push(impiego);
+            }
+          }
+          
+          console.log("MANTELLI")
+          if(element.ColoriMantello) {
+            var mantello = element.ColoriMantello.value;
+            if(breedDetail.mantelli.indexOf(mantello) === -1) {
+              breedDetail.mantelli.push(mantello);
+            }
+          }
+          
+          
+
+        });
+        console.log(breedDetail)
+        return breedDetail;
+      } catch (error) {
+        store.alerts = ["Impossibile recuperare i dati. Riprovare più tardi"];
+        throw error;
+      }
+    }
 
 
   },

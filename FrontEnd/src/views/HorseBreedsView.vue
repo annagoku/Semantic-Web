@@ -25,42 +25,66 @@
 
 
     </DataTable>
-    
-    <!--DataView :layout="layout" :value="breeds" >
-              <template #grid="slotProps">
-                
-                <div class="col-12 sm:col-6 lg:col-12 xl:col-4 p-2">
-                        <div class="p-4 border-1 surface-border surface-card border-round">
-                          <div class="flex flex-column align-items-center gap-3 py-5">
-                                <div class="text-2xl font-bold"><img class="w-10rem shadow-2 border-round" :src="slotProps.Immagine.value"/></div>
-                            </div>
-                            <div class="flex flex-column align-items-center gap-3 py-5">
-                                <div class="text-2xl font-bold">{{ slotProps.razza }}</div>
-                            </div>
-                            <div class="flex align-items-center justify-content-between">
-                                <span class="text-2xl font-semibold">€ {{ slotProps.Nazionalità.label }}</span>
-                               
-                                <Button icon="pi pi-shopping-cart" rounded></Button>
-                            </div>
-                        </div>
-                  </div>
-              </template>
-          </DataView-->
-
   </div>
+
+
+<!-- DIALOG DETTAGLIO RAZZA-->
+<Dialog v-model:visible="showDetail" modal header="Dettaglio" :style="{ width: '75vw' }" :breakpoints="{ '960px': '75vw', '641px': '100vw' }">
+  <template #header>
+    <div class="row">
+      <div class="col-xs-12 ">
+        <span class="font-bold text-2xl mr-4">{{ selectedBreed.razza}}</span>
+      </div>
+    </div>
+    
+  </template>
+
+  <div class="container">
+  <div class="row">
+    <div class="col">
+      <img v-if="selectedBreed.detail.immagine" :src="`${selectedBreed.detail.immagine}`" :alt="selectedBreed.detail.immagine" class="border-round" /> 
+    
+    </div>
+    <div class="col">
+      <p>{{ selectedBreed.descrizione}}</p>
+      <p><b>Nazione:</b> {{ selectedBreed.nazione }}</p>
+      <p><b>Regione di origine:</b> {{ selectedBreed.detail.regioneOrigine }}</p>
+      <p><b>Morfologia:</b> <span style="text-transform: capitalize;">{{ selectedBreed.morfologia }}</span></p>
+      <p><b>Indole:</b> {{ selectedBreed.indole }}</p>
+      <p><b>Peso medio:</b> {{ selectedBreed.detail.pesoMedio }} kg</p>
+      <p><b>Altezza media al garrese:</b> {{ selectedBreed.detail.altezzaMediaGarrese }} cm</p>
+      <p><b>Mantelli:</b> 
+        <template v-for="(mantello, index) in selectedBreed.detail.mantelli">&nbsp;<span style="text-transform: capitalize;">{{ mantello }}</span><span v-if="index  < selectedBreed.detail.mantelli.length-1">,</span> </template> </p>
+      <p><b>Impieghi:</b> 
+        <template v-for="(impiego, index) in selectedBreed.detail.impieghi">&nbsp;{{ impiego }}<span v-if="index  < selectedBreed.detail.impieghi.length-1">,</span> </template> </p>
+      </div>
+    
+  </div>
+</div>
+  
+  <p>
+     <br/>
+    
+  </p>
+         
+    
+
+    <template #footer>
+        <Button label="Chiudi"  @click="hideDetail"   />
+    </template>
+</Dialog>
+
 
 </template>
 <script>
 import { useStore } from '@/stores/store'
 import { horsebreedsService } from '@/stores/horsebreedsService'
-import DataView from 'primevue/dataview';
 import Button from 'primevue/button';
 import DataTable from 'primevue/datatable';
-import DataViewLayoutOptions from 'primevue/dataviewlayoutoptions';
-
 import Column from 'primevue/column';
-import ColumnGroup from 'primevue/columngroup';   // optional
 import Row from 'primevue/row';     
+import Dialog from 'primevue/dialog';
+import Card from 'primevue/card';
 
 export default {
   name: "HorseBreedsView",
@@ -70,7 +94,8 @@ export default {
       breeds: null,
       filters: null,
       loadingTable: false,
-        
+      selectedBreed: null,
+      showDetail: false
     };
   },
   setup () {
@@ -81,7 +106,7 @@ export default {
       this.getAllBreeds();
   },
   components: {
-    DataView,  Button, DataTable, DataViewLayoutOptions, Column, Row
+      Button, DataTable,  Column, Row, Card, Dialog
   },
   props: {
      
@@ -110,9 +135,22 @@ export default {
       showBreedDetail: function(index, sub){
         console.log("show breed detail "+index);
         var breed = this.breeds[index];
-        alert("ho cliccato "+breed.razza)
-
+        this.selectedBreed = breed;
+        
+        //chiamo il servizio per reperire i dettagli della razza selezionata
+        horsebreedsService().getBreedDetail(breed.uri).then((data)=>{
+              this.selectedBreed.detail = data;
+              this.showDetail = true;
+      
+            }).catch(e => {
+              
+            });
       },
+
+      hideDetail: function() {
+        this.showDetail = false;
+        this.selectedBreed = null;
+      }
         
     }
 
