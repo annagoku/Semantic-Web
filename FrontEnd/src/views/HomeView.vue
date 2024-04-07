@@ -14,7 +14,7 @@ import { useStore } from '@/stores/store'
       <img :src="fascia" style="width: 70vw">
     </div>
     <div class="w-100 py-4"></div>
-    <Contatti />
+    
   
 </template>
 <script>

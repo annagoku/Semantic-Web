@@ -15,8 +15,8 @@ const store = useStore()
   <div class="col-md-6 col-xs-12  mx-auto slide-section">
     <h1 class="display-4 font-weight-normal">Cavalli online</h1>
     <br/>
-    <h2 >Equitazione:</h2>
-    <p id="citazione">&ldquo;L'arte di mantenere un cavallo tra te e il terreno&rdquo; </p>
+    
+    <p id="citazione">&ldquo;Se il tuo cavallo dice no, o tu hai fatto la domanda sbagliata o hai chiesto nel modo sbagliato. (Pat Parelli)&rdquo; </p>
   </div>
   <div  class="col-md-6 col-xs-0  mx-auto slide-section"></div>
 </div>

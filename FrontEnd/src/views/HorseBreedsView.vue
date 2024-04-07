@@ -123,7 +123,7 @@ export default {
               console.log(this.breeds);
 
               this.breeds.forEach(element => {
-                console.log("RAZZA -> "+element.Razza.label)
+                console.log("RAZZA -> "+element.Razza.value)
               });
 
             }).catch(e => {

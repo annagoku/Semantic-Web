@@ -24,26 +24,32 @@ export const horsebreedsService = defineStore('horsebreedsService', {
       PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
       PREFIX oh: <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#>
       PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-      select ?Razza ?Nazionalità ?Indole ?Morfologia ?Immagine ?Informazioni 
+      
+      select ?RazzaUri ?Razza ?Nazionalità ?Indole ?Morfologia (COALESCE(SAMPLE(?Immagine), "n/a") AS ?Immagine) ?Informazioni 
       where {
-            ?Razza rdf:type oh:RazzaCavallo;
-                oh:haNazionalità ?Nazionalità;
-                oh:haIndole ?Indole;
-                oh:haClassificazioneMorfologica ?Morfologia;
-                rdfs:comment ?Informazioni.    
-          FILTER ( lang(?Informazioni) = "it" ).
+            ?RazzaUri rdf:type oh:RazzaCavallo;
+                skos:prefLabel ?Razza;
+                oh:haIndole ?IndoleUri;
+                oh:haClassificazioneMorfologica ?MorfologiaUri;
+                oh:haNazionalità ?NazionalitàUri;
+                rdfs:comment ?Informazioni.
+          
+            ?NazionalitàUri rdfs:label ?Nazionalità.
+            ?IndoleUri rdfs:label ?Indole.
+            ?MorfologiaUri rdfs:label ?Morfologia.
+          
+          FILTER ( lang(?Informazioni) = "it" && lang(?Nazionalità)="it"&& lang(?Razza)="it" && lang(?Indole)="it" && lang(?Morfologia)="it" ).
+          
           OPTIONAL { 
-              ?Razza oh:entitàWikidata ?entita.
+              ?RazzaUri oh:entitàWikidata ?entita.
                 SERVICE <https://query.wikidata.org/sparql> {
                 OPTIONAL {
                   ?entita <http://www.wikidata.org/prop/direct/P18> ?Immagine.
                    }
-          }
-            
-                 
-          BIND(COALESCE(?Immagine, "n/a") AS ?Imm).			 
-          }
+                  }			 
+          }            
       }
+      GROUP BY ?RazzaUri ?Razza ?Nazionalità ?Indole ?Morfologia ?Informazioni
       ORDER BY (?Razza)`;
     
       try {
@@ -64,25 +70,25 @@ export const horsebreedsService = defineStore('horsebreedsService', {
         console.log("FACCIO FOREACH")
         
         response.data.results.bindings.forEach(element => {
-          element.Razza.label = store.getLabelFromUri(element.Razza.value);
-          element.Nazionalità.label = store.getLabelFromUri(element.Nazionalità.value);
-          console.log("FACCIO PUSH Razza "+element.Razza.label);
+          //element.Razza.label = store.getLabelFromUri(element.Razza.value);
+          //element.Nazionalità.label = store.getLabelFromUri(element.Nazionalità.value);
+          console.log("FACCIO PUSH Razza "+element.Razza.value);
           
           var breed = {};
-          breed.razza= element.Razza.label;
-          breed.uri=element.Razza.value;
+          breed.razza= element.Razza.value;
+          breed.uri=element.RazzaUri.value;
 
           if(element.Immagine != null)
             breed.immagine= element.Immagine.value;
           if(element.Nazionalità != null)
-            breed.nazione= element.Nazionalità.label;
+            breed.nazione= element.Nazionalità.value;
           if(element.Informazioni != null)
             breed.descrizione= element.Informazioni.value;
           if(element.Indole != null) {
-            breed.indole= store.getLabelFromUri(element.Indole.value);
+            breed.indole= element.Indole.value;
           }
           if(element.Morfologia != null) {
-            breed.morfologia= store.getLabelFromUri(element.Morfologia.value);
+            breed.morfologia= element.Morfologia.value;
           }
 
 
@@ -102,24 +108,34 @@ export const horsebreedsService = defineStore('horsebreedsService', {
       console.log("getBreedDetail("+breedUri+")");
       const store = useStore();
       
-      const query = `PREFIX schema: <http://schema.org/>
+      const query = `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+      PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+      PREFIX schema: <http://schema.org/>
       PREFIX oh: <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#>
       PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
       
-      select   ?Regione_di_Origine ?AltezzaMediaGarrese ?PesoMedio ?Impiego ?ColoriMantello ?Immagine 
+      select  ?RazzaUri ?Razza  ?AltezzaMediaGarrese (COALESCE(?RegioneDiOrigineLabel, "n/a")AS ?RegioneDiOrigine) ?PesoMedio ?Impiego ?ColoriMantello ?Immagine 
       where {
-          ?Razza rdf:type oh:RazzaCavallo;
-          oh:altezzaMediaGarrese ?AltezzaMediaGarrese;
-          oh:pesoMedio ?PesoMedio;
-          oh:puòEssereImpiegataIn ?Impiego;
-          oh:haColoreMantello ?ColoriMantello.
-        optional{
-                    ?Razza oh:haRegioneDiOrigine ?Regione_di_Origine.                     
-        }
-        optional{
-                    ?Razza schema:image ?Immagine.                     
-        }
-       FILTER(?Razza=<`+breedUri+`>)	
+             ?RazzaUri rdf:type oh:RazzaCavallo;
+                  skos:prefLabel ?Razza;
+                  oh:altezzaMediaGarrese ?AltezzaGarrese;
+                  oh:pesoMedio ?PesoMedio;
+                  oh:puòEssereImpiegataIn ?ImpiegoUri;
+                
+                oh:haColoreMantello ?ColoriMantello.
+                
+            ?ImpiegoUri rdfs:label ?Impiego.
+          
+          optional{
+              ?RazzaUri oh:haRegioneDiOrigine ?RegioneDiOrigineUri.
+              ?RegioneDiOrigineUri rdfs:label ?RegioneDiOrigineLabel.
+              FILTER(lang(?RegioneDiOrigineLabel)="it")
+          }
+        
+          optional{
+                      ?RazzaUri schema:image ?Immagine.                     
+          }
+       FILTER(?RazzaUri=<`+breedUri+`> && lang(?Razza)="it" && lang(?Impiego)="it")	
       } `;
     
       try {
@@ -145,8 +161,8 @@ export const horsebreedsService = defineStore('horsebreedsService', {
           console.log(element)
 
           console.log("ORIGINE")
-          if(!breedDetail.regioneOrigine && element.Regione_di_Origine) {
-            breedDetail.regioneOrigine = store.getLabelFromUri(element.Regione_di_Origine.value);
+          if(!breedDetail.regioneOrigine && element.RegioneDiOrigine) {
+            breedDetail.regioneOrigine = element.RegioneDiOrigine.value;
           }
           console.log("ALTEZZA")
           if(!breedDetail.altezzaMediaGarrese && element.AltezzaMediaGarrese) {
@@ -165,7 +181,7 @@ export const horsebreedsService = defineStore('horsebreedsService', {
 
           console.log("IMPIEGHI")
           if(element.Impiego) {
-            var impiego = store.getLabelFromUri(element.Impiego.value);
+            var impiego = element.Impiego.value;
             if(breedDetail.impieghi.indexOf(impiego) === -1) {
               breedDetail.impieghi.push(impiego);
             }

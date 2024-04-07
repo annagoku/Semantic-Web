@@ -1,8 +1,6 @@
 <template>
 <div id="contacts" class="cointainer row mx-auto bg-red text-light p-3">
-  <div class="col-xs-12 col-md-4 px-2">
-    <img :src="mappa" style="zoom: 50%">    
-  </div>    
+    
   <div class="col-xs-12 col-md-4 px-2">
     <h3>Contatti</h3>
     <p><a style="color: white" :href="'mailto:'+contacts.email">{{ contacts.email }}</a></p>    
@@ -25,6 +23,7 @@
 </template>
 <script>
 import mappa from '@/assets/img/mappa.png' 
+
 
 export default {
   name: "Contatti",

@@ -4,7 +4,7 @@
     <div class="col text-center">
       <p>&copy; 2024 - Annalisa Sabatelli</p>
       <nav>
-        <p>Contatti:  <a href="mailto:annalisa.sabatelli@unito.it">nnalisa.sabatelli@unito.it</a></p>
+        <p>Contatti:  <a href="mailto:annalisa.sabatelli@unito.it">Annalisa.sabatelli@edu.unito.it</a></p>
       </nav>
     </div>
       </div>
