@@ -1,6 +1,5 @@
 <script setup>
 import TheWelcome from '../components/TheWelcome.vue'
-import Contatti from '../components/Contatti.vue'
 import Sezioni from '../components/Sezioni.vue'
 import fascia from '@/assets/img/fascia-federazioni.png' // => or relative path
 import { useStore } from '@/stores/store'

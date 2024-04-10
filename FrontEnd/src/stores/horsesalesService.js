@@ -19,32 +19,24 @@ export const horsesalesService = defineStore('horsesalesService', {
       const store = useStore();
       
       const query = `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-      PREFIX owl: <http://www.w3.org/2002/07/owl#>
-      PREFIX schema: <http://schema.org/image>
+      PREFIX schema: <http://schema.org/>
       PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
       PREFIX oh: <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#>
-      PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-      select ?Razza ?Nazionalità ?Indole ?Morfologia ?Immagine ?Informazioni 
+      
+      select ?Immagine ?cavalliInVendita ?cavalliInVenditaUri ?Disciplina ?Regione ?Descrizione
       where {
-            ?Razza rdf:type oh:RazzaCavallo;
-                oh:haNazionalità ?Nazionalità;
-                oh:haIndole ?Indole;
-                oh:haClassificazioneMorfologica ?Morfologia;
-                rdfs:comment ?Informazioni.    
-          FILTER ( lang(?Informazioni) = "it" ).
-          OPTIONAL { 
-              ?Razza oh:entitàWikidata ?entita.
-                SERVICE <https://query.wikidata.org/sparql> {
-                OPTIONAL {
-                  ?entita <http://www.wikidata.org/prop/direct/P18> ?Immagine.
-                   }
-          }
-            
-                 
-          BIND(COALESCE(?Immagine, "n/a") AS ?Imm).			 
-          }
-      }
-      ORDER BY (?Razza)`;
+          ?cavalliInVenditaUri rdf:type oh:Cavallo;
+              rdfs:label ?cavalliInVendita;
+              schema:image ?Immagine;
+              rdfs:comment ?Descrizione;
+              oh:vieneUtilizzatoPer ?DisciplinaUri;
+              oh:èScuderizzatoIn ?RegioneUri.
+         
+          ?DisciplinaUri rdfs:label ?Disciplina.
+        ?RegioneUri rdfs:label ?Regione.
+          
+          FILTER (lang(?Descrizione) = "it" && lang(?Regione)="it" && lang (?Disciplina)="it" &&lang(?cavalliInVendita)="it")  
+      }`;
     
       try {
         console.log("chiamo il servizio +")
@@ -64,11 +56,25 @@ export const horsesalesService = defineStore('horsesalesService', {
         response.data.results.bindings.forEach(element => {
           
           var horse = {};
-          //TODO
+          horse.disciplina =[];
+          console.log("CAVALLO")
+          
+          
+          horse.razza= element.cavalliInVendita.value;
+          horse.uri=element.cavalliInVenditaUri.value;
 
-
+          if(element.Immagine != null)
+            horse.immagine= element.Immagine.value;
+          if(element.Regione != null)
+            horse.regione= element.Regione.value;
+          if(element.Descrizione != null)
+            horse.descrizione= element.Descrizione.value;
+          if(element.Disciplina != null)
+            horse.disciplina= element.Disciplina.value;
+          
           horses.push(horse);
         });
+        
         console.log("HORSES AFTER")
         console.log(horses);
 

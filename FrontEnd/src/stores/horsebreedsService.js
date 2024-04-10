@@ -10,7 +10,6 @@ export const horsebreedsService = defineStore('horsebreedsService', {
   state: () => ({ 
   }),
   getters: {
-    /*doubleCount: (state) => state.count * 2,*/
   },
   actions: {
 
@@ -70,8 +69,6 @@ export const horsebreedsService = defineStore('horsebreedsService', {
         console.log("FACCIO FOREACH")
         
         response.data.results.bindings.forEach(element => {
-          //element.Razza.label = store.getLabelFromUri(element.Razza.value);
-          //element.Nazionalità.label = store.getLabelFromUri(element.Nazionalità.value);
           console.log("FACCIO PUSH Razza "+element.Razza.value);
           
           var breed = {};
@@ -118,7 +115,7 @@ export const horsebreedsService = defineStore('horsebreedsService', {
       where {
              ?RazzaUri rdf:type oh:RazzaCavallo;
                   skos:prefLabel ?Razza;
-                  oh:altezzaMediaGarrese ?AltezzaGarrese;
+                  oh:altezzaMediaGarrese ?AltezzaMediaGarrese;
                   oh:pesoMedio ?PesoMedio;
                   oh:puòEssereImpiegataIn ?ImpiegoUri;
                 
@@ -193,9 +190,7 @@ export const horsebreedsService = defineStore('horsebreedsService', {
             if(breedDetail.mantelli.indexOf(mantello) === -1) {
               breedDetail.mantelli.push(mantello);
             }
-          }
-          
-          
+          }         
 
         });
         console.log(breedDetail)

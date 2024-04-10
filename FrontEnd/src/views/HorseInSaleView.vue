@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <DataTable stripedRows showGridlines :value="Horses" tableStyle="min-width: 50rem" :loading="loadingTable">
-      <Column field="razza" header="Razza"></Column>
+    <DataTable stripedRows showGridlines :value="horses" tableStyle="min-width: 50rem" :loading="loadingTable">
+      <Column field="razza" header="Cavallo in vendita"></Column>
       <Column  header="Immagine">
         <template #body="slotProps">
             <img v-if="slotProps.data.immagine" :src="`${slotProps.data.immagine}`" :alt="slotProps.data.immagine" class="w-6rem border-round" />
@@ -11,9 +11,10 @@
       <Column field="descrizione" header="Dettagli">
         <template #body="slotProps">
             <p>{{ slotProps.data.descrizione }}</p>
-            <p><b>Nazione:</b> {{ slotProps.data.nazione }}</p>
-            <p style="text-transform: capitalize;"><b>Morfologia:</b> {{ slotProps.data.morfologia }}</p>
-            <p><b>Indole: </b> {{ slotProps.data.indole }}</p>
+            <p><b>Regione:</b> {{ slotProps.data.regione }}</p>
+           
+            <p><b>Discipline o impieghi: </b> {{ slotProps.data.disciplina }}</p>
+              
         </template>
       </Column>
       <Column  >
