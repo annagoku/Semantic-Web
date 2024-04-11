@@ -12,8 +12,15 @@
         <template #body="slotProps">
             <p>{{ slotProps.data.descrizione }}</p>
             <p><b>Regione:</b> {{ slotProps.data.regione }}</p>
+            <p><b>Età:</b> {{ slotProps.data.anni }}</p>
+          </template>
+      </Column>
            
-            <p><b>Discipline o impieghi: </b> {{ slotProps.data.disciplina }}</p>
+        <Column field="prezzo" header="Prezzo [Euro]">
+        <template #body="slotProps">
+            <p>{{ slotProps.data.prezzo }}</p>
+            
+             
               
         </template>
       </Column>

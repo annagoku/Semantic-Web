@@ -34,6 +34,23 @@ export const useStore = defineStore('store', {
       else {
         return uri;
       }
-    }
-  },
+    },
+    checkBreedUri(horses, element){
+      console.log("ho chiamato la funzione checkBreed")
+      var result= {};
+      result.index=-1;
+      result.found=false;
+      if(horses && element.cavalliInVenditaUri){
+          for (var i=0; i<horses.lenght && found==false; i++){
+            if(horses[i].uri===element.cavalliInVenditaUri.value){
+              index=i;
+              found=true;
+            }
+          }                    
+        }
+        return result;
+       },
+       
+},
+  
 })
