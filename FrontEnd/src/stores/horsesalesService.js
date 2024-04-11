@@ -108,9 +108,9 @@ export const horsesalesService = defineStore('horsesalesService', {
       PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
       
       
-      select ?NomeCavallo ?Anni ?Regione ?Città ?Proprietario ?Razza ?Sesso ?AltezzaGarrese ?Disciplina ?Livello ?CategoriaSalto ?CategoriaDressage ?Prezzo                   
+      select ?CavalloUri ?NomeCavallo ?Anni ?Regione ?Città ?Proprietario ?Razza ?Sesso ?AltezzaGarrese ?Disciplina ?Livello ?CategoriaSalto ?CategoriaDressage ?Prezzo                   
       where {
-            ?Cavallo rdf:type oh:Cavallo;
+            ?CavalloUri rdf:type oh:Cavallo;
                 oh:nomeCavallo ?NomeCavallo;
                 oh:eta ?Anni;
                 oh:èScuderizzatoIn ?RegioneUri;
@@ -131,7 +131,7 @@ export const horsesalesService = defineStore('horsesalesService', {
           ?PrezzoUri designpatternprice:hasValue ?Prezzo.
           
           OPTIONAL {
-                  ?Cavallo oh:adattoAlConseguimentoDi ?LivelloUri;
+                  ?CavalloUri oh:adattoAlConseguimentoDi ?LivelloUri;
                        oh:gareggiaNelleCategorieDiSalto ?CategorieSaltoUri.
                   ?LivelloUri rdfs:label ?Livello.
                   ?CategorieSaltoUri rdfs:label ?CategoriaSalto.
@@ -139,7 +139,7 @@ export const horsesalesService = defineStore('horsesalesService', {
               FILTER (lang(?Livello)="it" && lang(?CategoriaSalto)="it" )
           }
           OPTIONAL {
-                  ?Cavallo oh:gareggiaNellaCategoriaDiDressage ?CategoriaDressageUri.
+                  ?CavalloUri oh:gareggiaNellaCategoriaDiDressage ?CategoriaDressageUri.
                   ?CategoriaDressageUri rdfs:label ?CategoriaDressage.
                        
                   
@@ -147,7 +147,7 @@ export const horsesalesService = defineStore('horsesalesService', {
           }
           
           
-          FILTER(lang(?Regione)="it" && lang(?Città)="it" && lang(?Proprietario)="it" && lang(?Razza)="it" && lang(?Disciplina)="it")
+          FILTER(?CavalloUri=<`+horseUri+`> && lang(?Regione)="it" && lang(?Città)="it" && lang(?Proprietario)="it" && lang(?Razza)="it" && lang(?Disciplina)="it")
                
       } `;
     
@@ -165,7 +165,7 @@ export const horsesalesService = defineStore('horsesalesService', {
         console.log(response.data)
          
         var horseDetail = {};
-        horseDetail.discipline= [];
+        horseDetail.disciplina= [];
         horseDetail.livello= [];
         horseDetail.categorieSalto= [];
 
@@ -174,44 +174,81 @@ export const horsesalesService = defineStore('horsesalesService', {
         response.data.results.bindings.forEach(element => {
           console.log(element)
 
-          console.log("ORIGINE")
-          if(!breedDetail.regioneOrigine && element.RegioneDiOrigine) {
-            breedDetail.regioneOrigine = element.RegioneDiOrigine.value;
-          }
-          console.log("ALTEZZA")
-          if(!breedDetail.altezzaMediaGarrese && element.AltezzaMediaGarrese) {
-            breedDetail.altezzaMediaGarrese = element.AltezzaMediaGarrese.value;
-          }
-          console.log("PESO")
-          
-          if(!breedDetail.pesoMedio && element.PesoMedio) {
-            breedDetail.pesoMedio = element.PesoMedio.value;
-          }
-          console.log("IMMAGINE")
-          
-          if(!breedDetail.immagine && element.Immagine) {
-            breedDetail.immagine = element.Immagine.value;
+          console.log("NOME")
+          if(!horseDetail.nome && element.NomeCavallo) {
+            horseDetail.nome = element.NomeCavallo.value;
           }
 
-          console.log("IMPIEGHI")
-          if(element.Impiego) {
-            var impiego = element.Impiego.value;
-            if(breedDetail.impieghi.indexOf(impiego) === -1) {
-              breedDetail.impieghi.push(impiego);
+          console.log("RAZZA")
+          if(!horseDetail.razza && element.Razza) {
+            horseDetail.razza = element.Razza.value;
+          }
+
+          console.log("SESSO")
+          if(!horseDetail.sesso && element.Sesso) {
+            horseDetail.sesso = element.Sesso.value;
+          }
+
+          console.log("ANNI")
+          if(!horseDetail.anni && element.Anni) {
+            horseDetail.anni = element.Anni.value;
+          }
+
+          console.log("REGIONE")
+          if(!horseDetail.regione && element.Regione) {
+            horseDetail.regione = element.Regione.value;
+          }
+          console.log("CITTA'")
+          if(!horseDetail.city && element.Città) {
+            horseDetail.city = element.Città.value;
+          }
+          console.log("PROPRIETARIO")
+          if(!horseDetail.proprietario && element.Proprietario) {
+            horseDetail.proprietario = element.Proprietario.value;
+          }
+          
+          console.log("ALTEZZA")
+          if(!horseDetail.altezzaGarrese && element.AltezzaGarrese) {
+            horseDetail.altezzaGarrese = element.AltezzaGarrese.value;
+          }
+
+          console.log("IMMAGINE")         
+          if(!horseDetail.immagine && element.Immagine) {
+            horseDetail.immagine = element.Immagine.value;
+          }
+
+          console.log("DISCIPLINA")
+          if(element.Disciplina) {
+            var disciplina = element.Disciplina.value;
+            if(horseDetail.disciplina.indexOf(disciplina) === -1) {
+              horseDetail.disciplina.push(disciplina);
             }
           }
           
-          console.log("MANTELLI")
-          if(element.ColoriMantello) {
-            var mantello = element.ColoriMantello.value;
-            if(breedDetail.mantelli.indexOf(mantello) === -1) {
-              breedDetail.mantelli.push(mantello);
+          console.log("LIVELLO")
+          if(element.Livello) {
+            var livello = element.Livello.value;
+            if(horseDetail.livello.indexOf(livello) === -1) {
+              horseDetail.livello.push(livello);
             }
-          }         
+          }
+          
+          console.log("CATEGORIA DI SALTO")
+          if(element.CategoriaSalto) {
+            var categorieSalto = element.CategoriaSalto.value;
+            if(horseDetail.categorieSalto.indexOf(categorieSalto) === -1) {
+              horseDetail.categorieSalto.push(categorieSalto);
+            }
+          } 
+
+          console.log("CATEGORIA DRESSAGE")         
+          if(!horseDetail.categoriaDressage && element.CategoriaDressage) {
+            horseDetail.categoriaDressage = element.CategoriaDressage.value;
+          }
 
         });
-        console.log(breedDetail)
-        return breedDetail;
+        console.log(horseDetail)
+        return horseDetail;
       } catch (error) {
         store.alerts = ["Impossibile recuperare i dati. Riprovare più tardi"];
         throw error;

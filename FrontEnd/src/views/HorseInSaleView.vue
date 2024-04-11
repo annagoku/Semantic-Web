@@ -41,7 +41,7 @@
   <template #header>
     <div class="row">
       <div class="col-xs-12 ">
-        <span class="font-bold text-2xl mr-4">{{ selectedHorse.razza}}</span>
+        <span class="font-bold text-2xl mr-4">{{ selectedHorse.detail.nome}}</span>
       </div>
     </div>
     
@@ -50,22 +50,32 @@
   <div class="container">
   <div class="row">
     <div class="col">
-      <img v-if="selectedHorse.detail.immagine" :src="`${selectedHorse.detail.immagine}`" :alt="selectedHorse.detail.immagine" class="border-round" /> 
+      <img v-if="selectedHorse.immagine" :src="`${selectedHorse.immagine}`" :alt="selectedHorse.immagine" class="border-round" /> 
     
     </div>
     <div class="col">
       <p>{{ selectedHorse.descrizione}}</p>
-      <p><b>Nazione:</b> {{ selectedHorse.nazione }}</p>
-      <p><b>Regione di origine:</b> {{ selectedHorse.detail.regioneOrigine }}</p>
-      <p><b>Morfologia:</b> <span style="text-transform: capitalize;">{{ selectedHorse.morfologia }}</span></p>
-      <p><b>Indole:</b> {{ selectedHorse.indole }}</p>
-      <p><b>Peso medio:</b> {{ selectedHorse.detail.pesoMedio }} kg</p>
-      <p><b>Altezza media al garrese:</b> {{ selectedHorse.detail.altezzaMediaGarrese }} cm</p>
-      <p><b>Mantelli:</b> 
-        <template v-for="(mantello, index) in selectedHorse.detail.mantelli">&nbsp;<span style="text-transform: capitalize;">{{ mantello }}</span><span v-if="index  < selectedHorse.detail.mantelli.length-1">,</span> </template> </p>
-      <p><b>Impieghi:</b> 
-        <template v-for="(impiego, index) in selectedHorse.detail.impieghi">&nbsp;{{ impiego }}<span v-if="index  < selectedHorse.detail.impieghi.length-1">,</span> </template> </p>
+      <p><b>Razza:</b> {{ selectedHorse.detail.razza}}</p>
+      <p><b>Anni:</b> {{ selectedHorse.anni}}</p>
+      <p><b>Sesso:</b> {{ selectedHorse.detail.sesso}}</p>
+      <p><b>Altezza al garrese:</b> {{ selectedHorse.detail.altezzaGarrese }} cm</p>
+      <p><b>Regione:</b> {{ selectedHorse.regione}}</p>
+      <p><b>Città:</b> {{ selectedHorse.detail.city }}</p>
+      
+      <p><b>Disciplina:</b> 
+        <template v-for="(disciplina, index) in selectedHorse.detail.disciplina">&nbsp;<span style="text-transform: capitalize;">{{ disciplina }}</span><span v-if="index  < selectedHorse.detail.disciplina.length-1">,</span> </template> </p>
+      <p><b>Categorie di salto:</b> 
+        <template v-for="(impiego, index) in selectedHorse.detail.categoriaSalto">&nbsp;{{ categoriaSalto }}<span v-if="index  < selectedHorse.detail.categoriaSalto.length-1">,</span> </template> </p>
+
+      <p><b>Categorie di Dressage:</b> {{ selectedHorse.detail.categoriaDressage }}</p>
+      
+      <p><b>Livello:</b> 
+        <template v-for="(livello, index) in selectedHorse.detail.livello">&nbsp;{{ livello }}<span v-if="index  < selectedHorse.detail.livello.length-1">,</span> </template> </p>
+      <br/>
+      <p><b>Prezzo:</b> {{ selectedHorse.prezzo }} Euro</p>
       </div>
+   
+    
     
   </div>
 </div>
@@ -141,6 +151,15 @@ export default {
         console.log("show horse detail "+index);
         var horse = this.horses[index];
         this.selectedHorse = horse;
+
+        //chiamo il servizio per reperire i dettagli della razza selezionata
+        horsesalesService().getHorseDetail(horse.uri).then((data)=>{
+              this.selectedHorse.detail = data;
+              this.showDetail = true;
+      
+            }).catch(e => {
+              
+            });
         
         
       },
