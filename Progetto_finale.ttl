@@ -66,6 +66,19 @@ schema:image rdf:type owl:AnnotationProperty .
 <http://www.ontologydesignpatterns.org/cp/owl/bag.owl#hasItem> rdf:type owl:AnnotationProperty .
 
 
+###  http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasCurrency
+designpatternprice:hasCurrency rdf:type owl:AnnotationProperty .
+
+
+###  http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasPrice
+designpatternprice:hasPrice rdf:type owl:AnnotationProperty ;
+                            rdfs:domain oh:Cavallo .
+
+
+###  http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasValue
+designpatternprice:hasValue rdf:type owl:AnnotationProperty .
+
+
 ###  http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#precedes
 <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#precedes> rdf:type owl:AnnotationProperty .
 
@@ -90,10 +103,6 @@ designpatternpart:hasPart rdfs:domain oh:AreaGeografica ;
 ###  http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf
 designpatternpart:isPartOf rdfs:domain oh:AreaGeografica ;
                            rdfs:range oh:AreaGeografica .
-
-
-###  http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasPrice
-designpatternprice:hasPrice rdfs:domain oh:Cavallo .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#adattoAlConseguimentoDi
@@ -462,11 +471,25 @@ schema:Place rdf:type owl:Class ;
 
 
 ###  http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection
-<http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection> owl:equivalentClass oh:CatalogoAutorizzazioniAMontareFise .
+<http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection> rdf:type owl:Class ;
+                                                                               owl:equivalentClass oh:CatalogoAutorizzazioniAMontareFise .
+
+
+###  http://www.ontologydesignpatterns.org/cp/owl/list.owl#List
+<http://www.ontologydesignpatterns.org/cp/owl/list.owl#List> rdf:type owl:Class .
+
+
+###  http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem
+<http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem> rdf:type owl:Class .
 
 
 ###  http://www.ontologydesignpatterns.org/cp/owl/price.owl#Currency
-designpatternprice:Currency rdfs:subClassOf oh:Cavallo .
+designpatternprice:Currency rdf:type owl:Class ;
+                            rdfs:subClassOf oh:Cavallo .
+
+
+###  http://www.ontologydesignpatterns.org/cp/owl/price.owl#Price
+designpatternprice:Price rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AltaScuola
@@ -1756,7 +1779,6 @@ oh:C90 rdf:type owl:NamedIndividual ;
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CastroneAngloAraboFrancese
 oh:CastroneAngloAraboFrancese rdf:type owl:NamedIndividual ,
                                        oh:Cavallo ;
-                              designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#15000Euro> ;
                               oh:haRazza oh:AngloAraboFrancese ;
                               oh:vieneUtilizzatoPer oh:CrossCountry ;
                               oh:èAdattoPer oh:CavaliereIntermedio ;
@@ -1767,6 +1789,7 @@ oh:CastroneAngloAraboFrancese rdf:type owl:NamedIndividual ,
                               oh:haSesso "castrone" ;
                               oh:nomeCavallo "Filè" ;
                               schema:image <https://www.equirodi.it/images/annonces/l/857696_1711550997_1626.jpg> ;
+                              designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#15000Euro> ;
                               rdfs:comment "15 year old French Anglo-Arab gelding for sale. Not suitable for beginners. Currently used for cross-country competitions."@en ,
                                            "Esemplare di cavallo castrone anglo-arabo francese di 15 anni  in vendita. Non adatto a principianti. Attualmente utilizzato per competizioni di cross-country."@it ;
                               rdfs:label "Castrone anglo-arabo francese"@it ,
@@ -1776,7 +1799,6 @@ oh:CastroneAngloAraboFrancese rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CastroneFrancese
 oh:CastroneFrancese rdf:type owl:NamedIndividual ,
                              oh:Cavallo ;
-                    designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#18000Euro> ;
                     oh:gareggiaNelleCategorieDiSalto oh:C110 ,
                                                      oh:C125 ;
                     oh:haRazza oh:SellaFrancese ;
@@ -1788,6 +1810,7 @@ oh:CastroneFrancese rdf:type owl:NamedIndividual ,
                     oh:haSesso "castrone" ;
                     oh:nomeCavallo "Elton" ;
                     schema:image <https://www.equirodi.it/images/annonces/xl/855373_1710395667_3888.jpg> ;
+                    designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#18000Euro> ;
                     rdfs:comment "Esemplare di castrone francese in vendita. Anno 2016. Attualmente impegnato in salto ad ostacoli nelle categorie C110 e C125. Adatto a tutti. Facile gestione sia a terra che in sella. Adatto come primo cavallo per il conseguimento del brevetto."@it ,
                                  "French gelding for sale. Year 2016. Currently involved in show jumping in the C110 and C125 categories. Suitable for everyone. Easy management both on the ground and in the saddle. Suitable as the first horse for obtaining the licence."@en ;
                     rdfs:label "Castrone Francese"@it ,
@@ -1797,10 +1820,10 @@ oh:CastroneFrancese rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CastroneItaliano
 oh:CastroneItaliano rdf:type owl:NamedIndividual ,
                              oh:Cavallo ;
-                    designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#12000Euro> ;
                     oh:gareggiaNelleCategorieDiSalto oh:C100 ,
                                                      oh:C80 ;
                     oh:haRazza oh:SellaItaliano ;
+                    oh:vieneUtilizzatoPer oh:SaltoAdOstacoli ;
                     oh:èPossedutoDa oh:brunoGramaglia ;
                     oh:èScuderizzatoInCittàDi oh:sanMauro ;
                     oh:altezzaGarrese 160 ;
@@ -1808,6 +1831,7 @@ oh:CastroneItaliano rdf:type owl:NamedIndividual ,
                     oh:haSesso "castrone" ;
                     oh:nomeCavallo "Dracon's Breaker" ;
                     schema:image <https://www.equirodi.it/images/annonces/xl/857207_1711357444_2037.jpg> ;
+                    designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#12000Euro> ;
                     rdfs:comment "11 year old Italian gelding horse for sale. Currently involved in show jumping in the C100 categories. Suitable for beginners with a minimum of experience. Difficult management in the box."@en ,
                                  "Esemplare di cavallo castrone italiano di 11 anni in vendita. Attualmente impegnato nel salto ad ostacoli nelle categorie C100. Adatto a principianti con un minimo di esperienza. Difficile gestione in box."@it ;
                     rdfs:label "Castrone italiano"@it ,
@@ -1962,7 +1986,6 @@ oh:F rdf:type owl:NamedIndividual ;
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#FemminaBretone
 oh:FemminaBretone rdf:type owl:NamedIndividual ,
                            oh:Cavallo ;
-                  designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#2500Euro> ;
                   oh:haRazza oh:Bretone ;
                   oh:vieneUtilizzatoPer oh:TiroAgricolo ;
                   oh:èAdattoPer oh:CavalierePrincipiante ;
@@ -1973,6 +1996,7 @@ oh:FemminaBretone rdf:type owl:NamedIndividual ,
                   oh:haSesso "femmina" ;
                   oh:nomeCavallo "Carmen" ;
                   schema:image <https://www.equirodi.it/images/annonces/xl/857985_1711659932_3839.jpg> ;
+                  designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#2500Euro> ;
                   rdfs:comment "18 year old Breton female specimen for sale ideal for agricultural work. Good temper"@en ,
                                "Esemplare di femmina bretone di 18 anni in vendita ideale per lavori agricoli. Buon carattere."@it ;
                   rdfs:label "Female breton horse"@en ,
@@ -1982,7 +2006,6 @@ oh:FemminaBretone rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#FemminaMaremmano
 oh:FemminaMaremmano rdf:type owl:NamedIndividual ,
                              oh:Cavallo ;
-                    designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#5000Euro> ;
                     oh:haRazza oh:Maremmano ;
                     oh:vieneUtilizzatoPer oh:Equiturismo ,
                                           oh:TrainoCarrozze ;
@@ -1994,6 +2017,7 @@ oh:FemminaMaremmano rdf:type owl:NamedIndividual ,
                     oh:haSesso "femmina" ;
                     oh:nomeCavallo "Penelope" ;
                     schema:image <http://www.anamcavallomaremmano.com/typo3temp/pics/d887dddef7.jpg> ;
+                    designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#5000Euro> ;
                     rdfs:comment "Esemplare di femmina maremmano in vendita. Anno 2004. Adatto a tutti. Facile gestione anche in passeggiata"@it ,
                                  "Female Maremma for sale. Suitable for everyone. Year 2004. Easy management even when walking"@en ;
                     rdfs:label "Female maremmano horse"@en ,
@@ -2003,7 +2027,6 @@ oh:FemminaMaremmano rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#FemminaMurgese
 oh:FemminaMurgese rdf:type owl:NamedIndividual ,
                            oh:Cavallo ;
-                  designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#4800Euro> ;
                   oh:gareggiaNellaCategoriaDiDressage oh:D ;
                   oh:gareggiaNelleCategorieDiSalto oh:C80 ;
                   oh:haRazza oh:Murgese ;
@@ -2017,6 +2040,7 @@ oh:FemminaMurgese rdf:type owl:NamedIndividual ,
                   oh:haSesso "femmina" ;
                   oh:nomeCavallo "Queen" ;
                   schema:image <https://www.equirodi.it/images/annonces/xl/855775_1710607148_7462.jpg> ;
+                  designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#4800Euro> ;
                   rdfs:comment "4 year old Murgese female for sale. Excellent for dressage and show jumping up to patent category. Very easy management on the go and in the box. Suitable for beginners."@en ,
                                "Esemplare di femmina murgese di 4 anni in vendita. Ottima per dressage e salto ad ostacoli fino a categoria brevetto. Facilissima gestione in passeggiata e in box. Adatta a principianti."@it ;
                   rdfs:label "Female murgese"@en ,
@@ -2275,7 +2299,6 @@ oh:Maremmano rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#MaschioAndaluso
 oh:MaschioAndaluso rdf:type owl:NamedIndividual ,
                             oh:Cavallo ;
-                   designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#7000Euro> ;
                    oh:gareggiaNellaCategoriaDiDressage oh:F ;
                    oh:haRazza oh:Andaluso ;
                    oh:vieneUtilizzatoPer oh:AltaScuola ;
@@ -2287,6 +2310,7 @@ oh:MaschioAndaluso rdf:type owl:NamedIndividual ,
                    oh:haSesso "maschio" ;
                    oh:nomeCavallo "Fuser" ;
                    schema:image <https://cdn.ehorses.media/image/blur/big/andaluso-giumenta-11anni-160-cm-grigio-cavalli-per-ricreazione-cavalli-da-dressage-wellheim_22ccd770-84e8-4983-8669-b3fd22c544cd.jpg> ;
+                   designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#7000Euro> ;
                    rdfs:comment "Esemplare di cavallo maschio andaluso in vendita. Anno 2020. Ottima genealogia. Utilizzato in gare di dressage ed Alta scuola. Adatto a cavalieri con un minimo di esperienza."@it ,
                                 "Male Andalusian horse for sale. Year 2020. Excellent genealogy. Used in dressage and high school competitions. Suitable for riders with a minimum of experience."@en ;
                    rdfs:label "Andalusian male"@en ,
@@ -2296,7 +2320,6 @@ oh:MaschioAndaluso rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#MaschioOlandese
 oh:MaschioOlandese rdf:type owl:NamedIndividual ,
                             oh:Cavallo ;
-                   designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#35000Euro> ;
                    oh:gareggiaNelleCategorieDiSalto oh:C135 ;
                    oh:haRazza oh:OlandeseASangueCaldo ;
                    oh:vieneUtilizzatoPer oh:SaltoAdOstacoli ;
@@ -2307,6 +2330,7 @@ oh:MaschioOlandese rdf:type owl:NamedIndividual ,
                    oh:haSesso "maschio" ;
                    oh:nomeCavallo "Mufasa" ;
                    schema:image <https://www.equirodi.it/images/annonces/xl/854164_1709831119_8149.jpg> ;
+                   designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#35000Euro> ;
                    rdfs:comment "12 year old male Dutch horse for sale. Excellent for obtaining 1st and 2nd degrees. Suitable for experienced riders. Difficult management on the ground."@en ,
                                 "Esemplare di cavallo maschio olandese di 12 anni  in vendita. Ottimo per il conseguimento di 1° e 2° grado. Adatto a cavalieri esperti. Difficile gestione a terra."@it ;
                    rdfs:label "Dutch male"@en ,
@@ -2316,7 +2340,6 @@ oh:MaschioOlandese rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#MaschioPuroSangueInglese
 oh:MaschioPuroSangueInglese rdf:type owl:NamedIndividual ,
                                      oh:Cavallo ;
-                            designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#20000Euro> ;
                             oh:haRazza oh:PuroSangueInglese ;
                             oh:vieneUtilizzatoPer oh:Endurance ;
                             oh:èAdattoPer oh:CavaliereMoltoEsperto ;
@@ -2327,6 +2350,7 @@ oh:MaschioPuroSangueInglese rdf:type owl:NamedIndividual ,
                             oh:haSesso "maschio" ;
                             oh:nomeCavallo "Fulmine Del Monte Acuto" ;
                             schema:image <https://cdn.ehorses.media/image/blur/big/purosangue-inglese-castrone-11anni-167-cm-sauro-cavalli-da-completo-langenhagen_c785185a-0bc2-41c5-9eb5-077fb8170f36.jpg> ;
+                            designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#20000Euro> ;
                             rdfs:comment "English Thoroughbred example for sale. Year 2014. Excellent results in endurance competitions. It requires a very experienced rider. Easy handling on the ground."@en ,
                                          "Esemplare di purosangue inglese in vendita. Anno 2014. Ottimi risultati nelle competizioni di endurance. Richiede un cavaliere molto esperto. Facile gestione a terra."@it ;
                             rdfs:label "Maschio purosangue inglese"@it ,
@@ -2336,7 +2360,6 @@ oh:MaschioPuroSangueInglese rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#MaschioTedesco
 oh:MaschioTedesco rdf:type owl:NamedIndividual ,
                            oh:Cavallo ;
-                  designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#15000Euro> ;
                   oh:gareggiaNelleCategorieDiSalto oh:C115 ;
                   oh:haRazza oh:Holstein ;
                   oh:vieneUtilizzatoPer oh:CrossCountry ,
@@ -2348,6 +2371,7 @@ oh:MaschioTedesco rdf:type owl:NamedIndividual ,
                   oh:haSesso "maschio" ;
                   oh:nomeCavallo "Luther Lucifer" ;
                   schema:image <https://www.equirodi.it/images/annonces/xl/835574_1705591089.jpg> ;
+                  designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#15000Euro> ;
                   rdfs:comment "16 year old German male specimen for sale. It has vehicles up to category C115. Easy management. Suitable for everyone. Excellent for obtaining the patent."@en ,
                                "Esemplare di maschio tedesco di 16 anni in vendita. Ha i mezzi fino alla categoria C115. Facile gestione. Adatto a tutti. Ottimo per il conseguimento del brevetto."@it ;
                   rdfs:label "German male"@en ,
@@ -2755,8 +2779,8 @@ oh:brachimorfo rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brevetto
 oh:brevetto rdf:type owl:NamedIndividual ,
                      oh:Patente ;
-            <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#precedes> oh:primoGrado ;
             oh:vieneConseguitoDa oh:CavalierePrincipiante ;
+            <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#precedes> oh:primoGrado ;
             rdfs:comment "Authorizes the practice of competitive equestrian sports based on the specific specialty of the license acquired by the rider. Thebrevetto authorizes participation in show jumping competitions of category C80 or higher"@en ,
                          "Autorizza all’esercizio della pratica sportiva agonistica degli sport equestri in funzione della specifica specialità del brevetto acquisito dal cavaliere. Il brevetto autorizza a partecipare a gare di salto ad ostacoli di categoria C80 o superiore"@it ;
             rdfs:label "brevetto"@en ,
@@ -2890,9 +2914,9 @@ oh:patenteNonAgonistica rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#primoGrado
 oh:primoGrado rdf:type owl:NamedIndividual ,
                        oh:Patente ;
-              <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#precedes> oh:secondoGrado ;
               oh:vieneConseguitoDa oh:CavaliereEsperto ,
                                    oh:CavaliereIntermedio ;
+              <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#precedes> oh:secondoGrado ;
               rdfs:comment "Authorizes the practice of competitive equestrian sports based on the specific specialty of the license acquired by the rider. The 1° grado authorizes participation in show jumping competitions of category C115 or higher"@en ,
                            "Autorizza all’esercizio della pratica sportiva agonistica degli sport equestri in funzione della specifica specialità del brevetto acquisito dal cavaliere. Il 1° grado autorizza a partecipare a gare di salto ad ostacoli di categoria C115 o superiore"@it ;
               rdfs:label "1° grado"@en ,

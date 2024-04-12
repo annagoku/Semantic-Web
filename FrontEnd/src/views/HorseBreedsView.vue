@@ -1,5 +1,26 @@
 <template>
   <div class="container">
+    <div class="row pt-5">
+      <span class="p-float-label col-xs-6 col-md-3">
+          <Dropdown id="Indole" v-model="selectedNature" :options="nature" optionLabel="name" placeholder="Filtra per Indole" class="w-full md:w-14rem" />
+          <label for="Indole">Indole</label> 
+      </span>
+      <span class="p-float-label col-xs-6 col-md-3">
+          <Dropdown id="Nazione di origine" v-model="selectedNation" :options="cities" optionLabel="name" placeholder="Filtra per Nazione" class="w-full md:w-14rem" />
+          <label for="Nazione di origine">Nazione di origine</label> 
+      </span>
+      <span class="p-float-label col-xs-6 col-md-4">
+          <Dropdown id="Morfologia" v-model="selectedMorphology" :options="morphology" optionLabel="name" placeholder="Filtra per morfologia" class="w-full md:w-14rem" />
+          <label for="Morfologia">Morfologia</label> 
+      </span>
+      <span class="p-float-label col-xs-6 col-md-1">
+        <Button type="button"  icon="pi pi-filter-slash"  style="background-color:grey;border-radius: 50%;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);" @click="initFilters()"></Button>
+      </span>
+      <span class="p-float-label col-xs-6 col-md-1">
+        <Button type="button"  icon="pi pi-filter"  style="border-radius: 50%;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);" @click="initFilters()"></Button>
+      </span>
+  </div>
+  <br/>
     <DataTable stripedRows showGridlines :value="breeds" tableStyle="min-width: 50rem" :loading="loadingTable">
       <Column field="razza" header="Razza"></Column>
       <Column  header="Immagine">
@@ -85,6 +106,7 @@ import Column from 'primevue/column';
 import Row from 'primevue/row';     
 import Dialog from 'primevue/dialog';
 import Card from 'primevue/card';
+import Dropdown from 'primevue/dropdown';
 
 export default {
   name: "HorseBreedsView",
@@ -95,7 +117,21 @@ export default {
       filters: null,
       loadingTable: false,
       selectedBreed: null,
-      showDetail: false
+      showDetail: false,
+      selectedNature: null,
+            nature: [
+                { name: 'sangue caldo', uri:'oh:sangueCaldo' },
+                { name: 'sangue freddo', uri:'oh:sangueFreddo'},
+                { name: 'sangue misto', uri:'oh:sangueMisto' }
+            ],
+      selectedMorphology: null,
+            morphology: [
+                { name: 'Mesomorfo', uri:'oh:mesomorfo' },
+                { name: 'Brachimorfo', uri:'oh:brachimorfo'},
+                { name: 'Dolicomorfo', uri:'oh:dolicomorfo' },
+                { name: 'Meso-dolicomorfo', uri:'oh:mesoDolicomorfo' },
+                { name: 'Meso-brachimorfo', uri:'oh:mesoBrachimorfo' }
+      ]
     };
   },
   setup () {
@@ -106,7 +142,7 @@ export default {
       this.getAllBreeds();
   },
   components: {
-      Button, DataTable,  Column, Row, Card, Dialog
+      Button, DataTable,  Column, Row, Card, Dialog, Dropdown
   },
   props: {
      
@@ -150,7 +186,12 @@ export default {
       hideDetail: function() {
         this.showDetail = false;
         this.selectedBreed = null;
-      }
+      },
+      initFilters: function () {
+        this.selectedMorphology=null;
+        this.selectedNature=null;
+        this.selectedNation=null;
+    },
         
     }
 

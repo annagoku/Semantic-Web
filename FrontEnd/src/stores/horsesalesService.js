@@ -25,22 +25,24 @@ export const horsesalesService = defineStore('horsesalesService', {
       
       PREFIX designpatternprice: <http://www.ontologydesignpatterns.org/cp/owl/price.owl#>
 
-      select ?Immagine ?cavalliInVendita ?cavalliInVenditaUri ?Prezzo ?Anni ?Regione ?Descrizione
+      select ?Immagine ?cavalliInVendita ?cavalliInVenditaUri ?Prezzo ?Anni ?Regione ?Descrizione ?Disciplina
       where {
           ?cavalliInVenditaUri rdf:type oh:Cavallo;
               rdfs:label ?cavalliInVendita;
               schema:image ?Immagine;
+              oh:vieneUtilizzatoPer ?DisciplinaUri;
               rdfs:comment ?Descrizione;
               oh:eta ?Anni;
               designpatternprice:hasPrice ?PrezzoUri;
               oh:èScuderizzatoIn ?RegioneUri.
          
           
-        ?RegioneUri rdfs:label ?Regione.
+          ?RegioneUri rdfs:label ?Regione.
           ?PrezzoUri designpatternprice:hasValue ?Prezzo.
+          ?DisciplinaUri rdfs:label ?Disciplina
           
-          FILTER (lang(?Descrizione) = "it" && lang(?Regione)="it" && lang(?cavalliInVendita)="it")  
-      } `;
+          FILTER (lang(?Descrizione) = "it" && lang(?Regione)="it" && lang(?cavalliInVendita)="it" && lang(?Disciplina)="it")  
+      } ORDER BY(?cavalliInVendita)`;
     
       try {
         console.log("chiamo il servizio +")
@@ -56,35 +58,43 @@ export const horsesalesService = defineStore('horsesalesService', {
         console.log(response.data)
          
         var horses = [];
-        
-       
+        var horse = null;
 
         console.log("Faccio for each")
         response.data.results.bindings.forEach(element => {
-          console.log(element)
-          var horse = {};
+          console.log(element);  
+          var horseUri = element.cavalliInVenditaUri.value; 
+          console.log("CAVALLO "+horseUri);
+          if(horse == null || horse.uri != horseUri) {
+            console.log("DEVO CREARE NUOVO CAVALLO ");
           
-            console.log("CAVALLO")
-            horse.razza= element.cavalliInVendita.value;
-            horse.uri=element.cavalliInVenditaUri.value;
+            if(horse != null) {
+              horses.push(horse);
+            }
+            horse = {};
+            horse.uri = horseUri;
+            horse.nomeAnnuncio=element.cavalliInVendita.value;
+            horse.disciplina = [];
             console.log("IMMAGINE")
             if(element.Immagine != null)
               horse.immagine= element.Immagine.value;
-              console.log("REGIONE")
+            console.log("REGIONE")
             if(element.Regione != null)
               horse.regione= element.Regione.value;
               console.log("DESCRIZIONE")
             if(element.Descrizione != null)
               horse.descrizione= element.Descrizione.value;
             if(element.Prezzo != null)
-            horse.prezzo= parseInt(element.Prezzo.value);
+              horse.prezzo= parseInt(element.Prezzo.value);
             if(element.Anni != null)
-            horse.anni= element.Anni.value;
-          
-            horses.push(horse);
-       
-          
+              horse.anni= element.Anni.value;
+          }
+          if(element.Disciplina != null)
+            horse.disciplina.push(element.Disciplina.value);   
+
         });
+        horses.push(horse);
+        
         
         console.log("HORSES AFTER")
         console.log(horses);

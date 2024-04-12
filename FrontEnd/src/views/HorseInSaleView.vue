@@ -1,7 +1,8 @@
 <template>
   <div class="container">
+    
     <DataTable stripedRows showGridlines :value="horses" tableStyle="min-width: 50rem" :loading="loadingTable">
-      <Column field="razza" header="Cavallo in vendita"></Column>
+      <Column field="nomeAnnuncio" header="Cavallo in vendita"></Column>
       <Column  header="Immagine">
         <template #body="slotProps">
             <img v-if="slotProps.data.immagine" :src="`${slotProps.data.immagine}`" :alt="slotProps.data.immagine" class="w-6rem border-round" />
@@ -13,6 +14,8 @@
             <p>{{ slotProps.data.descrizione }}</p>
             <p><b>Regione:</b> {{ slotProps.data.regione }}</p>
             <p><b>Età:</b> {{ slotProps.data.anni }}</p>
+            <p><b>Disciplina:</b> 
+              <template v-for="(disciplina, index) in slotProps.data.disciplina">&nbsp;{{ disciplina }}<span v-if="index  < slotProps.data.disciplina.length-1">,</span> </template> </p>
           </template>
       </Column>
            
@@ -33,6 +36,11 @@
 
 
     </DataTable>
+    
+          <div class="row w-100">
+            <span class="relative col ">  <Button type="button" icon="pi pi-plus" severity="success"  @click=showDialogToUpdate(newHorse)   size="large" style="border-radius: 50%;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);margin-left: 77.5em;"> </Button></span>
+          </div>
+    
   </div>
 
 
@@ -65,7 +73,7 @@
       <p><b>Disciplina:</b> 
         <template v-for="(disciplina, index) in selectedHorse.detail.disciplina">&nbsp;<span style="text-transform: capitalize;">{{ disciplina }}</span><span v-if="index  < selectedHorse.detail.disciplina.length-1">,</span> </template> </p>
       <p><b>Categorie di salto:</b> 
-        <template v-for="(impiego, index) in selectedHorse.detail.categoriaSalto">&nbsp;{{ categoriaSalto }}<span v-if="index  < selectedHorse.detail.categoriaSalto.length-1">,</span> </template> </p>
+        <template v-for="(categorieSalto, index) in selectedHorse.detail.categorieSalto">&nbsp;{{ categorieSalto }}<span v-if="index  < selectedHorse.detail.categorieSalto.length-1">,</span> </template> </p>
 
       <p><b>Categorie di Dressage:</b> {{ selectedHorse.detail.categoriaDressage }}</p>
       
@@ -103,6 +111,7 @@ import Column from 'primevue/column';
 import Row from 'primevue/row';     
 import Dialog from 'primevue/dialog';
 import Card from 'primevue/card';
+import Dropdown from 'primevue/dropdown';
 
 export default {
   name: "HorseInSaleView",
@@ -114,6 +123,7 @@ export default {
       loadingTable: false,
       selectedHorse: null,
       showDetail: false
+      
     };
   },
   setup () {
@@ -124,7 +134,7 @@ export default {
       this.getAllHorses();
   },
   components: {
-      Button, DataTable,  Column, Row, Card, Dialog
+      Button, DataTable,  Column, Row, Card, Dialog, Dropdown
   },
   props: {
      
