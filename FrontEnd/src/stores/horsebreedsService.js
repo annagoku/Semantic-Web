@@ -199,10 +199,68 @@ export const horsebreedsService = defineStore('horsebreedsService', {
         store.alerts = ["Impossibile recuperare i dati. Riprovare più tardi"];
         throw error;
       }
-    }
+    }, 
 
+    async getAllBreedsNations(){
+      console.log("getAllBreedsNations()");
+      const store = useStore();
+      
+      const query = `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX oh: <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#>
+      PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+      
+      select distinct ?NazionalitaUri ?Nazionalita 
+      where {
+            ?RazzaUri rdf:type oh:RazzaCavallo;
+                skos:prefLabel ?Razza;
+                oh:haNazionalità ?NazionalitaUri.
+            
+          
+            ?NazionalitaUri rdfs:label ?Nazionalita.
+          
+          FILTER (lang(?Nazionalita)="it"&& lang(?Razza)="it" ).
+          
+          
+      }
+      ORDER BY (?Nazionalita)`;
+    
+      try {
+        const response = await axios.get(serverBaseUrl, {
+          headers: {
+            'Accept': 'application/sparql-results+json'
+          },
+          params: {
+            query: query
+          }
+        });
+        console.log("RESPONSE ALL BREEDS NATIONS")
+        console.log(response.data)
+         
+        var nations = [];
+        
+        console.log("FACCIO FOREACH")
+        
+        response.data.results.bindings.forEach(element => {
+          var nation = {};
+          nation.label= element.Nazionalita.value;
+          nation.uri=element.NazionalitaUri.value;
+  
+          nations.push(nation);
+        });
+        console.log("BREEDS NATIONS AFTER")
+        console.log(nations);
+  
+        return nations;
+      } catch (error) {
+        store.alerts = ["Impossibile recuperare i dati delle nazioni"];
+        throw error;
+      }
+    },
 
   },
+
+  
 
   
 })
