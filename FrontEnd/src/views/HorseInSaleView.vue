@@ -1,5 +1,27 @@
 <template>
   <div class="container">
+    <div class="row pt-5">
+      <span class="p-float-label col-xs-6 col-md-3">
+          <Dropdown id="Regione" :disabled="selectedDiscipline" v-model="selectedRegion" :options="regions" optionLabel="label" optionValue="label" placeholder="Filtra per Regione" class="w-full md:w-14rem" />
+          <label for="Regione">Regione</label> 
+      </span>
+      <span class="p-float-label col-xs-6 col-md-4">
+          <Dropdown id="Disciplina" :disabled="selectedRegion" v-model="selectedDiscipline" :options="disciplines" optionLabel="label" optionValue="label" placeholder="Filtra per disciplina o impiego" class="w-full md:w-14rem" />
+          <label for="Disciplina">Disciplina o impiego</label> 
+      </span>
+      <span class="p-float-label col-xs-6 col-md-1">
+        <Button type="button" :disabled="!selectedRegion && !selectedDiscipline" icon="pi pi-filter-slash"  style="background-color:grey;border-radius: 50%;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);" @click="initFilters()"></Button>
+      </span>
+      <span class="p-float-label col-xs-6 col-md-1">
+        <Button type="button"  icon="pi pi-filter"  style="border-radius: 50%;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);" @click="filterHorseInSale()"></Button>
+      </span>
+  </div>
+  <div v-if="filter.enabled" class="row pt-5">
+    <span class="p-float-label col-xs-12 col-md-12">
+      <p>Elenco filtrato per {{ filter.type }} {{ filter.value }} - <b>Risutati: {{ horses.length }}</b></p>
+    </span>
+  </div>
+  <br/>
     
     <DataTable stripedRows showGridlines :value="horses" tableStyle="min-width: 50rem" :loading="loadingTable">
       <Column field="nomeAnnuncio" header="Cavallo in vendita"></Column>
@@ -119,10 +141,19 @@ export default {
     return {
       layout: "grid",
       horses: null,
-      filters: null,
+      allHorses:[],
+      filter: {
+        enabled: false,
+        value: null,
+        type: null // per segnare la scelta di quale filtro è abilitato (Disciplina o Regione)
+      },
       loadingTable: false,
       selectedHorse: null,
-      showDetail: false
+      showDetail: false,
+      selectedDiscipline: null,
+      disciplines:[],
+      selectedRegion:null,
+      regions:[]
       
     };
   },
@@ -132,6 +163,8 @@ export default {
   },
   mounted : function () {
       this.getAllHorses();
+      this.getRegions();
+      this.getDisciplines();
   },
   components: {
       Button, DataTable,  Column, Row, Card, Dialog, Dropdown
@@ -140,14 +173,38 @@ export default {
      
   },
   methods: {
-      //richiamo tutte le razze di cavalli
+
+      getRegions : function () {
+        horsesalesService().getAllHorsesInSaleRegions().then((data)=>{
+                
+                this.regions = data;
+                
+              }).catch(e => {
+                this.loadingTable = false;
+                
+              });
+        },
+
+        getDisciplines : function () {
+        horsesalesService().getAllHorsesInSaleDisciplines().then((data)=>{
+                
+                this.disciplines = data;
+                
+              }).catch(e => {
+                this.loadingTable = false;
+                
+              });
+        },
+     
+      //richiamo tutti gli annunci di cavalli in vendita
       getAllHorses : function () {
         this.loadingTable = true;
       
         horsesalesService().getAllHorses().then((data)=>{
               this.loadingTable = false;
-              this.horses = [...data];
-              console.log("COPIO IL VETTORE SU Horses");
+              this.allHorses = [...data];
+              this.horses=[...this.allHorses];
+              console.log("COPIO IL VETTORE SU horses");
               console.log(this.horses);
 
 
@@ -177,8 +234,59 @@ export default {
       hideDetail: function() {
         this.showDetail = false;
         this.selectedHorse = null;
-      }
+      },
+      initFilters: function () {
+        this.selectedRegion=null;
+        this.selectedDiscipline=null;
+        this.filter.enabled=false;
+        this.filter.type=null;
+        this.filter.value=null;
+        this.horses = [...this.allHorses];
+      },
         
+      filterHorseInSale: function () {
+        console.log("Filtro gli annunci di cavalli in vendita");
+        this.filter.enabled = true;
+        this.loadingTable = true;
+          
+        
+        if(this.selectedRegion) {
+          this.filter.type="Regione";
+          this.filter.value=this.selectedRegion;
+          console.log("Filtro per "+this.filter.type+" "+this.selectedRegion);
+          // filtro direttamente a frontend
+          this.horses = [];
+          this.allHorses.forEach(horse => {
+            if(horse.regione.toUpperCase() == this.selectedRegion.toUpperCase()) {
+              this.horses.push(horse);
+            }
+
+          });  
+        }
+        else if(this.selectedDiscipline) {
+          this.filter.type="Disciplina o Impiego";
+          this.filter.value=this.selectedDiscipline;
+          console.log("Filtro per "+this.filter.type+" "+this.selectedDiscipline);
+          // filtro direttamente a frontend
+          this.horses = [];
+          
+          this.allHorses.forEach(horse => {
+            console.log("faccio for each su ");
+            console.log(horse.disciplina);
+            var found=false;
+            for(var i=0;  horse.disciplina!= null && i< horse.disciplina.length && !found; i++){
+                console.log(horse.disciplina[i]);
+                if(horse.disciplina[i].toUpperCase() == this.selectedDiscipline.toUpperCase()) {
+                  found=true;
+                  this.horses.push(horse);
+                }
+            }
+          });  
+        }
+        
+        this.loadingTable = false;
+        
+      },
     }
 
 };

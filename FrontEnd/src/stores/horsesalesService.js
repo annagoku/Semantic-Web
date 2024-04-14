@@ -263,7 +263,112 @@ export const horsesalesService = defineStore('horsesalesService', {
         store.alerts = ["Impossibile recuperare i dati. Riprovare più tardi"];
         throw error;
       }
-    }
+    },
+
+    async getAllHorsesInSaleRegions(){
+      console.log("getAllHorsesRegion()");
+      const store = useStore();
+      
+      const query = `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX oh: <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#>
+      
+      select distinct ?RegioneUri ?Regione
+      where {
+            ?CavalloUri rdf:type oh:Cavallo;  
+                oh:èScuderizzatoIn ?RegioneUri.         
+                ?RegioneUri rdfs:label ?Regione.
+          
+          FILTER (lang(?Regione)="it" ).  
+      }
+      ORDER BY (?Regione)`;
+    
+      try {
+        const response = await axios.get(serverBaseUrl, {
+          headers: {
+            'Accept': 'application/sparql-results+json'
+          },
+          params: {
+            query: query
+          }
+        });
+        console.log("RESPONSE ALL HORSES IN SALE REGIONS")
+        console.log(response.data)
+         
+        var regions = [];
+        
+        console.log("FACCIO FOREACH")
+        
+        response.data.results.bindings.forEach(element => {
+          var region = {};
+          region.label= element.Regione.value;
+          region.uri=element.RegioneUri.value;
+  
+          regions.push(region);
+        });
+        console.log("ELENCO REGIONI")
+        console.log(regions);
+  
+        return regions;
+      } catch (error) {
+        store.alerts = ["Impossibile recuperare i dati delle regioni"];
+        throw error;
+      }
+    },
+
+    async getAllHorsesInSaleDisciplines(){
+      console.log("getAllHorsesDisciplines()");
+      const store = useStore();
+      
+      const query = `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX oh: <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#>
+            
+            select distinct ?DisciplinaUri ?Disciplina
+            where {
+                    ?DisciplinaUri rdf:type oh:Impiego;
+                    rdfs:label ?Disciplina.
+       
+          FILTER NOT EXISTS {
+              {?DisciplinaUri rdf:type oh:CategorieDiSalto.}
+              UNION
+              {?DisciplinaUri rdf:type oh:CategorieDressage.}
+        }
+          FILTER (lang(?Disciplina)="it") 
+      }`;
+    
+      try {
+        const response = await axios.get(serverBaseUrl, {
+          headers: {
+            'Accept': 'application/sparql-results+json'
+          },
+          params: {
+            query: query
+          }
+        });
+        console.log("RESPONSE ALL HORSES IN SALE DISCIPLINES")
+        console.log(response.data)
+         
+        var disciplines = [];
+        
+        console.log("FACCIO FOREACH")
+        
+        response.data.results.bindings.forEach(element => {
+          var discipline= {};
+          discipline.label= element.Disciplina.value;
+          discipline.uri=element.DisciplinaUri.value;
+  
+          disciplines.push(discipline);
+        });
+        console.log("ELENCO DISCIPLINE")
+        console.log(disciplines);
+  
+        return disciplines;
+      } catch (error) {
+        store.alerts = ["Impossibile recuperare i dati delle discipline o impieghi"];
+        throw error;
+      }
+    },
 
    
   },
