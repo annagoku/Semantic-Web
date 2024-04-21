@@ -1548,7 +1548,7 @@ oh:Appenninico rdf:type owl:NamedIndividual ,
                oh:haColoreMantello "baio" ,
                                    "sauro" ;
                oh:pesoMedio 575 ;
-               schema:image <https://www.agraria.org/equini/appenninico.jpg> ;
+               schema:image <https://www.sef-italia.it/wp-content/uploads/2017/06/a_cavallo_sull_Appennino5.jpg> ;
                rdfs:comment "L'Appenninico è una razza di cavallo rustico e adattabile originario dall'Appenino tosco-emiliano."@it ,
                             "The Appenninico is a rustic and adaptable horse breed originating from the Tuscan-Emilian Apennines."@en ;
                skos:exactMatch "http://www.wikidata.org/entity/Q3620866"@it ;
@@ -1647,8 +1647,8 @@ oh:Boulonnais rdf:type owl:NamedIndividual ,
                                   "sauro" ;
               oh:pesoMedio 800 ;
               schema:image <https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/T%C3%AAte_jument_boulonnaise_2.jpg/260px-T%C3%AAte_jument_boulonnaise_2.jpg> ;
-              rdfs:comment "The Boulonnais is a breed of draft horse, nicknamed \"thoroughbred line horse\" or \"colossus of white marble\", native to the Boulogne-sur-Mer region of northern France."@en ,
-                           "Il Boulonnais è una razza di cavallo da tiro, soprannominato \"cavallo purosangue line\" o \"colosso di marmo bianco\", originario della regione di Boulogne-sur-Mer nel nord della Francia." ;
+              rdfs:comment "Il Boulonnais è una razza di cavallo da tiro, soprannominato \"cavallo purosangue line\" o \"colosso di marmo bianco\", originario della regione di Boulogne-sur-Mer nel nord della Francia."@it ,
+                           "The Boulonnais is a breed of draft horse, nicknamed \"thoroughbred line horse\" or \"colossus of white marble\", native to the Boulogne-sur-Mer region of northern France."@en ;
               skos:exactMatch "http://www.wikidata.org/entity/Q588252"@it ;
               skos:prefLabel "Boulonnais"@en ,
                              "Boulonnais"@it .
@@ -1670,6 +1670,7 @@ oh:Bretone rdf:type owl:NamedIndividual ,
                     oh:RazzaCavallo ;
            oh:entitàWikidata wd:Q514553 ;
            oh:haClassificazioneMorfologica oh:brachimorfo ;
+           oh:haIndole oh:sangueFreddo ;
            oh:haRegioneDiOrigine oh:Bretagna ;
            oh:puòEssereImpiegataIn oh:TiroAgricolo ,
                                    oh:TrainoCarrozze ;
@@ -2412,6 +2413,7 @@ oh:Murgese rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Normandia
 oh:Normandia rdf:type owl:NamedIndividual ,
                       oh:AreaGeografica ;
+             designpatternpart:isPartOf oh:Francia ;
              rdfs:comment "La Normandia è una regione storica ed amministrativa della Francia."@it ,
                           "Normandy is a historical and administrative region of France."@en ;
              rdfs:label "Normandia"@it ,
@@ -2564,8 +2566,8 @@ oh:RegioneBoullonnais rdf:type owl:NamedIndividual ,
                       designpatternpart:isPartOf oh:Francia ;
                       rdfs:comment "Boulonnais is a natural coastal region in France, located on the English Channel coast in the Pas-de-Calais department."@en ,
                                    "Il Boulonnais è una regione naturale costiera francese, situata sul litorale della Manica nel dipartimento del Passo di Calais."@it ;
-                      rdfs:label "Boulonnais"@en ,
-                                 "Boulonnais"@it .
+                      rdfs:label "Boulonnais Region"@en ,
+                                 "Regione del Boulonnais"@it .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RegioneHannover
