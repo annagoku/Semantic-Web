@@ -13,6 +13,10 @@
             <div class="card-title"><h3 class="text-primary">Cavalli in vendita</h3></div>
             <div class="card-body"><img :src="horseInSale" style="zoom: 50%"></div>
           </div>
+          <div class="card col-xs-12 col-md-3  mx-auto" @click="goToDownload()">
+            <div class="card-title"><h3 class="text-primary">Download</h3></div>
+            <div class="card-body"><img :src="download" style="zoom: 100%"></div>
+          </div>
       </div>
 </div>
 </template>
@@ -20,6 +24,7 @@
 import { useStore } from '@/stores/store'
 import razzaCavalli from '@/assets/img/razzaCavalli.jpg' 
 import horseInSale from '@/assets/img/HorsesForSale.jpg'
+import download from '@/assets/img/download.jpg'
 
 
 
@@ -32,7 +37,7 @@ export default {
   },
   setup () {
     const store = useStore();
-    return {store, razzaCavalli, horseInSale};
+    return {store, razzaCavalli, horseInSale, download};
   },
   props: {
     
@@ -48,6 +53,10 @@ export default {
     goToHorseInSale() {
       this.store.pageTitle = 'Cavalli in Vendita';
       this.$router.push({name: "horseinsale"});
+    },
+    goToDownload() {
+      this.store.pageTitle = 'Download documentazione di progetto';
+      this.$router.push({name: "download"});
     },
   },
 };

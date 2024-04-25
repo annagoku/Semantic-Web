@@ -41,12 +41,7 @@ export default {
       this.store.pageTitle = null;
       this.$router.push({name: "home"});
     },    
-    /*scrollTo(idElem) {
-      var elem = document.getElementById(idElem);
-      var y = elem.getBoundingClientRect().top-50+window.scrollY;
-      console.log("scroll to y = "+y)
-      window.scroll(0, y);
-    }*/
+  
   },
   computed: {
     
