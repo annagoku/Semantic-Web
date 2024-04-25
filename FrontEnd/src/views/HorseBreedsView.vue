@@ -13,11 +13,13 @@
           <Dropdown id="Morfologia" :disabled="selectedNation || selectedNature" v-model="selectedMorphology" :options="morphology" optionLabel="name" optionValue="name" placeholder="Filtra per morfologia" class="w-full md:w-14rem" />
           <label for="Morfologia">Morfologia</label> 
       </span>
-      <span class="p-float-label col-xs-6 col-md-1">
-        <Button type="button" :disabled="!selectedNation && !selectedNature && !selectedMorphology" icon="pi pi-filter-slash"  style="background-color:grey;border-radius: 50%;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);" @click="initFilters()"></Button>
-      </span>
-      <span class="p-float-label col-xs-6 col-md-1">
-        <Button type="button"  icon="pi pi-filter"  style="border-radius: 50%;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);" @click="filterBreeds()"></Button>
+      <span class="text-right col-xs-6 col-md-2">
+        <span class="ml-5">
+          <Button type="button" :disabled="!selectedNation && !selectedNature && !selectedMorphology" icon="pi pi-filter-slash"  style="background-color:grey;border-radius: 50%;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);" @click="initFilters()"></Button>
+        </span>
+        <span class="ml-5">
+          <Button type="button"  icon="pi pi-filter"  style="border-radius: 50%;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);" @click="filterBreeds()"></Button>
+        </span>
       </span>
   </div>
   <div v-if="filter.enabled" class="row pt-5">

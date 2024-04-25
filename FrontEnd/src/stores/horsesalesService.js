@@ -22,14 +22,15 @@ export const horsesalesService = defineStore('horsesalesService', {
       PREFIX schema: <http://schema.org/>
       PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
       PREFIX oh: <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#>
-      
+      PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
       PREFIX designpatternprice: <http://www.ontologydesignpatterns.org/cp/owl/price.owl#>
 
-      select ?Immagine ?cavalliInVendita ?cavalliInVenditaUri ?Prezzo ?Anni ?Regione ?Descrizione ?Disciplina
+      select ?Immagine ?cavalliInVendita ?cavalliInVenditaUri ?Prezzo ?Anni ?Regione ?Descrizione ?Disciplina ?Razza ?RazzaUri
       where {
           ?cavalliInVenditaUri rdf:type oh:Cavallo;
               rdfs:label ?cavalliInVendita;
               schema:image ?Immagine;
+              oh:haRazza ?RazzaUri;
               oh:vieneUtilizzatoPer ?DisciplinaUri;
               rdfs:comment ?Descrizione;
               oh:eta ?Anni;
@@ -38,10 +39,11 @@ export const horsesalesService = defineStore('horsesalesService', {
          
           
           ?RegioneUri rdfs:label ?Regione.
+          ?RazzaUri skos:prefLabel ?Razza.
           ?PrezzoUri designpatternprice:hasValue ?Prezzo.
-          ?DisciplinaUri rdfs:label ?Disciplina
+          ?DisciplinaUri rdfs:label ?Disciplina.
           
-          FILTER (lang(?Descrizione) = "it" && lang(?Regione)="it" && lang(?cavalliInVendita)="it" && lang(?Disciplina)="it")  
+          FILTER (lang(?Descrizione) = "it" && lang(?Regione)="it" && lang(?cavalliInVendita)="it" && lang(?Disciplina)="it" && lang(?Razza)="it")  
       } ORDER BY(?cavalliInVendita)`;
     
       try {
@@ -88,6 +90,10 @@ export const horsesalesService = defineStore('horsesalesService', {
               horse.prezzo= parseInt(element.Prezzo.value);
             if(element.Anni != null)
               horse.anni= element.Anni.value;
+            if(element.RazzaUri != null)
+              horse.razzaUri= element.RazzaUri.value;
+            if(element.Razza != null)
+              horse.razza= element.Razza.value;
           }
           if(element.Disciplina != null)
             horse.disciplina.push(element.Disciplina.value);   

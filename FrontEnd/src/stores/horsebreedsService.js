@@ -111,16 +111,23 @@ export const horsebreedsService = defineStore('horsebreedsService', {
       PREFIX oh: <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#>
       PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
       
-      select  ?RazzaUri ?Razza  ?AltezzaMediaGarrese (COALESCE(?RegioneDiOrigineLabel, "n/a")AS ?RegioneDiOrigine) ?PesoMedio ?Impiego ?ColoriMantello ?Immagine 
+      select  ?RazzaUri ?Razza  ?AltezzaMediaGarrese (COALESCE(?RegioneDiOrigineLabel, "n/a")AS ?RegioneDiOrigine) ?PesoMedio 
+              ?Impiego ?ColoriMantello ?Immagine ?Morfologia ?Indole ?Nazionalità ?Informazioni
       where {
              ?RazzaUri rdf:type oh:RazzaCavallo;
-                  skos:prefLabel ?Razza;
-                  oh:altezzaMediaGarrese ?AltezzaMediaGarrese;
-                  oh:pesoMedio ?PesoMedio;
-                  oh:puòEssereImpiegataIn ?ImpiegoUri;
-                
+                skos:prefLabel ?Razza;
+                oh:altezzaMediaGarrese ?AltezzaMediaGarrese;
+                oh:pesoMedio ?PesoMedio;
+                oh:puòEssereImpiegataIn ?ImpiegoUri;
+                oh:haIndole ?IndoleUri;
+                oh:haClassificazioneMorfologica ?MorfologiaUri;
+                oh:haNazionalità ?NazionalitàUri;
+                rdfs:comment ?Informazioni;
                 oh:haColoreMantello ?ColoriMantello.
-                
+          
+            ?NazionalitàUri rdfs:label ?Nazionalità.
+            ?IndoleUri rdfs:label ?Indole.
+            ?MorfologiaUri rdfs:label ?Morfologia.
             ?ImpiegoUri rdfs:label ?Impiego.
           
           optional{
@@ -132,7 +139,7 @@ export const horsebreedsService = defineStore('horsebreedsService', {
           optional{
                       ?RazzaUri schema:image ?Immagine.                     
           }
-       FILTER(?RazzaUri=<`+breedUri+`> && lang(?Razza)="it" && lang(?Impiego)="it")	
+       FILTER(?RazzaUri=<`+breedUri+`> && lang(?Razza)="it" && lang(?Impiego)="it" && lang(?Informazioni) = "it" && lang(?Nazionalità)="it"&& lang(?Indole)="it" && lang(?Morfologia)="it")	
       } `;
     
       try {
@@ -157,26 +164,38 @@ export const horsebreedsService = defineStore('horsebreedsService', {
         response.data.results.bindings.forEach(element => {
           console.log(element)
 
-          console.log("ORIGINE")
           if(!breedDetail.regioneOrigine && element.RegioneDiOrigine) {
             breedDetail.regioneOrigine = element.RegioneDiOrigine.value;
           }
-          console.log("ALTEZZA")
+          if(!breedDetail.razza && element.Razza) {
+            breedDetail.razza = element.Razza.value;
+          }
+          if(!breedDetail.descrizione && element.Informazioni) {
+            breedDetail.descrizione = element.Informazioni.value;
+          }
           if(!breedDetail.altezzaMediaGarrese && element.AltezzaMediaGarrese) {
             breedDetail.altezzaMediaGarrese = element.AltezzaMediaGarrese.value;
           }
-          console.log("PESO")
           
           if(!breedDetail.pesoMedio && element.PesoMedio) {
             breedDetail.pesoMedio = element.PesoMedio.value;
           }
-          console.log("IMMAGINE")
           
           if(!breedDetail.immagine && element.Immagine) {
             breedDetail.immagine = element.Immagine.value;
           }
 
-          console.log("IMPIEGHI")
+          if(!breedDetail.nazione && element.Nazionalità)
+            breedDetail.nazione= element.Nazionalità.value;
+          if(!breedDetail.descrizione && element.Informazioni)
+            breedDetail.descrizione= element.Informazioni.value;
+          if(!breedDetail.indole && element.Indole) {
+            breedDetail.indole= element.Indole.value;
+          }
+          if(!breedDetail.morfologia && element.Morfologia) {
+            breedDetail.morfologia= element.Morfologia.value;
+          }
+
           if(element.Impiego) {
             var impiego = element.Impiego.value;
             if(breedDetail.impieghi.indexOf(impiego) === -1) {
@@ -184,7 +203,6 @@ export const horsebreedsService = defineStore('horsebreedsService', {
             }
           }
           
-          console.log("MANTELLI")
           if(element.ColoriMantello) {
             var mantello = element.ColoriMantello.value;
             if(breedDetail.mantelli.indexOf(mantello) === -1) {
@@ -193,6 +211,7 @@ export const horsebreedsService = defineStore('horsebreedsService', {
           }         
 
         });
+        console.log("getBreedDetail - risultato");
         console.log(breedDetail)
         return breedDetail;
       } catch (error) {

@@ -1,20 +1,26 @@
 <template>
   <div class="container">
     <div class="row pt-5">
-      <span class="p-float-label col-xs-6 col-md-3">
+      <span class="p-float-label col-xs-3 col-md-3">
           <Dropdown id="Regione" :disabled="selectedDiscipline" v-model="selectedRegion" :options="regions" optionLabel="label" optionValue="label" placeholder="Filtra per Regione" class="w-full md:w-14rem" />
           <label for="Regione">Regione</label> 
       </span>
-      <span class="p-float-label col-xs-6 col-md-4">
+      <span class="p-float-label col-xs-3 col-md-3">
           <Dropdown id="Disciplina" :disabled="selectedRegion" v-model="selectedDiscipline" :options="disciplines" optionLabel="label" optionValue="label" placeholder="Filtra per disciplina o impiego" class="w-full md:w-14rem" />
           <label for="Disciplina">Disciplina o impiego</label> 
       </span>
-      <span class="p-float-label col-xs-6 col-md-1">
-        <Button type="button" :disabled="!selectedRegion && !selectedDiscipline" icon="pi pi-filter-slash"  style="background-color:grey;border-radius: 50%;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);" @click="initFilters()"></Button>
-      </span>
-      <span class="p-float-label col-xs-6 col-md-1">
+      <span class="text-right col-xs-6 col-md-6">
+        <span class="ml-5">
+          <Button type="button" :disabled="!selectedRegion && !selectedDiscipline" icon="pi pi-filter-slash"  style="background-color:grey;border-radius: 50%;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);" @click="initFilters()"></Button>
+        </span>
+        <span class="ml-5">
         <Button type="button"  icon="pi pi-filter"  style="border-radius: 50%;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);" @click="filterHorseInSale()"></Button>
       </span>
+        <span class="ml-5">
+        <Button type="button"  icon="pi pi-plus" severity="success"  style="border-radius: 50%;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);" @click="filterHorseInSale()"></Button>
+      </span>
+         </span>
+      
   </div>
   <div v-if="filter.enabled" class="row pt-5">
     <span class="p-float-label col-xs-12 col-md-12">
@@ -34,7 +40,8 @@
       <Column field="descrizione" header="Dettagli">
         <template #body="slotProps">
             <p>{{ slotProps.data.descrizione }}</p>
-            <p><b>Regione:</b> {{ slotProps.data.regione }}</p>
+            <p><b>Razza:</b> <b><span class="link-secondary link-offset-2" style="cursor: pointer;"  href="#" @click="showHorseBreed(slotProps.data.razzaUri)"> {{ slotProps.data.razza }} </span></b></p>
+            <p><b>Regione di scuderizzazione:</b> {{ slotProps.data.regione }}</p>
             <p><b>Età:</b> {{ slotProps.data.anni }}</p>
             <p><b>Disciplina:</b> 
               <template v-for="(disciplina, index) in slotProps.data.disciplina">&nbsp;{{ disciplina }}<span v-if="index  < slotProps.data.disciplina.length-1">,</span> </template> </p>
@@ -59,14 +66,11 @@
 
     </DataTable>
     
-          <div class="row w-100">
-            <span class="relative col ">  <Button type="button" icon="pi pi-plus" severity="success"  @click=showDialogToUpdate(newHorse)   size="large" style="border-radius: 50%;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);margin-left: 77.5em;"> </Button></span>
-          </div>
-    
+
   </div>
 
 
-<!-- DIALOG DETTAGLIO RAZZA-->
+<!-- DIALOG DETTAGLIO CAVALLO-->
 <Dialog v-model:visible="showDetail" modal header="Dettaglio" :style="{ width: '75vw' }" :breakpoints="{ '960px': '75vw', '641px': '100vw' }">
   <template #header>
     <div class="row">
@@ -123,10 +127,58 @@
 </Dialog>
 
 
+<!-- DIALOG DETTAGLIO RAZZA-->
+<Dialog v-model:visible="showDetailBreed" modal header="Dettaglio Razza" :style="{ width: '75vw' }" :breakpoints="{ '960px': '75vw', '641px': '100vw' }">
+  <template #header>
+    <div class="row">
+      <div class="col-xs-12 ">
+        <span class="font-bold text-2xl mr-4">{{ selectedBreed.detail.razza}}</span>
+      </div>
+    </div>
+    
+  </template>
+
+  <div class="container">
+  <div class="row">
+    <div class="col">
+      <img v-if="selectedBreed.detail.immagine" :src="`${selectedBreed.detail.immagine}`" :alt="selectedBreed.detail.immagine" class="border-round" /> 
+    
+    </div>
+    <div class="col">
+      <p>{{ selectedBreed.detail.descrizione}}</p>
+      <p><b>Nazione:</b> {{ selectedBreed.detail.nazione }}</p>
+      <p><b>Regione di origine:</b> {{ selectedBreed.detail.regioneOrigine }}</p>
+      <p><b>Morfologia:</b> <span style="text-transform: capitalize;">{{ selectedBreed.detail.morfologia }}</span></p>
+      <p><b>Indole:</b> {{ selectedBreed.detail.indole }}</p>
+      <p><b>Peso medio:</b> {{ selectedBreed.detail.pesoMedio }} kg</p>
+      <p><b>Altezza media al garrese:</b> {{ selectedBreed.detail.altezzaMediaGarrese }} cm</p>
+      <p><b>Mantelli:</b> 
+        <template v-for="(mantello, index) in selectedBreed.detail.mantelli">&nbsp;<span style="text-transform: capitalize;">{{ mantello }}</span><span v-if="index  < selectedBreed.detail.mantelli.length-1">,</span> </template> </p>
+      <p><b>Impieghi:</b> 
+        <template v-for="(impiego, index) in selectedBreed.detail.impieghi">&nbsp;{{ impiego }}<span v-if="index  < selectedBreed.detail.impieghi.length-1">,</span> </template> </p>
+      </div>
+    
+  </div>
+</div>
+  
+  <p>
+     <br/>
+    
+  </p>
+         
+    
+
+    <template #footer>
+        <Button label="Chiudi"  @click="hideDetailBreed"   />
+    </template>
+</Dialog>
+
+
 </template>
 <script>
 import { useStore } from '@/stores/store'
 import { horsesalesService } from '@/stores/horsesalesService'
+import { horsebreedsService } from '@/stores/horsebreedsService'
 import Button from 'primevue/button';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
@@ -149,7 +201,9 @@ export default {
       },
       loadingTable: false,
       selectedHorse: null,
+      selectedBreed: null,
       showDetail: false,
+      showDetailBreed: false,
       selectedDiscipline: null,
       disciplines:[],
       selectedRegion:null,
@@ -219,7 +273,7 @@ export default {
         var horse = this.horses[index];
         this.selectedHorse = horse;
 
-        //chiamo il servizio per reperire i dettagli della razza selezionata
+        //chiamo il servizio per reperire i dettagli del cavallo selezionato
         horsesalesService().getHorseDetail(horse.uri).then((data)=>{
               this.selectedHorse.detail = data;
               this.showDetail = true;
@@ -230,10 +284,28 @@ export default {
         
         
       },
-
+      showHorseBreed: function(horseBreedUri){
+        console.log("show horse breed "+horseBreedUri);
+        
+        //chiamo il servizio per reperire i dettagli della razza selezionata
+        horsebreedsService().getBreedDetail(horseBreedUri).then((data)=>{
+          this.selectedBreed = {};  
+          this.selectedBreed.detail = data;
+          this.showDetailBreed = true;
+      
+        }).catch(e => {
+          
+        });
+    
+        
+      },
       hideDetail: function() {
         this.showDetail = false;
         this.selectedHorse = null;
+      },
+      hideDetailBreed: function() {
+        this.showDetailBreed = false;
+        this.selectedBreed = null;
       },
       initFilters: function () {
         this.selectedRegion=null;
