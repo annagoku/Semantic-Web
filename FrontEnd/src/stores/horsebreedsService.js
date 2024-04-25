@@ -24,7 +24,7 @@ export const horsebreedsService = defineStore('horsebreedsService', {
       PREFIX oh: <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#>
       PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
       
-      select ?RazzaUri ?Razza ?Nazionalità ?Indole ?Morfologia (COALESCE(SAMPLE(?Immagine), "n/a") AS ?Immagine) ?Informazioni 
+      select ?RazzaUri ?Razza ?Nazionalità ?Indole ?Morfologia (SAMPLE(?Immagine) AS ?Immagine) ?Informazioni 
       where {
             ?RazzaUri rdf:type oh:RazzaCavallo;
                 skos:prefLabel ?Razza;

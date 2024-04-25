@@ -32,7 +32,8 @@
       <Column field="razza" header="Razza"></Column>
       <Column  header="Immagine">
         <template #body="slotProps">
-            <img v-if="slotProps.data.immagine" :src="`${slotProps.data.immagine}`" :alt="slotProps.data.immagine" class="w-6rem border-round" />
+            <img v-if="slotProps.data.immagine" :src="`${slotProps.data.immagine}`"  class="w-6rem border-round" />
+            <span v-if="!slotProps.data.immagine">N/A</span>
         </template>
       </Column>
       
@@ -46,7 +47,7 @@
       </Column>
       <Column  >
         <template #body="slotProps">
-          <Button icon="pi pi-info" size="small" raised rounded aria-label="Info" @click="showBreedDetail(slotProps.index, slotProps.data)" ></Button>
+          <Button icon="pi pi-info" size="small" style="border-radius: 50%;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);" aria-label="Info" @click="showBreedDetail(slotProps.index, slotProps.data)" ></Button>
         </template>
       </Column>
 

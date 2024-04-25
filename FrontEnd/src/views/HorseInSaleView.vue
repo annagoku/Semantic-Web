@@ -58,7 +58,7 @@
       </Column>
       <Column  >
         <template #body="slotProps">
-          <Button icon="pi pi-info" size="small" raised rounded aria-label="Info" @click="showHorseDetail(slotProps.index, slotProps.data)" ></Button>
+          <Button icon="pi pi-info" size="small" style="border-radius: 50%;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);" aria-label="Info" @click="showHorseDetail(slotProps.index, slotProps.data)" ></Button>
         </template>
       </Column>
 
