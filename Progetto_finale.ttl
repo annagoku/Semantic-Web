@@ -71,8 +71,7 @@ designpatternprice:hasCurrency rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasPrice
-designpatternprice:hasPrice rdf:type owl:AnnotationProperty ;
-                            rdfs:domain oh:Cavallo .
+designpatternprice:hasPrice rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasValue
@@ -103,6 +102,10 @@ designpatternpart:hasPart rdfs:domain oh:AreaGeografica ;
 ###  http://www.ontologydesignpatterns.org/cp/owl/partof.owl#isPartOf
 designpatternpart:isPartOf rdfs:domain oh:AreaGeografica ;
                            rdfs:range oh:AreaGeografica .
+
+
+###  http://www.ontologydesignpatterns.org/cp/owl/price.owl#hasPrice
+designpatternprice:hasPrice rdfs:domain oh:Cavallo .
 
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#adattoAlConseguimentoDi
@@ -640,16 +643,20 @@ oh:CavalloASangueMisto rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloAdulto
 oh:CavalloAdulto rdf:type owl:Class ;
-                 owl:equivalentClass [ rdf:type owl:Restriction ;
-                                       owl:onProperty oh:eta ;
-                                       owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                            owl:onDatatype xsd:integer ;
-                                                            owl:withRestrictions ( [ xsd:minExclusive 6
-                                                                                   ]
-                                                                                   [ xsd:maxInclusive 18
-                                                                                   ]
-                                                                                 )
-                                                          ]
+                 owl:equivalentClass [ owl:intersectionOf ( oh:Cavallo
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty oh:eta ;
+                                                              owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                   owl:onDatatype xsd:integer ;
+                                                                                   owl:withRestrictions ( [ xsd:minExclusive 6
+                                                                                                          ]
+                                                                                                          [ xsd:maxInclusive 18
+                                                                                                          ]
+                                                                                                        )
+                                                                                 ]
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
                                      ] ;
                  rdfs:subClassOf oh:Cavallo ;
                  rdfs:comment "Cavallo con età superiore ai 6 anni"@it ,
@@ -660,14 +667,18 @@ oh:CavalloAdulto rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloAnziano
 oh:CavalloAnziano rdf:type owl:Class ;
-                  owl:equivalentClass [ rdf:type owl:Restriction ;
-                                        owl:onProperty oh:eta ;
-                                        owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                             owl:onDatatype xsd:integer ;
-                                                             owl:withRestrictions ( [ xsd:minExclusive 18
-                                                                                    ]
-                                                                                  )
-                                                           ]
+                  owl:equivalentClass [ owl:intersectionOf ( oh:Cavallo
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty oh:eta ;
+                                                               owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                    owl:onDatatype xsd:integer ;
+                                                                                    owl:withRestrictions ( [ xsd:minExclusive 18
+                                                                                                           ]
+                                                                                                         )
+                                                                                  ]
+                                                             ]
+                                                           ) ;
+                                        rdf:type owl:Class
                                       ] ;
                   rdfs:subClassOf oh:Cavallo ;
                   rdfs:comment "Cavallo con età superiore o uguale ai 18 anni"@it ,
@@ -678,9 +689,13 @@ oh:CavalloAnziano rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloCastrone
 oh:CavalloCastrone rdf:type owl:Class ;
-                   owl:equivalentClass [ rdf:type owl:Restriction ;
-                                         owl:onProperty oh:haSesso ;
-                                         owl:hasValue "castrone"
+                   owl:equivalentClass [ owl:intersectionOf ( oh:Cavallo
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty oh:haSesso ;
+                                                                owl:hasValue "castrone"
+                                                              ]
+                                                            ) ;
+                                         rdf:type owl:Class
                                        ] ;
                    rdfs:subClassOf oh:Cavallo ;
                    rdfs:comment "Castrated male horse of any age"@en ,
@@ -691,9 +706,13 @@ oh:CavalloCastrone rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloDaEquiturismo
 oh:CavalloDaEquiturismo rdf:type owl:Class ;
-                        owl:equivalentClass [ rdf:type owl:Restriction ;
-                                              owl:onProperty oh:vieneUtilizzatoPer ;
-                                              owl:hasValue oh:Equiturismo
+                        owl:equivalentClass [ owl:intersectionOf ( oh:CavalloDaSella
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty oh:vieneUtilizzatoPer ;
+                                                                     owl:hasValue oh:Equiturismo
+                                                                   ]
+                                                                 ) ;
+                                              rdf:type owl:Class
                                             ] ;
                         rdfs:subClassOf oh:CavalloDaSella ;
                         rdfs:comment "Cavallo utilizzato per equiturismo"@it ,
@@ -704,10 +723,14 @@ oh:CavalloDaEquiturismo rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloDaLavoro
 oh:CavalloDaLavoro rdf:type owl:Class ;
-                   owl:equivalentClass [ rdf:type owl:Restriction ;
-                                         owl:onProperty oh:vieneUtilizzatoPer ;
-                                         owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                         owl:onClass oh:Lavoro
+                   owl:equivalentClass [ owl:intersectionOf ( oh:Cavallo
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty oh:vieneUtilizzatoPer ;
+                                                                owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                owl:onClass oh:Lavoro
+                                                              ]
+                                                            ) ;
+                                         rdf:type owl:Class
                                        ] ;
                    rdfs:subClassOf oh:Cavallo ;
                    rdfs:comment "Cavallo impiegato nel lavoro agricolo o nel traino carrozze e/o carichi"@it ,
@@ -718,9 +741,13 @@ oh:CavalloDaLavoro rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloDaSella
 oh:CavalloDaSella rdf:type owl:Class ;
-                  owl:equivalentClass [ rdf:type owl:Restriction ;
-                                        owl:onProperty oh:vieneUtilizzatoPer ;
-                                        owl:someValuesFrom oh:Sella
+                  owl:equivalentClass [ owl:intersectionOf ( oh:Cavallo
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty oh:vieneUtilizzatoPer ;
+                                                               owl:someValuesFrom oh:Sella
+                                                             ]
+                                                           ) ;
+                                        rdf:type owl:Class
                                       ] ;
                   rdfs:subClassOf oh:Cavallo ;
                   rdfs:comment "Cavallo che ha attitudine alla sella"@it ,
@@ -731,9 +758,13 @@ oh:CavalloDaSella rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloDaTiroAgricolo
 oh:CavalloDaTiroAgricolo rdf:type owl:Class ;
-                         owl:equivalentClass [ rdf:type owl:Restriction ;
-                                               owl:onProperty oh:vieneUtilizzatoPer ;
-                                               owl:hasValue oh:TiroAgricolo
+                         owl:equivalentClass [ owl:intersectionOf ( oh:CavalloDaLavoro
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty oh:vieneUtilizzatoPer ;
+                                                                      owl:hasValue oh:TiroAgricolo
+                                                                    ]
+                                                                  ) ;
+                                               rdf:type owl:Class
                                              ] ;
                          rdfs:subClassOf oh:CavalloDaLavoro ;
                          rdfs:comment "Cavallo utilizzato nei lavori agricoli"@it ,
@@ -744,9 +775,13 @@ oh:CavalloDaTiroAgricolo rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloDaTrainoCarrozze
 oh:CavalloDaTrainoCarrozze rdf:type owl:Class ;
-                           owl:equivalentClass [ rdf:type owl:Restriction ;
-                                                 owl:onProperty oh:vieneUtilizzatoPer ;
-                                                 owl:hasValue oh:TrainoCarrozze
+                           owl:equivalentClass [ owl:intersectionOf ( oh:CavalloDaLavoro
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty oh:vieneUtilizzatoPer ;
+                                                                        owl:hasValue oh:TrainoCarrozze
+                                                                      ]
+                                                                    ) ;
+                                                 rdf:type owl:Class
                                                ] ;
                            rdfs:subClassOf oh:CavalloDaLavoro ;
                            rdfs:comment "Cavallo utilizzato per il traino di carrozze merci o passeggeri"@it ,
@@ -757,9 +792,13 @@ oh:CavalloDaTrainoCarrozze rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloFemmina
 oh:CavalloFemmina rdf:type owl:Class ;
-                  owl:equivalentClass [ rdf:type owl:Restriction ;
-                                        owl:onProperty oh:haSesso ;
-                                        owl:hasValue "femmina"
+                  owl:equivalentClass [ owl:intersectionOf ( oh:Cavallo
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty oh:haSesso ;
+                                                               owl:hasValue "femmina"
+                                                             ]
+                                                           ) ;
+                                        rdf:type owl:Class
                                       ] ;
                   rdfs:subClassOf oh:Cavallo ;
                   rdfs:comment "Cavallo il cui sesso è femmina"@it ,
@@ -770,9 +809,13 @@ oh:CavalloFemmina rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloMaschio
 oh:CavalloMaschio rdf:type owl:Class ;
-                  owl:equivalentClass [ rdf:type owl:Restriction ;
-                                        owl:onProperty oh:haSesso ;
-                                        owl:hasValue "maschio"
+                  owl:equivalentClass [ owl:intersectionOf ( oh:Cavallo
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty oh:haSesso ;
+                                                               owl:hasValue "maschio"
+                                                             ]
+                                                           ) ;
+                                        rdf:type owl:Class
                                       ] ;
                   rdfs:subClassOf oh:Cavallo ;
                   rdfs:comment "Cavallo il cui sesso è maschio e non è castrato"@it ,
@@ -783,9 +826,13 @@ oh:CavalloMaschio rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloPerAltaScuola
 oh:CavalloPerAltaScuola rdf:type owl:Class ;
-                        owl:equivalentClass [ rdf:type owl:Restriction ;
-                                              owl:onProperty oh:vieneUtilizzatoPer ;
-                                              owl:hasValue oh:AltaScuola
+                        owl:equivalentClass [ owl:intersectionOf ( oh:CavalloSportivo
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty oh:vieneUtilizzatoPer ;
+                                                                     owl:hasValue oh:AltaScuola
+                                                                   ]
+                                                                 ) ;
+                                              rdf:type owl:Class
                                             ] ;
                         rdfs:subClassOf oh:CavalloSportivo ;
                         rdfs:comment "Cavallo utilizzato nella disciplina sportiva equestre dell'Alta Scuola"@it ,
@@ -796,9 +843,13 @@ oh:CavalloPerAltaScuola rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloPerCrossCountry
 oh:CavalloPerCrossCountry rdf:type owl:Class ;
-                          owl:equivalentClass [ rdf:type owl:Restriction ;
-                                                owl:onProperty oh:vieneUtilizzatoPer ;
-                                                owl:hasValue oh:CrossCountry
+                          owl:equivalentClass [ owl:intersectionOf ( oh:CavalloSportivo
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty oh:vieneUtilizzatoPer ;
+                                                                       owl:hasValue oh:CrossCountry
+                                                                     ]
+                                                                   ) ;
+                                                rdf:type owl:Class
                                               ] ;
                           rdfs:subClassOf oh:CavalloSportivo ;
                           rdfs:comment "Cavallo usato nella disciplina sportiva equestre del cross-country"@it ,
@@ -809,16 +860,20 @@ oh:CavalloPerCrossCountry rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloPerDressage
 oh:CavalloPerDressage rdf:type owl:Class ;
-                      owl:equivalentClass [ rdf:type owl:Class ;
-                                            owl:unionOf ( [ rdf:type owl:Restriction ;
-                                                            owl:onProperty oh:gareggiaNellaCategoriaDiDressage ;
-                                                            owl:someValuesFrom oh:CategorieDressage
-                                                          ]
-                                                          [ rdf:type owl:Restriction ;
-                                                            owl:onProperty oh:vieneUtilizzatoPer ;
-                                                            owl:hasValue oh:Dressage
-                                                          ]
-                                                        )
+                      owl:equivalentClass [ owl:intersectionOf ( oh:CavalloSportivo
+                                                                 [ rdf:type owl:Class ;
+                                                                   owl:unionOf ( [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty oh:gareggiaNellaCategoriaDiDressage ;
+                                                                                   owl:someValuesFrom oh:CategorieDressage
+                                                                                 ]
+                                                                                 [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty oh:vieneUtilizzatoPer ;
+                                                                                   owl:hasValue oh:Dressage
+                                                                                 ]
+                                                                               )
+                                                                 ]
+                                                               ) ;
+                                            rdf:type owl:Class
                                           ] ;
                       rdfs:subClassOf oh:CavalloSportivo ;
                       rdfs:comment "Cavallo utilizzato nella disciplina sportiva equestre del dressage"@it ,
@@ -829,9 +884,13 @@ oh:CavalloPerDressage rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloPerEndurance
 oh:CavalloPerEndurance rdf:type owl:Class ;
-                       owl:equivalentClass [ rdf:type owl:Restriction ;
-                                             owl:onProperty oh:vieneUtilizzatoPer ;
-                                             owl:hasValue oh:Endurance
+                       owl:equivalentClass [ owl:intersectionOf ( oh:CavalloSportivo
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty oh:vieneUtilizzatoPer ;
+                                                                    owl:hasValue oh:Endurance
+                                                                  ]
+                                                                ) ;
+                                             rdf:type owl:Class
                                            ] ;
                        rdfs:subClassOf oh:CavalloSportivo ;
                        rdfs:comment "Cavallo utilizzato nella disciplina sportiva equestre dell'endurance"@it ,
@@ -842,9 +901,13 @@ oh:CavalloPerEndurance rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloPerEventing
 oh:CavalloPerEventing rdf:type owl:Class ;
-                      owl:equivalentClass [ rdf:type owl:Restriction ;
-                                            owl:onProperty oh:vieneUtilizzatoPer ;
-                                            owl:hasValue oh:Eventing
+                      owl:equivalentClass [ owl:intersectionOf ( oh:CavalloSportivo
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty oh:vieneUtilizzatoPer ;
+                                                                   owl:hasValue oh:Eventing
+                                                                 ]
+                                                               ) ;
+                                            rdf:type owl:Class
                                           ] ;
                       rdfs:subClassOf oh:CavalloSportivo ;
                       rdfs:comment "Cavallo utilizzato nella disciplina sportiva equestre dell'eventing"@it ,
@@ -855,16 +918,20 @@ oh:CavalloPerEventing rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloPerSaltoOstacoli
 oh:CavalloPerSaltoOstacoli rdf:type owl:Class ;
-                           owl:equivalentClass [ rdf:type owl:Class ;
-                                                 owl:unionOf ( [ rdf:type owl:Restriction ;
-                                                                 owl:onProperty oh:gareggiaNelleCategorieDiSalto ;
-                                                                 owl:someValuesFrom oh:CategorieDiSalto
-                                                               ]
-                                                               [ rdf:type owl:Restriction ;
-                                                                 owl:onProperty oh:vieneUtilizzatoPer ;
-                                                                 owl:hasValue oh:SaltoAdOstacoli
-                                                               ]
-                                                             )
+                           owl:equivalentClass [ owl:intersectionOf ( oh:CavalloPerSaltoOstacoli
+                                                                      [ rdf:type owl:Class ;
+                                                                        owl:unionOf ( [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty oh:gareggiaNelleCategorieDiSalto ;
+                                                                                        owl:someValuesFrom oh:CategorieDiSalto
+                                                                                      ]
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty oh:vieneUtilizzatoPer ;
+                                                                                        owl:hasValue oh:SaltoAdOstacoli
+                                                                                      ]
+                                                                                    )
+                                                                      ]
+                                                                    ) ;
+                                                 rdf:type owl:Class
                                                ] ;
                            rdfs:subClassOf oh:CavalloSportivo ;
                            rdfs:comment "Cavallo utilizzato nella disciplina sportiva equestre del salto ostacoli"@it ,
@@ -875,10 +942,14 @@ oh:CavalloPerSaltoOstacoli rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloSportivo
 oh:CavalloSportivo rdf:type owl:Class ;
-                   owl:equivalentClass [ rdf:type owl:Restriction ;
-                                         owl:onProperty oh:vieneUtilizzatoPer ;
-                                         owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                         owl:onClass oh:SportEquestre
+                   owl:equivalentClass [ owl:intersectionOf ( oh:CavalloDaSella
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty oh:vieneUtilizzatoPer ;
+                                                                owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                owl:onClass oh:SportEquestre
+                                                              ]
+                                                            ) ;
+                                         rdf:type owl:Class
                                        ] ;
                    rdfs:subClassOf oh:CavalloDaSella ;
                    rdfs:comment "Cavallo utilizzato nello sport equestre"@it ,
@@ -979,10 +1050,14 @@ oh:Persona rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Proprietario
 oh:Proprietario rdf:type owl:Class ;
-                owl:equivalentClass [ rdf:type owl:Restriction ;
-                                      owl:onProperty oh:possiede ;
-                                      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                      owl:onClass oh:Cavallo
+                owl:equivalentClass [ owl:intersectionOf ( oh:Persona
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty oh:possiede ;
+                                                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                             owl:onClass oh:Cavallo
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
                                     ] ;
                 rdfs:subClassOf oh:Persona ;
                 rdfs:comment "La persona che detiene la proprietà del cavallo e ne è autorizzato alla vendita"@it ,
@@ -993,14 +1068,18 @@ oh:Proprietario rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Puledro
 oh:Puledro rdf:type owl:Class ;
-           owl:equivalentClass [ rdf:type owl:Restriction ;
-                                 owl:onProperty oh:eta ;
-                                 owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                      owl:onDatatype xsd:integer ;
-                                                      owl:withRestrictions ( [ xsd:maxInclusive 6
-                                                                             ]
-                                                                           )
-                                                    ]
+           owl:equivalentClass [ owl:intersectionOf ( oh:Cavallo
+                                                      [ rdf:type owl:Restriction ;
+                                                        owl:onProperty oh:eta ;
+                                                        owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                             owl:onDatatype xsd:integer ;
+                                                                             owl:withRestrictions ( [ xsd:maxInclusive 6
+                                                                                                    ]
+                                                                                                  )
+                                                                           ]
+                                                      ]
+                                                    ) ;
+                                 rdf:type owl:Class
                                ] ;
            rdfs:subClassOf oh:Cavallo ;
            rdfs:comment "Cavallo di età inferiore ai 6 anni"@it ,
@@ -1011,9 +1090,13 @@ oh:Puledro rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueCaldo
 oh:RazzaASangueCaldo rdf:type owl:Class ;
-                     owl:equivalentClass [ rdf:type owl:Restriction ;
-                                           owl:onProperty oh:haIndole ;
-                                           owl:hasValue oh:sangueCaldo
+                     owl:equivalentClass [ owl:intersectionOf ( oh:RazzaCavallo
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty oh:haIndole ;
+                                                                  owl:hasValue oh:sangueCaldo
+                                                                ]
+                                                              ) ;
+                                           rdf:type owl:Class
                                          ] ;
                      rdfs:subClassOf oh:RazzaCavallo ;
                      rdfs:comment "Horse breed with warm-blooded temperament"@en ,
@@ -1024,9 +1107,13 @@ oh:RazzaASangueCaldo rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueFreddo
 oh:RazzaASangueFreddo rdf:type owl:Class ;
-                      owl:equivalentClass [ rdf:type owl:Restriction ;
-                                            owl:onProperty oh:haIndole ;
-                                            owl:hasValue oh:sangueFreddo
+                      owl:equivalentClass [ owl:intersectionOf ( oh:RazzaCavallo
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty oh:haIndole ;
+                                                                   owl:hasValue oh:sangueFreddo
+                                                                 ]
+                                                               ) ;
+                                            rdf:type owl:Class
                                           ] ;
                       rdfs:subClassOf oh:RazzaCavallo ;
                       rdfs:comment "Horse breed with cold-blooded temperament"@en ,
@@ -1037,9 +1124,13 @@ oh:RazzaASangueFreddo rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueMisto
 oh:RazzaASangueMisto rdf:type owl:Class ;
-                     owl:equivalentClass [ rdf:type owl:Restriction ;
-                                           owl:onProperty oh:haIndole ;
-                                           owl:hasValue oh:sangueMisto
+                     owl:equivalentClass [ owl:intersectionOf ( oh:RazzaCavallo
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty oh:haIndole ;
+                                                                  owl:hasValue oh:sangueMisto
+                                                                ]
+                                                              ) ;
+                                           rdf:type owl:Class
                                          ] ;
                      rdfs:subClassOf oh:RazzaCavallo ;
                      rdfs:comment "Horse breed with mixed-blooded temperament"@en ,
@@ -1050,9 +1141,13 @@ oh:RazzaASangueMisto rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaBelga
 oh:RazzaBelga rdf:type owl:Class ;
-              owl:equivalentClass [ rdf:type owl:Restriction ;
-                                    owl:onProperty oh:haNazionalità ;
-                                    owl:hasValue oh:Belgio
+              owl:equivalentClass [ owl:intersectionOf ( oh:RazzaEuropea
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty oh:haNazionalità ;
+                                                           owl:hasValue oh:Belgio
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
                                   ] ;
               rdfs:subClassOf oh:RazzaEuropea ;
               rdfs:comment "Horse breed originated from Belgium"@en ,
@@ -1063,9 +1158,13 @@ oh:RazzaBelga rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaBrachimorfa
 oh:RazzaBrachimorfa rdf:type owl:Class ;
-                    owl:equivalentClass [ rdf:type owl:Restriction ;
-                                          owl:onProperty oh:haClassificazioneMorfologica ;
-                                          owl:hasValue oh:brachimorfo
+                    owl:equivalentClass [ owl:intersectionOf ( oh:RazzaCavallo
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty oh:haClassificazioneMorfologica ;
+                                                                 owl:hasValue oh:brachimorfo
+                                                               ]
+                                                             ) ;
+                                          rdf:type owl:Class
                                         ] ;
                     rdfs:subClassOf oh:RazzaCavallo ;
                     rdfs:comment "Horse breed more inclined to the development of musculature, with a wide chest, powerful, massive and not very long shapes."@en ,
@@ -1101,9 +1200,13 @@ oh:RazzaCavallo rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaAltaScuola
 oh:RazzaDaAltaScuola rdf:type owl:Class ;
-                     owl:equivalentClass [ rdf:type owl:Restriction ;
-                                           owl:onProperty oh:puòEssereImpiegataIn ;
-                                           owl:hasValue oh:AltaScuola
+                     owl:equivalentClass [ owl:intersectionOf ( oh:RazzaSportiva
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty oh:puòEssereImpiegataIn ;
+                                                                  owl:hasValue oh:AltaScuola
+                                                                ]
+                                                              ) ;
+                                           rdf:type owl:Class
                                          ] ;
                      rdfs:subClassOf oh:RazzaSportiva ;
                      rdfs:comment "Horse breed that can be used in the equestrian sport discipline of Spanish riding school"@en ,
@@ -1114,9 +1217,13 @@ oh:RazzaDaAltaScuola rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaAttacchi
 oh:RazzaDaAttacchi rdf:type owl:Class ;
-                   owl:equivalentClass [ rdf:type owl:Restriction ;
-                                         owl:onProperty oh:puòEssereImpiegataIn ;
-                                         owl:hasValue oh:TrainoCarrozze
+                   owl:equivalentClass [ owl:intersectionOf ( oh:RazzaDaAttacchi
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty oh:puòEssereImpiegataIn ;
+                                                                owl:hasValue oh:TrainoCarrozze
+                                                              ]
+                                                            ) ;
+                                         rdf:type owl:Class
                                        ] ;
                    rdfs:subClassOf oh:RazzaDaLavoro ;
                    rdfs:comment "Horse breed used for pulling carriages"@en ,
@@ -1127,9 +1234,13 @@ oh:RazzaDaAttacchi rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaCrossCountry
 oh:RazzaDaCrossCountry rdf:type owl:Class ;
-                       owl:equivalentClass [ rdf:type owl:Restriction ;
-                                             owl:onProperty oh:puòEssereImpiegataIn ;
-                                             owl:hasValue oh:CrossCountry
+                       owl:equivalentClass [ owl:intersectionOf ( oh:RazzaSportiva
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty oh:puòEssereImpiegataIn ;
+                                                                    owl:hasValue oh:CrossCountry
+                                                                  ]
+                                                                ) ;
+                                             rdf:type owl:Class
                                            ] ;
                        rdfs:subClassOf oh:RazzaSportiva ;
                        rdfs:comment "Razza di cavallo che può essere utilizzata nella disciplina di sport equestre del cross-country"@it ;
@@ -1140,9 +1251,13 @@ oh:RazzaDaCrossCountry rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaDressage
 oh:RazzaDaDressage rdf:type owl:Class ;
-                   owl:equivalentClass [ rdf:type owl:Restriction ;
-                                         owl:onProperty oh:puòEssereImpiegataIn ;
-                                         owl:hasValue oh:Dressage
+                   owl:equivalentClass [ owl:intersectionOf ( oh:RazzaSportiva
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty oh:puòEssereImpiegataIn ;
+                                                                owl:hasValue oh:Dressage
+                                                              ]
+                                                            ) ;
+                                         rdf:type owl:Class
                                        ] ;
                    rdfs:subClassOf oh:RazzaSportiva ;
                    rdfs:comment "Horse breed that can be used in the equestrian sport discipline of Dressage"@en ,
@@ -1153,9 +1268,13 @@ oh:RazzaDaDressage rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaEquiturismo
 oh:RazzaDaEquiturismo rdf:type owl:Class ;
-                      owl:equivalentClass [ rdf:type owl:Restriction ;
-                                            owl:onProperty oh:puòEssereImpiegataIn ;
-                                            owl:hasValue oh:Equiturismo
+                      owl:equivalentClass [ owl:intersectionOf ( oh:RazzaDaSella
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty oh:puòEssereImpiegataIn ;
+                                                                   owl:hasValue oh:Equiturismo
+                                                                 ]
+                                                               ) ;
+                                            rdf:type owl:Class
                                           ] ;
                       rdfs:subClassOf oh:RazzaDaSella ;
                       rdfs:comment "Horse breed that can be used for equestrian tourism (or trekking)"@en ,
@@ -1166,9 +1285,13 @@ oh:RazzaDaEquiturismo rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaEventing
 oh:RazzaDaEventing rdf:type owl:Class ;
-                   owl:equivalentClass [ rdf:type owl:Restriction ;
-                                         owl:onProperty oh:puòEssereImpiegataIn ;
-                                         owl:hasValue oh:Eventing
+                   owl:equivalentClass [ owl:intersectionOf ( oh:RazzaSportiva
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty oh:puòEssereImpiegataIn ;
+                                                                owl:hasValue oh:Eventing
+                                                              ]
+                                                            ) ;
+                                         rdf:type owl:Class
                                        ] ;
                    rdfs:subClassOf oh:RazzaSportiva ;
                    rdfs:comment "Horse breed that can be used in the equestrian sport discipline of eventing"@en ,
@@ -1179,10 +1302,14 @@ oh:RazzaDaEventing rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaLavoro
 oh:RazzaDaLavoro rdf:type owl:Class ;
-                 owl:equivalentClass [ rdf:type owl:Restriction ;
-                                       owl:onProperty oh:puòEssereImpiegataIn ;
-                                       owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                       owl:onClass oh:Lavoro
+                 owl:equivalentClass [ owl:intersectionOf ( oh:RazzaCavallo
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty oh:puòEssereImpiegataIn ;
+                                                              owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                              owl:onClass oh:Lavoro
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
                                      ] ;
                  rdfs:subClassOf oh:RazzaCavallo ;
                  rdfs:comment "Breed of horse used in agricultural work or for pulling carriages"@en ,
@@ -1193,9 +1320,13 @@ oh:RazzaDaLavoro rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSaltoOstacoli
 oh:RazzaDaSaltoOstacoli rdf:type owl:Class ;
-                        owl:equivalentClass [ rdf:type owl:Restriction ;
-                                              owl:onProperty oh:puòEssereImpiegataIn ;
-                                              owl:hasValue oh:SaltoAdOstacoli
+                        owl:equivalentClass [ owl:intersectionOf ( oh:RazzaSportiva
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty oh:puòEssereImpiegataIn ;
+                                                                     owl:hasValue oh:SaltoAdOstacoli
+                                                                   ]
+                                                                 ) ;
+                                              rdf:type owl:Class
                                             ] ;
                         rdfs:subClassOf oh:RazzaSportiva ;
                         rdfs:comment "Horse breed that can be used in the equestrian sport discipline of jumping"@en ,
@@ -1206,9 +1337,13 @@ oh:RazzaDaSaltoOstacoli rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella
 oh:RazzaDaSella rdf:type owl:Class ;
-                owl:equivalentClass [ rdf:type owl:Restriction ;
-                                      owl:onProperty oh:puòEssereImpiegataIn ;
-                                      owl:someValuesFrom oh:Sella
+                owl:equivalentClass [ owl:intersectionOf ( oh:RazzaCavallo
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty oh:puòEssereImpiegataIn ;
+                                                             owl:someValuesFrom oh:Sella
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
                                     ] ;
                 rdfs:subClassOf oh:RazzaCavallo ;
                 rdfs:comment "Horse breed suitable for the saddle"@en ,
@@ -1219,9 +1354,13 @@ oh:RazzaDaSella rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaTiroAgricolo
 oh:RazzaDaTiroAgricolo rdf:type owl:Class ;
-                       owl:equivalentClass [ rdf:type owl:Restriction ;
-                                             owl:onProperty oh:puòEssereImpiegataIn ;
-                                             owl:hasValue oh:TiroAgricolo
+                       owl:equivalentClass [ owl:intersectionOf ( oh:RazzaDaLavoro
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty oh:puòEssereImpiegataIn ;
+                                                                    owl:hasValue oh:TiroAgricolo
+                                                                  ]
+                                                                ) ;
+                                             rdf:type owl:Class
                                            ] ;
                        rdfs:subClassOf oh:RazzaDaLavoro ;
                        rdfs:comment "Horse breed used for agricultural work"@en ,
@@ -1232,9 +1371,13 @@ oh:RazzaDaTiroAgricolo rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDanese
 oh:RazzaDanese rdf:type owl:Class ;
-               owl:equivalentClass [ rdf:type owl:Restriction ;
-                                     owl:onProperty oh:haNazionalità ;
-                                     owl:hasValue oh:Danimarca
+               owl:equivalentClass [ owl:intersectionOf ( oh:RazzaEuropea
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty oh:haNazionalità ;
+                                                            owl:hasValue oh:Danimarca
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
                                    ] ;
                rdfs:subClassOf oh:RazzaEuropea ;
                rdfs:comment "Horse breed originated from Denmark"@en ,
@@ -1245,9 +1388,13 @@ oh:RazzaDanese rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDolicomorfa
 oh:RazzaDolicomorfa rdf:type owl:Class ;
-                    owl:equivalentClass [ rdf:type owl:Restriction ;
-                                          owl:onProperty oh:haClassificazioneMorfologica ;
-                                          owl:hasValue oh:dolicomorfo
+                    owl:equivalentClass [ owl:intersectionOf ( oh:RazzaCavallo
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty oh:haClassificazioneMorfologica ;
+                                                                 owl:hasValue oh:dolicomorfo
+                                                               ]
+                                                             ) ;
+                                          rdf:type owl:Class
                                         ] ;
                     rdfs:subClassOf oh:RazzaCavallo ;
                     rdfs:comment "Horse breed more suitable for fast and long gaits than for tests of strength: it has a deep chest, elongated lines and joints with very open angles. The figure is agile, light and slender."@en ,
@@ -1258,9 +1405,13 @@ oh:RazzaDolicomorfa rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaEndurance
 oh:RazzaEndurance rdf:type owl:Class ;
-                  owl:equivalentClass [ rdf:type owl:Restriction ;
-                                        owl:onProperty oh:puòEssereImpiegataIn ;
-                                        owl:hasValue oh:Endurance
+                  owl:equivalentClass [ owl:intersectionOf ( oh:RazzaSportiva
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty oh:puòEssereImpiegataIn ;
+                                                               owl:hasValue oh:Endurance
+                                                             ]
+                                                           ) ;
+                                        rdf:type owl:Class
                                       ] ;
                   rdfs:subClassOf oh:RazzaSportiva ;
                   rdfs:comment "Horse breed that can be used in the equestrian sport discipline of endurance"@en ,
@@ -1280,9 +1431,13 @@ oh:RazzaEuropea rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaFrancese
 oh:RazzaFrancese rdf:type owl:Class ;
-                 owl:equivalentClass [ rdf:type owl:Restriction ;
-                                       owl:onProperty oh:haNazionalità ;
-                                       owl:hasValue oh:Francia
+                 owl:equivalentClass [ owl:intersectionOf ( oh:RazzaEuropea
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty oh:haNazionalità ;
+                                                              owl:hasValue oh:Francia
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
                                      ] ;
                  rdfs:subClassOf oh:RazzaEuropea ;
                  rdfs:comment "Horse breed originated from France"@en ,
@@ -1293,9 +1448,13 @@ oh:RazzaFrancese rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaInglese
 oh:RazzaInglese rdf:type owl:Class ;
-                owl:equivalentClass [ rdf:type owl:Restriction ;
-                                      owl:onProperty oh:haNazionalità ;
-                                      owl:hasValue oh:RegnoUnito
+                owl:equivalentClass [ owl:intersectionOf ( oh:RazzaEuropea
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty oh:haNazionalità ;
+                                                             owl:hasValue oh:RegnoUnito
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
                                     ] ;
                 rdfs:subClassOf oh:RazzaEuropea ;
                 rdfs:comment "Horse breed originated from United Kingdom"@en ,
@@ -1306,9 +1465,13 @@ oh:RazzaInglese rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaItaliana
 oh:RazzaItaliana rdf:type owl:Class ;
-                 owl:equivalentClass [ rdf:type owl:Restriction ;
-                                       owl:onProperty oh:haNazionalità ;
-                                       owl:hasValue oh:Italia
+                 owl:equivalentClass [ owl:intersectionOf ( oh:RazzaEuropea
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty oh:haNazionalità ;
+                                                              owl:hasValue oh:Italia
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
                                      ] ;
                  rdfs:subClassOf oh:RazzaEuropea ;
                  rdfs:comment "Horse breed originated from Italy"@en ,
@@ -1319,9 +1482,13 @@ oh:RazzaItaliana rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaMesoBrachimorfa
 oh:RazzaMesoBrachimorfa rdf:type owl:Class ;
-                        owl:equivalentClass [ rdf:type owl:Restriction ;
-                                              owl:onProperty oh:haClassificazioneMorfologica ;
-                                              owl:hasValue oh:mesoBrachimorfo
+                        owl:equivalentClass [ owl:intersectionOf ( oh:RazzaCavallo
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty oh:haClassificazioneMorfologica ;
+                                                                     owl:hasValue oh:mesoBrachimorfo
+                                                                   ]
+                                                                 ) ;
+                                              rdf:type owl:Class
                                             ] ;
                         rdfs:subClassOf oh:RazzaCavallo ;
                         rdfs:comment "Horse breed between draft horses and riding horses."@en ,
@@ -1332,9 +1499,13 @@ oh:RazzaMesoBrachimorfa rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaMesoDolicomorfa
 oh:RazzaMesoDolicomorfa rdf:type owl:Class ;
-                        owl:equivalentClass [ rdf:type owl:Restriction ;
-                                              owl:onProperty oh:haClassificazioneMorfologica ;
-                                              owl:hasValue oh:mesoDolicomorfo
+                        owl:equivalentClass [ owl:intersectionOf ( oh:RazzaCavallo
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty oh:haClassificazioneMorfologica ;
+                                                                     owl:hasValue oh:mesoDolicomorfo
+                                                                   ]
+                                                                 ) ;
+                                              rdf:type owl:Class
                                             ] ;
                         rdfs:subClassOf oh:RazzaCavallo ;
                         rdfs:comment "Powerful horse breed, strong but at the same time agile and noble in bearing."@en ,
@@ -1345,9 +1516,13 @@ oh:RazzaMesoDolicomorfa rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaOlandese
 oh:RazzaOlandese rdf:type owl:Class ;
-                 owl:equivalentClass [ rdf:type owl:Restriction ;
-                                       owl:onProperty oh:haNazionalità ;
-                                       owl:hasValue oh:PaesiBassi
+                 owl:equivalentClass [ owl:intersectionOf ( oh:RazzaEuropea
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty oh:haNazionalità ;
+                                                              owl:hasValue oh:PaesiBassi
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
                                      ] ;
                  rdfs:subClassOf oh:RazzaEuropea ;
                  rdfs:comment "Horse breed originated from Holland"@en ,
@@ -1358,9 +1533,13 @@ oh:RazzaOlandese rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaPortoghese
 oh:RazzaPortoghese rdf:type owl:Class ;
-                   owl:equivalentClass [ rdf:type owl:Restriction ;
-                                         owl:onProperty oh:haNazionalità ;
-                                         owl:hasValue oh:Portogallo
+                   owl:equivalentClass [ owl:intersectionOf ( oh:RazzaEuropea
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty oh:haNazionalità ;
+                                                                owl:hasValue oh:Portogallo
+                                                              ]
+                                                            ) ;
+                                         rdf:type owl:Class
                                        ] ;
                    rdfs:subClassOf oh:RazzaEuropea ;
                    rdfs:comment "Horse breed originated from Portugal"@en ,
@@ -1371,9 +1550,13 @@ oh:RazzaPortoghese rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSpagnola
 oh:RazzaSpagnola rdf:type owl:Class ;
-                 owl:equivalentClass [ rdf:type owl:Restriction ;
-                                       owl:onProperty oh:haNazionalità ;
-                                       owl:hasValue oh:Spagna
+                 owl:equivalentClass [ owl:intersectionOf ( oh:RazzaEuropea
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty oh:haNazionalità ;
+                                                              owl:hasValue oh:Spagna
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
                                      ] ;
                  rdfs:subClassOf oh:RazzaEuropea ;
                  rdfs:comment "Horse breed originated from Spain"@en ,
@@ -1384,10 +1567,14 @@ oh:RazzaSpagnola rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva
 oh:RazzaSportiva rdf:type owl:Class ;
-                 owl:equivalentClass [ rdf:type owl:Restriction ;
-                                       owl:onProperty oh:puòEssereImpiegataIn ;
-                                       owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                       owl:onClass oh:SportEquestre
+                 owl:equivalentClass [ owl:intersectionOf ( oh:RazzaDaSella
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty oh:puòEssereImpiegataIn ;
+                                                              owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                              owl:onClass oh:SportEquestre
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
                                      ] ;
                  rdfs:subClassOf oh:RazzaDaSella ;
                  rdfs:comment "Horse breed that can be used in equestrian sports"@en ,
@@ -1398,9 +1585,13 @@ oh:RazzaSportiva rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzamMesomorfa
 oh:RazzamMesomorfa rdf:type owl:Class ;
-                   owl:equivalentClass [ rdf:type owl:Restriction ;
-                                         owl:onProperty oh:haClassificazioneMorfologica ;
-                                         owl:hasValue oh:mesomorfo
+                   owl:equivalentClass [ owl:intersectionOf ( oh:RazzaCavallo
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty oh:haClassificazioneMorfologica ;
+                                                                owl:hasValue oh:mesomorfo
+                                                              ]
+                                                            ) ;
+                                         rdf:type owl:Class
                                        ] ;
                    rdfs:subClassOf oh:RazzaCavallo ;
                    rdfs:comment "Horse breed with a much lighter physical structure than the brachymorph, but still powerful and compact."@en ,
@@ -1780,6 +1971,7 @@ oh:C90 rdf:type owl:NamedIndividual ;
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CastroneAngloAraboFrancese
 oh:CastroneAngloAraboFrancese rdf:type owl:NamedIndividual ,
                                        oh:Cavallo ;
+                              designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#15000Euro> ;
                               oh:haRazza oh:AngloAraboFrancese ;
                               oh:vieneUtilizzatoPer oh:CrossCountry ;
                               oh:èAdattoPer oh:CavaliereIntermedio ;
@@ -1790,7 +1982,6 @@ oh:CastroneAngloAraboFrancese rdf:type owl:NamedIndividual ,
                               oh:haSesso "castrone" ;
                               oh:nomeCavallo "Filè" ;
                               schema:image <https://www.equirodi.it/images/annonces/l/857696_1711550997_1626.jpg> ;
-                              designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#15000Euro> ;
                               rdfs:comment "15 year old French Anglo-Arab gelding for sale. Not suitable for beginners. Currently used for cross-country competitions."@en ,
                                            "Esemplare di cavallo castrone anglo-arabo francese di 15 anni  in vendita. Non adatto a principianti. Attualmente utilizzato per competizioni di cross-country."@it ;
                               rdfs:label "Castrone anglo-arabo francese"@it ,
@@ -1800,6 +1991,7 @@ oh:CastroneAngloAraboFrancese rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CastroneFrancese
 oh:CastroneFrancese rdf:type owl:NamedIndividual ,
                              oh:Cavallo ;
+                    designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#18000Euro> ;
                     oh:gareggiaNelleCategorieDiSalto oh:C110 ,
                                                      oh:C125 ;
                     oh:haRazza oh:SellaFrancese ;
@@ -1811,7 +2003,6 @@ oh:CastroneFrancese rdf:type owl:NamedIndividual ,
                     oh:haSesso "castrone" ;
                     oh:nomeCavallo "Elton" ;
                     schema:image <https://www.equirodi.it/images/annonces/xl/855373_1710395667_3888.jpg> ;
-                    designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#18000Euro> ;
                     rdfs:comment "Esemplare di castrone francese in vendita. Anno 2016. Attualmente impegnato in salto ad ostacoli nelle categorie C110 e C125. Adatto a tutti. Facile gestione sia a terra che in sella. Adatto come primo cavallo per il conseguimento del brevetto."@it ,
                                  "French gelding for sale. Year 2016. Currently involved in show jumping in the C110 and C125 categories. Suitable for everyone. Easy management both on the ground and in the saddle. Suitable as the first horse for obtaining the licence."@en ;
                     rdfs:label "Castrone Francese"@it ,
@@ -1821,6 +2012,7 @@ oh:CastroneFrancese rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CastroneItaliano
 oh:CastroneItaliano rdf:type owl:NamedIndividual ,
                              oh:Cavallo ;
+                    designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#12000Euro> ;
                     oh:gareggiaNelleCategorieDiSalto oh:C100 ,
                                                      oh:C80 ;
                     oh:haRazza oh:SellaItaliano ;
@@ -1832,7 +2024,6 @@ oh:CastroneItaliano rdf:type owl:NamedIndividual ,
                     oh:haSesso "castrone" ;
                     oh:nomeCavallo "Dracon's Breaker" ;
                     schema:image <https://www.equirodi.it/images/annonces/xl/857207_1711357444_2037.jpg> ;
-                    designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#12000Euro> ;
                     rdfs:comment "11 year old Italian gelding horse for sale. Currently involved in show jumping in the C100 categories. Suitable for beginners with a minimum of experience. Difficult management in the box."@en ,
                                  "Esemplare di cavallo castrone italiano di 11 anni in vendita. Attualmente impegnato nel salto ad ostacoli nelle categorie C100. Adatto a principianti con un minimo di esperienza. Difficile gestione in box."@it ;
                     rdfs:label "Castrone italiano"@it ,
@@ -1987,6 +2178,7 @@ oh:F rdf:type owl:NamedIndividual ;
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#FemminaBretone
 oh:FemminaBretone rdf:type owl:NamedIndividual ,
                            oh:Cavallo ;
+                  designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#2500Euro> ;
                   oh:haRazza oh:Bretone ;
                   oh:vieneUtilizzatoPer oh:TiroAgricolo ;
                   oh:èAdattoPer oh:CavalierePrincipiante ;
@@ -1997,7 +2189,6 @@ oh:FemminaBretone rdf:type owl:NamedIndividual ,
                   oh:haSesso "femmina" ;
                   oh:nomeCavallo "Carmen" ;
                   schema:image <https://www.equirodi.it/images/annonces/xl/857985_1711659932_3839.jpg> ;
-                  designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#2500Euro> ;
                   rdfs:comment "18 year old Breton female specimen for sale ideal for agricultural work. Good temper"@en ,
                                "Esemplare di femmina bretone di 18 anni in vendita ideale per lavori agricoli. Buon carattere."@it ;
                   rdfs:label "Female breton horse"@en ,
@@ -2007,6 +2198,7 @@ oh:FemminaBretone rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#FemminaMaremmano
 oh:FemminaMaremmano rdf:type owl:NamedIndividual ,
                              oh:Cavallo ;
+                    designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#5000Euro> ;
                     oh:haRazza oh:Maremmano ;
                     oh:vieneUtilizzatoPer oh:Equiturismo ,
                                           oh:TrainoCarrozze ;
@@ -2018,7 +2210,6 @@ oh:FemminaMaremmano rdf:type owl:NamedIndividual ,
                     oh:haSesso "femmina" ;
                     oh:nomeCavallo "Penelope" ;
                     schema:image <http://www.anamcavallomaremmano.com/typo3temp/pics/d887dddef7.jpg> ;
-                    designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#5000Euro> ;
                     rdfs:comment "Esemplare di femmina maremmano in vendita. Anno 2004. Adatto a tutti. Facile gestione anche in passeggiata"@it ,
                                  "Female Maremma for sale. Suitable for everyone. Year 2004. Easy management even when walking"@en ;
                     rdfs:label "Female maremmano horse"@en ,
@@ -2028,6 +2219,7 @@ oh:FemminaMaremmano rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#FemminaMurgese
 oh:FemminaMurgese rdf:type owl:NamedIndividual ,
                            oh:Cavallo ;
+                  designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#4800Euro> ;
                   oh:gareggiaNellaCategoriaDiDressage oh:D ;
                   oh:gareggiaNelleCategorieDiSalto oh:C80 ;
                   oh:haRazza oh:Murgese ;
@@ -2041,7 +2233,6 @@ oh:FemminaMurgese rdf:type owl:NamedIndividual ,
                   oh:haSesso "femmina" ;
                   oh:nomeCavallo "Queen" ;
                   schema:image <https://www.equirodi.it/images/annonces/xl/855775_1710607148_7462.jpg> ;
-                  designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#4800Euro> ;
                   rdfs:comment "4 year old Murgese female for sale. Excellent for dressage and show jumping up to patent category. Very easy management on the go and in the box. Suitable for beginners."@en ,
                                "Esemplare di femmina murgese di 4 anni in vendita. Ottima per dressage e salto ad ostacoli fino a categoria brevetto. Facilissima gestione in passeggiata e in box. Adatta a principianti."@it ;
                   rdfs:label "Female murgese"@en ,
@@ -2300,6 +2491,7 @@ oh:Maremmano rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#MaschioAndaluso
 oh:MaschioAndaluso rdf:type owl:NamedIndividual ,
                             oh:Cavallo ;
+                   designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#7000Euro> ;
                    oh:gareggiaNellaCategoriaDiDressage oh:F ;
                    oh:haRazza oh:Andaluso ;
                    oh:vieneUtilizzatoPer oh:AltaScuola ;
@@ -2311,7 +2503,6 @@ oh:MaschioAndaluso rdf:type owl:NamedIndividual ,
                    oh:haSesso "maschio" ;
                    oh:nomeCavallo "Fuser" ;
                    schema:image <https://cdn.ehorses.media/image/blur/big/andaluso-giumenta-11anni-160-cm-grigio-cavalli-per-ricreazione-cavalli-da-dressage-wellheim_22ccd770-84e8-4983-8669-b3fd22c544cd.jpg> ;
-                   designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#7000Euro> ;
                    rdfs:comment "Esemplare di cavallo maschio andaluso in vendita. Anno 2020. Ottima genealogia. Utilizzato in gare di dressage ed Alta scuola. Adatto a cavalieri con un minimo di esperienza."@it ,
                                 "Male Andalusian horse for sale. Year 2020. Excellent genealogy. Used in dressage and high school competitions. Suitable for riders with a minimum of experience."@en ;
                    rdfs:label "Andalusian male"@en ,
@@ -2321,6 +2512,7 @@ oh:MaschioAndaluso rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#MaschioOlandese
 oh:MaschioOlandese rdf:type owl:NamedIndividual ,
                             oh:Cavallo ;
+                   designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#35000Euro> ;
                    oh:gareggiaNelleCategorieDiSalto oh:C135 ;
                    oh:haRazza oh:OlandeseASangueCaldo ;
                    oh:vieneUtilizzatoPer oh:SaltoAdOstacoli ;
@@ -2331,7 +2523,6 @@ oh:MaschioOlandese rdf:type owl:NamedIndividual ,
                    oh:haSesso "maschio" ;
                    oh:nomeCavallo "Mufasa" ;
                    schema:image <https://www.equirodi.it/images/annonces/xl/854164_1709831119_8149.jpg> ;
-                   designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#35000Euro> ;
                    rdfs:comment "12 year old male Dutch horse for sale. Excellent for obtaining 1st and 2nd degrees. Suitable for experienced riders. Difficult management on the ground."@en ,
                                 "Esemplare di cavallo maschio olandese di 12 anni  in vendita. Ottimo per il conseguimento di 1° e 2° grado. Adatto a cavalieri esperti. Difficile gestione a terra."@it ;
                    rdfs:label "Dutch male"@en ,
@@ -2341,6 +2532,7 @@ oh:MaschioOlandese rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#MaschioPuroSangueInglese
 oh:MaschioPuroSangueInglese rdf:type owl:NamedIndividual ,
                                      oh:Cavallo ;
+                            designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#20000Euro> ;
                             oh:haRazza oh:PuroSangueInglese ;
                             oh:vieneUtilizzatoPer oh:Endurance ;
                             oh:èAdattoPer oh:CavaliereMoltoEsperto ;
@@ -2351,7 +2543,6 @@ oh:MaschioPuroSangueInglese rdf:type owl:NamedIndividual ,
                             oh:haSesso "maschio" ;
                             oh:nomeCavallo "Fulmine Del Monte Acuto" ;
                             schema:image <https://cdn.ehorses.media/image/blur/big/purosangue-inglese-castrone-11anni-167-cm-sauro-cavalli-da-completo-langenhagen_c785185a-0bc2-41c5-9eb5-077fb8170f36.jpg> ;
-                            designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#20000Euro> ;
                             rdfs:comment "English Thoroughbred example for sale. Year 2014. Excellent results in endurance competitions. It requires a very experienced rider. Easy handling on the ground."@en ,
                                          "Esemplare di purosangue inglese in vendita. Anno 2014. Ottimi risultati nelle competizioni di endurance. Richiede un cavaliere molto esperto. Facile gestione a terra."@it ;
                             rdfs:label "Maschio purosangue inglese"@it ,
@@ -2361,6 +2552,7 @@ oh:MaschioPuroSangueInglese rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#MaschioTedesco
 oh:MaschioTedesco rdf:type owl:NamedIndividual ,
                            oh:Cavallo ;
+                  designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#15000Euro> ;
                   oh:gareggiaNelleCategorieDiSalto oh:C115 ;
                   oh:haRazza oh:Holstein ;
                   oh:vieneUtilizzatoPer oh:CrossCountry ,
@@ -2372,7 +2564,6 @@ oh:MaschioTedesco rdf:type owl:NamedIndividual ,
                   oh:haSesso "maschio" ;
                   oh:nomeCavallo "Luther Lucifer" ;
                   schema:image <https://www.equirodi.it/images/annonces/xl/835574_1705591089.jpg> ;
-                  designpatternprice:hasPrice <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#15000Euro> ;
                   rdfs:comment "16 year old German male specimen for sale. It has vehicles up to category C115. Easy management. Suitable for everyone. Excellent for obtaining the patent."@en ,
                                "Esemplare di maschio tedesco di 16 anni in vendita. Ha i mezzi fino alla categoria C115. Facile gestione. Adatto a tutti. Ottimo per il conseguimento del brevetto."@it ;
                   rdfs:label "German male"@en ,
@@ -2781,8 +2972,8 @@ oh:brachimorfo rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brevetto
 oh:brevetto rdf:type owl:NamedIndividual ,
                      oh:Patente ;
-            oh:vieneConseguitoDa oh:CavalierePrincipiante ;
             <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#precedes> oh:primoGrado ;
+            oh:vieneConseguitoDa oh:CavalierePrincipiante ;
             rdfs:comment "Authorizes the practice of competitive equestrian sports based on the specific specialty of the license acquired by the rider. Thebrevetto authorizes participation in show jumping competitions of category C80 or higher"@en ,
                          "Autorizza all’esercizio della pratica sportiva agonistica degli sport equestri in funzione della specifica specialità del brevetto acquisito dal cavaliere. Il brevetto autorizza a partecipare a gare di salto ad ostacoli di categoria C80 o superiore"@it ;
             rdfs:label "brevetto"@en ,
@@ -2916,9 +3107,9 @@ oh:patenteNonAgonistica rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#primoGrado
 oh:primoGrado rdf:type owl:NamedIndividual ,
                        oh:Patente ;
+              <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#precedes> oh:secondoGrado ;
               oh:vieneConseguitoDa oh:CavaliereEsperto ,
                                    oh:CavaliereIntermedio ;
-              <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#precedes> oh:secondoGrado ;
               rdfs:comment "Authorizes the practice of competitive equestrian sports based on the specific specialty of the license acquired by the rider. The 1° grado authorizes participation in show jumping competitions of category C115 or higher"@en ,
                            "Autorizza all’esercizio della pratica sportiva agonistica degli sport equestri in funzione della specifica specialità del brevetto acquisito dal cavaliere. Il 1° grado autorizza a partecipare a gare di salto ad ostacoli di categoria C115 o superiore"@it ;
               rdfs:label "1° grado"@en ,

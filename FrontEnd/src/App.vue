@@ -38,7 +38,7 @@ export default {
   name: "App",
   data() {
     return {
-      title: "Cavalli Online"
+      title: "OntoHorses"
     };
   },
   mounted : function () {

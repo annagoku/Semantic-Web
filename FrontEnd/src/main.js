@@ -13,9 +13,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-//import vue3GoogleLogin from 'vue3-google-login'
 
-//import VueGoogleMaps from '@fawmi/vue-google-maps'
 
 import 'bootstrap'
 import '@popperjs/core'
@@ -37,7 +35,7 @@ import Tooltip from 'primevue/tooltip';
 
 library.add(fas, far, fab);
 
-//Vue.component('font-awesome-icon', FontAwesomeIcon)
+
 
 const app = createApp(App)
 app.use(PrimeVue);
@@ -45,16 +43,6 @@ app.component('font-awesome-icon', FontAwesomeIcon);
 app.use(createPinia());
 app.use(router);
 app.directive('tooltip', Tooltip);
-//app.use(vue3GoogleLogin, {
-//    clientId: '611173840916-5v68c71u7pg7atk55nhofes0srh8b287.apps.googleusercontent.com'   //Initialize the vue3-google-login plugin in main.js, this will register a component GoogleLogin globally
-//});
-/*
-app.use(VueGoogleMaps, {
-    load: {
-        key: '',
-        language: 'it',
-    }
-});
-*/
+
 
 app.mount('#app')
