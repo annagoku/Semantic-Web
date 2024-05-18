@@ -375,9 +375,7 @@ export const horsesalesService = defineStore('horsesalesService', {
         throw error;
       }
     },
-
    
-  },
-
+  }
   
 })

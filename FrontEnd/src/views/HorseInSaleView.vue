@@ -16,9 +16,7 @@
         <span class="ml-5">
         <Button type="button"  icon="pi pi-filter"  style="border-radius: 50%;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);" @click="filterHorseInSale()"></Button>
       </span>
-        <span class="ml-5">
-        <Button type="button"  icon="pi pi-plus" severity="success"  style="border-radius: 50%;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);" @click="showAddHorseInSale()"></Button>
-      </span>
+        
          </span>
       
   </div>
@@ -172,104 +170,6 @@
         <Button label="Chiudi"  @click="hideDetailBreed"   />
     </template>
 </Dialog>
-
-
-<!-- DIALOG INSERIMENTO NUOVO ANNUNCIO-->
-<Dialog v-model:visible="showNewHorseInSale" modal header="Nuovo annuncio di vendita" :style="{ width: '75vw' }" :breakpoints="{ '960px': '75vw', '641px': '100vw' }">
-  
-  <div class="container">
-
-    <div class="row pt-5">
-      <span class="p-float-label col-xs-3 col-md-3">
-        <FloatLabel>
-            <InputText id="horseName" v-model="newHorse" />
-            <label for="horseName">Nome del cavallo</label>
-        </FloatLabel>
-     </span>
-     <span class="p-float-label col-xs-3 col-md-3">
-        <FloatLabel>
-            <InputText id="horseBreed" v-model="newHorse" />
-            <label for="horseBreed">Razza</label>
-        </FloatLabel>
-      </span>
-      <span class="p-float-label col-xs-3 col-md-3">
-        <FloatLabel>
-          <Dropdown v-model="newHorse" :options="sesso" optionLabel="type" placeholder="Seleziona un sesso" class="w-full md:w-14rem" />
-            <label for="horseSex">Sesso</label>
-        </FloatLabel>
-      </span>
-      
-    
-  </div>
-  <div class="row pt-5">
-      <span class="p-float-label col-xs-3 col-md-3">
-        <FloatLabel>
-            <InputNumber id="horseAge" v-model="newHorse" inputId="integeronly" />
-            <label for="horseAge">Età</label>
-        </FloatLabel>
-     </span>
-     <span class="p-float-label col-xs-3 col-md-3">
-        <FloatLabel>
-            <InputNumber id="horseHeight" v-model="newHorse" inputId="minmaxfraction" :minFractionDigits="2" :maxFractionDigits="3" />
-            <label for="horseHeight">Altezza al garrese [cm]</label>
-        </FloatLabel>
-      </span>
-      
-    
-  </div>
-  <div class="row pt-5">
-      <span class="p-float-label col-xs-3 col-md-3">
-        <FloatLabel>
-            <InputText id="horseOwnerName" v-model="newHorse" />
-            <label for="horseOwnerName">Nome Proprietario</label>
-        </FloatLabel>
-     </span>
-     <span class="p-float-label col-xs-3 col-md-3">
-        <FloatLabel>
-            <InputText id="horseOwnerSurname" v-model="newHorse" />
-            <label for="horseOwnerSurname">Cognome proprietario</label>
-        </FloatLabel>
-      </span>
-    
-  </div>
-  <div class="row pt-5">
-      <span class="p-float-label col-xs-3 col-md-3">
-        <FloatLabel>
-            <InputText id="horseRegion" v-model="newHorse" />
-            <label for="horseRegion">Regione di scuderizzazione</label>
-        </FloatLabel>
-     </span>
-     <span class="p-float-label col-xs-3 col-md-3">
-        <FloatLabel>
-            <InputText id="horseCity" v-model="newHorse" />
-            <label for="horseCity">Città di scuderizzazione</label>
-        </FloatLabel>
-      </span>
-    
-  </div>
-
-
-</div>
-  
-  <p>
-     <br/>
-    
-  </p>
-         
-    
-
-    <template #footer>
-        <Button label="Salva"  @click="saveNewHorseInsale()"   />
-        <Button label="Annulla"  @click="hideNewHorseInSale()"   />
-    </template>
-</Dialog>
-
-
-
-
-
-
-
 
 </template>
 
