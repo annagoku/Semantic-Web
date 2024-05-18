@@ -1,4 +1,5 @@
 <script setup>
+/* Componente di visualizzazione principale dell'applicazione */
 import { useStore } from '@/stores/store'
 import {RouterView } from 'vue-router'
 import NavBar from './components/NavBar.vue'
@@ -11,10 +12,15 @@ const store = useStore()
 </script>
 
 <template>
+  <!-- Spinner per loading generico di pagina  -->
   <div v-if="store.loading" class="overlay">
     <ProgressSpinner/>
   </div>
+
+  <!-- Barra di navigazione -->
   <NavBar :title="title" />
+
+  <!-- Dialog per messaggi di errore o di informazione - gestita dallo store generale -->
   <Dialog id="messageDialog" v-model:visible="store.showDialog" modal closable="false" header="Attenzione" :style="{ width: '50vw' }" :breakpoints="{ '960px': '75vw', '641px': '100vw' }">
     <InlineMessage severity="info" v-for="message in store.messages">
         {{ message }}
@@ -26,9 +32,13 @@ const store = useStore()
         <Button label="OK" icon="pi pi-check" @click="store.dismissMessages()" />
     </template>
   </Dialog>
+
   <main>
-      <RouterView />
+    <!-- Componenti mostrate dal router-->  
+    <RouterView />
   </main>
+  
+  <!-- footer -->  
   <Footer />
 </template>
 

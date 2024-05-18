@@ -1,55 +1,33 @@
-import { ref, computed } from 'vue'
-import { defineStore } from 'pinia'
-import axios from 'axios';
-import { faRupiahSign } from '@fortawesome/free-solid-svg-icons';
+import { defineStore } from 'pinia' //libreria per stati/servizi dell'applicazione
 
+/* Componente che rappresenta lo stato dell'applicazione */
 export const useStore = defineStore('store', {
   state: () => ({ 
-    pageTitle: null,
-    loading: false,
-    alerts: [],
-    messages: [],
+    pageTitle: null, // per contenere il nome della pagina corrente
+    loading: false, // per attivare eventuale spinner di loading generale
+    alerts: [], // array per contenere i messaggi di errore
+    messages: [], // array per contenere i messaggi utente non di errore
   }),
   getters: {
+    // boolean calcolato in automatico usato per mostrare in automatico il dialog di errore/di messagistica in caso di presenza messaggi
     showDialog: (state) => (state.alerts != null && state.alerts.length > 0 ) || (state.messages != null && state.messages.length > 0 ),
 
   },
   actions: {
+    // azione per dismettere tutti i messagi
     dismissMessages() {
       this.alerts = [];
       this.messages = [];
       
     },
+    //azione per aggiungere messaggio da mostrare
     addMessage(m) {
       this.messages.push(m);
     },
+    //azione per aggiungere messaggio di errore
     addError(err) {
       this.alerts.push(err);
     },
-    getLabelFromUri(uri) {
-      const indice = uri.indexOf('#');
-      if(indice !== -1) {
-        return uri.slice(indice +1);
-      }
-      else {
-        return uri;
-      }
-    },
-    checkBreedUri(horses, element){
-      console.log("ho chiamato la funzione checkBreed")
-      var result= {};
-      result.index=-1;
-      result.found=false;
-      if(horses && element.cavalliInVenditaUri){
-          for (var i=0; i<horses.lenght && found==false; i++){
-            if(horses[i].uri===element.cavalliInVenditaUri.value){
-              index=i;
-              found=true;
-            }
-          }                    
-        }
-        return result;
-       },
        
 },
   

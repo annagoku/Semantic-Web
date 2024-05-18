@@ -5,7 +5,7 @@ import { useStore } from '@/stores/store'
 const serverBaseUrl = "http://localhost:7200/repositories/ontoHorses2024";
 axios.defaults.withCredentials = false
 
-
+/** servizio per reperire da GraphDB i dati dei Cavalli in vendita */
 export const horsesalesService = defineStore('horsesalesService', {
   state: () => ({ 
   }),

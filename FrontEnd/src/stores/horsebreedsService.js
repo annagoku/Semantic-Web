@@ -1,11 +1,11 @@
-import { defineStore } from 'pinia'
-import axios from 'axios';
-import { useStore } from '@/stores/store'
+import { defineStore } from 'pinia' //libreria per stati/servizi dell'applicazione
+import axios from 'axios'; // libreria per chiamate AJAX
+import { useStore } from '@/stores/store' // import per richiamare lo store (stato) principale
 
 const serverBaseUrl = "http://localhost:7200/repositories/ontoHorses2024";
 axios.defaults.withCredentials = false
 
-
+/** servizio per reperire da GraphDB i dati delle Razze di Cavalli */
 export const horsebreedsService = defineStore('horsebreedsService', {
   state: () => ({ 
   }),

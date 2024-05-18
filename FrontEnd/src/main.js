@@ -1,48 +1,32 @@
+/******* Main.js - punto di ingresso dell'applicazione - Creazione applicazione con Vue+PrimeVue */
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createPinia } from 'pinia' // libreria per store/servizi
 import PrimeVue from 'primevue/config';
 
 
 import App from './App.vue'
 import router from './router'
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { far } from '@fortawesome/free-regular-svg-icons'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import { fas } from '@fortawesome/free-solid-svg-icons'
-
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
-
-
+// librerie per bootstrap
 import 'bootstrap'
 import '@popperjs/core'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.js'
 
-//theme
+// import per PrimeVue
 import "primevue/resources/themes/md-light-indigo/theme.css";     
-//core
 import "primevue/resources/primevue.min.css";
-//icons
 import "primeicons/primeicons.css";
 import 'primeflex/primeflex.css';
 
+// import di CSS dell'applicazione - deve essere sempre l'ultimo CSS importato
 import './assets/main.css'
-import Tooltip from 'primevue/tooltip';
-
-
-
-library.add(fas, far, fab);
-
 
 
 const app = createApp(App)
-app.use(PrimeVue);
-app.component('font-awesome-icon', FontAwesomeIcon);
-app.use(createPinia());
-app.use(router);
-app.directive('tooltip', Tooltip);
+app.use(PrimeVue); // libreria con componenti UX
+app.use(createPinia()); // libreria per store/servizi
+app.use(router); //aggancio libreria router
 
 
-app.mount('#app')
+app.mount('#app') // aggancio al div dell'HTML

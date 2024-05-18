@@ -6,7 +6,7 @@
       </Column>
       <Column >
         <template #body="slotProps">
-          <Button icon="pi pi-download" size="small" style="border-radius: 50%;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);float: right;" aria-label="Info" @click="downloadDocumentSelected(slotProps.index, slotProps.data)" ></Button>
+          <Button icon="pi pi-download" size="small" style="border-radius: 50%;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);float: right;" aria-label="Info" @click="downloadDocumentSelected(slotProps.data)" ></Button>
         </template>
       </Column>
     </DataTable>
@@ -32,10 +32,10 @@ export default {
       loadingTable: false,
       selectedDocument: null,
       document:[
-                  {title:'Ontologia.ttl'},
-                  {title:'Ontologia con inferenze.ttl'},
-                  {title:'Documentazione LODE'},
-                  {title:'Relazione di progetto.pdf'}
+                  {title:'Ontologia.ttl', path:'docs/Progetto_finale.ttl', filetype:'file'},
+                  {title:'Ontologia con inferenze.ttl', path:'docs/ontoHorsesInferred.owl', filetype:'file'},
+                  {title:'Documentazione LODE', path:'docs/Progetto_finale_documentazioneLODE.html', filetype:'html'},
+                  {title:'Relazione di progetto.pdf', path:'docs/OntoHorsesDocumentation.pdf', filetype:'file'}
                 ]
    
     };
@@ -55,9 +55,25 @@ export default {
   },
   methods: {
       
-      hideDetail: function() {
-        this.showDetail = false;
-        this.selectedBreed = null;
+      downloadDocumentSelected: function(data) {
+        console.log("Download title:"+data.title);
+        console.log("Download path :"+data.path);
+        console.log("Download type :"+data.filetype);
+        
+        if(data.filetype==='html') {
+          window.open(data.path)
+        }
+        else {
+          const anchor = document.createElement('a');
+          anchor.href = data.path;
+          anchor.download = data.title;
+          document.body.appendChild(anchor);
+          anchor.click();
+          document.body.removeChild(anchor);
+        }
+
+
+
       },
       
       
