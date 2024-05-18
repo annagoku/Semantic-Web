@@ -1,35 +1,71 @@
+/* Override colori */
 :root {
-  --primary-color: #b51c1a;
-  --bs-indigo: #b51c1a;
+  --primary-color: #840705;
+  --bs-indigo: #840705;
 }
 
 .text-primary {
-  color: #b51c1a !important;  
+  color: #840705 !important;  
 }
 
 .btn-primary {
   background-color: #840705 !important;  
+  border-color: #b51c1a;
+  color: white;
 }
 
-@media (max-width: 600px) {
-  .smartcol {
-    font-size: smaller;
-  }
+.p-tag-secondary {
+  background-color: #777;
+  font-weight: normal;
 }
 
-@media (min-width: 601px) {
-  .smartphone-only {
-    display: none; /* or any other desired display property */
-  }
+.bg-red {
+  background-color: #840705;
+  color: white;
+}
+
+.p-button:enabled:hover {
+  background-color: #b51c1a;
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.nav-item.active {
+  color: #b51c1a!important;
+  font-weight: bold;
+}
+.nav-link.active {
+  color: #b51c1a!important;
+  font-weight: bold;
+}
+.btn-primary-outline {
+  background-color: transparent;
+  border-color: white;
+  color: white;
+}
+  
+.btn-primary-outline:hover {
+  background-color: white;
+  border-color: white;
+  color: #b51c1a;
+}
+  
+  
+.btn-cancel {
+  background-color: #777;
+}
+
+.p-datatable .p-datatable-tbody > tr {
+  border-top: 1px solid lightgrey !important;
 }
 
 
-@media (max-width: 601px) {
-  .mediumdevice-only {
-    display: none; /* or any other desired display property */
-  }
+/* Aggiustamento posizione contenuti pagine rispetto a menu in alto */
+main > .container {
+  padding-top: 70px;
 }
 
+/* Classe per far comparire correttamente lo spinner durante i caricamenti dati*/
 .overlay {
   position: fixed;
   top: 0;
@@ -44,18 +80,10 @@
 }
 
 
-main > .container {
-  padding-top: 70px;
-}
 
-
-.p-tag-secondary {
-  background-color: #777;
-  font-weight: normal;
-}
 
 /*
- * Custom translucent site header
+ * Override classi di input form usate dai filtri delle pagine
  */
 .form-label-group input:not(:placeholder-shown) ~ label {
 padding-top: .25rem;
@@ -65,232 +93,12 @@ color: #777;
 }
 
 
-
-.pointer {
-cursor: pointer;
-}
-
 .form-label-group input:-webkit-autofill ~ label {
 padding-top: .25rem;
 padding-bottom: .25rem;
 font-size: 12px;
 color: #777;
 }
-.site-header {
-  color: white;
-  top:0;
-}
-.site-header a {
-  color: #b51c1a !important;
-  transition: ease-in-out color .15s;
-}
-.site-header span {
-  color: #dfe6f0;
-}
-.site-header a:hover {
-  color: #b51c1a;
-  text-decoration: none;
-}
-
-.mt-auto {
-  margin-top: auto!important;
-}
-
-.bg-red {
-  background-color: #840705;
-  color: white;
-}
-
-.footer {
-  background-color: #f1f1f1;
-  color: grey;
-}
-
-.p-button:enabled:hover {
-  background-color: #b51c1a;
-  color: #ffffff;
-  border-color: transparent;
-}
-
-
-
-/* responsive*/
-@media (min-width: 768px) {
-  .nav-item.active {
-    border-bottom:2px solid;
-    font-weight: normal!important;
-  }
-  .nav-link.active {
-    border-bottom:2px solid;
-    font-weight: normal!important;
-  }
-}
-
-.nav-item.active {
-  color: #b51c1a!important;
-  font-weight: bold;
-}
-.nav-link.active {
-  color: #b51c1a!important;
-  font-weight: bold;
-}
-
-
-.home-jumbotron-spacer {
-  padding-top: 700px;
-}
-
-.intro-section {
-  position: absolute;
-  background-image: url('./img/hero_2.jpg');
-  background-position: 35%;
-  background-size: cover;
-  margin: 0;
-  width: 100%;  
- 
-}
-.slide {
-  padding-top: 50px;
-   color: white;
-    height: 655px;
-   
- }
-.slide-section {
-  padding-top: 0.5rem!important;
-  padding-bottom: 0.5rem!important;
-  padding-left: 2.5rem!important;
-  padding-right: 2.5rem!important;
-  margin-top: 1rem!important;
-  margin-bottom: 1rem!important;
-}
-@media (min-width: 768px) {
-  .home-jumbotron-spacer {
-    padding-top: 700px;
-  }
-  .intro-section {
-    background-position: 50% -25px;
-  }
-  .slide {
-    padding-top: 100px;
-     color: white;
-     
-   }
-   .slide-section {
-    padding: 3rem!important;
-    margin-top: 3rem!important;
-    margin-bottom: 3rem!important;
-  }
-}
-
-
-.intro-bglayer {
-  background-color: rgb(74, 97, 128, 0.4);
-  
-}
-
-.dragging {
-  opacity: 0.5;
-}
-
-.horsechip {
-  font-size: larger;
-  vertical-align: middle !important;
-  margin-top: 0.2em;
-}
-
-.droppablecard {
-  border-style: dotted;
-  border-width: 1px;
-  background-color: rgb(242, 242, 242);
-  min-height: 40px;
-  text-align: center;
-  
-}
-
-.droppablecardcavalli {
-  border-style: dotted;
-  border-width: 1px;
-  background-color: white;
-  min-height: 40px;
-  text-align: center;
-  
-}
-
-.btn-primary-outline {
-background-color: transparent;
-border-color: white;
-color: white;
-}
-
-.btn-primary-outline:hover {
-background-color: white;
-border-color: white;
-color: #b51c1a;
-}
-
-.btn-primary{
-  background-color: #b51c1a;
-  border-color: #b51c1a;
-  color: white;
-  }
-
-.btn-cancel {
-  background-color: #777;
-}
-
-#citazione{
-font-style: italic;
-font-family: "Source Sans Pro";
-font-weight: 300;
-font-size: 18pt;
-color:white;
-}
-
-
-
-.back-overlay {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: black;
-opacity: .1;
-z-index: 4000;
-cursor: not-allowed;
-}
-.loader {
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-
-z-index: 5000;
-}
-
-.capitalize {
-text-transform: capitalize;
-}
-
-.usermenu-info {
-font-size: small;
-}
-
-#loading-spinner {
-width: 5rem;
-height: 5rem;
-}
-
-.form-signin {
-  color: #b51c1a;
-  width: 100%;
-  max-width: 420px;
-  padding: 15px;
-  padding-top: 30px;
-  padding-bottom: 50px;
-  margin: auto;
-}
-
 .form-label-group {
   position: relative;
   margin-bottom: 1rem;
@@ -374,38 +182,72 @@ height: 5rem;
   color: #777;
 }
 
-.lesson {
-  font-size: 0.8em;
-}
-.lesson:hover {
-color: white!important;
-cursor: pointer;
+/* Aggiustamento margini footer */
+.mt-auto {
+  margin-top: auto!important;
 }
 
-.lesson.active {
-color: white!important;
-
+/* classe per footer */
+.footer {
+  background-color: #f1f1f1;
+  color: grey;
 }
+
+
+
+/* Classi per componente TheWelcome */
+.intro-section {
+  position: absolute;
+  background-image: url('./img/hero_2.jpg');
+  background-size: cover;
+  margin: 0;
+  width: 100%;  
+  background-position: 50% -25px;
+ 
+}
+
+.home-jumbotron-spacer {
+  padding-top: 700px;
+}
+
+.slide {
+  padding-top: 100px;
+  color: white;
+  height: 655px;
+   
+}
+.slide-section {
+  padding-top: 0.5rem!important;
+  padding-bottom: 0.5rem!important;
+  padding-left: 2.5rem!important;
+  padding: 3rem!important;
+  margin-top: 3rem!important;
+  margin-bottom: 3rem!important;
+}
+
+.intro-bglayer {
+  background-color: rgb(74, 97, 128, 0.4);
+  
+}
+
+#citazione{
+font-style: italic;
+font-family: "Source Sans Pro";
+font-weight: 300;
+font-size: 18pt;
+color:white;
+}
+
+
+/*
+ * Aggiustamento posizioni e scrolling
+ */
 
 .tbody-fixed{
   height:400px;
   overflow-y:auto;
   width: 100%;
 }
-
-
-.fab {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  color:  white;
-  box-shadow: 0px 3px 7px 0px rgba(202, 124, 124, 0.72);
-  font-size: 2em;
-  z-index: 100;
-}
-/*
- * Extra utilities
- */
 
 .flex-equal > * {
   -ms-flex: 1;
@@ -418,29 +260,4 @@ color: white!important;
   }
 }
 
-.p-datatable .p-datatable-tbody > tr {
-  border-top: 1px solid lightgrey !important;
-}
-
 .overflow-hidden { overflow: hidden; }
-
-
-.bd-placeholder-img {
-font-size: 1.125rem;
-text-anchor: middle;
--webkit-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
-user-select: none;
-}
-
-@media (min-width: 768px) {
-.bd-placeholder-img-lg {
-  font-size: 3.5rem;
-}
-}
-
-#navAdmin{
-z-index:1001;
-padding-top: 3.5rem!important;
-}
