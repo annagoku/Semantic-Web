@@ -1,3 +1,6 @@
+<!--questa pagina è costituita dal componente di Vue "DataTable" le cui righe sono popolate dai dati inseriti nella variabile "document" indicata
+nella sezione "Data"-->
+
 <template>
   <div class="container">
    
@@ -54,7 +57,7 @@ export default {
      
   },
   methods: {
-      
+      /**Metodo per il download-- sono gestite due casististiche di file : html e non html */
       downloadDocumentSelected: function(data) {
         console.log("Download title:"+data.title);
         console.log("Download path :"+data.path);

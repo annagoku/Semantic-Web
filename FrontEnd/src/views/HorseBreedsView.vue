@@ -1,4 +1,7 @@
+<!--Pagina che contiene le informazioni sulle razze in formato tabellare-->
+
 <template>
+<!-- Sezione per la creazione di filtri con pulsanti per la loro attivazione e disattivazione -->
   <div class="container">
     <div class="row pt-5">
       <span class="p-float-label col-xs-6 col-md-3">
@@ -22,12 +25,16 @@
         </span>
       </span>
   </div>
+<!--A filtro attivo viene restituito anche il nome del filtro attivato e il numero di risultati ottenuti-->
   <div v-if="filter.enabled" class="row pt-5">
     <span class="p-float-label col-xs-12 col-md-12">
       <p>Elenco filtrato per {{ filter.type }} {{ filter.value }} - <b>Risutati: {{ breeds.length }}</b></p>
     </span>
   </div>
   <br/>
+
+<!--questa pagina è costituita dal componente di Vue "DataTable" le cui righe sono popolate da dati
+ottenuti tramite richiesta http verso Graph DB -->
     <DataTable stripedRows showGridlines :value="breeds" tableStyle="min-width: 50rem" :loading="loadingTable">
       <Column field="razza" header="Razza"></Column>
       <Column  header="Immagine">
@@ -57,7 +64,7 @@
   </div>
 
 
-<!-- DIALOG DETTAGLIO RAZZA-->
+<!-- Dialog che contiene le informazioni di dettaglio di una razza-Si attiva al click dell'utente su relativo pulsante-->
 <Dialog v-model:visible="showDetail" modal header="Dettaglio" :style="{ width: '75vw' }" :breakpoints="{ '960px': '75vw', '641px': '100vw' }">
   <template #header>
     <div class="row">
@@ -95,9 +102,6 @@
      <br/>
     
   </p>
-         
-    
-
     <template #footer>
         <Button label="Chiudi"  @click="hideDetail"   />
     </template>
@@ -164,6 +168,7 @@ export default {
      
   },
   methods: {
+/**Funzione che gestisce l'output di una richiesta http per ottenere l'elenco di tutte le nazioni  */
       getNations : function () {
         horsebreedsService().getAllBreedsNations().then((data)=>{
               
@@ -174,7 +179,7 @@ export default {
               
             });
       },
-      //richiamo tutte le razze di cavalli
+/**Funzione che gestisce l'output di una richiesta http per le informazioni su tutte le razze di cavalli*/ 
       getAllBreeds : function () {
         this.loadingTable = true;
       
@@ -196,6 +201,8 @@ export default {
             });
       },
 
+/** Funzione che consente l'apertura della finestra di dialogo con le informazioni di dettaglio di una razza
+ attivata al click dell'utente */
       showBreedDetail: function(index, sub){
         console.log("show breed detail "+index);
         var breed = this.breeds[index];
@@ -210,11 +217,12 @@ export default {
               
             });
       },
-
+/**Funzione che chiude la finestra di dialogo con le informazioni di dettaglio di una razza */
       hideDetail: function() {
         this.showDetail = false;
         this.selectedBreed = null;
       },
+/**Funzione di inizializzazione e/o pulizia dei filtri */
       initFilters: function () {
         this.selectedMorphology=null;
         this.selectedNature=null;
@@ -224,6 +232,8 @@ export default {
         this.filter.value=null;
         this.breeds = [...this.allBreeds];
       },
+
+/**Funzione di gestione dei filtri. Solo un filtro per volta può essere attivo */
       filterBreeds: function () {
         console.log("Filtro le razze");
         this.filter.enabled = true;
@@ -234,7 +244,7 @@ export default {
           this.filter.type="Morfologia";
           this.filter.value=this.selectedMorphology;
           console.log("Filtro per "+this.filter.type+" "+this.selectedMorphology);
-          // filtro direttamente a frontend
+// Informazioni filtrate direttamente a frontend
           this.breeds = [];
           this.allBreeds.forEach(breed => {
             if(breed.morfologia.toUpperCase() == this.selectedMorphology.toUpperCase()) {
@@ -247,7 +257,7 @@ export default {
           this.filter.type="Nazione di origine";
           this.filter.value=this.selectedNation;
           console.log("Filtro per "+this.filter.type+" "+this.selectedNation);
-          // filtro direttamente a frontend
+// informazioni filtrate direttamente a frontend
           this.breeds = [];
           this.allBreeds.forEach(breed => {
             if(breed.nazione.toUpperCase() == this.selectedNation.toUpperCase()) {
@@ -260,7 +270,7 @@ export default {
           this.filter.type="Indole";
           this.filter.value=this.selectedNature;
           console.log("Filtro per "+this.filter.type+" "+this.selectedNature);
-          // filtro direttamente a frontend
+// informazioni filtrate direttamente a frontend
           this.breeds = [];
           this.allBreeds.forEach(breed => {
             if(breed.indole.toUpperCase() == this.selectedNature.toUpperCase()) {

@@ -1,4 +1,6 @@
+<!--Pagina che contiene le informazioni sui cavalli in vendita in formato tabellare-->
 <template>
+<!-- Sezione per la creazione di filtri con pulsanti per la loro attivazione e disattivazione -->
   <div class="container">
     <div class="row pt-5">
       <span class="p-float-label col-xs-3 col-md-3">
@@ -22,11 +24,13 @@
   </div>
   <div v-if="filter.enabled" class="row pt-5">
     <span class="p-float-label col-xs-12 col-md-12">
+<!--A filtro attivo viene restituito anche il nome del filtro attivato e il numero di risultati ottenuti-->
       <p>Elenco filtrato per {{ filter.type }} {{ filter.value }} - <b>Risutati: {{ horses.length }}</b></p>
     </span>
   </div>
   <br/>
-    
+<!--questa pagina è costituita dal componente di Vue "DataTable" le cui righe sono popolate da dati
+ottenuti tramite richiesta http verso Graph DB -->   
     <DataTable stripedRows showGridlines :value="horses" tableStyle="min-width: 50rem" :loading="loadingTable">
       <Column field="nomeAnnuncio" header="Cavallo in vendita"></Column>
       <Column  header="Immagine">
@@ -68,7 +72,7 @@
   </div>
 
 
-<!-- DIALOG DETTAGLIO CAVALLO-->
+<!-- Dialog che contiene le informazioni di dettaglio di un annuncio di vendita-Si attiva al click dell'utente su relativo pulsante-->
 <Dialog v-model:visible="showDetail" modal header="Dettaglio" :style="{ width: '75vw' }" :breakpoints="{ '960px': '75vw', '641px': '100vw' }">
   <template #header>
     <div class="row">
@@ -125,7 +129,7 @@
 </Dialog>
 
 
-<!-- DIALOG DETTAGLIO RAZZA-->
+<!-- Dialog che contiene le informazioni di dettaglio di una razza-Si attiva al click dell'utente su relativo pulsante-->
 <Dialog v-model:visible="showDetailBreed" modal header="Dettaglio Razza" :style="{ width: '75vw' }" :breakpoints="{ '960px': '75vw', '641px': '100vw' }">
   <template #header>
     <div class="row">
@@ -184,9 +188,8 @@ import Row from 'primevue/row';
 import Dialog from 'primevue/dialog';
 import Card from 'primevue/card';
 import Dropdown from 'primevue/dropdown';
-import InputText from 'primevue/inputtext';
-import FloatLabel from 'primevue/floatlabel';
-import InputNumber from 'primevue/inputnumber';
+
+
 
 export default {
   name: "HorseInSaleView",
@@ -200,23 +203,16 @@ export default {
         value: null,
         type: null // per segnare la scelta di quale filtro è abilitato (Disciplina o Regione)
       },
-      sesso:[
-        {type: 'maschio'},
-        {type:'femmina'},
-        {type:'castrato'}
-
-      ],
+      
       loadingTable: false,
       selectedHorse: null,
       selectedBreed: null,
       showDetail: false,
       showDetailBreed: false,
-      showNewHorseInSale: false,
       selectedDiscipline: null,
       disciplines:[],
       selectedRegion:null,
-      regions:[],
-      newHorse:null
+      regions:[]
       
     };
   },
@@ -236,7 +232,7 @@ export default {
      
   },
   methods: {
-
+/**Funzione che gestisce l'output di una richiesta http per ottenere l'elenco di tutte le Regioni  */
       getRegions : function () {
         horsesalesService().getAllHorsesInSaleRegions().then((data)=>{
                 
@@ -248,6 +244,7 @@ export default {
               });
         },
 
+/**Funzione che gestisce l'output di una richiesta http per ottenere l'elenco di tutte le discipline  */
         getDisciplines : function () {
         horsesalesService().getAllHorsesInSaleDisciplines().then((data)=>{
                 
@@ -259,7 +256,7 @@ export default {
               });
         },
      
-      //richiamo tutti gli annunci di cavalli in vendita
+/**Funzione che gestisce l'output di una richiesta http per ottenere l'elenco di tutti gli annunci di vendita  */
       getAllHorses : function () {
         this.loadingTable = true;
       
@@ -276,7 +273,8 @@ export default {
               
             });
       },
-
+/** Funzione che consente l'apertura della finestra di dialogo con le informazioni di dettaglio relative ad un annuncio di vendita
+ attivata al click dell'utente */
       showHorseDetail: function(index, sub){
         console.log("show horse detail "+index);
         var horse = this.horses[index];
@@ -293,6 +291,8 @@ export default {
         
         
       },
+/** Funzione che consente l'apertura della finestra di dialogo con le informazioni di dettaglio relative ad una razza e ad un annuncio di vendita
+ attivata al click dell'utente */
       showHorseBreed: function(horseBreedUri){
         console.log("show horse breed "+horseBreedUri);
         
@@ -308,26 +308,18 @@ export default {
     
         
       },
-      showAddHorseInSale:function(){
-        this.showNewHorseInSale=true;
-      },
+/**Funzione che chiude la finestra di dialogo con le informazioni di dettaglio di un annuncio di vendita */      
       hideDetail: function() {
         this.showDetail = false;
         this.selectedHorse = null;
       },
+/**Funzione che chiude la finestra di dialogo con le informazioni di dettaglio di una razza */
       hideDetailBreed: function() {
         this.showDetailBreed = false;
         this.selectedBreed = null;
       },
-      hideNewHorseInSale: function() {
-        this.showNewHorseInSale = false;
-
-      },
-
-      saveNewHorseInsale:function(){
-
-      },
-
+      
+/**Funzione di inizializzazione e/o pulizia dei filtri */
       initFilters: function () {
         this.selectedRegion=null;
         this.selectedDiscipline=null;
@@ -336,7 +328,7 @@ export default {
         this.filter.value=null;
         this.horses = [...this.allHorses];
       },
-        
+/**Funzione di gestione dei filtri. Solo un filtro per volta può essere attivo */       
       filterHorseInSale: function () {
         console.log("Filtro gli annunci di cavalli in vendita");
         this.filter.enabled = true;
@@ -347,7 +339,7 @@ export default {
           this.filter.type="Regione";
           this.filter.value=this.selectedRegion;
           console.log("Filtro per "+this.filter.type+" "+this.selectedRegion);
-          // filtro direttamente a frontend
+// Informazioni filtrate direttamente a frontend
           this.horses = [];
           this.allHorses.forEach(horse => {
             if(horse.regione.toUpperCase() == this.selectedRegion.toUpperCase()) {
@@ -360,7 +352,7 @@ export default {
           this.filter.type="Disciplina o Impiego";
           this.filter.value=this.selectedDiscipline;
           console.log("Filtro per "+this.filter.type+" "+this.selectedDiscipline);
-          // filtro direttamente a frontend
+// Informazioni filtrate direttamente a frontend
           this.horses = [];
           
           this.allHorses.forEach(horse => {
