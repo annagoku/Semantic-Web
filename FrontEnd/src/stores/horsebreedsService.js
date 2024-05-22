@@ -5,7 +5,7 @@ import { useStore } from '@/stores/store' // import per richiamare lo store (sta
 const serverBaseUrl = "http://localhost:7200/repositories/ontoHorses2024";
 axios.defaults.withCredentials = false
 
-/** servizio per reperire da GraphDB i dati delle Razze di Cavalli */
+/** Servizio per reperire da GraphDB i dati delle Razze di Cavalli */
 export const horsebreedsService = defineStore('horsebreedsService', {
   state: () => ({ 
   }),
@@ -16,7 +16,7 @@ export const horsebreedsService = defineStore('horsebreedsService', {
     async getAllBreeds(){
       console.log("getAllBreeds()");
       const store = useStore();
-      
+//Query SPARQL che estrae l'elenco di tutte le razze mappate nell'ontologia caratterizzate tramite gli attributi indicati nella select
       const query = `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
       PREFIX owl: <http://www.w3.org/2002/07/owl#>
       PREFIX schema: <http://schema.org/image>
@@ -55,6 +55,7 @@ export const horsebreedsService = defineStore('horsebreedsService', {
         console.log("chiamo il servizio +")
         const response = await axios.get(serverBaseUrl, {
           headers: {
+//il risultato della query SPARQL viene restituito in formato json
             'Accept': 'application/sparql-results+json'
           },
           params: {
@@ -70,10 +71,10 @@ export const horsebreedsService = defineStore('horsebreedsService', {
         
         response.data.results.bindings.forEach(element => {
           console.log("FACCIO PUSH Razza "+element.Razza.value);
-          
+//Per la razza viene letto sia la label che l'URI 
           var breed = {};
-          breed.razza= element.Razza.value;
-          breed.uri=element.RazzaUri.value;
+          breed.razza= element.Razza.value; //label
+          breed.uri=element.RazzaUri.value; //URI
 
           if(element.Immagine != null)
             breed.immagine= element.Immagine.value;
@@ -87,8 +88,6 @@ export const horsebreedsService = defineStore('horsebreedsService', {
           if(element.Morfologia != null) {
             breed.morfologia= element.Morfologia.value;
           }
-
-
           breeds.push(breed);
         });
         console.log("BREEDS AFTER")
@@ -101,10 +100,11 @@ export const horsebreedsService = defineStore('horsebreedsService', {
       }
     },
 
+ /** Servizio per reperire da GraphDB i dati di dettaglio di una specifica razza di cavallo */   
     async getBreedDetail(breedUri) {
       console.log("getBreedDetail("+breedUri+")");
       const store = useStore();
-      
+//Query SPARQL che estrae le informazioni di dettaglio della razza selezionata dall'utente 
       const query = `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
       PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
       PREFIX schema: <http://schema.org/>
@@ -146,6 +146,7 @@ export const horsebreedsService = defineStore('horsebreedsService', {
         console.log("chiamo il servizio ")
         const response = await axios.get(serverBaseUrl, {
           headers: {
+//Il risultato della query SPARQL viene restituito in formato json
             'Accept': 'application/sparql-results+json'
           },
           params: {
@@ -156,6 +157,7 @@ export const horsebreedsService = defineStore('horsebreedsService', {
         console.log(response.data)
          
         var breedDetail = {};
+//Impiegni e colori del mantello possono avere valori multipli
         breedDetail.impieghi= [];
         breedDetail.mantelli= [];
 
@@ -187,22 +189,24 @@ export const horsebreedsService = defineStore('horsebreedsService', {
 
           if(!breedDetail.nazione && element.Nazionalità)
             breedDetail.nazione= element.Nazionalità.value;
+
           if(!breedDetail.descrizione && element.Informazioni)
             breedDetail.descrizione= element.Informazioni.value;
+
           if(!breedDetail.indole && element.Indole) {
             breedDetail.indole= element.Indole.value;
           }
           if(!breedDetail.morfologia && element.Morfologia) {
             breedDetail.morfologia= element.Morfologia.value;
           }
-
+//Ramo if per salvare in un array il set di impieghi specificato
           if(element.Impiego) {
             var impiego = element.Impiego.value;
             if(breedDetail.impieghi.indexOf(impiego) === -1) {
               breedDetail.impieghi.push(impiego);
             }
           }
-          
+//Ramo if per salvare in un array il set di colori mantello specificato
           if(element.ColoriMantello) {
             var mantello = element.ColoriMantello.value;
             if(breedDetail.mantelli.indexOf(mantello) === -1) {
@@ -219,11 +223,11 @@ export const horsebreedsService = defineStore('horsebreedsService', {
         throw error;
       }
     }, 
-
+/** Servizio per reperire da GraphDB l'elenco di tutte le nazioni al fine di popolare la dropdown del filtro per nazionalità */
     async getAllBreedsNations(){
       console.log("getAllBreedsNations()");
       const store = useStore();
-      
+//Query SPARQL che estrae l'elenco di tutte le nazioni
       const query = `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
       PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
       PREFIX oh: <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#>
@@ -247,6 +251,7 @@ export const horsebreedsService = defineStore('horsebreedsService', {
       try {
         const response = await axios.get(serverBaseUrl, {
           headers: {
+//Il risultato della query SPARQL viene restituito in formato json
             'Accept': 'application/sparql-results+json'
           },
           params: {
@@ -262,8 +267,9 @@ export const horsebreedsService = defineStore('horsebreedsService', {
         
         response.data.results.bindings.forEach(element => {
           var nation = {};
-          nation.label= element.Nazionalita.value;
-          nation.uri=element.NazionalitaUri.value;
+//Per ogni nazione viene letto sia la label che l'URI 
+          nation.label= element.Nazionalita.value;//Label
+          nation.uri=element.NazionalitaUri.value;//URI
   
           nations.push(nation);
         });

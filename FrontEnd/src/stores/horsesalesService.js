@@ -5,7 +5,7 @@ import { useStore } from '@/stores/store'
 const serverBaseUrl = "http://localhost:7200/repositories/ontoHorses2024";
 axios.defaults.withCredentials = false
 
-/** servizio per reperire da GraphDB i dati dei Cavalli in vendita */
+/**Servizio per reperire da GraphDB i dati dei Cavalli in vendita */
 export const horsesalesService = defineStore('horsesalesService', {
   state: () => ({ 
   }),
@@ -17,7 +17,7 @@ export const horsesalesService = defineStore('horsesalesService', {
     async getAllHorses(){
       console.log("getAllHorses()");
       const store = useStore();
-      
+//Query SPARQL che estrae l'elenco di tutti i cavalli in vendita mappate nell'ontologia caratterizzati tramite gli attributi indicati nella select
       const query = `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
       PREFIX schema: <http://schema.org/>
       PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -50,6 +50,7 @@ export const horsesalesService = defineStore('horsesalesService', {
         console.log("chiamo il servizio +")
         const response = await axios.get(serverBaseUrl, {
           headers: {
+//il risultato della query SPARQL viene restituito in formato json
             'Accept': 'application/sparql-results+json'
           },
           params: {
@@ -73,9 +74,10 @@ export const horsesalesService = defineStore('horsesalesService', {
             if(horse != null) {
               horses.push(horse);
             }
+//Per ogni cavallo viene letto sia la label che l'URI 
             horse = {};
-            horse.uri = horseUri;
-            horse.nomeAnnuncio=element.cavalliInVendita.value;
+            horse.uri = horseUri; //URI
+            horse.nomeAnnuncio=element.cavalliInVendita.value; //label
             horse.disciplina = [];
             console.log("IMMAGINE")
             if(element.Immagine != null)
@@ -91,9 +93,9 @@ export const horsesalesService = defineStore('horsesalesService', {
             if(element.Anni != null)
               horse.anni= element.Anni.value;
             if(element.RazzaUri != null)
-              horse.razzaUri= element.RazzaUri.value;
+              horse.razzaUri= element.RazzaUri.value;//URI della razza
             if(element.Razza != null)
-              horse.razza= element.Razza.value;
+              horse.razza= element.Razza.value;//Label della razza
           }
           if(element.Disciplina != null)
             horse.disciplina.push(element.Disciplina.value);   
@@ -112,10 +114,12 @@ export const horsesalesService = defineStore('horsesalesService', {
         throw error;
       }
     },
+
+ /**Servizio per reperire da GraphDB i dati di dettaglio di un annuncio selezionato dall'utente  */   
     async getHorseDetail(horseUri) {
       console.log("getHorseDetail("+horseUri+")");
       const store = useStore();
-      
+ //Query SPARQL che estrae le informazioni di dettaglio dell'annuncio selezionata dall'utente      
       const query = `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
       PREFIX schema: <http://schema.org/>
       PREFIX oh: <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#>
@@ -171,6 +175,7 @@ export const horsesalesService = defineStore('horsesalesService', {
         console.log("chiamo il servizio ")
         const response = await axios.get(serverBaseUrl, {
           headers: {
+//Il risultato della query SPARQL viene restituito in formato json
             'Accept': 'application/sparql-results+json'
           },
           params: {
@@ -232,7 +237,7 @@ export const horsesalesService = defineStore('horsesalesService', {
           if(!horseDetail.immagine && element.Immagine) {
             horseDetail.immagine = element.Immagine.value;
           }
-
+//Disciplina, Livello e Categoria di Salto sono gestiti come vettori poichè possono avere valori multipli
           console.log("DISCIPLINA")
           if(element.Disciplina) {
             var disciplina = element.Disciplina.value;
@@ -271,10 +276,11 @@ export const horsesalesService = defineStore('horsesalesService', {
       }
     },
 
+ /** Servizio per reperire da GraphDB l'elenco di tutte le regioni al fine di popolare la dropdown del filtro per regione */   
     async getAllHorsesInSaleRegions(){
       console.log("getAllHorsesRegion()");
       const store = useStore();
-      
+//Query SPARQL che estrae l'elenco di tutte le regioni     
       const query = `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
       PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
       PREFIX oh: <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#>
@@ -292,6 +298,7 @@ export const horsesalesService = defineStore('horsesalesService', {
       try {
         const response = await axios.get(serverBaseUrl, {
           headers: {
+//Il risultato della query SPARQL viene restituito in formato json            
             'Accept': 'application/sparql-results+json'
           },
           params: {
@@ -307,8 +314,9 @@ export const horsesalesService = defineStore('horsesalesService', {
         
         response.data.results.bindings.forEach(element => {
           var region = {};
-          region.label= element.Regione.value;
-          region.uri=element.RegioneUri.value;
+//Per ogni regione viene letto sia la label che l'URI 
+          region.label= element.Regione.value;//Label
+          region.uri=element.RegioneUri.value;//URI
   
           regions.push(region);
         });
@@ -322,10 +330,11 @@ export const horsesalesService = defineStore('horsesalesService', {
       }
     },
 
+/** Servizio per reperire da GraphDB l'elenco di tutte le discipline al fine di popolare la dropdown del filtro per disciplina o impiego */   
     async getAllHorsesInSaleDisciplines(){
       console.log("getAllHorsesDisciplines()");
       const store = useStore();
-      
+//Query SPARQL che estrae l'elenco di tutte le discipline o impieghi       
       const query = `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
       PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
       PREFIX oh: <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#>
@@ -346,6 +355,7 @@ export const horsesalesService = defineStore('horsesalesService', {
       try {
         const response = await axios.get(serverBaseUrl, {
           headers: {
+//Il risultato della query SPARQL viene restituito in formato json  
             'Accept': 'application/sparql-results+json'
           },
           params: {
@@ -361,8 +371,9 @@ export const horsesalesService = defineStore('horsesalesService', {
         
         response.data.results.bindings.forEach(element => {
           var discipline= {};
-          discipline.label= element.Disciplina.value;
-          discipline.uri=element.DisciplinaUri.value;
+//Per ogni disciplina viene letto sia la label che l'URI 
+          discipline.label= element.Disciplina.value;//Label
+          discipline.uri=element.DisciplinaUri.value;//URI
   
           disciplines.push(discipline);
         });
