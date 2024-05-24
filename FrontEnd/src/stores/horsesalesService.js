@@ -386,7 +386,64 @@ export const horsesalesService = defineStore('horsesalesService', {
         throw error;
       }
     },
-   
+
+   /** Servizio per reperire da GraphDB l'elenco di tutti i cavalli in vendita con il numero di discipline praticate */   
+   async getAllHorsesInSaleNumberOfDisciplines(){
+    console.log("getAllHorsesNumberOfDisciplines()");
+    const store = useStore();
+//Query SPARQL che estrae l'elenco di tutti i cavalli in vendita con il numero di discipline praticate      
+    const query = `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX oh: <http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    
+    select ?Cavallo ?CavalloUri (COUNT(?Discipline) AS ?NumeroDiscipline) 
+    
+    where {
+           ?CavalloUri rdf:type oh:Cavallo;
+               oh:nomeCavallo ?NomeCavallo;
+            oh:vieneUtilizzatoPer ?Discipline;
+              rdfs:label ?Cavallo.
+        
+              
+        FILTER (lang(?Cavallo)="it")   
+    } GROUP BY ?Cavallo ?CavalloUri
+    ORDER BY (?Cavallo)`;
+  
+    try {
+      const response = await axios.get(serverBaseUrl, {
+        headers: {
+//Il risultato della query SPARQL viene restituito in formato json  
+          'Accept': 'application/sparql-results+json'
+        },
+        params: {
+          query: query
+        }
+      });
+      console.log("RESPONSE ALL HORSES IN SALE NUMBER OF DISCIPLINES")
+      console.log(response.data)
+      var horseInSaleNumberOfDisciplines= [];
+      console.log("FACCIO FOREACH")
+      
+      response.data.results.bindings.forEach(element => {
+       
+        var horse={};
+//Per ogni cavallo in vendita viene letto sia la label che l'URI 
+        horse.label= element.Cavallo.value;//Label
+        horse.uri=element.CavalloUri.value;//URI
+        horse.NumeroDiscipline=element.NumeroDiscipline.value;
+
+        horseInSaleNumberOfDisciplines.push(horse);
+      });
+      console.log("ELENCO CAVALLI CON NUMERO DI DISCIPLINE")
+      console.log(horseInSaleNumberOfDisciplines);
+
+      return horseInSaleNumberOfDisciplines;
+    } catch (error) {
+      store.alerts = ["Impossibile recuperare i dati del numero di discipline per cavallo"];
+      throw error;
+    }
+  },
   }
   
 })

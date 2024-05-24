@@ -47,6 +47,7 @@ ottenuti tramite richiesta http verso Graph DB -->
             <p><b>Età:</b> {{ slotProps.data.anni }}</p>
             <p><b>Disciplina:</b> 
               <template v-for="(disciplina, index) in slotProps.data.disciplina">&nbsp;{{ disciplina }}<span v-if="index  < slotProps.data.disciplina.length-1">,</span> </template> </p>
+            <p><b>Numero Discipline:</b>{{ slotProps.data.numberOfDiscipline }} </p>
           </template>
       </Column>
            
@@ -198,6 +199,7 @@ export default {
       layout: "grid",
       horses: null,
       allHorses:[],
+      allHorsesNumberOfDiscipline:[],
       filter: {
         enabled: false,
         value: null,
@@ -221,12 +223,14 @@ export default {
     return {store};
   },
   mounted : function () {
+      this.getAllHorsesNumberOfDiscipline();
       this.getAllHorses();
       this.getRegions();
       this.getDisciplines();
+      
   },
   components: {
-      Button, DataTable,  Column, Row, Card, Dialog, Dropdown, InputText, FloatLabel, InputNumber
+      Button, DataTable,  Column, Row, Card, Dialog, Dropdown
   },
   props: {
      
@@ -266,6 +270,24 @@ export default {
               this.horses=[...this.allHorses];
               console.log("COPIO IL VETTORE SU horses");
               console.log(this.horses);
+/**Aggiunta dell'informazione sul conteggio delle discipline di ogni cavallo in vendita */
+              for(var i=0; i<this.horses.length;i++){
+                console.log("Uri da horses");
+                console.log(this.horses[i].uri);
+                console.log("Uri da allHorsesNumber of discipline");
+                console.log(this.allHorsesNumberOfDiscipline[i].uri);
+
+                for(var j=0;j<this.allHorsesNumberOfDiscipline.length; j++){
+                  console.log(this.horses[i].uri==this.allHorsesNumberOfDiscipline[j].uri);
+                  if(this.horses[i].uri==this.allHorsesNumberOfDiscipline[j].uri){
+                    
+                    this.horses[i].numberOfDiscipline=this.allHorsesNumberOfDiscipline[j].NumeroDiscipline;
+                  }
+                }
+                
+              }
+              console.log("Vettore horses modificato con il numero di discipline");
+              console.log(this.horses);
 
 
             }).catch(e => {
@@ -273,6 +295,25 @@ export default {
               
             });
       },
+/**Funzione che gestisce l'output di una richiesta http per ottenere l'elenco di tutti gli annunci di vendita con il numero di discipline */
+      getAllHorsesNumberOfDiscipline : function () {
+       // this.loadingTable = true;
+      
+        horsesalesService().getAllHorsesInSaleNumberOfDisciplines().then((data)=>{
+              //this.loadingTable = false;
+              this.allHorsesNumberOfDiscipline = data;
+              console.log("View numero di discipline")
+              console.log(this.allHorsesNumberOfDiscipline);
+
+
+            }).catch(e => {
+              this.loadingTable = false;
+              
+            });
+      },
+
+
+
 /** Funzione che consente l'apertura della finestra di dialogo con le informazioni di dettaglio relative ad un annuncio di vendita
  attivata al click dell'utente */
       showHorseDetail: function(index, sub){
