@@ -15,7 +15,6 @@
      xmlns:schema="http://schema.org/"
      xmlns:sequence="http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#"
      xmlns:ontoHorses="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#"
-     xmlns:collectionentity="http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#"
      xmlns:cpannotationschema="http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#">
     <owl:Ontology rdf:about="http://www.semanticweb.org/annag/ontologies/2024/4/ontoHorsesInferred">
         <dc:creator>Annalisa Sabatelli</dc:creator>
@@ -587,21 +586,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     
 
 
-    <!-- http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#entitàWikidata -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#entitàWikidata">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-        <rdfs:comment xml:lang="it">La corrispondente entità su Wikidata</rdfs:comment>
-        <rdfs:comment xml:lang="en">The corrispondig entity on Wikidata</rdfs:comment>
-        <rdfs:label xml:lang="it">Entità Wikidata</rdfs:label>
-        <rdfs:label xml:lang="en">Wikidata Entity</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#gareggiaNellaCategoriaDiDressage -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#gareggiaNellaCategoriaDiDressage">
@@ -1167,8 +1151,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     <!-- http://www.ontologydesignpatterns.org/cp/owl/price.owl#Currency -->
 
     <owl:Class rdf:about="http://www.ontologydesignpatterns.org/cp/owl/price.owl#Currency">
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/horse"/>
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Cavallo"/>
         <owl:disjointWith rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/price.owl#Price"/>
         <rdfs:comment>A system of money in general use in a particular country.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/price.owl"/>
@@ -2825,10 +2807,9 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzamMesomorfa"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q489798"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q489798"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#mesomorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueCaldo"/>
-        <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Spagna"/>
         <ontoHorses:haRegioneDiOrigine rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Andalusia"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AltaScuola"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Dressage"/>
@@ -2847,6 +2828,12 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     
 
 
+    <!-- http://www.wikidata.org/entity/Q489798 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q489798"/>
+    
+
+
     <!-- http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AngloAraboFrancese -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AngloAraboFrancese">
@@ -2859,10 +2846,9 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDolicomorfa"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaEndurance"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q7029480"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q7029480"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#dolicomorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueCaldo"/>
-        <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Francia"/>
         <ontoHorses:haRegioneDiOrigine rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Normandia"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CrossCountry"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Endurance"/>
@@ -2884,6 +2870,12 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     
 
 
+    <!-- http://www.wikidata.org/entity/Q7029480 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q7029480"/>
+    
+
+
     <!-- http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AngloAraboSpagnolo -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AngloAraboSpagnolo">
@@ -2894,10 +2886,9 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDolicomorfa"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q3617386"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q3617386"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#dolicomorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueCaldo"/>
-        <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Spagna"/>
         <ontoHorses:haRegioneDiOrigine rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Andalusia"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Dressage"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Equiturismo"/>
@@ -2916,6 +2907,12 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     
 
 
+    <!-- http://www.wikidata.org/entity/Q3617386 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q3617386"/>
+    
+
+
     <!-- http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Appenninico -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Appenninico">
@@ -2925,10 +2922,9 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaLavoro"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzamMesomorfa"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q3620866"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q3620866"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#mesomorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueFreddo"/>
-        <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
         <ontoHorses:haRegioneDiOrigine rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AppenninoToscoEmiliano"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Equiturismo"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#TrainoCarrozze"/>
@@ -2943,6 +2939,12 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <skos:prefLabel xml:lang="en">Appenninico</skos:prefLabel>
         <skos:prefLabel xml:lang="it">Appenninico</skos:prefLabel>
     </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.wikidata.org/entity/Q3620866 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q3620866"/>
     
 
 
@@ -2981,10 +2983,9 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaBrachimorfa"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaLavoro"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q638976"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q638976"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brachimorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueFreddo"/>
-        <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Belgio"/>
         <ontoHorses:haRegioneDiOrigine rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Ardenne"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#TrainoCarrozze"/>
         <ontoHorses:altezzaMediaGarrese rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">160</ontoHorses:altezzaMediaGarrese>
@@ -3004,6 +3005,12 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     
 
 
+    <!-- http://www.wikidata.org/entity/Q638976 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q638976"/>
+    
+
+
     <!-- http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#BelgaDaTiro -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#BelgaDaTiro">
@@ -3012,10 +3019,9 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaLavoro"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaTiroAgricolo"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q896476"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q896476"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brachimorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueFreddo"/>
-        <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Belgio"/>
         <ontoHorses:haRegioneDiOrigine rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Ardenne"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#TiroAgricolo"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#TrainoCarrozze"/>
@@ -3034,12 +3040,17 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     
 
 
+    <!-- http://www.wikidata.org/entity/Q896476 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q896476"/>
+    
+
+
     <!-- http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Belgio -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Belgio">
         <rdf:type rdf:resource="http://schema.org/Place"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AreaGeografica"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Ardenne"/>
         <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Flag_of_Belgium.svg/188px-Flag_of_Belgium.svg.png"/>
         <rdfs:comment xml:lang="en">Belgium, officially the Kingdom of Belgium, is a country in Northwestern Europe.</rdfs:comment>
         <rdfs:comment xml:lang="it">Il Belgio, ufficialmente Regno del Belgio, è uno Stato federale retto da una monarchia parlamentare  situato nell&apos;Europa occidentale.</rdfs:comment>
@@ -3057,10 +3068,9 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaLavoro"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaTiroAgricolo"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q588252"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q588252"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brachimorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueFreddo"/>
-        <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Francia"/>
         <ontoHorses:haRegioneDiOrigine rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RegioneBoullonnais"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#TiroAgricolo"/>
         <ontoHorses:altezzaMediaGarrese rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">163</ontoHorses:altezzaMediaGarrese>
@@ -3077,6 +3087,12 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <skos:prefLabel xml:lang="en">Boulonnais</skos:prefLabel>
         <skos:prefLabel xml:lang="it">Boulonnais</skos:prefLabel>
     </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.wikidata.org/entity/Q588252 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q588252"/>
     
 
 
@@ -3103,10 +3119,9 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaLavoro"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaTiroAgricolo"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q514553"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q514553"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brachimorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueFreddo"/>
-        <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Francia"/>
         <ontoHorses:haRegioneDiOrigine rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Bretagna"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#TiroAgricolo"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#TrainoCarrozze"/>
@@ -3120,6 +3135,12 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <skos:prefLabel xml:lang="it">Bretone</skos:prefLabel>
         <skos:prefLabel>Breton Horse</skos:prefLabel>
     </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.wikidata.org/entity/Q514553 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q514553"/>
     
 
 
@@ -3321,8 +3342,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <ontoHorses:vieneUtilizzatoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CrossCountry"/>
         <ontoHorses:èAdattoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavaliereIntermedio"/>
         <ontoHorses:èPossedutoDa rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#claudioCavallo"/>
-        <ontoHorses:èScuderizzatoIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
-        <ontoHorses:èScuderizzatoIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Sicilia"/>
         <ontoHorses:èScuderizzatoInCittàDi rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#siracusa"/>
         <ontoHorses:altezzaGarrese rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">158</ontoHorses:altezzaGarrese>
         <ontoHorses:eta rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">15</ontoHorses:eta>
@@ -3348,18 +3367,11 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloDaSella"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloSportivo"/>
         <price:hasPrice rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#18000Euro"/>
-        <ontoHorses:adattoAlConseguimentoDi rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brevetto"/>
-        <ontoHorses:adattoAlConseguimentoDi rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#primoGrado"/>
         <ontoHorses:gareggiaNelleCategorieDiSalto rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#C110"/>
         <ontoHorses:gareggiaNelleCategorieDiSalto rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#C125"/>
         <ontoHorses:haRazza rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#SellaFrancese"/>
         <ontoHorses:vieneUtilizzatoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#SaltoAdOstacoli"/>
-        <ontoHorses:èAdattoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavaliereEsperto"/>
-        <ontoHorses:èAdattoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavaliereIntermedio"/>
-        <ontoHorses:èAdattoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalierePrincipiante"/>
         <ontoHorses:èPossedutoDa rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#gianlucaCamoletto"/>
-        <ontoHorses:èScuderizzatoIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
-        <ontoHorses:èScuderizzatoIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Piemonte"/>
         <ontoHorses:èScuderizzatoInCittàDi rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#leini"/>
         <ontoHorses:altezzaGarrese rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">167</ontoHorses:altezzaGarrese>
         <ontoHorses:eta rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</ontoHorses:eta>
@@ -3385,15 +3397,11 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloDaSella"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloSportivo"/>
         <price:hasPrice rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#12000Euro"/>
-        <ontoHorses:adattoAlConseguimentoDi rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brevetto"/>
         <ontoHorses:gareggiaNelleCategorieDiSalto rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#C100"/>
         <ontoHorses:gareggiaNelleCategorieDiSalto rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#C80"/>
         <ontoHorses:haRazza rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#SellaItaliano"/>
         <ontoHorses:vieneUtilizzatoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#SaltoAdOstacoli"/>
-        <ontoHorses:èAdattoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalierePrincipiante"/>
         <ontoHorses:èPossedutoDa rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brunoGramaglia"/>
-        <ontoHorses:èScuderizzatoIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
-        <ontoHorses:èScuderizzatoIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Piemonte"/>
         <ontoHorses:èScuderizzatoInCittàDi rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sanMauro"/>
         <ontoHorses:altezzaGarrese rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">160</ontoHorses:altezzaGarrese>
         <ontoHorses:eta rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">11</ontoHorses:eta>
@@ -3415,7 +3423,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Cavaliere"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Persona"/>
         <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/person"/>
-        <ontoHorses:consegue rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#primoGrado"/>
         <rdfs:comment xml:lang="it">Cavaliere la cui abilità di di salto ostacoli è superiore alla categoria C115 ma inferiore alla categoria C130</rdfs:comment>
         <rdfs:comment xml:lang="en">Horse rider whose jumping ability is above category C115 but below category C130</rdfs:comment>
         <rdfs:label xml:lang="it">Cavaliere esperto</rdfs:label>
@@ -3431,7 +3438,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Cavaliere"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Persona"/>
         <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/person"/>
-        <ontoHorses:consegue rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#primoGrado"/>
         <rdfs:comment xml:lang="it">Cavaliere la cui abilità di di salto ostacoli è inferiore alla categoria C115</rdfs:comment>
         <rdfs:comment xml:lang="en">Horse rider whose jumping ability is below category C115</rdfs:comment>
         <rdfs:label xml:lang="it">Cavaliere intermedio</rdfs:label>
@@ -3447,7 +3453,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Cavaliere"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Persona"/>
         <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/person"/>
-        <ontoHorses:consegue rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#secondoGrado"/>
         <rdfs:comment xml:lang="it">Cavaliere la cui abilità di di salto ostacoli è uguale o superiore alla categoria C135</rdfs:comment>
         <rdfs:comment xml:lang="en">Horse rider whose show jumping ability is equal to or greater than category C135</rdfs:comment>
         <rdfs:label xml:lang="it">Cavaliere molto esperto</rdfs:label>
@@ -3463,8 +3468,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Cavaliere"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Persona"/>
         <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/person"/>
-        <ontoHorses:consegue rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brevetto"/>
-        <ontoHorses:consegue rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#patenteLudicaA"/>
         <rdfs:comment xml:lang="it">Cavaliere la cui abilità di di salto ostacoli è inferiore alla categoria C80</rdfs:comment>
         <rdfs:comment xml:lang="en">Horse rider whose jumping ability is below category C80</rdfs:comment>
         <rdfs:label xml:lang="en">Beginner horse rider</rdfs:label>
@@ -3481,10 +3484,9 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaLavoro"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaTiroAgricolo"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q1684175"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q1684175"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brachimorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueFreddo"/>
-        <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Danimarca"/>
         <ontoHorses:haRegioneDiOrigine rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Jutland"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#TiroAgricolo"/>
         <ontoHorses:altezzaMediaGarrese rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">160</ontoHorses:altezzaMediaGarrese>
@@ -3503,6 +3505,12 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     
 
 
+    <!-- http://www.wikidata.org/entity/Q1684175 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1684175"/>
+    
+
+
     <!-- http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Clydesdale -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Clydesdale">
@@ -3511,10 +3519,9 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaLavoro"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaTiroAgricolo"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q844058"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q844058"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brachimorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueFreddo"/>
-        <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RegnoUnito"/>
         <ontoHorses:haRegioneDiOrigine rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Scozia"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#TiroAgricolo"/>
         <ontoHorses:altezzaMediaGarrese rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">168</ontoHorses:altezzaMediaGarrese>
@@ -3531,6 +3538,12 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <skos:prefLabel xml:lang="it">Clydesdale</skos:prefLabel>
         <skos:prefLabel xml:lang="en">Clydesdale Horse</skos:prefLabel>
     </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.wikidata.org/entity/Q844058 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q844058"/>
     
 
 
@@ -3567,7 +3580,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Danimarca">
         <rdf:type rdf:resource="http://schema.org/Place"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AreaGeografica"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Jutland"/>
         <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Flag_of_Denmark.svg/1280px-Flag_of_Denmark.svg.png"/>
         <rdfs:comment xml:lang="en">Denmark, officially the Kingdom of Denmark, is a member state of the European Union and the smallest and southernmost state in Scandinavia.</rdfs:comment>
         <rdfs:comment xml:lang="it">La Danimarca, ufficialmente Regno di Danimarca , è uno Stato membro dell&apos;Unione europea e lo Stato più piccolo e più meridionale della Scandinavia.</rdfs:comment>
@@ -3631,9 +3643,7 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     <!-- http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Euro -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Euro">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/horse"/>
         <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/price.owl#Currency"/>
-        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Cavallo"/>
         <rdfs:comment xml:lang="en">European Currency</rdfs:comment>
         <rdfs:comment xml:lang="it">Moneta europea</rdfs:comment>
         <rdfs:label xml:lang="en">Euro</rdfs:label>
@@ -3685,8 +3695,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <ontoHorses:vieneUtilizzatoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#TiroAgricolo"/>
         <ontoHorses:èAdattoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalierePrincipiante"/>
         <ontoHorses:èPossedutoDa rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#claudioCavallo"/>
-        <ontoHorses:èScuderizzatoIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
-        <ontoHorses:èScuderizzatoIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Sicilia"/>
         <ontoHorses:èScuderizzatoInCittàDi rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#siracusa"/>
         <ontoHorses:altezzaGarrese rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">150</ontoHorses:altezzaGarrese>
         <ontoHorses:eta rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">18</ontoHorses:eta>
@@ -3719,8 +3727,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <ontoHorses:vieneUtilizzatoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#TrainoCarrozze"/>
         <ontoHorses:èAdattoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalierePrincipiante"/>
         <ontoHorses:èPossedutoDa rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#claudioCavallo"/>
-        <ontoHorses:èScuderizzatoIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
-        <ontoHorses:èScuderizzatoIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Sicilia"/>
         <ontoHorses:èScuderizzatoInCittàDi rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#siracusa"/>
         <ontoHorses:altezzaGarrese rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">162</ontoHorses:altezzaGarrese>
         <ontoHorses:eta rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">20</ontoHorses:eta>
@@ -3748,17 +3754,13 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloSportivo"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Puledro"/>
         <price:hasPrice rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#4800Euro"/>
-        <ontoHorses:adattoAlConseguimentoDi rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brevetto"/>
         <ontoHorses:gareggiaNellaCategoriaDiDressage rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#D"/>
         <ontoHorses:gareggiaNelleCategorieDiSalto rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#C80"/>
         <ontoHorses:haRazza rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Murgese"/>
         <ontoHorses:vieneUtilizzatoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Dressage"/>
         <ontoHorses:vieneUtilizzatoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Equiturismo"/>
         <ontoHorses:vieneUtilizzatoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#SaltoAdOstacoli"/>
-        <ontoHorses:èAdattoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalierePrincipiante"/>
         <ontoHorses:èPossedutoDa rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#paoloGrassi"/>
-        <ontoHorses:èScuderizzatoIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
-        <ontoHorses:èScuderizzatoIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Puglia"/>
         <ontoHorses:èScuderizzatoInCittàDi rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#taranto"/>
         <ontoHorses:altezzaGarrese rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">158</ontoHorses:altezzaGarrese>
         <ontoHorses:eta rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</ontoHorses:eta>
@@ -3778,10 +3780,7 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Francia">
         <rdf:type rdf:resource="http://schema.org/Place"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AreaGeografica"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Bretagna"/>
         <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Normandia"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Perche"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RegioneBoullonnais"/>
         <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931974%29.svg/1280px-Flag_of_France_%281794%E2%80%931815%2C_1830%E2%80%931974%29.svg.png"/>
         <rdfs:comment xml:lang="en">France, officially the French Republic, is a state located in Western Europe and Southern Europe, but which also has territories spread across multiple oceans and other continents.</rdfs:comment>
         <rdfs:comment xml:lang="it">La Francia,  ufficialmente Repubblica francese, è uno Stato situato nell&apos;Europa occidentale e nell&apos;Europa meridionale, ma che possiede ugualmente territori disseminati su più oceani e altri continenti.</rdfs:comment>
@@ -3815,10 +3814,9 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaMesoBrachimorfa"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q388952"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q388952"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#mesoBrachimorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueFreddo"/>
-        <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#PaesiBassi"/>
         <ontoHorses:haRegioneDiOrigine rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Frisia"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Dressage"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#TrainoCarrozze"/>
@@ -3835,14 +3833,17 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     
 
 
+    <!-- http://www.wikidata.org/entity/Q388952 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q388952"/>
+    
+
+
     <!-- http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Germania -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Germania">
         <rdf:type rdf:resource="http://schema.org/Place"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AreaGeografica"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RegioneHannover"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Schleswig-Holstein"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Vestfalia"/>
         <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/1920px-Flag_of_Germany.svg.png"/>
         <rdfs:comment xml:lang="en">Germany, officially the Federal Republic of Germany, is a member state of the European Union located in central-western Europe.</rdfs:comment>
         <rdfs:comment xml:lang="it">La Germania, ufficialmente Repubblica Federale di Germania, è uno Stato membro dell&apos;Unione europea situato nell&apos;Europa centro-occidentale.</rdfs:comment>
@@ -3862,10 +3863,9 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzamMesomorfa"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q1501738"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q1501738"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#mesomorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueCaldo"/>
-        <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Germania"/>
         <ontoHorses:haRegioneDiOrigine rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RegioneHannover"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Dressage"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#SaltoAdOstacoli"/>
@@ -3885,6 +3885,12 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     
 
 
+    <!-- http://www.wikidata.org/entity/Q1501738 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1501738"/>
+    
+
+
     <!-- http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Holstein -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Holstein">
@@ -3895,10 +3901,9 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzamMesomorfa"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q571149"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q571149"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#mesomorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueMisto"/>
-        <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Germania"/>
         <ontoHorses:haRegioneDiOrigine rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Schleswig-Holstein"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Dressage"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#SaltoAdOstacoli"/>
@@ -3918,6 +3923,12 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     
 
 
+    <!-- http://www.wikidata.org/entity/Q571149 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q571149"/>
+    
+
+
     <!-- http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#IrishSportHorse -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#IrishSportHorse">
@@ -3929,7 +3940,7 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzamMesomorfa"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q1665430"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q1665430"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#mesomorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueCaldo"/>
         <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Irlanda"/>
@@ -3953,6 +3964,12 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     
 
 
+    <!-- http://www.wikidata.org/entity/Q1665430 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1665430"/>
+    
+
+
     <!-- http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Irlanda -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Irlanda">
@@ -3972,19 +3989,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia">
         <rdf:type rdf:resource="http://schema.org/Place"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AreaGeografica"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AppenninoToscoEmiliano"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Lombardia"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Maremma"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Murge"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Piemonte"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Puglia"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Sicilia"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#TrentinoAltoAdige"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#bergamo"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#leini"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sanMauro"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#siracusa"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#taranto"/>
         <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/1280px-Flag_of_Italy.svg.png"/>
         <rdfs:comment xml:lang="en">Italy, officially the Italian Republic, is a member state of the European Union, located in southern and western Europe, whose territory largely coincides with the geographical region of the same name.</rdfs:comment>
         <rdfs:comment xml:lang="it">L&apos;Italia, ufficialmente Repubblica Italiana, è uno Stato membro dell&apos;Unione europea, situato nell&apos;Europa meridionale e occidentale, il cui territorio coincide in gran parte con l&apos;omonima regione geografica.</rdfs:comment>
@@ -4020,10 +4024,9 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaTiroAgricolo"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaMesoDolicomorfa"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q217671"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q217671"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#mesoDolicomorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueMisto"/>
-        <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
         <ontoHorses:haRegioneDiOrigine rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#TrentinoAltoAdige"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AltaScuola"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Dressage"/>
@@ -4044,12 +4047,17 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     
 
 
+    <!-- http://www.wikidata.org/entity/Q217671 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q217671"/>
+    
+
+
     <!-- http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Lombardia -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Lombardia">
         <rdf:type rdf:resource="http://schema.org/Place"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AreaGeografica"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#bergamo"/>
         <partof:isPartOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
         <rdfs:comment xml:lang="it">La Lombardia  è una regione italiana a statuto ordinario di 10 020 528 abitanti dell&apos;Italia nord-occidentale che ha il suo capoluogo nella città di Milano. La regione si posiziona prima in Italia per popolazione, densità abitativa e numero di enti locali, mentre è quarta per superficie, dopo Sicilia, Piemonte e Sardegna.</rdfs:comment>
         <rdfs:comment xml:lang="en">Lombardy is an Italian region with ordinary statute of 10,020,528 inhabitants in north-western Italy which has its capital in the city of Milan. The region ranks first in Italy in terms of population, population density and number of local authorities, while it is fourth in terms of surface area, after Sicily, Piedmont and Sardinia.</rdfs:comment>
@@ -4069,7 +4077,7 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaMesoDolicomorfa"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q937595"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q937595"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#mesoDolicomorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueCaldo"/>
         <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Portogallo"/>
@@ -4090,6 +4098,12 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <skos:prefLabel xml:lang="en">Lusitano</skos:prefLabel>
         <skos:prefLabel xml:lang="it">Lusitano</skos:prefLabel>
     </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.wikidata.org/entity/Q937595 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q937595"/>
     
 
 
@@ -4132,10 +4146,9 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaEquiturismo"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaMesoDolicomorfa"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q1894708"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q1894708"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#mesoDolicomorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueFreddo"/>
-        <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
         <ontoHorses:haRegioneDiOrigine rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Maremma"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Equiturismo"/>
         <ontoHorses:altezzaMediaGarrese rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">155</ontoHorses:altezzaMediaGarrese>
@@ -4149,6 +4162,12 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <skos:prefLabel xml:lang="en">Maremmano</skos:prefLabel>
         <skos:prefLabel xml:lang="it">Maremmano</skos:prefLabel>
     </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.wikidata.org/entity/Q1894708 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1894708"/>
     
 
 
@@ -4170,8 +4189,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <ontoHorses:vieneUtilizzatoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AltaScuola"/>
         <ontoHorses:èAdattoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavaliereIntermedio"/>
         <ontoHorses:èPossedutoDa rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brunoGramaglia"/>
-        <ontoHorses:èScuderizzatoIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
-        <ontoHorses:èScuderizzatoIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Piemonte"/>
         <ontoHorses:èScuderizzatoInCittàDi rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sanMauro"/>
         <ontoHorses:altezzaGarrese rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">165</ontoHorses:altezzaGarrese>
         <ontoHorses:eta rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</ontoHorses:eta>
@@ -4197,17 +4214,10 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloMaschio"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloSportivo"/>
         <price:hasPrice rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#35000Euro"/>
-        <ontoHorses:adattoAlConseguimentoDi rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#primoGrado"/>
-        <ontoHorses:adattoAlConseguimentoDi rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#secondoGrado"/>
         <ontoHorses:gareggiaNelleCategorieDiSalto rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#C135"/>
         <ontoHorses:haRazza rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#OlandeseASangueCaldo"/>
         <ontoHorses:vieneUtilizzatoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#SaltoAdOstacoli"/>
-        <ontoHorses:èAdattoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavaliereEsperto"/>
-        <ontoHorses:èAdattoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavaliereIntermedio"/>
-        <ontoHorses:èAdattoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavaliereMoltoEsperto"/>
         <ontoHorses:èPossedutoDa rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#gianlucaCamoletto"/>
-        <ontoHorses:èScuderizzatoIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
-        <ontoHorses:èScuderizzatoIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Piemonte"/>
         <ontoHorses:èScuderizzatoInCittàDi rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#leini"/>
         <ontoHorses:altezzaGarrese rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">170</ontoHorses:altezzaGarrese>
         <ontoHorses:eta rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</ontoHorses:eta>
@@ -4238,8 +4248,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <ontoHorses:vieneUtilizzatoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Endurance"/>
         <ontoHorses:èAdattoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavaliereMoltoEsperto"/>
         <ontoHorses:èPossedutoDa rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brunoGramaglia"/>
-        <ontoHorses:èScuderizzatoIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
-        <ontoHorses:èScuderizzatoIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Piemonte"/>
         <ontoHorses:èScuderizzatoInCittàDi rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sanMauro"/>
         <ontoHorses:altezzaGarrese rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">161</ontoHorses:altezzaGarrese>
         <ontoHorses:eta rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</ontoHorses:eta>
@@ -4266,18 +4274,11 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloPerCrossCountry"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloSportivo"/>
         <price:hasPrice rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#15000Euro"/>
-        <ontoHorses:adattoAlConseguimentoDi rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brevetto"/>
-        <ontoHorses:adattoAlConseguimentoDi rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#primoGrado"/>
         <ontoHorses:gareggiaNelleCategorieDiSalto rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#C115"/>
         <ontoHorses:haRazza rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Holstein"/>
         <ontoHorses:vieneUtilizzatoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CrossCountry"/>
         <ontoHorses:vieneUtilizzatoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#SaltoAdOstacoli"/>
-        <ontoHorses:èAdattoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavaliereEsperto"/>
-        <ontoHorses:èAdattoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavaliereIntermedio"/>
-        <ontoHorses:èAdattoPer rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalierePrincipiante"/>
         <ontoHorses:èPossedutoDa rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#paoloGrassi"/>
-        <ontoHorses:èScuderizzatoIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
-        <ontoHorses:èScuderizzatoIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Puglia"/>
         <ontoHorses:èScuderizzatoInCittàDi rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#taranto"/>
         <ontoHorses:altezzaGarrese rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">168</ontoHorses:altezzaGarrese>
         <ontoHorses:eta rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">16</ontoHorses:eta>
@@ -4317,10 +4318,9 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzamMesomorfa"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q1953691"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q1953691"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#mesomorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueCaldo"/>
-        <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
         <ontoHorses:haRegioneDiOrigine rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Murge"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Dressage"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#TrainoCarrozze"/>
@@ -4334,6 +4334,12 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <skos:prefLabel xml:lang="en">Murgese</skos:prefLabel>
         <skos:prefLabel xml:lang="it">Murgese</skos:prefLabel>
     </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.wikidata.org/entity/Q1953691 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1953691"/>
     
 
 
@@ -4361,7 +4367,7 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaMesoDolicomorfa"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q1468737"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q1468737"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#mesoDolicomorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueCaldo"/>
         <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#PaesiBassi"/>
@@ -4384,6 +4390,12 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     
 
 
+    <!-- http://www.wikidata.org/entity/Q1468737 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1468737"/>
+    
+
+
     <!-- http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Oldemburghese -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Oldemburghese">
@@ -4394,7 +4406,7 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzamMesomorfa"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q166777"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q166777"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#mesomorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueCaldo"/>
         <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Germania"/>
@@ -4416,12 +4428,17 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     
 
 
+    <!-- http://www.wikidata.org/entity/Q166777 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q166777"/>
+    
+
+
     <!-- http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#PaesiBassi -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#PaesiBassi">
         <rdf:type rdf:resource="http://schema.org/Place"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AreaGeografica"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Frisia"/>
         <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Flag_of_the_Netherlands.svg/1280px-Flag_of_the_Netherlands.svg.png"/>
         <rdfs:comment xml:lang="it">I Paesi Bassi sono una delle quattro nazioni costitutive del Regno dei Paesi Bassi; si trovano principalmente in Europa ma comprendono anche i cosiddetti Paesi Bassi caraibici. Il nome Paesi Bassi è un riferimento alla sua bassa elevazione e alla sua topografia piatta, con solo il 50% circa del suo territorio che supera 1 metro sopra il livello del mare e quasi il 26% che scende sotto il livello del mare.</rdfs:comment>
         <rdfs:comment xml:lang="en">The Netherlands is one of the four constituent nations of the Kingdom of the Netherlands; they are found mainly in Europe but also include the so-called Caribbean Netherlands. The name Netherlands is a reference to its low elevation and flat topography, with only about 50% of its territory exceeding 1 meter above sea level and almost 26% falling below sea level.</rdfs:comment>
@@ -4453,10 +4470,9 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaLavoro"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaTiroAgricolo"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q1232528"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q1232528"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brachimorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueFreddo"/>
-        <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Francia"/>
         <ontoHorses:haRegioneDiOrigine rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Perche"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#TiroAgricolo"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#TrainoCarrozze"/>
@@ -4474,13 +4490,17 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     
 
 
+    <!-- http://www.wikidata.org/entity/Q1232528 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1232528"/>
+    
+
+
     <!-- http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Piemonte -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Piemonte">
         <rdf:type rdf:resource="http://schema.org/Place"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AreaGeografica"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#leini"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sanMauro"/>
         <partof:isPartOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
         <rdfs:comment xml:lang="it">Il Piemonte è una regione a statuto ordinario di 4 252 581 abitanti dell&apos;Italia nord-occidentale, con capoluogo amministrativo – nonché capitale storica – la città di Torino.</rdfs:comment>
         <rdfs:comment xml:lang="en">Piedmont is a region with ordinary statute of 4,252,581 inhabitants in north-western Italy, with the administrative capital - as well as historical capital - the city of Turin.</rdfs:comment>
@@ -4508,7 +4528,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Puglia">
         <rdf:type rdf:resource="http://schema.org/Place"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AreaGeografica"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#taranto"/>
         <partof:isPartOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
         <rdfs:comment xml:lang="it">La Puglia è una regione italiana a statuto ordinario dell&apos;Italia meridionale, di 3 890 250 abitanti, con capoluogo Bari.</rdfs:comment>
         <rdfs:comment xml:lang="en">Puglia is an Italian region with ordinary statute in southern Italy, with 3,890,250 inhabitants, with Bari as its capital.</rdfs:comment>
@@ -4527,7 +4546,7 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDolicomorfa"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q210826"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q210826"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#dolicomorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueCaldo"/>
         <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RegnoUnito"/>
@@ -4546,6 +4565,12 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <skos:prefLabel xml:lang="it">Purosangue inglese</skos:prefLabel>
         <skos:prefLabel xml:lang="en">Thoroughbred</skos:prefLabel>
     </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.wikidata.org/entity/Q210826 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q210826"/>
     
 
 
@@ -4582,7 +4607,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RegnoUnito">
         <rdf:type rdf:resource="http://schema.org/Place"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AreaGeografica"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Scozia"/>
         <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg/1920px-Flag_of_the_United_Kingdom_%281-2%29.svg.png"/>
         <rdfs:comment xml:lang="en">The United Kingdom, officially the United Kingdom of Great Britain and Northern Ireland, is an island country in Western Europe</rdfs:comment>
         <rdfs:comment xml:lang="it">ll Regno Unito, ufficialmente Regno Unito di Gran Bretagna e Irlanda del Nord è uno Stato insulare dell&apos;Europa occidentale</rdfs:comment>
@@ -4641,10 +4665,9 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaMesoDolicomorfa"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q1070901"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q1070901"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#mesoDolicomorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueCaldo"/>
-        <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Francia"/>
         <ontoHorses:haRegioneDiOrigine rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Normandia"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Equiturismo"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#SaltoAdOstacoli"/>
@@ -4664,6 +4687,12 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     
 
 
+    <!-- http://www.wikidata.org/entity/Q1070901 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1070901"/>
+    
+
+
     <!-- http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#SellaItaliano -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#SellaItaliano">
@@ -4674,7 +4703,7 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaMesoDolicomorfa"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q428039"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q428039"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#mesoDolicomorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueCaldo"/>
         <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
@@ -4695,12 +4724,17 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     
 
 
+    <!-- http://www.wikidata.org/entity/Q428039 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q428039"/>
+    
+
+
     <!-- http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Sicilia -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Sicilia">
         <rdf:type rdf:resource="http://schema.org/Place"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AreaGeografica"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#siracusa"/>
         <partof:isPartOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
         <rdfs:comment xml:lang="it">La Sicilia è una regione italiana a statuto speciale di 4 791 993 abitanti, con capoluogo Palermo.</rdfs:comment>
         <rdfs:comment xml:lang="en">Sicily is an Italian region with a special statute of 4,791,993 inhabitants, with Palermo as its capital.</rdfs:comment>
@@ -4715,7 +4749,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Spagna">
         <rdf:type rdf:resource="http://schema.org/Place"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AreaGeografica"/>
-        <partof:hasPart rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Andalusia"/>
         <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/1280px-Flag_of_Spain.svg.png"/>
         <rdfs:comment xml:lang="it">La Spagna è uno Stato sovrano, membro dell&apos;Unione europea dal 1986 e si trova all&apos;estremità occidentale dell&apos;Europa occupando buona parte della superficie della penisola iberica.</rdfs:comment>
         <rdfs:comment xml:lang="en">Spain is a sovereign state, member of the European Union since 1986 and is located at the western end of Europe, occupying a large part of the surface of the Iberian peninsula.</rdfs:comment>
@@ -4754,7 +4787,7 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaMesoDolicomorfa"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q843585"/>
+        <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q843585"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#mesoDolicomorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueMisto"/>
         <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Germania"/>
@@ -4776,6 +4809,12 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <skos:prefLabel xml:lang="en">Trakehner</skos:prefLabel>
         <skos:prefLabel xml:lang="it">Trakehner</skos:prefLabel>
     </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.wikidata.org/entity/Q843585 -->
+
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q843585"/>
     
 
 
@@ -4817,10 +4856,8 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzamMesomorfa"/>
-        <ontoHorses:entitàWikidata rdf:resource="http://www.wikidata.org/entity/Q195395"/>
         <ontoHorses:haClassificazioneMorfologica rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#mesomorfo"/>
         <ontoHorses:haIndole rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sangueCaldo"/>
-        <ontoHorses:haNazionalità rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Germania"/>
         <ontoHorses:haRegioneDiOrigine rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Vestfalia"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Dressage"/>
         <ontoHorses:puòEssereImpiegataIn rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#SaltoAdOstacoli"/>
@@ -4844,7 +4881,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#bergamo">
         <rdf:type rdf:resource="http://schema.org/Place"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AreaGeografica"/>
-        <partof:isPartOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
         <partof:isPartOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Lombardia"/>
         <rdfs:comment xml:lang="en">Bergamo is an Italian municipality of 120,504 inhabitants[4], capital of the province of the same name in Lombardy. The town of Bergamo is divided into two distinct parts, the «Lower City» and the «Upper City»; the latter is located at a higher altitude and hosts the majority of the most significant monuments, while the Lower City has been made partly more modern by some urbanization interventions. The two portions of the town are separated by the Venetian walls, listed since 2017 among the world heritage sites protected by UNESCO.</rdfs:comment>
         <rdfs:comment xml:lang="it">Bergamo è un comune italiano di 120 504 abitanti[4], capoluogo dell&apos;omonima provincia in Lombardia. L&apos;abitato di Bergamo è suddiviso in due parti distinte, la «Città Bassa» e la «Città Alta»; quest&apos;ultima è posta in altitudine più elevata e ospita la maggioranza dei monumenti più significativi, mentre la Città Bassa è stata resa in parte più moderna da alcuni interventi di urbanizzazione. Le due porzioni dell&apos;abitato sono separate dalle mura venete, annoverate dal 2017 fra i patrimoni dell&apos;umanità tutelati dall&apos;UNESCO.</rdfs:comment>
@@ -4873,10 +4909,7 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item"/>
         <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Patente"/>
-        <bag:itemOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#patenteAgonistica"/>
-        <collectionentity:isMemberOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#patenteAgonistica"/>
         <sequence:precedes rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#primoGrado"/>
-        <sequence:precedes rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#secondoGrado"/>
         <ontoHorses:vieneConseguitoDa rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalierePrincipiante"/>
         <rdfs:comment xml:lang="en">Authorizes the practice of competitive equestrian sports based on the specific specialty of the license acquired by the rider. Thebrevetto authorizes participation in show jumping competitions of category C80 or higher</rdfs:comment>
         <rdfs:comment xml:lang="it">Autorizza all’esercizio della pratica sportiva agonistica degli sport equestri in funzione della specifica specialità del brevetto acquisito dal cavaliere. Il brevetto autorizza a partecipare a gare di salto ad ostacoli di categoria C80 o superiore</rdfs:comment>
@@ -4892,9 +4925,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Persona"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Proprietario"/>
         <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/person"/>
-        <ontoHorses:possiede rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CastroneItaliano"/>
-        <ontoHorses:possiede rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#MaschioAndaluso"/>
-        <ontoHorses:possiede rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#MaschioPuroSangueInglese"/>
         <rdfs:comment xml:lang="it">Allevatore e commerciante di cavalli con sede a Leinì (To)</rdfs:comment>
         <rdfs:comment xml:lang="en">Horse breeder and trader based in Leinì (To)</rdfs:comment>
         <rdfs:label xml:lang="en">Bruno Gramaglia</rdfs:label>
@@ -4909,9 +4939,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Persona"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Proprietario"/>
         <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/person"/>
-        <ontoHorses:possiede rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CastroneAngloAraboFrancese"/>
-        <ontoHorses:possiede rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#FemminaBretone"/>
-        <ontoHorses:possiede rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#FemminaMaremmano"/>
         <rdfs:comment xml:lang="it">Allevatore e commerciante di cavalli con sede a Siracusa (SR)</rdfs:comment>
         <rdfs:comment xml:lang="en">Horse breeder and trader based in Syracuse (SR)</rdfs:comment>
         <rdfs:label xml:lang="en">Claudio Cavallo</rdfs:label>
@@ -4953,8 +4980,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Persona"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Proprietario"/>
         <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/person"/>
-        <ontoHorses:possiede rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CastroneFrancese"/>
-        <ontoHorses:possiede rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#MaschioOlandese"/>
         <rdfs:comment xml:lang="it">Allevatore e commerciante di cavalli con sede in Leinì (TO)</rdfs:comment>
         <rdfs:comment xml:lang="en">Horse breeder and trader based in Leinì (TO)</rdfs:comment>
         <rdfs:label xml:lang="en">Gianluca Camoletto</rdfs:label>
@@ -4968,7 +4993,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#leini">
         <rdf:type rdf:resource="http://schema.org/Place"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AreaGeografica"/>
-        <partof:isPartOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
         <partof:isPartOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Piemonte"/>
         <rdfs:comment xml:lang="en">Leini is an Italian municipality of 16,340 inhabitants in the metropolitan city of Turin in Piedmont.</rdfs:comment>
         <rdfs:comment xml:lang="it">Leini è un comune italiano di 16 340 abitanti della città metropolitana di Torino in Piemonte.</rdfs:comment>
@@ -5023,8 +5047,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Persona"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Proprietario"/>
         <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/person"/>
-        <ontoHorses:possiede rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#FemminaMurgese"/>
-        <ontoHorses:possiede rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#MaschioTedesco"/>
         <rdfs:comment xml:lang="it">Allevatore e commerciante di cavalli con sede a Taranto (TA)</rdfs:comment>
         <rdfs:comment xml:lang="en">Horse breeder and trader based in Taranto (TA)</rdfs:comment>
         <rdfs:label xml:lang="en">Paolo Grassi</rdfs:label>
@@ -5043,10 +5065,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <bag:hasItem rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brevetto"/>
         <bag:hasItem rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#primoGrado"/>
         <bag:hasItem rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#secondoGrado"/>
-        <collectionentity:hasMember rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brevetto"/>
-        <collectionentity:hasMember rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#primoGrado"/>
-        <collectionentity:hasMember rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#secondoGrado"/>
-        <sequence:follows rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#patenteNonAgonistica"/>
         <rdfs:comment xml:lang="en">License that enables the practice of competitive sports</rdfs:comment>
         <rdfs:comment xml:lang="it">Patente che abilita all&apos;esercizio della pratica sportiva agonistica</rdfs:comment>
         <rdfs:label xml:lang="en">Competitive license</rdfs:label>
@@ -5061,8 +5079,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item"/>
         <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Patente"/>
-        <bag:itemOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#patenteNonAgonistica"/>
-        <collectionentity:isMemberOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#patenteNonAgonistica"/>
         <ontoHorses:vieneConseguitoDa rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalierePrincipiante"/>
         <rdfs:comment xml:lang="en">Authorizes the practice of recreational and training equestrian sports in any discipline.</rdfs:comment>
         <rdfs:comment xml:lang="it">Autorizza all’esercizio della pratica sportiva ludico-addestrativa degli sport equestri in qualsiasi disciplina.</rdfs:comment>
@@ -5080,7 +5096,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/list.owl#List"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CatalogoAutorizzazioniAMontareFise"/>
         <bag:hasItem rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#patenteLudicaA"/>
-        <collectionentity:hasMember rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#patenteLudicaA"/>
         <sequence:precedes rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#patenteAgonistica"/>
         <rdfs:comment xml:lang="en">Authorizes the practice of recreational and training equestrian sports and social integration activities through sport</rdfs:comment>
         <rdfs:comment xml:lang="it">Autorizza all&apos;esercizio della pratica sportiva equestre ludico-addestrativa e alle attività di integrazione sociale attraverso lo sport</rdfs:comment>
@@ -5096,9 +5111,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item"/>
         <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Patente"/>
-        <bag:itemOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#patenteAgonistica"/>
-        <collectionentity:isMemberOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#patenteAgonistica"/>
-        <sequence:follows rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brevetto"/>
         <sequence:precedes rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#secondoGrado"/>
         <ontoHorses:vieneConseguitoDa rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavaliereEsperto"/>
         <ontoHorses:vieneConseguitoDa rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavaliereIntermedio"/>
@@ -5115,7 +5127,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#sanMauro">
         <rdf:type rdf:resource="http://schema.org/Place"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AreaGeografica"/>
-        <partof:isPartOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
         <partof:isPartOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Piemonte"/>
         <rdfs:comment xml:lang="en">San Mauro Torinese is an Italian municipality of 18,922 inhabitants in the metropolitan city of Turin, in Piedmont.</rdfs:comment>
         <rdfs:comment xml:lang="it">San Mauro Torinese è un comune italiano di 18.922 abitanti della città metropolitana di Torino, in Piemonte.</rdfs:comment>
@@ -5167,10 +5178,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
         <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item"/>
         <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Patente"/>
-        <bag:itemOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#patenteAgonistica"/>
-        <collectionentity:isMemberOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#patenteAgonistica"/>
-        <sequence:follows rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#brevetto"/>
-        <sequence:follows rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#primoGrado"/>
         <ontoHorses:vieneConseguitoDa rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavaliereMoltoEsperto"/>
         <rdfs:comment xml:lang="en">Authorizes the practice of competitive equestrian sports based on the specific specialty of the license acquired by the rider. The 2° grado authorizes participation in show jumping competitions of category C135 or higher</rdfs:comment>
         <rdfs:comment xml:lang="it">Autorizza all’esercizio della pratica sportiva agonistica degli sport equestri in funzione della specifica specialità del brevetto acquisito dal cavaliere. Il 2° grado autorizza a partecipare a gare di salto ad ostacoli di categoria C135 o superiore</rdfs:comment>
@@ -5185,7 +5192,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#siracusa">
         <rdf:type rdf:resource="http://schema.org/Place"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AreaGeografica"/>
-        <partof:isPartOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
         <partof:isPartOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Sicilia"/>
         <rdfs:comment xml:lang="it">Siracusa è un comune italiano di 115 681 abitanti, capoluogo del libero consorzio comunale omonimo, in Sicilia.</rdfs:comment>
         <rdfs:comment xml:lang="en">Syracuse is an Italian municipality of 115,681 inhabitants, capital of the free municipal consortium of the same name, in Sicily.</rdfs:comment>
@@ -5200,7 +5206,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#taranto">
         <rdf:type rdf:resource="http://schema.org/Place"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AreaGeografica"/>
-        <partof:isPartOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
         <partof:isPartOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Puglia"/>
         <rdfs:comment xml:lang="en">Taranto is an Italian municipality of 186,798 inhabitants, capital of the province of the same name, in Puglia.</rdfs:comment>
         <rdfs:comment xml:lang="it">Taranto è un comune italiano di 186 798 abitanti, capoluogo dell&apos;omonima provincia, in Puglia.</rdfs:comment>
@@ -5215,7 +5220,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#12000Euro">
         <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/price.owl#Price"/>
         <price:hasCurrency rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Euro"/>
-        <price:isPriceOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CastroneItaliano"/>
         <price:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">12000.0</price:hasValue>
         <rdfs:comment xml:lang="it">12000 Euro</rdfs:comment>
         <rdfs:label xml:lang="it">12000 Euro</rdfs:label>
@@ -5228,8 +5232,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#15000Euro">
         <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/price.owl#Price"/>
         <price:hasCurrency rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Euro"/>
-        <price:isPriceOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CastroneAngloAraboFrancese"/>
-        <price:isPriceOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#MaschioTedesco"/>
         <price:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">15000.0</price:hasValue>
         <rdfs:comment xml:lang="it">15000 Euro</rdfs:comment>
         <rdfs:label xml:lang="it">15000 Euro</rdfs:label>
@@ -5242,7 +5244,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#18000Euro">
         <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/price.owl#Price"/>
         <price:hasCurrency rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Euro"/>
-        <price:isPriceOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CastroneFrancese"/>
         <price:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">18000.0</price:hasValue>
         <rdfs:comment xml:lang="it">18000 Euro</rdfs:comment>
         <rdfs:label xml:lang="it">18000 Euro</rdfs:label>
@@ -5255,7 +5256,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#20000Euro">
         <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/price.owl#Price"/>
         <price:hasCurrency rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Euro"/>
-        <price:isPriceOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#MaschioPuroSangueInglese"/>
         <price:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">20000.0</price:hasValue>
         <rdfs:comment xml:lang="it">20000 Euro</rdfs:comment>
         <rdfs:label xml:lang="it">20000 Euro</rdfs:label>
@@ -5268,7 +5268,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#2500Euro">
         <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/price.owl#Price"/>
         <price:hasCurrency rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Euro"/>
-        <price:isPriceOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#FemminaBretone"/>
         <price:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2500.0</price:hasValue>
         <rdfs:comment xml:lang="it">2500 Euro</rdfs:comment>
         <rdfs:label xml:lang="it">2500 Euro</rdfs:label>
@@ -5281,7 +5280,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#35000Euro">
         <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/price.owl#Price"/>
         <price:hasCurrency rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Euro"/>
-        <price:isPriceOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#MaschioOlandese"/>
         <price:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">35000.0</price:hasValue>
         <rdfs:comment xml:lang="it">35000 Euro</rdfs:comment>
         <rdfs:label xml:lang="it">35000 Euro</rdfs:label>
@@ -5294,7 +5292,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#4800Euro">
         <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/price.owl#Price"/>
         <price:hasCurrency rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Euro"/>
-        <price:isPriceOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#FemminaMurgese"/>
         <price:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4800.0</price:hasValue>
         <rdfs:comment xml:lang="it">4800 Euro</rdfs:comment>
         <rdfs:label xml:lang="it">4800 Euro</rdfs:label>
@@ -5307,7 +5304,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#5000Euro">
         <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/price.owl#Price"/>
         <price:hasCurrency rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Euro"/>
-        <price:isPriceOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#FemminaMaremmano"/>
         <price:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5000.0</price:hasValue>
         <rdfs:comment xml:lang="it">5000 Euro</rdfs:comment>
         <rdfs:label xml:lang="it">5000 Euro</rdfs:label>
@@ -5320,7 +5316,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#7000Euro">
         <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/price.owl#Price"/>
         <price:hasCurrency rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Euro"/>
-        <price:isPriceOf rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#MaschioAndaluso"/>
         <price:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">7000.0</price:hasValue>
         <rdfs:comment xml:lang="it">7000 Euro</rdfs:comment>
         <rdfs:label xml:lang="it">7000 Euro</rdfs:label>
@@ -5330,55 +5325,122 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
 
     <!-- http://www.wikidata.org/entity/Q1070901 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1070901"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1070901">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueCaldo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaEquiturismo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSaltoOstacoli"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaMesoDolicomorfa"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q1232528 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1232528"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1232528">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueFreddo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaBrachimorfa"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaLavoro"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaTiroAgricolo"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q1468737 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1468737"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1468737">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueCaldo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaDressage"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSaltoOstacoli"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaMesoDolicomorfa"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q1501738 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1501738"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1501738">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueCaldo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaDressage"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSaltoOstacoli"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzamMesomorfa"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q1665430 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1665430"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1665430">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueCaldo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaDressage"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaEventing"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSaltoOstacoli"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzamMesomorfa"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q166777 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q166777"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q166777">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueCaldo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaDressage"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSaltoOstacoli"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzamMesomorfa"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q1684175 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1684175"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1684175">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueFreddo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaBrachimorfa"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaLavoro"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaTiroAgricolo"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q1894708 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1894708"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1894708">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueFreddo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaEquiturismo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaMesoDolicomorfa"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q1953691 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1953691"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q1953691">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueCaldo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaDressage"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaLavoro"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzamMesomorfa"/>
+    </owl:NamedIndividual>
     
 
 
@@ -5390,97 +5452,216 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
 
     <!-- http://www.wikidata.org/entity/Q210826 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q210826"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q210826">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueCaldo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSaltoOstacoli"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDolicomorfa"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q217671 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q217671"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q217671">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueMisto"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaAltaScuola"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaDressage"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaLavoro"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaTiroAgricolo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaMesoDolicomorfa"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q3617386 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q3617386"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q3617386">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueCaldo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaDressage"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaEquiturismo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDolicomorfa"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q3620866 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q3620866"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q3620866">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueFreddo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaEquiturismo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaLavoro"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzamMesomorfa"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q388952 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q388952"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q388952">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueFreddo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaDressage"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaLavoro"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaMesoBrachimorfa"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q428039 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q428039"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q428039">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueCaldo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaDressage"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSaltoOstacoli"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaMesoDolicomorfa"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q489798 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q489798"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q489798">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueCaldo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaAltaScuola"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaDressage"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzamMesomorfa"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q514553 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q514553"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q514553">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueFreddo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaBrachimorfa"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaLavoro"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaTiroAgricolo"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q571149 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q571149"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q571149">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueMisto"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaDressage"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSaltoOstacoli"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzamMesomorfa"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q588252 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q588252"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q588252">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueFreddo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaBrachimorfa"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaLavoro"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaTiroAgricolo"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q638976 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q638976"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q638976">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueFreddo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaBrachimorfa"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaLavoro"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q7029480 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q7029480"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q7029480">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueCaldo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaCrossCountry"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaEventing"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSaltoOstacoli"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDolicomorfa"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaEndurance"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q843585 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q843585"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q843585">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueMisto"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaDressage"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSaltoOstacoli"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaMesoDolicomorfa"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q844058 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q844058"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q844058">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueFreddo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaBrachimorfa"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaLavoro"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaTiroAgricolo"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q896476 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q896476"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q896476">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueFreddo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaBrachimorfa"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaLavoro"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaTiroAgricolo"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.wikidata.org/entity/Q937595 -->
 
-    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q937595"/>
+    <owl:NamedIndividual rdf:about="http://www.wikidata.org/entity/Q937595">
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaASangueCaldo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaCavallo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaAltaScuola"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaDressage"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaDaSella"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaMesoDolicomorfa"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RazzaSportiva"/>
+    </owl:NamedIndividual>
     
 
 
@@ -5607,9 +5788,9 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
             <rdf:Description rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Frisia"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Germania"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Irlanda"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Italia"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Jutland"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Lombardia"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Lusitano"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Maremma"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Murge"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Normandia"/>
@@ -5625,7 +5806,6 @@ Subproperties can be defined in order to distinguish the different uses.</rdfs:c
             <rdf:Description rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Scozia"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Sicilia"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Spagna"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Trakehner"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#TrentinoAltoAdige"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Vestfalia"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#bergamo"/>

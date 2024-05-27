@@ -43,7 +43,8 @@ export const horsesalesService = defineStore('horsesalesService', {
           ?PrezzoUri designpatternprice:hasValue ?Prezzo.
           ?DisciplinaUri rdfs:label ?Disciplina.
           
-          FILTER (lang(?Descrizione) = "it" && lang(?Regione)="it" && lang(?cavalliInVendita)="it" && lang(?Disciplina)="it" && lang(?Razza)="it")  
+          FILTER (lang(?Descrizione) = "it" && lang(?Regione)="it" && lang(?cavalliInVendita)="it" && lang(?Disciplina)="it" && lang(?Razza)="it")
+          FILTER (!regex(str(?RazzaUri), "^http://www.wikidata.org/entity/"))  
       } ORDER BY(?cavalliInVendita)`;
     
       try {
@@ -168,6 +169,7 @@ export const horsesalesService = defineStore('horsesalesService', {
           
           
           FILTER(?CavalloUri=<`+horseUri+`> && lang(?Regione)="it" && lang(?Città)="it" && lang(?Proprietario)="it" && lang(?Razza)="it" && lang(?Disciplina)="it")
+          FILTER (!regex(str(?RazzaUri), "^http://www.wikidata.org/entity/"))
                
       } `;
     
@@ -402,8 +404,8 @@ export const horsesalesService = defineStore('horsesalesService', {
     where {
            ?CavalloUri rdf:type oh:Cavallo;
                oh:nomeCavallo ?NomeCavallo;
-            oh:vieneUtilizzatoPer ?Discipline;
-              rdfs:label ?Cavallo.
+               oh:vieneUtilizzatoPer ?Discipline;
+               rdfs:label ?Cavallo.
         
               
         FILTER (lang(?Cavallo)="it")   

@@ -132,18 +132,6 @@ oh:consegue rdf:type owl:ObjectProperty ;
                        "consegue"@it .
 
 
-###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#entitàWikidata
-oh:entitàWikidata rdf:type owl:ObjectProperty ,
-                           owl:FunctionalProperty ,
-                           owl:InverseFunctionalProperty ;
-                  rdfs:domain oh:RazzaCavallo ;
-                  rdfs:range owl:Thing ;
-                  rdfs:comment "La corrispondente entità su Wikidata"@it ,
-                               "The corrispondig entity on Wikidata"@en ;
-                  rdfs:label "Entità Wikidata"@it ,
-                             "Wikidata Entity"@en .
-
-
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#gareggiaNellaCategoriaDiDressage
 oh:gareggiaNellaCategoriaDiDressage rdf:type owl:ObjectProperty ;
                                     rdfs:domain dbo:horse ;
@@ -487,8 +475,7 @@ schema:Place rdf:type owl:Class ;
 
 
 ###  http://www.ontologydesignpatterns.org/cp/owl/price.owl#Currency
-designpatternprice:Currency rdf:type owl:Class ;
-                            rdfs:subClassOf oh:Cavallo .
+designpatternprice:Currency rdf:type owl:Class .
 
 
 ###  http://www.ontologydesignpatterns.org/cp/owl/price.owl#Price
@@ -1660,7 +1647,7 @@ oh:Andalusia rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Andaluso
 oh:Andaluso rdf:type owl:NamedIndividual ,
                      oh:RazzaCavallo ;
-            oh:entitàWikidata wd:Q489798 ;
+            owl:sameAs wd:Q489798 ;
             oh:haClassificazioneMorfologica oh:mesomorfo ;
             oh:haIndole oh:sangueCaldo ;
             oh:haRegioneDiOrigine oh:Andalusia ;
@@ -1679,10 +1666,12 @@ oh:Andaluso rdf:type owl:NamedIndividual ,
                            "Andaluso"@it .
 
 
+###  http://www.wikidata.org/entity/Q489798
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AngloAraboFrancese
 oh:AngloAraboFrancese rdf:type owl:NamedIndividual ,
                                oh:RazzaCavallo ;
-                      oh:entitàWikidata wd:Q7029480 ;
+                      owl:sameAs wd:Q7029480 ;
                       oh:haClassificazioneMorfologica oh:dolicomorfo ;
                       oh:haIndole oh:sangueCaldo ;
                       oh:haRegioneDiOrigine oh:Normandia ;
@@ -1704,10 +1693,12 @@ oh:AngloAraboFrancese rdf:type owl:NamedIndividual ,
                                      "French Anglo-Arab"@en .
 
 
+###  http://www.wikidata.org/entity/Q7029480
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AngloAraboSpagnolo
 oh:AngloAraboSpagnolo rdf:type owl:NamedIndividual ,
                                oh:RazzaCavallo ;
-                      oh:entitàWikidata wd:Q3617386 ;
+                      owl:sameAs wd:Q3617386 ;
                       oh:haClassificazioneMorfologica oh:dolicomorfo ;
                       oh:haIndole oh:sangueCaldo ;
                       oh:haRegioneDiOrigine oh:Andalusia ;
@@ -1726,10 +1717,12 @@ oh:AngloAraboSpagnolo rdf:type owl:NamedIndividual ,
                                      "Anglo-Arabo spagnolo"@it .
 
 
+###  http://www.wikidata.org/entity/Q3617386
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Appenninico
 oh:Appenninico rdf:type owl:NamedIndividual ,
                         oh:RazzaCavallo ;
-               oh:entitàWikidata wd:Q3620866 ;
+               owl:sameAs wd:Q3620866 ;
                oh:haClassificazioneMorfologica oh:mesomorfo ;
                oh:haIndole oh:sangueFreddo ;
                oh:haRegioneDiOrigine oh:AppenninoToscoEmiliano ;
@@ -1746,6 +1739,8 @@ oh:Appenninico rdf:type owl:NamedIndividual ,
                skos:prefLabel "Appenninico"@en ,
                               "Appenninico"@it .
 
+
+###  http://www.wikidata.org/entity/Q3620866
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#AppenninoToscoEmiliano
 oh:AppenninoToscoEmiliano rdf:type owl:NamedIndividual ,
@@ -1770,7 +1765,7 @@ oh:Ardenne rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Ardennese
 oh:Ardennese rdf:type owl:NamedIndividual ,
                       oh:RazzaCavallo ;
-             oh:entitàWikidata wd:Q638976 ;
+             owl:sameAs wd:Q638976 ;
              oh:haClassificazioneMorfologica oh:brachimorfo ;
              oh:haIndole oh:sangueFreddo ;
              oh:haRegioneDiOrigine oh:Ardenne ;
@@ -1790,10 +1785,12 @@ oh:Ardennese rdf:type owl:NamedIndividual ,
                             "Ardennese"@it .
 
 
+###  http://www.wikidata.org/entity/Q638976
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#BelgaDaTiro
 oh:BelgaDaTiro rdf:type owl:NamedIndividual ,
                         oh:RazzaCavallo ;
-               oh:entitàWikidata wd:Q896476 ;
+               owl:sameAs wd:Q896476 ;
                oh:haClassificazioneMorfologica oh:brachimorfo ;
                oh:haIndole oh:sangueFreddo ;
                oh:haRegioneDiOrigine oh:Ardenne ;
@@ -1812,6 +1809,8 @@ oh:BelgaDaTiro rdf:type owl:NamedIndividual ,
                               "Belgian Draught"@en .
 
 
+###  http://www.wikidata.org/entity/Q896476
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Belgio
 oh:Belgio rdf:type owl:NamedIndividual ,
                    oh:AreaGeografica ;
@@ -1825,7 +1824,7 @@ oh:Belgio rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Boulonnais
 oh:Boulonnais rdf:type owl:NamedIndividual ,
                        oh:RazzaCavallo ;
-              oh:entitàWikidata wd:Q588252 ;
+              owl:sameAs wd:Q588252 ;
               oh:haClassificazioneMorfologica oh:brachimorfo ;
               oh:haIndole oh:sangueFreddo ;
               oh:haRegioneDiOrigine oh:RegioneBoullonnais ;
@@ -1845,6 +1844,8 @@ oh:Boulonnais rdf:type owl:NamedIndividual ,
                              "Boulonnais"@it .
 
 
+###  http://www.wikidata.org/entity/Q588252
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Bretagna
 oh:Bretagna rdf:type owl:NamedIndividual ,
                      oh:AreaGeografica ;
@@ -1859,7 +1860,7 @@ oh:Bretagna rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Bretone
 oh:Bretone rdf:type owl:NamedIndividual ,
                     oh:RazzaCavallo ;
-           oh:entitàWikidata wd:Q514553 ;
+           owl:sameAs wd:Q514553 ;
            oh:haClassificazioneMorfologica oh:brachimorfo ;
            oh:haIndole oh:sangueFreddo ;
            oh:haRegioneDiOrigine oh:Bretagna ;
@@ -1875,6 +1876,8 @@ oh:Bretone rdf:type owl:NamedIndividual ,
            skos:prefLabel "Bretone"@it ,
                           "Breton Horse" .
 
+
+###  http://www.wikidata.org/entity/Q514553
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#C100
 oh:C100 rdf:type owl:NamedIndividual ;
@@ -2065,7 +2068,7 @@ oh:CavalierePrincipiante rdf:type owl:NamedIndividual ;
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CavalloDelloJutland
 oh:CavalloDelloJutland rdf:type owl:NamedIndividual ,
                                 oh:RazzaCavallo ;
-                       oh:entitàWikidata wd:Q1684175 ;
+                       owl:sameAs wd:Q1684175 ;
                        oh:haClassificazioneMorfologica oh:brachimorfo ;
                        oh:haIndole oh:sangueFreddo ;
                        oh:haRegioneDiOrigine oh:Jutland ;
@@ -2084,10 +2087,12 @@ oh:CavalloDelloJutland rdf:type owl:NamedIndividual ,
                                       "Jutland Horse"@en .
 
 
+###  http://www.wikidata.org/entity/Q1684175
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Clydesdale
 oh:Clydesdale rdf:type owl:NamedIndividual ,
                        oh:RazzaCavallo ;
-              oh:entitàWikidata wd:Q844058 ;
+              owl:sameAs wd:Q844058 ;
               oh:haClassificazioneMorfologica oh:brachimorfo ;
               oh:haIndole oh:sangueFreddo ;
               oh:haRegioneDiOrigine oh:Scozia ;
@@ -2106,6 +2111,8 @@ oh:Clydesdale rdf:type owl:NamedIndividual ,
               skos:prefLabel "Clydesdale"@it ,
                              "Clydesdale Horse"@en .
 
+
+###  http://www.wikidata.org/entity/Q844058
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CrossCountry
 oh:CrossCountry rdf:type owl:NamedIndividual ,
@@ -2263,7 +2270,7 @@ oh:Frisia rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Frisone
 oh:Frisone rdf:type owl:NamedIndividual ,
                     oh:RazzaCavallo ;
-           oh:entitàWikidata wd:Q388952 ;
+           owl:sameAs wd:Q388952 ;
            oh:haClassificazioneMorfologica oh:mesoBrachimorfo ;
            oh:haIndole oh:sangueFreddo ;
            oh:haRegioneDiOrigine oh:Frisia ;
@@ -2280,6 +2287,8 @@ oh:Frisone rdf:type owl:NamedIndividual ,
                           "Frisone"@it .
 
 
+###  http://www.wikidata.org/entity/Q388952
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Germania
 oh:Germania rdf:type owl:NamedIndividual ,
                      oh:AreaGeografica ;
@@ -2293,7 +2302,7 @@ oh:Germania rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Hannover
 oh:Hannover rdf:type owl:NamedIndividual ,
                      oh:RazzaCavallo ;
-            oh:entitàWikidata wd:Q1501738 ;
+            owl:sameAs wd:Q1501738 ;
             oh:haClassificazioneMorfologica oh:mesomorfo ;
             oh:haIndole oh:sangueCaldo ;
             oh:haRegioneDiOrigine oh:RegioneHannover ;
@@ -2313,10 +2322,12 @@ oh:Hannover rdf:type owl:NamedIndividual ,
                            "Hanoverian horse"@en .
 
 
+###  http://www.wikidata.org/entity/Q1501738
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Holstein
 oh:Holstein rdf:type owl:NamedIndividual ,
                      oh:RazzaCavallo ;
-            oh:entitàWikidata wd:Q571149 ;
+            owl:sameAs wd:Q571149 ;
             oh:haClassificazioneMorfologica oh:mesomorfo ;
             oh:haIndole oh:sangueMisto ;
             oh:haRegioneDiOrigine oh:Schleswig-Holstein ;
@@ -2336,10 +2347,12 @@ oh:Holstein rdf:type owl:NamedIndividual ,
                            "Holsteiner"@en .
 
 
+###  http://www.wikidata.org/entity/Q571149
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#IrishSportHorse
 oh:IrishSportHorse rdf:type owl:NamedIndividual ,
                             oh:RazzaCavallo ;
-                   oh:entitàWikidata wd:Q1665430 ;
+                   owl:sameAs wd:Q1665430 ;
                    oh:haClassificazioneMorfologica oh:mesomorfo ;
                    oh:haIndole oh:sangueCaldo ;
                    oh:haNazionalità oh:Irlanda ;
@@ -2360,6 +2373,8 @@ oh:IrishSportHorse rdf:type owl:NamedIndividual ,
                    skos:prefLabel "Irish Sport Horse"@en ,
                                   "Irish Sport Horse"@it .
 
+
+###  http://www.wikidata.org/entity/Q1665430
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Irlanda
 oh:Irlanda rdf:type owl:NamedIndividual ,
@@ -2394,7 +2409,7 @@ oh:Jutland rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Lipizzano
 oh:Lipizzano rdf:type owl:NamedIndividual ,
                       oh:RazzaCavallo ;
-             oh:entitàWikidata wd:Q217671 ;
+             owl:sameAs wd:Q217671 ;
              oh:haClassificazioneMorfologica oh:mesoDolicomorfo ;
              oh:haIndole oh:sangueMisto ;
              oh:haRegioneDiOrigine oh:TrentinoAltoAdige ;
@@ -2415,6 +2430,8 @@ oh:Lipizzano rdf:type owl:NamedIndividual ,
                             "Lipizzano"@it .
 
 
+###  http://www.wikidata.org/entity/Q217671
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Lombardia
 oh:Lombardia rdf:type owl:NamedIndividual ,
                       oh:AreaGeografica ;
@@ -2428,7 +2445,7 @@ oh:Lombardia rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Lusitano
 oh:Lusitano rdf:type owl:NamedIndividual ,
                      oh:RazzaCavallo ;
-            oh:entitàWikidata wd:Q937595 ;
+            owl:sameAs wd:Q937595 ;
             oh:haClassificazioneMorfologica oh:mesoDolicomorfo ;
             oh:haIndole oh:sangueCaldo ;
             oh:haNazionalità oh:Portogallo ;
@@ -2449,6 +2466,8 @@ oh:Lusitano rdf:type owl:NamedIndividual ,
             skos:prefLabel "Lusitano"@en ,
                            "Lusitano"@it .
 
+
+###  http://www.wikidata.org/entity/Q937595
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#M
 oh:M rdf:type owl:NamedIndividual ;
@@ -2471,7 +2490,7 @@ oh:Maremma rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Maremmano
 oh:Maremmano rdf:type owl:NamedIndividual ,
                       oh:RazzaCavallo ;
-             oh:entitàWikidata wd:Q1894708 ;
+             owl:sameAs wd:Q1894708 ;
              oh:haClassificazioneMorfologica oh:mesoDolicomorfo ;
              oh:haIndole oh:sangueFreddo ;
              oh:haRegioneDiOrigine oh:Maremma ;
@@ -2487,6 +2506,8 @@ oh:Maremmano rdf:type owl:NamedIndividual ,
              skos:prefLabel "Maremmano"@en ,
                             "Maremmano"@it .
 
+
+###  http://www.wikidata.org/entity/Q1894708
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#MaschioAndaluso
 oh:MaschioAndaluso rdf:type owl:NamedIndividual ,
@@ -2584,7 +2605,7 @@ oh:Murge rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Murgese
 oh:Murgese rdf:type owl:NamedIndividual ,
                     oh:RazzaCavallo ;
-           oh:entitàWikidata wd:Q1953691 ;
+           owl:sameAs wd:Q1953691 ;
            oh:haClassificazioneMorfologica oh:mesomorfo ;
            oh:haIndole oh:sangueCaldo ;
            oh:haRegioneDiOrigine oh:Murge ;
@@ -2601,6 +2622,8 @@ oh:Murgese rdf:type owl:NamedIndividual ,
                           "Murgese"@it .
 
 
+###  http://www.wikidata.org/entity/Q1953691
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Normandia
 oh:Normandia rdf:type owl:NamedIndividual ,
                       oh:AreaGeografica ;
@@ -2614,7 +2637,7 @@ oh:Normandia rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#OlandeseASangueCaldo
 oh:OlandeseASangueCaldo rdf:type owl:NamedIndividual ,
                                  oh:RazzaCavallo ;
-                        oh:entitàWikidata wd:Q1468737 ;
+                        owl:sameAs wd:Q1468737 ;
                         oh:haClassificazioneMorfologica oh:mesoDolicomorfo ;
                         oh:haIndole oh:sangueCaldo ;
                         oh:haNazionalità oh:PaesiBassi ;
@@ -2635,10 +2658,12 @@ oh:OlandeseASangueCaldo rdf:type owl:NamedIndividual ,
                                        "Olandese a sangue caldo"@it .
 
 
+###  http://www.wikidata.org/entity/Q1468737
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Oldemburghese
 oh:Oldemburghese rdf:type owl:NamedIndividual ,
                           oh:RazzaCavallo ;
-                 oh:entitàWikidata wd:Q166777 ;
+                 owl:sameAs wd:Q166777 ;
                  oh:haClassificazioneMorfologica oh:mesomorfo ;
                  oh:haIndole oh:sangueCaldo ;
                  oh:haNazionalità oh:Germania ;
@@ -2657,6 +2682,8 @@ oh:Oldemburghese rdf:type owl:NamedIndividual ,
                  skos:prefLabel "Oldemburghese"@it ,
                                 "Oldenburg Horse"@en .
 
+
+###  http://www.wikidata.org/entity/Q166777
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#PaesiBassi
 oh:PaesiBassi rdf:type owl:NamedIndividual ,
@@ -2681,7 +2708,7 @@ oh:Perche rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Percheron
 oh:Percheron rdf:type owl:NamedIndividual ,
                       oh:RazzaCavallo ;
-             oh:entitàWikidata wd:Q1232528 ;
+             owl:sameAs wd:Q1232528 ;
              oh:haClassificazioneMorfologica oh:brachimorfo ;
              oh:haIndole oh:sangueFreddo ;
              oh:haRegioneDiOrigine oh:Perche ;
@@ -2698,6 +2725,8 @@ oh:Percheron rdf:type owl:NamedIndividual ,
              skos:prefLabel "Percheron"@en ,
                             "Percheron"@it .
 
+
+###  http://www.wikidata.org/entity/Q1232528
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Piemonte
 oh:Piemonte rdf:type owl:NamedIndividual ,
@@ -2731,7 +2760,7 @@ oh:Puglia rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#PuroSangueInglese
 oh:PuroSangueInglese rdf:type owl:NamedIndividual ,
                               oh:RazzaCavallo ;
-                     oh:entitàWikidata wd:Q210826 ;
+                     owl:sameAs wd:Q210826 ;
                      oh:haClassificazioneMorfologica oh:dolicomorfo ;
                      oh:haIndole oh:sangueCaldo ;
                      oh:haNazionalità oh:RegnoUnito ;
@@ -2750,6 +2779,8 @@ oh:PuroSangueInglese rdf:type owl:NamedIndividual ,
                      skos:prefLabel "Purosangue inglese"@it ,
                                     "Thoroughbred"@en .
 
+
+###  http://www.wikidata.org/entity/Q210826
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#RegioneBoullonnais
 oh:RegioneBoullonnais rdf:type owl:NamedIndividual ,
@@ -2809,7 +2840,7 @@ oh:Scozia rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#SellaFrancese
 oh:SellaFrancese rdf:type owl:NamedIndividual ,
                           oh:RazzaCavallo ;
-                 oh:entitàWikidata wd:Q1070901 ;
+                 owl:sameAs wd:Q1070901 ;
                  oh:haClassificazioneMorfologica oh:mesoDolicomorfo ;
                  oh:haIndole oh:sangueCaldo ;
                  oh:haRegioneDiOrigine oh:Normandia ;
@@ -2829,10 +2860,12 @@ oh:SellaFrancese rdf:type owl:NamedIndividual ,
                                 "Selle Français"@en .
 
 
+###  http://www.wikidata.org/entity/Q1070901
+
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#SellaItaliano
 oh:SellaItaliano rdf:type owl:NamedIndividual ,
                           oh:RazzaCavallo ;
-                 oh:entitàWikidata wd:Q428039 ;
+                 owl:sameAs wd:Q428039 ;
                  oh:haClassificazioneMorfologica oh:mesoDolicomorfo ;
                  oh:haIndole oh:sangueCaldo ;
                  oh:haNazionalità oh:Italia ;
@@ -2850,6 +2883,8 @@ oh:SellaItaliano rdf:type owl:NamedIndividual ,
                  skos:prefLabel "Sella Italiano"@en ,
                                 "Sella Italiano"@it .
 
+
+###  http://www.wikidata.org/entity/Q428039
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Sicilia
 oh:Sicilia rdf:type owl:NamedIndividual ,
@@ -2885,7 +2920,7 @@ oh:TrainoCarrozze rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Trakehner
 oh:Trakehner rdf:type owl:NamedIndividual ,
                       oh:RazzaCavallo ;
-             oh:entitàWikidata wd:Q843585 ;
+             owl:sameAs wd:Q843585 ;
              oh:haClassificazioneMorfologica oh:mesoDolicomorfo ;
              oh:haIndole oh:sangueMisto ;
              oh:haNazionalità oh:Germania ;
@@ -2907,6 +2942,8 @@ oh:Trakehner rdf:type owl:NamedIndividual ,
              skos:prefLabel "Trakehner"@en ,
                             "Trakehner"@it .
 
+
+###  http://www.wikidata.org/entity/Q843585
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#TrentinoAltoAdige
 oh:TrentinoAltoAdige rdf:type owl:NamedIndividual ,
@@ -2931,7 +2968,6 @@ oh:Vestfalia rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#Westfalen
 oh:Westfalen rdf:type owl:NamedIndividual ,
                       oh:RazzaCavallo ;
-             oh:entitàWikidata wd:Q195395 ;
              oh:haClassificazioneMorfologica oh:mesomorfo ;
              oh:haIndole oh:sangueCaldo ;
              oh:haRegioneDiOrigine oh:Vestfalia ;
@@ -3468,9 +3504,9 @@ oh:TrainoCarrozze rdfs:comment "Using the horse to pull carriages for the transp
                         oh:Frisia
                         oh:Germania
                         oh:Irlanda
+                        oh:Italia
                         oh:Jutland
                         oh:Lombardia
-                        oh:Lusitano
                         oh:Maremma
                         oh:Murge
                         oh:Normandia
@@ -3486,7 +3522,6 @@ oh:TrainoCarrozze rdfs:comment "Using the horse to pull carriages for the transp
                         oh:Scozia
                         oh:Sicilia
                         oh:Spagna
-                        oh:Trakehner
                         oh:TrentinoAltoAdige
                         oh:Vestfalia
                         oh:bergamo

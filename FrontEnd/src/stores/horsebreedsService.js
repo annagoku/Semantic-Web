@@ -37,16 +37,18 @@ export const horsebreedsService = defineStore('horsebreedsService', {
             ?IndoleUri rdfs:label ?Indole.
             ?MorfologiaUri rdfs:label ?Morfologia.
           
-          FILTER ( lang(?Informazioni) = "it" && lang(?Nazionalità)="it"&& lang(?Razza)="it" && lang(?Indole)="it" && lang(?Morfologia)="it" ).
+          
           
           OPTIONAL { 
-              ?RazzaUri oh:entitàWikidata ?entita.
+              ?RazzaUri owl:sameAs ?entita.
                 SERVICE <https://query.wikidata.org/sparql> {
                 OPTIONAL {
                   ?entita <http://www.wikidata.org/prop/direct/P18> ?Immagine.
                    }
                   }			 
-          }            
+          }
+          FILTER ( lang(?Informazioni) = "it" && lang(?Nazionalità)="it"&& lang(?Razza)="it" && lang(?Indole)="it" && lang(?Morfologia)="it" ).
+          FILTER (!regex(str(?RazzaUri), "^http://www.wikidata.org/entity/")).            
       }
       GROUP BY ?RazzaUri ?Razza ?Nazionalità ?Indole ?Morfologia ?Informazioni
       ORDER BY (?Razza)`;
@@ -139,7 +141,8 @@ export const horsebreedsService = defineStore('horsebreedsService', {
           optional{
                       ?RazzaUri schema:image ?Immagine.                     
           }
-       FILTER(?RazzaUri=<`+breedUri+`> && lang(?Razza)="it" && lang(?Impiego)="it" && lang(?Informazioni) = "it" && lang(?Nazionalità)="it"&& lang(?Indole)="it" && lang(?Morfologia)="it")	
+       FILTER(?RazzaUri=<`+breedUri+`> && lang(?Razza)="it" && lang(?Impiego)="it" && lang(?Informazioni) = "it" && lang(?Nazionalità)="it"&& lang(?Indole)="it" && lang(?Morfologia)="it")
+       FILTER (!regex(str(?RazzaUri), "^http://www.wikidata.org/entity/")).	
       } `;
     
       try {
