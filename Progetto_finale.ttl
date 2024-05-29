@@ -462,8 +462,7 @@ schema:Place rdf:type owl:Class ;
 
 
 ###  http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection
-<http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection> rdf:type owl:Class ;
-                                                                               owl:equivalentClass oh:CatalogoAutorizzazioniAMontareFise .
+<http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection> rdf:type owl:Class .
 
 
 ###  http://www.ontologydesignpatterns.org/cp/owl/list.owl#List
@@ -497,6 +496,7 @@ oh:AreaGeografica rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/annag/ontologies/2024/1/ontoHorses#CatalogoAutorizzazioniAMontareFise
 oh:CatalogoAutorizzazioniAMontareFise rdf:type owl:Class ;
+                                      rdfs:subClassOf <http://www.ontologydesignpatterns.org/cp/owl/list.owl#List> ;
                                       rdfs:comment "Catalog of horse riding licences defined by Federazione Italiana Sport Equestri"@en ,
                                                    "Catalogo di tutte le autorizzazioni a montare previste dalla Federazione Italiana Sport Equestri"@it ;
                                       rdfs:label "Catalog of horse riding licences FISE"@en ,
